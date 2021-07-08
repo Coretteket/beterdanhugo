@@ -96,6 +96,10 @@ b {
     display: none!important;
 }
 
+.hidemobile {
+    display: contents;
+}
+
 .time {
     display: block;
 }
@@ -117,10 +121,10 @@ b {
 
 @media (max-width:350px) {
     .smallshow {
-        display: inline-block;
+        display: inline-block!important;
     }
     .smallhide {
-        display: none;
+        display: none!important;
     }
 }
 
@@ -131,6 +135,9 @@ b {
     }
     .hidemobile {
         display: inline!important;
+    }
+    .showmobile {
+        display: none;
     }
     .time {
         display: none;

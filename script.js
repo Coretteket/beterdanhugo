@@ -1,12 +1,6 @@
 var msgs = {
-    1: {
-        "txt": "<p><b>China pneumonia outbreak: Mystery virus probed in Wuhan (BBC)</b></p><p>Chinese authorities have launched an investigation into a mysterious viral pneumonia which has infected dozens of people in the central city of Wuhan. It comes amid fears the virus could be linked severe acute respiratory syndrome. The deadly, flu-like Sars virus killed more than 700 people around the world in 2002, after originating in China. Local authorities say there has been no human-to-human transmission. However, a number of those infected worked at a seafood market in the city, leading authorities to clean the area.</p>",
-        "btn": [
-            ["Volgende.", "next(2);setDate(2020, 1, 6)"]
-        ]
-    },
     2: {
-        "txt": "<p><b>Tot nu toe 59 gevallen van mysterieuze longziekte in China (NOS)</b></p><p>In de Oost-Chinese miljoenenstad Wuhan zijn tot dusver 59 besmettingen ontdekt van een mysterieuze longziekte. Volgens de WHO is onduidelijk om wat voor ziekte het gaat en waardoor deze wordt veroorzaakt. Vermoedelijk is het een vorm van griep, maar het is niet zeker dat het om een virusziekte gaat. Elf mensen zijn ernstig ziek, van de andere zieken is de toestand stabiel.</p>",
+        "txt": "<p><b>Tot nu toe 59 gevallen van mysterieuze longziekte in China (NOS)</b></p><p>In de Oost-Chinese miljoenenstad Wuhan zijn tot dusver 59 besmettingen ontdekt van een mysterieuze longziekte. Volgens de WHO is onduidelijk om wat voor ziekte het gaat en waardoor deze wordt veroorzaakt, maar experts vrezen een nieuwe vorm van SARS. Vermoedelijk is het een variant van de griep, maar het is niet zeker dat het om een virusziekte gaat. Elf mensen zijn ernstig ziek, van de andere zieken is de toestand stabiel.</p>",
         "btn": [
             ["Volgende.", "next(3);setDate(2020, 1, 10)"]
         ]
@@ -130,8 +124,8 @@ function start() {
     } else {
         document.getElementById("name").removeAttribute("contenteditable");
         document.getElementById("name").innerHTML = surname;
-        next(1);
-        setDate(2020, 1, 3);
+        next(2);
+        setDate(2020, 1, 6);
     }
 }
 
