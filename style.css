@@ -178,11 +178,6 @@ p {
     outline: 0px solid transparent;
 }
 
-#name {
-    font-weight: 550;
-    /*font-family: 'Courier Prime', monospace;*/
-}
-
 .btn {
     background: none;
     border: none;
@@ -244,4 +239,19 @@ a {
 
 #hugo:hover:before {
     content: "Bruno";
+}
+
+#name {
+    margin-top: .5em;
+    font-family: 'Courier New', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    border-radius: .2em;
+    border-color: white;
+    padding: .3em;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
 }
