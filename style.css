@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap');
 html,
 body {
@@ -8,7 +8,7 @@ body {
     height: 100%;
     font-size: 16px;
     font-family: 'Nunito Sans', sans-serif;
-    line-height: 1.15;
+    line-height: 1.2;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -17,220 +17,27 @@ body {
     user-select: none;
 }
 
-b {
-    font-weight: 900;
-}
-
-.column {
-    margin: 0 auto;
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-}
-
-.other {
-    margin: 0 auto;
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-    padding: .8em;
-    padding-bottom: 0!important;
-    margin-bottom: 0;
-}
-
-.calcont {
-    height: 100%;
-    float: right;
-}
-
-.othercont {
-    width: 100%;
-    float: left;
-}
-
-#calendar {
-    border-radius: .2em;
-    width: 6em;
-    height: 7em;
-    background-color: rgb(209, 39, 39);
-    margin: auto .5em;
-    margin-right: 0;
-    margin-top: .7em;
-    margin-left: 1em;
-    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
-}
-
-#ctop {
-    padding: .55em 0 0.5em 0;
-    color: white;
-    font-weight: 1000;
-    font-family: 'Courier Prime', monospace;
-    font-size: 1em;
-    text-align: center;
-}
-
-#cbottom {
-    background-color: white;
-    width: 100%;
-    height: calc(100% - 0.85em);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    font-family: 'Courier Prime', monospace;
-    font-weight: 1000;
-    font-size: 2.5em;
-    overflow: hidden;
-}
-
-.other p {
-    width: calc(100% - 1.6em);
-    margin: 0.5em 0;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.hidemobile {
-    display: none!important;
-}
-
-.hidemobile {
-    display: contents;
-}
-
-.time {
-    display: block;
-}
-
-#weekday,
-#date {
-    font-size: 1.03em;
-    font-weight: 800;
-    font-family: 'Courier Prime', monospace;
-}
-
-.smallshow {
-    display: none;
-}
-
-.smallhide {
-    display: inline-block;
-}
-
-@media (max-width:350px) {
-    .smallshow {
-        display: inline-block!important;
-    }
-    .smallhide {
-        display: none!important;
-    }
-}
-
-@media (min-width:580px) {
-    .othercont {
-        width: calc(100% - 7em);
-        float: left;
-    }
-    .hidemobile {
-        display: inline!important;
-    }
-    .showmobile {
-        display: none;
-    }
-    .time {
-        display: none;
-    }
-    body {
-        font-size: 18px;
-    }
-    .column {
-        min-width: 30em;
-        width: 50%;
-    }
-    .other {
-        min-width: 30em;
-        width: 50%;
-    }
-}
-
-#append {
-    width: 100%;
-    padding-bottom: .5em;
-    /*position: absolute;
-    bottom: 0px;*/
-}
-
 h1 {
     font-weight: 1000;
     text-align: left;
-    line-height: 1.2;
-    margin: 0;
-    margin-top: .1em;
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 1.1;
+    font-size: 2.2rem;
+    margin: .5em 0 .2em;
 }
 
 p {
-    margin: 0 0;
+    font-size: 1.05rem;
 }
 
-[contenteditable] {
-    outline: 0px solid transparent;
+.container {
+    width: 100%;
+    height: 100%;
 }
 
-.btn {
-    background: none;
-    border: none;
-    margin: .5em 1.5em 0 0;
-    padding: 0;
-    cursor: pointer;
-    font-size: .9em;
-    font-weight: 600;
-    /*font-family: 'Courier Prime', monospace;*/
-    font-family: 'Nunito Sans', sans-serif;
+#head {
     text-align: left;
-}
-
-.btn:hover {
-    font-style: italic;
-}
-
-@keyframes swipe {
-    from {
-        max-height: 0;
-        margin: 0 .8em;
-        padding: .8em .8em 0 .8em;
-        -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
-        box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
-    }
-    to {
-        max-height: 30em;
-        margin: .8em;
-        padding: .8em;
-        -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
-        box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
-    }
-}
-
-.lbox {
-    background-color: rgb(236, 235, 235);
-    margin: .8em;
-    margin-bottom: 1em;
-    padding: .8em;
-    width: calc(100% - 3.2em);
-    max-height: 30em;
-    border-radius: .6em;
-    text-align: left;
-    animation-name: swipe;
-    animation-duration: .2s;
-    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-}
-
-a {
-    text-decoration: none;
-    font-weight: 600;
+    padding-bottom: 1rem;
 }
 
 #hugo:before {
@@ -241,17 +48,76 @@ a {
     content: "Bruno";
 }
 
-#name {
-    margin-top: .5em;
-    font-family: 'Courier New', sans-serif;
-    font-weight: 600;
-    font-size: 1em;
-    border-radius: .2em;
-    border-color: white;
-    padding: .3em;
+.newsbox {
+    /*display: flex;
+    align-items: center;*/
+    background-color: rgb(235, 235, 235);
+    margin-bottom: 1em;
+    padding: .6em;
+    min-height: calc(1.2em + 60px);
+    overflow: none;
+    width: 100%;
+    border-radius: .6em;
+    text-align: left;
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+    /*max-height: 30em;
+    animation-name: swipe;
+    animation-duration: .2s;*/
 }
 
-textarea:focus,
-input:focus {
-    outline: none;
+.newsbox img {
+    float: left;
+    margin-right: .4rem;
+    border-radius: 15%;
+}
+
+#pinned {
+    padding-right: 32px;
+}
+
+.app {
+    display: block;
+    margin: 0;
+    font-size: 0.8rem;
+    margin: 0.1rem 0;
+    font-weight: 400;
+}
+
+.newstitle {
+    display: block;
+    margin-top: .2rem;
+    margin-bottom: 0;
+}
+
+#pin {
+    position: absolute;
+    z-index: 999;
+    right: 18px;
+    top: 10px;
+    transform: rotate(45deg);
+    opacity: 50%;
+}
+
+#up {
+    position: absolute;
+    z-index: 999;
+    right: 18px;
+    top: 32px;
+    opacity: 50%;
+}
+
+#down {
+    position: absolute;
+    z-index: 999;
+    right: 18px;
+    top: 54px;
+    transform: rotate(180deg);
+    opacity: 50%;
+}
+
+@media (max-width:576px) {
+    p {
+        font-size: 1rem;
+    }
 }

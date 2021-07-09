@@ -4,6 +4,10 @@
 <head>
     <title>Beter dan Hugo</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="apple-touch-icon" sizes="180x180" href="ico/apple-touch-icon.png">
@@ -13,37 +17,51 @@
     <link rel="mask-icon" href="ico/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#b91d47">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
-    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <!--<link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>-->
 </head>
 
-<body data-simplebar>
-    <div class="other">
-        <div class="calcont hidemobile">
-            <div id="calendar">
-                <div id="ctop">JAN 2020</div>
-                <div id="cbottom">01</div>
+<body>
+    <!-- data-simplebar-->
+    <div class="container-sm mx-10">
+        <div class="row">
+            <div class="col-md-1 d-none d-md-block"></div>
+            <div class="col-md-10" id="head">
+                <h1>Beter dan <span id="hugo"></span></h1>
+                <p class="d-none d-md-inline">De afgelopen maanden kende ons land opeens zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In deze simulatie kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke keuze
+                    heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister.
+                    <a href="./faq.html" target="_blank">Meer weten?</a> Ontwikkeld door <a href="https://twitter.com/intent/user?screen_name=coretteket" target=”_blank”>@coretteket</a>.</p>
+                <p class="d-inline d-md-none">In deze simulatie kom jij voor dezelfde keuzes als Hugo te staan, maar mag je je eigen weg door het doolhof van corona kiezen. <a href="./faq.html" target="_blank">Meer weten?</a> Door <a href="https://twitter.com/intent/user?screen_name=coretteket"
+                        target=”_blank”>@coretteket</a>.</p>
             </div>
+            <div class="col-md-1 d-none d-md-block"></div>
         </div>
-        <div class="othercont">
-            <h1>Beter dan <span id="hugo"></span></h1>
-            <p class="smallhide"><span class="hidemobile">De afgelopen maanden kende ons land opeens zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo?</span> In deze simulatie kom jij voor dezelfde keuzes te staan<span class="showmobile"> als Hugo</span>,
-                maar mag je je eigen weg door het doolhof van corona kiezen.
-                <a href="./faq.html" target="_blank">Lees meer.</a> Ontwikkeld door <a href="https://twitter.com/intent/user?screen_name=coretteket" target=”_blank”>@coretteket</a>. </p>
-            <p class="smallshow" style="margin-bottom: 0;">Door <a href="https://twitter.com/intent/user?screen_name=coretteket" target=”_blank”>@coretteket</a>. <a href="./faq.html" target="_blank">Lees meer</a>. <br></p>
-            <p class="time" style="margin-bottom: 0;">De datum is <span id="weekday">wo.</span> <span id="date">01/01/2020</span>. 📅</p>
+        <div class="row">
+            <div class="col-md-1 d-none d-md-block order-1"></div>
+            <div class="col-md-5 order-3 order-md-2" id="dash">Test</div>
+            <div class="col-md-5 order-2 order-md-3" id="news">
+                <div class="newsbox" id="pinned">
+                    <img src="img/pin.png" width="16" height="16" id="pin">
+                    <img src="img/arrow.png" width="16" height="16" id="up">
+                    <img src="img/arrow.png" width="16" height="16" id="down">
+                    <img src="img/nos.png" width="16" height="16">
+                    <p class="app">NOS NIEUWS &ndash; wo. 6 januari</p>
+                    <p class="newstitle">Tot nu toe 59 gevallen van mysterieuze longziekte in China</p>
+                </div>
+                <div class="newsbox">
+                    <img src="img/rtl.png" width="16" height="16">
+                    <p class="app">RTL NIEUWS &ndash; ma. 4 januari</p>
+                    <p class="newstitle">Keurig aan de regels gehouden, en nu thuis met corona: 'Heel zuur'</p>
+                </div>
+                <div class="newsbox">
+                    <img src="img/nu.png" width="16" height="16">
+                    <p class="app">NU.NL &ndash; vr. 1 januari</p>
+                    <p class="newstitle">Fieldlab Evenementen boos over negeren onderzoeksresultaten door kabinet</p>
+                </div>
+            </div>
+            <div class="col-md-1 d-none d-md-block order-4"></div>
         </div>
     </div>
-    <div class="column">
-        <div id="append">
-            <div class="lbox">
-                <p>Hoe mogen we je noemen?</p>
-                <input id="name" type="text" placeholder="Je achternaam" />
-                <br><button class="btn btn0" onclick="start()">&raquo; Start.</button>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript" src="script.js"></script>
 </body>
 
 </html>
