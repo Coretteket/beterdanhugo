@@ -15,7 +15,7 @@ var m = 1;
 var y = 2020;
 
 var sentNews = [
-    ["nu", "0", "Ziekenhuizen ziet aantal slachtoffers met vuuwerkletsel fors stijgen"]
+    ["nu", "0", "Ziekenhuizen ziet aantal slachtoffers met vuurwerkletsel fors stijgen"]
 ];
 var currentPinned = 0;
 
@@ -80,6 +80,16 @@ function updatePinned(i) {
     pin.children[1].innerHTML = outlets[sentNews[i][0]] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]];
     pin.children[2].innerHTML = sentNews[i][2];
     currentPinned = i;
+    if (currentPinned == sentNews.length - 1) {
+        document.getElementById("up").setAttribute("style", "opacity:0%;");
+        document.getElementById("down").setAttribute("style", "opacity:100%;");
+    } else if (currentPinned == 0) {
+        document.getElementById("up").setAttribute("style", "opacity:100%;");
+        document.getElementById("down").setAttribute("style", "opacity:0%;");
+    } else {
+        document.getElementById("up").setAttribute("style", "opacity:100%;");
+        document.getElementById("down").setAttribute("style", "opacity:100%;");
+    }
 }
 
 function dateToInt(y, m, d) {
