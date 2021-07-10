@@ -107,8 +107,12 @@ p {
     opacity: 35%;
 }
 
-@media (max-width:576px) {
-    p {
-        font-size: 1rem;
+@media (min-width:576px) {
+    #up,
+    #down {
+        display: none;
+    }
+    #pinned {
+        padding-right: .6em;
     }
 }
