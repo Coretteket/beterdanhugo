@@ -68,7 +68,7 @@ p {
 
 .newsbox img {
     float: left;
-    margin-right: .4rem;
+    margin-right: .3rem;
     border-radius: 15%;
 }
 
@@ -105,14 +105,4 @@ p {
     top: 2.5em;
     transform: rotate(180deg);
     opacity: 35%;
-}
-
-@media (min-width:576px) {
-    #up,
-    #down {
-        display: none;
-    }
-    #pinned {
-        padding-right: .6em;
-    }
 }
