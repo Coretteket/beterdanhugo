@@ -115,12 +115,12 @@ p {
 }
 
 .time {
-    margin: .5em 0 0 0;
+    margin: .5em 0 0 0!important;
 }
 
 #weekday,
 #date {
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier Prime', monospace;
     font-weight: 800;
     font-size: 1.1rem;
 }
