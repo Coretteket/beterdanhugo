@@ -30,7 +30,33 @@ h1 {
     font-family: 'Nunito Sans', sans-serif;
     line-height: 1.1;
     font-size: 2.2rem;
-    margin: .5em 0 .2em;
+    margin: 20px 0 5px;
+}
+
+#twitter {
+    margin: calc(20px + 0.5rem) 0 5px;
+    text-align: right;
+    font-size: 1.1rem;
+    color: gray;
+    font-weight: 700;
+}
+
+@media (max-width: 575px) {
+    #twitter {
+        margin: 0 0 .5em;
+        text-align: left;
+        font-size: 1.1rem;
+        color: gray;
+        font-weight: 700;
+    }
+}
+
+#twitter a {
+    color: gray;
+}
+
+#twitter a:hover {
+    text-decoration: none;
 }
 
 p {

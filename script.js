@@ -15,7 +15,7 @@ var m = 1;
 var y = 2020;
 
 var sentNews = [
-    ["nu", "0", "Ziekenhuizen ziet aantal slachtoffers met vuurwerkletsel fors stijgen"]
+    ["nu", "0", "Ziekenhuizen zien aantal slachtoffers met vuurwerkletsel fors stijgen"]
 ];
 var currentPinned = 0;
 
@@ -40,12 +40,12 @@ function getNews() {
     var title = "";
     var source = "";
 
-    if (day == dateToInt(2020, 1, 3)) {
+    if (day == dateToInt(2020, 1, 2)) {
         title = "China pneumonia outbreak: Mystery virus probed in Wuhan";
         source = "rtl";
     }
 
-    if (day == dateToInt(2020, 1, 6)) {
+    if (day == dateToInt(2020, 1, 3)) {
         title = "Tot nu toe 59 gevallen van mysterieuze longziekte in China";
         source = "nos";
     }
@@ -81,11 +81,11 @@ function updatePinned(i) {
     pin.children[2].innerHTML = sentNews[i][2];
     currentPinned = i;
     if (currentPinned == sentNews.length - 1) {
-        document.getElementById("up").setAttribute("style", "opacity:0%;");
+        document.getElementById("up").setAttribute("style", "opacity:20%;");
         document.getElementById("down").setAttribute("style", "opacity:100%;");
     } else if (currentPinned == 0) {
         document.getElementById("up").setAttribute("style", "opacity:100%;");
-        document.getElementById("down").setAttribute("style", "opacity:0%;");
+        document.getElementById("down").setAttribute("style", "opacity:20%;");
     } else {
         document.getElementById("up").setAttribute("style", "opacity:100%;");
         document.getElementById("down").setAttribute("style", "opacity:100%;");
@@ -111,7 +111,10 @@ function intToDate(i) {
 function setSpeed(i) {
     document.getElementById("s" + speed).setAttribute('class', 'btn');
     document.getElementById("s" + i).setAttribute('class', 'btn tsel');
-    if (speed == 0 && i > 0) {
+    if (speed == 0 && day == 0 && i > 0) {
+        speed = i;
+        setTimeout(function() { timer(); }, speeds[i] / 2)
+    } else if (speed == 0 && i > 0) {
         speed = i;
         timer();
     } else {
