@@ -1,10 +1,11 @@
 const epoch = 1577833200;
 var cont = true;
 var day = 0;
+var counter = 0;
 
 var wdays = ["zo.", "ma.", "di.", "wo.", "do.", "vr.", "za."]
 var mos = ["err", "januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "oktober", "november", "december"]
-var outlets = { "nos": "NOS NIEUWS", "rtl": "RTL NIEUWS", "nu": "NU.NL" }
+var outlets = { "nos": "NOS NIEUWS", "rtl": "RTL NIEUWS", "nu": "NU.NL", "bbc": "BBC NEWS" }
 
 var speeds = [0, 4000, 2000, 1000];
 var speed = 0;
@@ -21,19 +22,26 @@ var currentPinned = 0;
 
 function timer() {
     if (speed == 0) {
+        counter = 0;
         return;
     }
 
-    day++;
+    if (counter >= speeds[speed]) {
+        day++;
 
-    var a = intToDate(day);
+        var a = intToDate(day);
 
-    document.getElementById('weekday').innerHTML = wdays[a[3]];
-    document.getElementById("date").innerHTML = ((a[2] < 10) ? "0" + a[2] : a[2]) + " " + mos[a[1]] + " " + a[0];
+        document.getElementById('weekday').innerHTML = wdays[a[3]];
+        document.getElementById("date").innerHTML = ((a[2] < 10) ? "0" + a[2] : a[2]) + " " + mos[a[1]] + " " + a[0];
 
-    getNews();
+        getNews();
 
-    setTimeout(timer, speeds[speed]);
+        counter = 0;
+    }
+
+    setTimeout(timer, 100);
+    counter += 100;
+
 }
 
 function getNews() {
@@ -42,7 +50,7 @@ function getNews() {
 
     if (day == dateToInt(2020, 1, 2)) {
         title = "China pneumonia outbreak: Mystery virus probed in Wuhan";
-        source = "rtl";
+        source = "bbc";
     }
 
     if (day == dateToInt(2020, 1, 3)) {
