@@ -35,6 +35,7 @@ h1 {
 
 p {
     font-size: 1.05rem;
+    margin-bottom: .5em;
 }
 
 .container {
@@ -55,6 +56,25 @@ p {
     content: "Bruno";
 }
 
+@keyframes swipe {
+    from {
+        width: 100%;
+        max-height: 0;
+        margin: 0 1em;
+        padding: .6em .6em 0 .6em;
+        -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
+        box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
+    }
+    to {
+        width: 100%;
+        max-height: 30em;
+        margin-bottom: 1em;
+        padding: .6em;
+        -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+    }
+}
+
 .box {
     /*display: flex;
     align-items: center;*/
@@ -67,9 +87,9 @@ p {
     text-align: left;
     -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
-    /*max-height: 30em;
+    max-height: 30em;
     animation-name: swipe;
-    animation-duration: .2s;*/
+    animation-duration: .2s;
 }
 
 .box img {
@@ -78,14 +98,18 @@ p {
     border-radius: 15%;
 }
 
+#news {
+    margin-top: .5rem;
+}
+
 #pinned {
     min-height: calc(.8em + 60px);
-    padding-right: .15em;
+    padding-right: .25em;
+    animation: none !important;
 }
 
 .app {
     display: block;
-    margin: 0;
     font-size: 0.9rem;
     margin: 1px 0 0 0;
     font-weight: 400;
@@ -99,17 +123,12 @@ p {
 
 @media (min-width:768px) {
     .newstitle {
-        margin-top: .1em;
+        margin-top: .3em;
     }
-}
-
-#up {
-    opacity: 35%;
 }
 
 #down {
     transform: rotate(180deg);
-    opacity: 35%;
 }
 
 #content {
@@ -120,13 +139,10 @@ p {
 }
 
 #arrows {
+    margin-left: .2rem;
     width: 28px;
     height: 100%;
     display: inline-block;
-}
-
-.time {
-    margin: .5em 0 0 0!important;
 }
 
 #weekday,
@@ -140,4 +156,49 @@ p {
     width: 4em;
     height: 4em;
     background-color: red;
+}
+
+.time {
+    margin-bottom: 1em;
+}
+
+.time p {
+    margin: 0;
+}
+
+.time .btn {
+    width: 32px;
+}
+
+.btn {
+    border: 2px solid rgb(85, 85, 85);
+    padding: 0;
+    margin: .3em .3em .3em 0;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.15);
+}
+
+.txt {
+    padding: .1em .4em;
+    color: rgb(65, 65, 65)!important;
+    font-weight: 600;
+}
+
+.txt:hover {
+    background-color: rgb(85, 85, 85);
+    color: white!important;
+}
+
+.btn i {
+    padding: .4em;
+    color: rgb(85, 85, 85);
+}
+
+.tsel {
+    background-color: rgb(85, 85, 85)!important;
+}
+
+.tsel i {
+    color: white!important;
 }

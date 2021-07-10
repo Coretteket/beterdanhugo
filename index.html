@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous"></script>
     <link type="text/css" rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="apple-touch-icon" sizes="180x180" href="ico/apple-touch-icon.png">
@@ -33,41 +34,38 @@
                     heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister.
                     <a href="./faq.html" target="_blank">Meer weten?</a> Ontwikkeld door <a href="https://twitter.com/intent/user?screen_name=coretteket" target=”_blank”>@coretteket</a>.</p>
                 <p class="d-inline d-md-none">Je komt voor dezelfde keuzes als Hugo te staan, maar moet je eigen weg door de pandemie kiezen. <a href="./faq.html" target="_blank">Meer weten?</a> Door <a href="https://twitter.com/intent/user?screen_name=coretteket" target=”_blank”>@coretteket</a>.</p>
-                <p class="time">Het is <span id="weekday">wo.</span> <span id="date">01/01/2020</span>. 📅</p>
             </div>
             <div class="col-md-1 d-none d-md-block"></div>
         </div>
         <div class="row">
             <div class="col-md-1 d-none d-md-block order-1"></div>
             <div class="col-md-5 order-3 order-md-2" id="dash">
-
+                <div id="timedash" class="time">
+                    <p>Het is <span id="weekday">wo.</span> <span id="date">01 januari 2020</span>.</p>
+                    <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i class="fas fa-pause"></i></a>
+                    <a onclick="setSpeed(1);" id="s1" class="btn"><i class="fas fa-play"></i></a>
+                    <a onclick="setSpeed(2);" id="s2" class="btn"><i class="fas fa-step-forward"></i></a>
+                    <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
+                </div>
+                <p>Het OMT heeft een advies gegeven, wat moeten we daarmee doen?</p>
+                <a class="btn txt">Scholen sluiten</a>
             </div>
             <div class="col-md-5 order-2 order-md-3" id="news">
                 <div class="box d-block d-md-none" id="pinned">
                     <div id="content">
-                        <img src="img/nos.png" width="16" height="16">
-                        <p class="app">NOS NIEUWS &ndash; wo. 6 januari</p>
-                        <p class="newstitle">Tot nu toe 59 gevallen van mysterieuze longziekte in China</p>
+                        <img src="img/nu.png" width="16" height="16">
+                        <p class="app">NU.NL &ndash; wo. 1 januari</p>
+                        <p class="newstitle">Ziekenhuizen ziet aantal slachtoffers met vuuwerkletsel fors stijgen</p>
                     </div>
                     <div id="arrows">
-                        <a onclick="alert('up')"><img src="img/image.png" width="28" height="28" id="up"></a>
-                        <a onclick="alert('down')"><img src="img/image.png" width="28" height="28" id="down"></a>
+                        <a onclick="updatePinned(currentPinned+1);"><img src="img/up.png" width="28" height="28" id="up"></a>
+                        <a onclick="updatePinned(currentPinned-1);"><img src="img/up.png" width="28" height="28" id="down"></a>
                     </div>
-                </div>
-                <div class="box d-none d-md-block">
-                    <img src="img/nos.png" width="16" height="16">
-                    <p class="app">NOS NIEUWS &ndash; wo. 6 januari</p>
-                    <p class="newstitle">Tot nu toe 59 gevallen van mysterieuze longziekte in China</p>
-                </div>
-                <div class="box d-none d-md-block">
-                    <img src="img/rtl.png" width="16" height="16">
-                    <p class="app">RTL NIEUWS &ndash; ma. 4 januari</p>
-                    <p class="newstitle">Keurig aan de regels gehouden, en nu thuis met corona: 'Heel zuur'</p>
                 </div>
                 <div class="box d-none d-md-block">
                     <img src="img/nu.png" width="16" height="16">
-                    <p class="app">NU.NL &ndash; vr. 1 januari</p>
-                    <p class="newstitle">Fieldlab Evenementen boos over negeren onderzoeksresultaten door kabinet</p>
+                    <p class="app">NU.NL &ndash; wo. 1 januari</p>
+                    <p class="newstitle">Ziekenhuizen ziet aantal slachtoffers met vuuwerkletsel fors stijgen</p>
                 </div>
             </div>
             <div class="col-md-1 d-none d-md-block order-4"></div>
