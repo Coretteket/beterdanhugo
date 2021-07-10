@@ -20,7 +20,7 @@ body {
 @media (max-width: 768px) {
     html,
     body {
-        font-size: 14px!important;
+        font-size: 13px!important;
     }
 }
 
@@ -55,13 +55,12 @@ p {
     content: "Bruno";
 }
 
-.newsbox {
+.box {
     /*display: flex;
     align-items: center;*/
     background-color: rgb(235, 235, 235);
     margin-bottom: 1em;
     padding: .6em;
-    min-height: calc(1.2em + 60px);
     overflow: none;
     width: 100%;
     border-radius: .6em;
@@ -73,45 +72,57 @@ p {
     animation-duration: .2s;*/
 }
 
-.newsbox img {
+.box img {
     float: left;
     margin-right: .3rem;
     border-radius: 15%;
 }
 
 #pinned {
-    padding-right: 46px;
+    min-height: calc(.8em + 60px);
+    padding-right: .15em;
 }
 
 .app {
     display: block;
     margin: 0;
-    font-size: 0.8rem;
-    margin: 0.1rem 0;
+    font-size: 0.9rem;
+    margin: 1px 0 0 0;
     font-weight: 400;
 }
 
 .newstitle {
     display: block;
-    margin-top: .2rem;
+    margin-top: .5em;
     margin-bottom: 0;
 }
 
+@media (min-width:768px) {
+    .newstitle {
+        margin-top: .1em;
+    }
+}
+
 #up {
-    position: absolute;
-    z-index: 999;
-    right: 18px;
-    top: .5em;
     opacity: 35%;
 }
 
 #down {
-    position: absolute;
-    z-index: 999;
-    right: 18px;
-    top: 2.5em;
     transform: rotate(180deg);
     opacity: 35%;
+}
+
+#content {
+    width: calc(100% - 37px);
+    margin: 0!important;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#arrows {
+    width: 28px;
+    height: 100%;
+    display: inline-block;
 }
 
 .time {
@@ -123,4 +134,10 @@ p {
     font-family: 'Courier Prime', monospace;
     font-weight: 800;
     font-size: 1.1rem;
+}
+
+#cal {
+    width: 4em;
+    height: 4em;
+    background-color: red;
 }
