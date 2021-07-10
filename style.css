@@ -17,6 +17,13 @@ body {
     user-select: none;
 }
 
+@media (max-width: 768px) {
+    html,
+    body {
+        font-size: 14px!important;
+    }
+}
+
 h1 {
     font-weight: 1000;
     text-align: left;
@@ -105,4 +112,15 @@ p {
     top: 2.5em;
     transform: rotate(180deg);
     opacity: 35%;
+}
+
+.time {
+    margin: .5em 0 0 0;
+}
+
+#weekday,
+#date {
+    font-family: 'Courier New', monospace;
+    font-weight: 800;
+    font-size: 1.1rem;
 }
