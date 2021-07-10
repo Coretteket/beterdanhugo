@@ -73,7 +73,7 @@ p {
 }
 
 #pinned {
-    padding-right: 42px;
+    padding-right: 46px;
 }
 
 .app {
@@ -94,17 +94,17 @@ p {
     position: absolute;
     z-index: 999;
     right: 18px;
-    top: 8px;
-    opacity: 40%;
+    top: .5em;
+    opacity: 35%;
 }
 
 #down {
     position: absolute;
     z-index: 999;
     right: 18px;
-    top: 45px;
+    top: 2.5em;
     transform: rotate(180deg);
-    opacity: 40%;
+    opacity: 35%;
 }
 
 @media (max-width:576px) {
