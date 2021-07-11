@@ -121,7 +121,7 @@ p {
 .box img {
     float: left;
     margin-right: .3rem;
-    border-radius: 15%;
+    border-radius: 30%;
 }
 
 #news {
@@ -135,7 +135,7 @@ p {
 }
 
 .app {
-    display: block;
+    display: inline;
     font-size: 0.9rem;
     margin: 1px 0 0 0;
     font-weight: 400;
@@ -143,14 +143,17 @@ p {
 
 .newstitle {
     display: block;
-    margin-top: .5em;
+    margin-top: .3em;
     margin-bottom: 0;
 }
 
-@media (min-width:768px) {
-    .newstitle {
-        margin-top: .3em;
-    }
+#totop {
+    font-family: 'Courier Prime', monospace;
+    background-color: rgb(85, 85, 85);
+    color: white!important;
+    border-radius: 20%;
+    padding: .5px 3px;
+    margin-left: 3px;
 }
 
 #down {

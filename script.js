@@ -1,3 +1,16 @@
+var cov = {
+    0: { "v": 1772895, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
+    10: { "v": 2002362, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
+    20: { "v": 2233550, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
+    30: { "v": 2147931, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
+    40: { "v": 2208076, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
+    50: { "v": 2532418, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
+    60: { "v": 2113846, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
+    70: { "v": 1574419, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
+    80: { "v": 692257, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
+    90: { "v": 129831, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
+}
+
 const epoch = 1577833200;
 var cont = true;
 var day = 0;
@@ -5,9 +18,9 @@ var counter = 0;
 
 var wdays = ["zo.", "ma.", "di.", "wo.", "do.", "vr.", "za."]
 var mos = ["err", "januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "oktober", "november", "december"]
-var outlets = { "nos": "NOS NIEUWS", "rtl": "RTL NIEUWS", "nu": "NU.NL", "bbc": "BBC NEWS" }
+var outlets = { "nos": "NOS NIEUWS", "rtl": "RTL NIEUWS", "nu": "NU.NL", "bbc": "BBC NEWS", "volkskrant": "VOLKSKRANT", "telegraaf": "TELEGRAAF" }
 
-var speeds = [0, 4000, 2000, 1000];
+var speeds = [0, 4500, 2500, 1500];
 var speed = 0;
 
 var w = 3;
@@ -58,6 +71,21 @@ function getNews() {
         source = "nos";
     }
 
+    if (day == dateToInt(2020, 1, 4)) {
+        title = "Risiconiveaus vanaf dinsdag omhoog, meerdere plaatsen 'zeer ernstig'";
+        source = "rtl";
+    }
+
+    if (day == dateToInt(2020, 1, 5)) {
+        title = "OMT-lid Marc Bonten: door allerlei kleine dingen werd Testen voor Toegang van een schild een gatenkaas";
+        source = "volkskrant";
+    }
+
+    if (day == dateToInt(2020, 1, 6)) {
+        title = "Belgische viroloog Marc van Ranst: ’Nederland heeft te snel versoepeld’";
+        source = "telegraaf";
+    }
+
     if (title != "") {
         var a = intToDate(day);
         var div = document.createElement('div');
@@ -67,6 +95,9 @@ function getNews() {
         div.innerHTML += "<p class='newstitle'>" + title + "</p>";
         var news = document.getElementById("pinned");
         news.parentNode.insertBefore(div, news.nextSibling);
+
+        var pluswhat = sentNews.length - currentPinned;
+        document.getElementById("totop").innerHTML = "+" + pluswhat;
 
         if (currentPinned == sentNews.length - 1) {
             sentNews.push([source, day, title]);
@@ -86,17 +117,25 @@ function updatePinned(i) {
     var a = intToDate(sentNews[i][1]);
     pin.children[0].setAttribute('src', 'img/' + sentNews[i][0] + '.png');
     pin.children[1].innerHTML = outlets[sentNews[i][0]] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]];
-    pin.children[2].innerHTML = sentNews[i][2];
+    pin.children[3].innerHTML = sentNews[i][2];
+
     currentPinned = i;
+
+    var pluswhat = sentNews.length - currentPinned - 1;
+    document.getElementById("totop").innerHTML = "+" + pluswhat;
+
     if (currentPinned == sentNews.length - 1) {
         document.getElementById("up").setAttribute("style", "opacity:20%;");
         document.getElementById("down").setAttribute("style", "opacity:100%;");
+        document.getElementById("totop").setAttribute("style", "display: none;");
     } else if (currentPinned == 0) {
         document.getElementById("up").setAttribute("style", "opacity:100%;");
         document.getElementById("down").setAttribute("style", "opacity:20%;");
+        document.getElementById("totop").setAttribute("style", "display: inline;");
     } else {
         document.getElementById("up").setAttribute("style", "opacity:100%;");
         document.getElementById("down").setAttribute("style", "opacity:100%;");
+        document.getElementById("totop").setAttribute("style", "display: inline;");
     }
 }
 
@@ -121,7 +160,8 @@ function setSpeed(i) {
     document.getElementById("s" + i).setAttribute('class', 'btn tsel');
     if (speed == 0 && day == 0 && i > 0) {
         speed = i;
-        setTimeout(function() { timer(); }, speeds[i] / 2)
+        counter = speeds[i] / 2;
+        timer();
     } else if (speed == 0 && i > 0) {
         speed = i;
         timer();

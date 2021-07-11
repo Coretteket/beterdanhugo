@@ -2,8 +2,8 @@
 <html lang="nl">
 
 <head>
+    <meta charset="utf-8">
     <title>Beter dan Hugo</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -12,12 +12,14 @@
     <script src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous"></script>
     <link type="text/css" rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="apple-touch-icon" sizes="180x180" href="ico/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="ico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="ico/favicon-16x16.png">
-    <link rel="manifest" href="ico/site.webmanifest">
-    <link rel="mask-icon" href="ico/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#b91d47">
+    <link rel="apple-touch-icon" sizes="180x180" href="./ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./ico/favicon-16x16.png">
+    <link rel="manifest" href="./ico/site.webmanifest">
+    <link rel="mask-icon" href="./ico/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="./ico/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/ico/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <!--<link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>-->
@@ -65,7 +67,8 @@
                     <div id="content">
                         <img src="img/nu.png" width="16" height="16">
                         <p class="app">NU.NL &ndash; wo. 1 januari</p>
-                        <p class="newstitle">Ziekenhuizen zien aantal slachtoffers met vuuwerkletsel fors stijgen</p>
+                        <a id="totop" onclick="updatePinned(sentNews.length-1);" style="display: none;">+1</a>
+                        <p class="newstitle">Ziekenhuizen zien aantal slachtoffers met vuurwerkletsel fors stijgen</p>
                     </div>
                     <div id="arrows">
                         <a onclick="updatePinned(currentPinned+1);"><img src="img/up.png" style="opacity:20%;" width="28" height="28" id="up"></a>
