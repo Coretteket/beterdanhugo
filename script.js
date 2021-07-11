@@ -42,6 +42,11 @@ function timer() {
     if (counter >= speeds[speed]) {
         day++;
 
+        if (day == dateToInt(2020, 3, 18)) {
+            document.getElementById("hugo").innerText = "Hugo";
+            document.getElementById("hugo").removeAttribute('id', "hugo");
+        }
+
         var a = intToDate(day);
 
         document.getElementById('weekday').innerHTML = wdays[a[3]];
