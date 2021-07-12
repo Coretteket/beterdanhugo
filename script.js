@@ -18,7 +18,7 @@ var counter = 0;
 
 var wdays = ["zo.", "ma.", "di.", "wo.", "do.", "vr.", "za."]
 var mos = ["err", "januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "oktober", "november", "december"]
-var outlets = { "nos": "NOS NIEUWS", "rtl": "RTL NIEUWS", "nu": "NU.NL", "bbc": "BBC NEWS", "volkskrant": "VOLKSKRANT", "telegraaf": "TELEGRAAF" }
+var outlets = { "nos": "NOS NIEUWS", "rtl": "RTL NIEUWS", "nu": "NU.NL", "bbc": "BBC NEWS", "volkskrant": "VOLKSKRANT", "telegraaf": "TELEGRAAF", "nrc": "NRC HANDELSBLAD" }
 
 var speeds = [0, 4500, 2500, 1500];
 var speed = 0;
@@ -89,6 +89,11 @@ function getNews() {
     if (day == dateToInt(2020, 1, 6)) {
         title = "Belgische viroloog Marc van Ranst: ’Nederland heeft te snel versoepeld’";
         source = "telegraaf";
+    }
+
+    if (day == dateToInt(2020, 1, 7)) {
+        title = "‘Voor mijn gevoel zat ik al negen jaar in quarantaine’";
+        source = "nrc";
     }
 
     if (title != "") {
@@ -174,3 +179,8 @@ function setSpeed(i) {
         speed = i;
     }
 }
+
+Object.keys(outlets).forEach(element => {
+    var img = new Image();
+    img.src = "./img/" + element + ".png";
+});
