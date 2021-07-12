@@ -17,7 +17,7 @@ body {
     user-select: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     html,
     body {
         font-size: 14px!important;
@@ -41,7 +41,7 @@ h1 {
     font-weight: 700;
 }
 
-@media (max-width: 575px) {
+@media (max-width: 767px) {
     #twitter {
         margin: 0 0 .5em;
         text-align: left;
@@ -122,6 +122,13 @@ p {
     float: left;
     margin-right: .3rem;
     border-radius: 30%;
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.15);
+}
+
+.box a img {
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 #news {
@@ -156,6 +163,7 @@ p {
     margin-left: 3px;
 }
 
+#sdown,
 #down {
     transform: rotate(180deg);
 }
@@ -230,4 +238,63 @@ p {
 
 .tsel i {
     color: white!important;
+}
+
+.stat {
+    width: 32%;
+    display: inline-block;
+    font-size: 1.2em;
+}
+
+@media (max-width:350px) {
+    .stat {
+        font-size: 1.1em;
+    }
+}
+
+@media (min-width:768px) and (max-width:992px) {
+    .stat {
+        font-size: 1.05em;
+    }
+}
+
+.stat i {
+    margin-right: .15em;
+    color: rgb(138, 45, 45);
+    -webkit-text-shadow: 0 0 .5em rgba(0, 0, 0, .15);
+    text-shadow: 0 0 .5em rgba(0, 0, 0, .15);
+}
+
+#stats .app {
+    margin-bottom: .5em;
+    display: block;
+}
+
+#stats {
+    padding-right: .25em;
+}
+
+#scontent {
+    width: calc(100% - 37px);
+    margin: 0!important;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#sarrows {
+    margin-left: .2rem;
+    width: 28px;
+    height: 100%;
+    display: inline-block;
+    box-shadow: none;
+}
+
+#center {
+    display: flex;
+    align-items: center;
+    height: 32px;
+}
+
+#scontent .app i {
+    margin-right: .3rem;
 }
