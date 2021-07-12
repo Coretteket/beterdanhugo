@@ -118,6 +118,44 @@ p {
     animation-duration: .2s;
 }
 
+@keyframes hide {
+    from {
+        width: 100%;
+        max-height: 30em;
+        margin-bottom: 1em;
+        padding: .6em;
+        -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+        opacity: 100%;
+    }
+    to {
+        width: 100%;
+        max-height: 0;
+        margin: 0 1em;
+        padding: .6em .6em 0 .6em;
+        -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
+        box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
+        opacity: 0%
+    }
+}
+
+.rembox {
+    height: 0;
+    max-height: 0;
+    /*display: flex;
+    align-items: center;*/
+    background-color: rgb(235, 235, 235);
+    margin-bottom: 0 1em;
+    padding: .6em .6em 0 .6em;
+    overflow: none;
+    width: 100%;
+    border-radius: .6em;
+    text-align: left;
+    animation-name: hide;
+    animation-duration: .2s;
+    opacity: 0%;
+}
+
 .box img {
     float: left;
     margin-right: .3rem;

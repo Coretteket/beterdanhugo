@@ -116,6 +116,10 @@ function getNews() {
             sentNews.push([source, day, title]);
         }
 
+        if (sentNews.length > 5) {
+            document.getElementById("news").children[7].setAttribute("class", "rembox d-none d-md-block");
+        }
+
     }
 }
 
