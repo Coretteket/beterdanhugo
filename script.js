@@ -52,6 +52,10 @@ function timer() {
         document.getElementById('weekday').innerHTML = wdays[a[3]];
         document.getElementById("date").innerHTML = ((a[2] < 10) ? "0" + a[2] : a[2]) + " " + mos[a[1]] + " " + a[0];
 
+        document.getElementById('newcase').innerHTML = randBetween(10, 999);
+        document.getElementById('newhospital').innerHTML = randBetween(10, 999);
+        document.getElementById('newdead').innerHTML = randBetween(10, 999);
+
         getNews();
 
         counter = 0;
@@ -182,6 +186,10 @@ function setSpeed(i) {
     } else {
         speed = i;
     }
+}
+
+function randBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 Object.keys(outlets).forEach(element => {

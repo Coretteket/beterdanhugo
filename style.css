@@ -140,6 +140,7 @@ p {
 }
 
 .rembox {
+    display: none!important;
     height: 0;
     max-height: 0;
     /*display: flex;
@@ -281,23 +282,29 @@ p {
 .stat {
     width: 32%;
     display: inline-block;
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 
-@media (max-width:350px) {
+@media (min-width: 370px) {
+    .stat {
+        font-size: 1.3em;
+    }
+}
+
+@media (min-width: 768px) {
     .stat {
         font-size: 1.1em;
     }
 }
 
-@media (min-width:768px) and (max-width:992px) {
+@media (min-width: 992px) {
     .stat {
-        font-size: 1.05em;
+        font-size: 1.2em;
     }
 }
 
 .stat i {
-    margin-right: .15em;
+    margin-right: .1em;
     color: rgb(138, 45, 45);
     -webkit-text-shadow: 0 0 .5em rgba(0, 0, 0, .15);
     text-shadow: 0 0 .5em rgba(0, 0, 0, .15);
@@ -329,8 +336,9 @@ p {
 
 #center {
     display: flex;
+    margin-left: .3em;
     align-items: center;
-    height: 32px;
+    height: calc(77px - 3em);
 }
 
 #scontent .app i {
