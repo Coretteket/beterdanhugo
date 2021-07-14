@@ -1,14 +1,14 @@
 var cov = {
-    0: { "v": 1772895, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
-    10: { "v": 2002362, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
-    20: { "v": 2233550, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
-    30: { "v": 2147931, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
-    40: { "v": 2208076, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
-    50: { "v": 2532418, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
-    60: { "v": 2113846, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
-    70: { "v": 1574419, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
-    80: { "v": 692257, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
-    90: { "v": 129831, "e": [], "i": [], "s": [], "d": [], "h": [], "c": [], "r": 0, "f": 0 },
+    0: { "v": 1772895, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
+    10: { "v": 2002362, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
+    20: { "v": 2233550, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
+    30: { "v": 2147931, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
+    40: { "v": 2208076, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
+    50: { "v": 2532418, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
+    60: { "v": 2113846, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
+    70: { "v": 1574419, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
+    80: { "v": 692257, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
+    90: { "v": 129831, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
 }
 
 const epoch = 1577833200;
@@ -16,9 +16,30 @@ var cont = true;
 var day = 0;
 var counter = 0;
 
-var wdays = ["zo.", "ma.", "di.", "wo.", "do.", "vr.", "za."]
-var mos = ["err", "januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "oktober", "november", "december"]
-var outlets = { "nos": "NOS NIEUWS", "rtl": "RTL NIEUWS", "nu": "NU.NL", "bbc": "BBC NEWS", "volkskrant": "VOLKSKRANT", "telegraaf": "TELEGRAAF", "nrc": "NRC HANDELSBLAD" }
+var wdays = ["zo.", "ma.", "di.", "wo.", "do.", "vr.", "za."];
+var mos = ["err", "januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "oktober", "november", "december"];
+var outlets = { "nos": "NOS NIEUWS", "rtl": "RTL NIEUWS", "nu": "NU.NL", "bbc": "BBC NEWS", "volkskrant": "VOLKSKRANT", "telegraaf": "TELEGRAAF", "nrc": "NRC HANDELSBLAD", "reuters": "REUTERS", "nyt": "NEW YORK TIMES" };
+var sentNews = [
+    ["reuters", "0", "Chinese officials investigate cause of pneumonia outbreak in Wuhan"]
+];
+var currentPinned = 0;
+
+var constNews = {
+    2: ["bbc", "China pneumonia outbreak: Mystery virus probed in Wuhan"],
+    5: ["nos", "Tot nu toe 59 gevallen van mysterieuze longziekte in China"],
+    8: ["rtl", "Mysterieuze longziekte lijkt nieuw virus, mogelijk verwant aan SARS"],
+    10: ["volkskrant", "Mysterieus longvirus eist eerste leven: 61-jarige Chinees overleden"],
+    13: ["nyt", "As First Thailand Case Emerges, WHO Urges China to Search for Source of New Virus"],
+    15: ["nos", "Nieuw virus ook in Japan vastgesteld, patiënt maakt het goed"]
+};
+var newsQueue = {
+    0: [],
+    1: [],
+    2: []
+};
+
+var stats = { "n": [], "r": [], "t": [] };
+var currentStat = 0;
 
 var speeds = [0, 4500, 2500, 1500];
 var speed = 0;
@@ -28,34 +49,34 @@ var d = 1;
 var m = 1;
 var y = 2020;
 
-var sentNews = [
-    ["nu", "0", "Ziekenhuizen zien aantal slachtoffers met vuurwerkletsel fors stijgen"]
-];
-var currentPinned = 0;
-
 function timer() {
     if (speed == 0) {
         counter = 0;
         return;
     }
 
+    if (day == 0) {
+        q("firstnews").setAttribute("class", "box d-none d-md-block");
+    }
+
     if (counter >= speeds[speed]) {
         day++;
 
         if (day == dateToInt(2020, 3, 18)) {
-            document.getElementById("hugo").innerText = "Hugo";
-            document.getElementById("hugo").removeAttribute('id', "hugo");
+            q("hugo").innerText = "Hugo";
+            q("hugo").removeAttribute('id', "hugo");
         }
 
         var a = intToDate(day);
 
-        document.getElementById('weekday').innerHTML = wdays[a[3]];
-        document.getElementById("date").innerHTML = ((a[2] < 10) ? "0" + a[2] : a[2]) + " " + mos[a[1]] + " " + a[0];
+        q('weekday').innerHTML = wdays[a[3]];
+        q("date").innerHTML = ((a[2] < 10) ? "0" + a[2] : a[2]) + " " + mos[a[1]] + " " + a[0];
 
-        document.getElementById('newcase').innerHTML = randBetween(10, 999);
-        document.getElementById('newhospital').innerHTML = randBetween(10, 999);
-        document.getElementById('newdead').innerHTML = randBetween(10, 999);
+        stats.n = [randBetween(10, 999), randBetween(10, 999), randBetween(10, 999)];
+        stats.r = [randBetween(0, 20) + "%", randBetween(50, 100) + "%", randBetween(0, 1) + "," + randBetween(0, 99)]
+        stats.t = [randBetween(20, 90) + "k", randBetween(10, 20) + "k", randBetween(5, 10) + "k"];
 
+        getStats();
         getNews();
 
         counter = 0;
@@ -66,38 +87,30 @@ function timer() {
 
 }
 
+function getStats() {
+    if (currentStat == 0) {
+        q('stat1').innerHTML = stats.n[0];
+        q('stat2').innerHTML = stats.n[1];
+        q('stat3').innerHTML = stats.n[2];
+    } else if (currentStat == 1) {
+        q('stat1').innerHTML = stats.r[0];
+        q('stat2').innerHTML = stats.r[1];
+        q('stat3').innerHTML = stats.r[2];
+    } else if (currentStat == 2) {
+        q('stat1').innerHTML = stats.t[0];
+        q('stat2').innerHTML = stats.t[1];
+        q('stat3').innerHTML = stats.t[2];
+    }
+
+}
+
 function getNews() {
     var title = "";
     var source = "";
 
-    if (day == dateToInt(2020, 1, 2)) {
-        title = "China pneumonia outbreak: Mystery virus probed in Wuhan";
-        source = "bbc";
-    }
-
-    if (day == dateToInt(2020, 1, 3)) {
-        title = "Tot nu toe 59 gevallen van mysterieuze longziekte in China";
-        source = "nos";
-    }
-
-    if (day == dateToInt(2020, 1, 4)) {
-        title = "Risiconiveaus vanaf dinsdag omhoog, meerdere plaatsen 'zeer ernstig'";
-        source = "rtl";
-    }
-
-    if (day == dateToInt(2020, 1, 5)) {
-        title = "OMT-lid Marc Bonten: door allerlei kleine dingen werd Testen voor Toegang van een schild een gatenkaas";
-        source = "volkskrant";
-    }
-
-    if (day == dateToInt(2020, 1, 6)) {
-        title = "Belgische viroloog Marc van Ranst: ’Nederland heeft te snel versoepeld’";
-        source = "telegraaf";
-    }
-
-    if (day == dateToInt(2020, 1, 7)) {
-        title = "‘Voor mijn gevoel zat ik al negen jaar in quarantaine’";
-        source = "nrc";
+    if (day in constNews) {
+        source = constNews[day][0];
+        title = constNews[day][1];
     }
 
     if (title != "") {
@@ -107,11 +120,11 @@ function getNews() {
         div.innerHTML += '<img src="img/' + source + '.png" width="16" height="16">';
         div.innerHTML += '<p class="app">' + outlets[source] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]] + '</p>';
         div.innerHTML += "<p class='newstitle'>" + title + "</p>";
-        var news = document.getElementById("pinned");
+        var news = q("pinned");
         news.parentNode.insertBefore(div, news.nextSibling);
 
         var pluswhat = sentNews.length - currentPinned;
-        document.getElementById("totop").innerHTML = "+" + pluswhat;
+        q("totop").innerHTML = "+" + pluswhat;
 
         if (currentPinned == sentNews.length - 1) {
             sentNews.push([source, day, title]);
@@ -121,7 +134,7 @@ function getNews() {
         }
 
         if (sentNews.length > 5) {
-            document.getElementById("news").children[7].setAttribute("class", "rembox d-none d-md-block");
+            q("news").children[7].setAttribute("class", "rembox d-none d-md-block");
         }
 
     }
@@ -131,7 +144,7 @@ function updatePinned(i) {
     if (i >= sentNews.length || i < 0) {
         return;
     }
-    var pin = document.getElementById('content');
+    var pin = q('content');
     var a = intToDate(sentNews[i][1]);
     pin.children[0].setAttribute('src', 'img/' + sentNews[i][0] + '.png');
     pin.children[1].innerHTML = outlets[sentNews[i][0]] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]];
@@ -140,20 +153,69 @@ function updatePinned(i) {
     currentPinned = i;
 
     var pluswhat = sentNews.length - currentPinned - 1;
-    document.getElementById("totop").innerHTML = "+" + pluswhat;
+    q("totop").innerHTML = "+" + pluswhat;
 
     if (currentPinned == sentNews.length - 1) {
-        document.getElementById("up").setAttribute("style", "opacity:20%;");
-        document.getElementById("down").setAttribute("style", "opacity:100%;");
-        document.getElementById("totop").setAttribute("style", "display: none;");
+        q("up").setAttribute("class", "inactive");
+        q("down").setAttribute("class", "active");
+        q("totop").setAttribute("style", "display: none;");
     } else if (currentPinned == 0) {
-        document.getElementById("up").setAttribute("style", "opacity:100%;");
-        document.getElementById("down").setAttribute("style", "opacity:20%;");
-        document.getElementById("totop").setAttribute("style", "display: inline;");
+        q("up").setAttribute("class", "active");
+        q("down").setAttribute("class", "inactive");
+        q("totop").setAttribute("style", "display: inline;");
     } else {
-        document.getElementById("up").setAttribute("style", "opacity:100%;");
-        document.getElementById("down").setAttribute("style", "opacity:100%;");
-        document.getElementById("totop").setAttribute("style", "display: inline;");
+        q("up").setAttribute("class", "active");
+        q("down").setAttribute("class", "active");
+        q("totop").setAttribute("style", "display: inline;");
+    }
+}
+
+function updateStats(i) {
+    console.log(i);
+
+    if (i >= Object.keys(stats).length || i < 0) {
+        return;
+    }
+
+    currentStat = i;
+    getStats();
+
+    if (i == 0 || i == 2) {
+        q("ico1").setAttribute("class", "fas fa-virus");
+        q("ico2").setAttribute("class", "fas fa-ambulance");
+        q("ico3").setAttribute("class", "fas fa-skull");
+    } else if (i == 1) {
+        q("ico1").setAttribute("class", "fas fa-virus");
+        q("ico2").setAttribute("class", "fas fa-ambulance");
+        q("ico3").setAttribute("class", "fas fa-project-diagram");
+    }
+
+    if (i == 0) {
+        q("statbar").innerHTML = '<i class="fas fa-chart-bar"></i> STATISTIEKEN &ndash; Dagcijfers</p>';
+        q("sdiv1").setAttribute("title", "Nieuwe besmettingen");
+        q("sdiv2").setAttribute("title", "Nieuwe ziekenhuisopnames");
+        q("sdiv3").setAttribute("title", "Nieuwe overlijdens");
+    } else if (i == 1) {
+        q("statbar").innerHTML = '<i class="fas fa-chart-bar"></i> STATISTIEKEN &ndash; Relatieve cijfers</p>';
+        q("sdiv1").setAttribute("title", "Percentage positief getest");
+        q("sdiv2").setAttribute("title", "Gebruikte ziekenhuiscapaciteit");
+        q("sdiv3").setAttribute("title", "Huidige R-waarde");
+    } else if (i == 2) {
+        q("statbar").innerHTML = '<i class="fas fa-chart-bar"></i> STATISTIEKEN &ndash; Totale cijfers</p>';
+        q("sdiv1").setAttribute("title", "Totale besmettingen");
+        q("sdiv2").setAttribute("title", "Totale ziekenhuisopnames");
+        q("sdiv3").setAttribute("title", "Totale overlijdens");
+    }
+
+    if (currentStat == Object.keys(stats).length - 1) {
+        q("sup").setAttribute("class", "active");
+        q("sdown").setAttribute("class", "inactive");
+    } else if (currentStat == 0) {
+        q("sup").setAttribute("class", "inactive");
+        q("sdown").setAttribute("class", "active");
+    } else {
+        q("sup").setAttribute("class", "active");
+        q("sdown").setAttribute("class", "active");
     }
 }
 
@@ -174,8 +236,8 @@ function intToDate(i) {
 }
 
 function setSpeed(i) {
-    document.getElementById("s" + speed).setAttribute('class', 'btn');
-    document.getElementById("s" + i).setAttribute('class', 'btn tsel');
+    q("s" + speed).setAttribute('class', 'btn');
+    q("s" + i).setAttribute('class', 'btn tsel');
     if (speed == 0 && day == 0 && i > 0) {
         speed = i;
         counter = speeds[i] / 2;
@@ -190,6 +252,10 @@ function setSpeed(i) {
 
 function randBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function q(i) {
+    return document.getElementById(i);
 }
 
 Object.keys(outlets).forEach(element => {

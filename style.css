@@ -334,6 +334,10 @@ p {
     box-shadow: none;
 }
 
+.active:hover {
+    cursor: pointer;
+}
+
 #center {
     display: flex;
     margin-left: .3em;
@@ -343,4 +347,12 @@ p {
 
 #scontent .app i {
     margin-right: .3rem;
+}
+
+.active {
+    opacity: 100%;
+}
+
+.inactive {
+    opacity: 20%;
 }
