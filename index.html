@@ -61,15 +61,24 @@
         <div class="row">
             <div class="col-lg-1 d-none d-lg-block order-1"></div>
             <div class="col-md-6 col-lg-5 col-xl-6 order-3 order-md-2" id="dash">
-                <div id="timedash" class="time">
-                    <p>Het is <span id="weekday">wo.</span> <span id="date">01 januari 2020</span>.</p>
-                    <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i class="fas fa-pause"></i></a>
-                    <a onclick="setSpeed(1);" id="s1" class="btn"><i class="fas fa-play"></i></a>
-                    <a onclick="setSpeed(2);" id="s2" class="btn"><i class="fas fa-step-forward"></i></a>
-                    <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
+                <div id="start">
+                    <p id="starttxt">Voor we beginnen, hoe mogen we je noemen?</p>
+                    <div id="givename">
+                        <input spellcheck="false" onfocus="if (this.value=='Je achternaam') this.value = ''" type="text" id="lname" name="lname" value="Je achternaam">
+                        <a onclick="start();" id="name" class="btn"><i class="fas fa-play"></i></a>
+                    </div>
                 </div>
-                <p>Het OMT heeft een advies gegeven, wat moeten we daarmee doen?</p>
-                <a class="btn txt">Scholen sluiten</a>
+                <div id="main" class="d-none">
+                    <div id="timedash" class="time">
+                        <p>Het is <span id="weekday">wo.</span> <span id="date">01 januari 2020</span>.</p>
+                        <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i class="fas fa-pause"></i></a>
+                        <a onclick="setSpeed(1);" id="s1" class="btn"><i class="fas fa-play"></i></a>
+                        <a onclick="setSpeed(2);" id="s2" class="btn"><i class="fas fa-step-forward"></i></a>
+                        <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
+                    </div>
+                    <p>Het OMT heeft een advies gegeven, wat moeten we daarmee doen?</p>
+                    <a class="btn txt">Scholen sluiten</a>
+                </div>
             </div>
             <div class="col-md-6 col-lg-5 col-xl-4 order-2 order-md-3" id="news">
                 <div class="box d-none" id="stats">
@@ -92,7 +101,7 @@
                         <a onclick="updateStats(currentStat+1);"><img src="img/up.png" width="28" height="28" id="sdown" class="active"></a>
                     </div>
                 </div>
-                <div class="box d-block d-md-none" id="pinned">
+                <div class="box d-none" id="pinned">
                     <div id="content">
                         <img src="img/reuters.png" width="16" height="16">
                         <p class="app">REUTERS &ndash; wo. 1 januari</p>

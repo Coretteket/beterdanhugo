@@ -29,7 +29,7 @@ var constNews = {
     5: ["nos", "Tot nu toe 59 gevallen van mysterieuze longziekte in China"],
     8: ["rtl", "Mysterieuze longziekte lijkt nieuw virus, mogelijk verwant aan SARS"],
     10: ["volkskrant", "Mysterieus longvirus eist eerste leven: 61-jarige Chinees overleden"],
-    13: ["nyt", "As First Thailand Case Emerges, WHO Urges China to Search for Source of New Virus"],
+    13: ["nyt", "As First Thailand Case Emerges, WHO Urges China to Search for Virus Source"],
     15: ["nos", "Nieuw virus ook in Japan vastgesteld, patiënt maakt het goed"]
 };
 var newsQueue = {
@@ -48,6 +48,25 @@ var w = 3;
 var d = 1;
 var m = 1;
 var y = 2020;
+
+var lname = "";
+
+function start() {
+    lname = q("lname").value.replace(/[\[\]0-9\(\)\.\,\?\!\=\+\<\>\/\\\n]/gi, '');
+    var starttxt = q("starttxt");
+    if (lname == "" || lname == "Je achternaam") {
+        starttxt.innerText = "Kies eerst een achternaam.";
+        setTimeout(function() { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }, 4000);
+    } else if (lname.length > 20) {
+        starttxt.innerText = "Kies een kortere achternaam.";
+        setTimeout(function() { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }, 4000);
+    } else {
+        console.log(lname);
+        q("main").removeAttribute("class");
+        q("start").setAttribute("class", "d-none");
+        q("pinned").setAttribute("class", "box d-block d-md-none");
+    }
+}
 
 function timer() {
     if (speed == 0) {
@@ -238,11 +257,7 @@ function intToDate(i) {
 function setSpeed(i) {
     q("s" + speed).setAttribute('class', 'btn');
     q("s" + i).setAttribute('class', 'btn tsel');
-    if (speed == 0 && day == 0 && i > 0) {
-        speed = i;
-        counter = speeds[i] / 2;
-        timer();
-    } else if (speed == 0 && i > 0) {
+    if (speed == 0 && i > 0) {
         speed = i;
         timer();
     } else {

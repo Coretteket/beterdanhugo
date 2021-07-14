@@ -69,11 +69,6 @@ p {
     height: 100%;
 }
 
-#head {
-    text-align: left;
-    padding-bottom: 1rem;
-}
-
 #hugo:before {
     content: "Hugo";
 }
@@ -178,6 +173,13 @@ p {
     min-height: calc(.8em + 60px);
     padding-right: .25em;
     animation: none !important;
+    margin: .5em 0 1em;
+}
+
+@media (min-width: 768px) {
+    #head {
+        margin-bottom: .5em;
+    }
 }
 
 .app {
@@ -355,4 +357,44 @@ p {
 
 .inactive {
     opacity: 20%;
+}
+
+#givename input {
+    border: 2px solid rgb(85, 85, 85);
+    padding: .3em;
+    padding-left: .5em;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.15);
+    font-size: 1rem;
+    font-weight: 600;
+    width: 15em;
+}
+
+#givename .btn {
+    margin: 0;
+    margin-left: .4em;
+}
+
+#givename .btn:hover {
+    background-color: rgb(85, 85, 85);
+}
+
+#givename .btn:hover i {
+    color: white!important;
+}
+
+#givename {
+    vertical-align: top;
+    display: flex;
+    align-items: center;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+}
+
+*:focus {
+    outline: none;
 }
