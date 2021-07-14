@@ -398,3 +398,9 @@ input:focus {
 *:focus {
     outline: none;
 }
+
+input,
+textarea,
+select {
+    -webkit-appearance: none;
+}
