@@ -66,16 +66,13 @@ function start() {
         q("start").setAttribute("class", "d-none");
         q("pinned").setAttribute("class", "box d-block d-md-none");
     }
+    q("firstnews").setAttribute("class", "box d-none d-md-block");
 }
 
 function timer() {
     if (speed == 0) {
         counter = 0;
         return;
-    }
-
-    if (day == 0) {
-        q("firstnews").setAttribute("class", "box d-none d-md-block");
     }
 
     if (counter >= speeds[speed]) {
@@ -272,6 +269,24 @@ function randBetween(min, max) {
 function q(i) {
     return document.getElementById(i);
 }
+
+$("#lname").on("keydown", function search(e) {
+    if (e.keyCode == 13) {
+        start();
+    }
+});
+
+$(document).on('keypress', function(e) {
+    if (e.keyCode == 49) {
+        setSpeed(0);
+    } else if (e.keyCode == 50) {
+        setSpeed(1);
+    } else if (e.keyCode == 51) {
+        setSpeed(2);
+    } else if (e.keyCode == 52) {
+        setSpeed(3);
+    }
+});
 
 Object.keys(outlets).forEach(element => {
     var img = new Image();
