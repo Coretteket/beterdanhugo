@@ -99,6 +99,7 @@ p {
 .box {
     /*display: flex;
     align-items: center;*/
+    line-height: 1.1;
     background-color: rgb(235, 235, 235);
     margin-bottom: 1em;
     padding: .6em;
@@ -191,7 +192,7 @@ p {
 
 .newstitle {
     display: block;
-    margin-top: .3em;
+    margin-top: .4em;
     margin-bottom: 0;
 }
 
@@ -236,22 +237,19 @@ p {
     background-color: red;
 }
 
-.time {
-    margin-bottom: 1em;
-}
-
 .time p {
     margin: 0;
 }
 
 .time .btn {
     width: 32px;
+    margin-top: .2em;
 }
 
 .btn {
     border: 2px solid rgb(85, 85, 85);
     padding: 0;
-    margin: .3em .3em .3em 0;
+    margin: 0 .2em 1em 0;
     border-radius: 6px;
     -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.15);
@@ -261,10 +259,11 @@ p {
     padding: .1em .4em;
     color: rgb(65, 65, 65)!important;
     font-weight: 600;
+    font-size: .95em;
 }
 
 .txt:hover {
-    background-color: rgb(85, 85, 85);
+    background-color: rgb(85, 85, 85)!important;
     color: white!important;
 }
 
@@ -403,4 +402,19 @@ input,
 textarea,
 select {
     -webkit-appearance: none;
+}
+
+.warn {
+    background-color: rgb(253, 235, 211);
+    /*border: .15em solid rgb(221, 185, 137);*/
+    border-radius: .7em;
+    margin-bottom: 1em;
+    padding: .5em;
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.2);
+}
+
+.warn .btn {
+    margin-bottom: 0!important;
+    background-color: white;
 }

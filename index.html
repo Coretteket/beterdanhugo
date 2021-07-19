@@ -18,8 +18,8 @@
     <link rel="manifest" href="./ico/site.webmanifest">
     <link rel="mask-icon" href="./ico/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="shortcut icon" href="./ico/favicon.ico">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="/ico/browserconfig.xml">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="msapplication-config" content="./ico/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RW1X01HBYC"></script>
     <script>
@@ -70,8 +70,8 @@
                 </div>
                 <div id="main" class="d-none">
                     <div id="welcome">
-                        <p>Welkom terug in januari 2020. We maakten ons zorgen een onrustige jaarwisseling, Australische bosbranden, en oplopende spanningen met Iran. Maar weinig mensen lazen het eerste bericht over een mysterieuze longziekte in China, die
-                            je
+                        <p>Welkom terug in januari 2020. We maakten ons zorgen over een onrustige jaarwisseling, Australische bosbranden, en oplopende spanningen met Iran. Maar weinig mensen lazen het eerste bericht over een mysterieuze longziekte in China,
+                            die je
                             <span class="d-none d-md-inline">hier rechts</span><span class="d-inline d-md-none">hierboven</span> kan zien.</p>
                         <p>Klik op de <i class="fas fa-play" style="margin: 0 .05em;font-size: .8em;"></i>-knop om te tijd te laten lopen. Je kan de simulatie op elk moment pauzeren of versnellen.</p>
                     </div>
@@ -85,6 +85,14 @@
                     <!--<p>Het OMT heeft een advies gegeven, wat moeten we daarmee doen?</p>
                     <a class="btn txt">Scholen sluiten</a>
                     <a class="btn txt" onclick="oldNews();">Oud nieuws</a>-->
+                    <div class="warn">
+                        <p><i class="fas fa-exclamation-triangle"></i> <b>OMT-advies</b> &ndash; Het OMT heeft een advies gegeven over de te zetten stappen ten tijde van deze pandemie. Je kan deze volledig, gedeeltelijk, of niet naleven.</p>
+                        <a class="btn txt">Scholen sluiten</a>
+                        <a class="btn txt">Thuiswerkadvies</a>
+                    </div>
+                    <p><b>OMT-advies</b> &ndash; Het OMT heeft een advies gegeven over de te zetten stappen ten tijde van deze pandemie. Je kan deze volledig, gedeeltelijk, of niet naleven.</p>
+                    <a class="btn txt">Scholen sluiten</a>
+                    <a class="btn txt">Thuiswerkadvies</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-5 col-xl-4 order-2 order-md-3" id="news">
@@ -130,6 +138,8 @@
         </div>
     </div>
     <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="news.js"></script>
+    <script type="text/javascript" src="covid.js"></script>
 </body>
 
 </html>

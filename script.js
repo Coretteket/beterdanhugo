@@ -26,21 +26,6 @@ var sentNews = [
 ];
 var currentPinned = 0;
 
-var constNews = {
-    2: ["bbc", "China pneumonia outbreak: Mystery virus probed in Wuhan"],
-    5: ["nos", "Tot nu toe 59 gevallen van mysterieuze longziekte in China"],
-    8: ["rtl", "Mysterieuze longziekte lijkt nieuw virus, mogelijk verwant aan SARS"],
-    10: ["volkskrant", "Mysterieus longvirus eist eerste leven: 61-jarige Chinees overleden"],
-    13: ["nyt", "As First Thailand Case Emerges, WHO Urges China to Search for Virus Source"],
-    15: ["nos", "Nieuw virus ook in Japan vastgesteld, patiënt maakt het goed"],
-    17: ["bbc", "New virus in China 'has likely already infected hundreds'"]
-};
-var newsQueue = {
-    0: [],
-    1: [],
-    2: []
-};
-
 var stats = { "n": [], "r": [], "t": [] };
 var currentStat = 0;
 
@@ -95,8 +80,8 @@ function timer() {
         stats.r = [randBetween(0, 20) + "%", randBetween(50, 100) + "%", randBetween(0, 1) + "," + randBetween(0, 99)]
         stats.t = [randBetween(20, 90) + "k", randBetween(10, 20) + "k", randBetween(5, 10) + "k"];
 
-        getStats();
-        getNews();
+        setStats();
+        setNews();
 
         counter = 0;
     }
@@ -106,7 +91,7 @@ function timer() {
 
 }
 
-function getStats() {
+function setStats() {
     if (currentStat == 0) {
         q('stat1').innerHTML = stats.n[0];
         q('stat2').innerHTML = stats.n[1];
@@ -123,14 +108,14 @@ function getStats() {
 
 }
 
-function getNews() {
-    var title = "";
-    var source = "";
+var title = "";
+var source = "";
 
-    if (day in constNews) {
-        source = constNews[day][0];
-        title = constNews[day][1];
-    }
+function setNews() {
+    title = ""
+    source = "";
+
+    getNews();
 
     if (title != "") {
         var a = intToDate(day);
