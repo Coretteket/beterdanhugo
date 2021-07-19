@@ -246,10 +246,14 @@ p {
     margin-top: .2em;
 }
 
+#control p {
+    margin-top: .5em;
+}
+
 .btn {
     border: 2px solid rgb(85, 85, 85);
     padding: 0;
-    margin: 0 .2em 1em 0;
+    margin: 0 0 .5em;
     border-radius: 6px;
     -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.15);
@@ -404,9 +408,9 @@ select {
     -webkit-appearance: none;
 }
 
-.warn {
+
+/*.warn {
     background-color: rgb(253, 235, 211);
-    /*border: .15em solid rgb(221, 185, 137);*/
     border-radius: .7em;
     margin-bottom: 1em;
     padding: .5em;
@@ -417,4 +421,8 @@ select {
 .warn .btn {
     margin-bottom: 0!important;
     background-color: white;
+}*/
+
+.fa-exclamation-triangle {
+    color: orange;
 }
