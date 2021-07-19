@@ -1,15 +1,17 @@
-var cov = {
-    0: { "v": 1772895, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
-    10: { "v": 2002362, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
-    20: { "v": 2233550, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
-    30: { "v": 2147931, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
-    40: { "v": 2208076, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
-    50: { "v": 2532418, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
-    60: { "v": 2113846, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
-    70: { "v": 1574419, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
-    80: { "v": 692257, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
-    90: { "v": 129831, "e": [], "i": [], "s": [], "d": [], "h": [], "r": 0, "f": 0 },
-}
+var cov = [
+    { "v": [1772895], "i": [0], "s": [0], "d": [0], "h": [0], "r": [0], "f": [0] }, // 10-19
+    { "v": [2002362], "i": [0], "s": [0], "d": [0], "h": [0], "r": [0], "f": [0] }, // 20-29
+    { "v": [2233550], "i": [0], "s": [0], "d": [0], "h": [0], "r": [0], "f": [0] }, // etc.
+    { "v": [2147931], "i": [0], "s": [0], "d": [0], "h": [0], "r": [0], "f": [0] },
+    { "v": [2208076], "i": [0], "s": [0], "d": [0], "h": [0], "r": [0], "f": [0] },
+    { "v": [2532418], "i": [0], "s": [0], "d": [0], "h": [0], "r": [0], "f": [0] },
+    { "v": [2113846], "i": [0], "s": [0], "d": [0], "h": [0], "r": [0], "f": [0] },
+    { "v": [1574419], "i": [0], "s": [0], "d": [0], "h": [0], "r": [0], "f": [0] },
+    { "v": [692257], "i": [0], "s": [0], "d": [0], "h": [0], "r": [0], "f": [0] },
+    { "v": [129831], "i": [0], "s": [0], "d": [0], "h": [0], "r": [0], "f": [0] },
+]
+
+/* v: vulnerable, i: infected, s: symptomatic, d: diagnosed, h: hospitalised, r: recovered, f: fatal */
 
 const epoch = 1577833200;
 var cont = true;
@@ -30,7 +32,8 @@ var constNews = {
     8: ["rtl", "Mysterieuze longziekte lijkt nieuw virus, mogelijk verwant aan SARS"],
     10: ["volkskrant", "Mysterieus longvirus eist eerste leven: 61-jarige Chinees overleden"],
     13: ["nyt", "As First Thailand Case Emerges, WHO Urges China to Search for Virus Source"],
-    15: ["nos", "Nieuw virus ook in Japan vastgesteld, patiënt maakt het goed"]
+    15: ["nos", "Nieuw virus ook in Japan vastgesteld, patiënt maakt het goed"],
+    17: ["bbc", "New virus in China 'has likely already infected hundreds'"]
 };
 var newsQueue = {
     0: [],
@@ -41,7 +44,7 @@ var newsQueue = {
 var stats = { "n": [], "r": [], "t": [] };
 var currentStat = 0;
 
-var speeds = [0, 4500, 2500, 1500];
+var speeds = [0, 2500, 1500, 750];
 var speed = 0;
 
 var w = 3;
@@ -65,8 +68,8 @@ function start() {
         q("main").removeAttribute("class");
         q("start").setAttribute("class", "d-none");
         q("pinned").setAttribute("class", "box d-block d-md-none");
+        q("firstnews").setAttribute("class", "box d-none d-md-block");
     }
-    q("firstnews").setAttribute("class", "box d-none d-md-block");
 }
 
 function timer() {
@@ -252,6 +255,9 @@ function intToDate(i) {
 }
 
 function setSpeed(i) {
+    if (day == 0 && i > 0) {
+        q("welcome").setAttribute("class", "d-none");
+    }
     q("s" + speed).setAttribute('class', 'btn');
     q("s" + i).setAttribute('class', 'btn tsel');
     if (speed == 0 && i > 0) {
@@ -259,6 +265,19 @@ function setSpeed(i) {
         timer();
     } else {
         speed = i;
+    }
+}
+
+var oldnws = false;
+
+function oldNews() {
+    if (!oldnws) {
+        oldnws = true;
+        q("news").children.forEach(e => {
+            if (e.getAttribute("class").includes("rembox")) {
+                e.setAttribute("class", "box d-none d-md-block");
+            }
+        });
     }
 }
 
@@ -270,21 +289,22 @@ function q(i) {
     return document.getElementById(i);
 }
 
-$("#lname").on("keydown", function search(e) {
-    if (e.keyCode == 13) {
+q("lname").addEventListener('keydown', function(event) {
+    if (event.key == "Enter") {
         start();
     }
 });
 
-$(document).on('keypress', function(e) {
-    if (e.keyCode == 49) {
+document.addEventListener('keydown', function(event) {
+    //console.log(event.key);
+    if (event.key == 1) {
         setSpeed(0);
-    } else if (e.keyCode == 50) {
+    } else if (event.key == 2) {
         setSpeed(1);
-    } else if (e.keyCode == 51) {
+    } else if (event.key == 3) {
         setSpeed(2);
-    } else if (e.keyCode == 52) {
-        setSpeed(3);
+    } else if (event.key == 4) {
+        setSpeed(3)
     }
 });
 
