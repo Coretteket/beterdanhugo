@@ -57,6 +57,7 @@ h1 {
 
 #twitter a:hover {
     text-decoration: none;
+    color: rgb(68, 68, 68);
 }
 
 p {
@@ -81,8 +82,9 @@ p {
     from {
         width: 100%;
         max-height: 0;
-        margin: 0 1em;
-        padding: .6em .6em 0 .6em;
+        margin-top: .8em;
+        margin-bottom: .8em;
+        padding: .6em;
         -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
         box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
         opacity: 0;
@@ -120,7 +122,7 @@ p {
     text-align: left;
     -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
-    max-height: 30em;
+    max-height: 10em;
     animation-name: swipe;
     animation-duration: .2s;
 }
@@ -129,7 +131,7 @@ p {
     from {
         width: 100%;
         max-height: 30em;
-        margin-bottom: 1em;
+        margin: 0 .8em;
         padding: .6em;
         -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
         box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
@@ -138,7 +140,7 @@ p {
     to {
         width: 100%;
         max-height: 0;
-        margin: 0 1em;
+        margin: 0 .8em;
         padding: .6em .6em 0 .6em;
         -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
         box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
@@ -393,4 +395,22 @@ body {
 
 #chartcnt {
     height: 7em!important;
+}
+
+.more {
+    color: #007bff!important;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.more:hover {
+    color: #0056b3!important;
+    text-decoration: underline!important;
+}
+
+@media (max-width:768px) {
+    .faqtext {
+        margin-top: .5em;
+    }
 }

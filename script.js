@@ -162,6 +162,22 @@ function updatePinned(i) {
     }
 }
 
+var FAQ = false;
+
+function toggleFAQ() {
+    if (FAQ) {
+        q("dash").setAttribute("class", "col-md-6 col-lg-5 col-xl-6 order-3 order-md-2");
+        q("news").setAttribute("class", "col-md-6 col-lg-5 col-xl-4 order-2 order-md-3");
+        q("faq").setAttribute("class", "d-none");
+        FAQ = false;
+    } else {
+        q("dash").setAttribute("class", "d-none");
+        q("news").setAttribute("class", "d-none");
+        q("faq").setAttribute("class", "col-12 col-lg-10 order-2");
+        FAQ = true;
+    }
+}
+
 function dateToInt(y, m, d) {
     var get = new Date(y, m - 1, d).getTime() / 1000 - epoch;
     var get = get / 24 / 60 / 60
