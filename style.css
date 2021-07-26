@@ -153,7 +153,6 @@ p {
     opacity: 0%;
 }
 
-#pinned img,
 .box img {
     float: left;
     margin-right: .3rem;
@@ -162,7 +161,6 @@ p {
     box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.15);
 }
 
-#pinned a img,
 .box a img {
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -446,7 +444,7 @@ hr {
 #pinned {
     line-height: 1.1;
     background-color: rgb(221, 221, 221)!important;
-    margin: .7em;
+    margin: .5em;
     margin-top: .25em;
     padding: .6em;
     overflow: none;
