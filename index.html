@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Beter dan Hugo</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -34,18 +34,13 @@
     <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
 
-    <!-- Primary Meta Tags -->
     <meta name="title" content="Beter dan Hugo: Bewijs dat je het beter kan.">
     <meta name="description" content="De kritiek komt van alle kanten, maar kunnen we het echt beter dan Hugo de Jonge? Dit spel is dé kans om te bewijzen dat jij de coronacrisis onder controle kan houden.">
-
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://beterdanhugo.nl/">
     <meta property="og:title" content="Beter dan Hugo: Bewijs dat je het beter kan.">
     <meta property="og:description" content="De kritiek komt van alle kanten, maar kunnen we het echt beter dan Hugo de Jonge? Dit spel is dé kans om te bewijzen dat jij de coronacrisis onder controle kan houden.">
     <meta property="og:image" content="">
-
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://beterdanhugo.nl/">
     <meta property="twitter:title" content="Beter dan Hugo: Bewijs dat je het beter kan.">
@@ -112,36 +107,49 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-5 col-xl-4 order-2 order-md-3" id="news">
-                <div class="box d-none" id="pinned">
-                    <div id="content">
-                        <img src="img/reuters.png" width="16" height="16">
+                <div id="stats" class="d-none">
+                    <div id="chartbox" class="box">
+                        <div id="chartcnt">
+                            <canvas id="chart" style="width:100%;"></canvas>
+                        </div>
+                        <span id="count" style="font-size:1.5em;">0</span>
+                    </div>
+                </div>
+                <div id="scroll">
+                    <div class="box d-none" id="pinned">
+                        <div id="content">
+                            <img src="img/reuters.png" width="16" height="16">
+                            <p class="app">REUTERS &ndash; wo. 1 januari</p>
+                            <a id="totop" onclick="updatePinned(sentNews.length-1);" style="display: none;">+1</a>
+                            <p class="newstitle">Chinese officials investigate cause of pneumonia outbreak in Wuhan</p>
+                        </div>
+                        <div id="arrows">
+                            <a onclick="updatePinned(currentPinned+1);"><img src="img/up.png" class="inactive" width="28" height="28" id="up"></a>
+                            <a onclick="updatePinned(currentPinned-1);"><img src="img/up.png" class="inactive" width="28" height="28" id="down"></a>
+                        </div>
+                    </div>
+                    <div id="firstnews" class="rembox d-none d-md-block">
+                        <img class="logo" src="img/reuters.png" width="16" height="16">
                         <p class="app">REUTERS &ndash; wo. 1 januari</p>
-                        <a id="totop" onclick="updatePinned(sentNews.length-1);" style="display: none;">+1</a>
                         <p class="newstitle">Chinese officials investigate cause of pneumonia outbreak in Wuhan</p>
                     </div>
-                    <div id="arrows">
-                        <a onclick="updatePinned(currentPinned+1);"><img src="img/up.png" class="inactive" width="28" height="28" id="up"></a>
-                        <a onclick="updatePinned(currentPinned-1);"><img src="img/up.png" class="inactive" width="28" height="28" id="down"></a>
-                    </div>
                 </div>
-                <div id="firstnews" class="rembox d-none d-md-block">
-                    <img src="img/reuters.png" width="16" height="16">
-                    <p class="app">REUTERS &ndash; wo. 1 januari</p>
-                    <p class="newstitle">Chinese officials investigate cause of pneumonia outbreak in Wuhan</p>
-                </div>
+
             </div>
             <div class="col-lg-1 d-none d-lg-block order-4"></div>
         </div>
     </div>
 
-    <div id="sticky" class="d-none">
+    <!--<div id="sticky" class="d-none">
         <div id="graph">
             <img src="img/test.png" width=100%>
         </div>
-    </div>
-    <script type="text/javascript" src="script.js"></script>
-    <script type="text/javascript" src="news.js"></script>
+    </div>-->
+
     <script type="text/javascript" src="covid.js"></script>
+    <script type="text/javascript" src="news.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
 </body>
 
 </html>
