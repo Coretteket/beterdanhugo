@@ -52,7 +52,7 @@ function start() {
         console.log(lname);
         q("main").removeAttribute("class");
         q("start").setAttribute("class", "d-none");
-        q("pinned").setAttribute("class", "box d-block d-md-none");
+        q("newstoggle").setAttribute("class", "d-block d-md-none");
         q("firstnews").setAttribute("class", "box d-none d-md-block");
     }
 }
@@ -124,8 +124,8 @@ function setNews() {
         div.innerHTML += '<img src="img/' + source + '.png" width="16" height="16">';
         div.innerHTML += '<p class="app">' + outlets[source] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]] + '</p>';
         div.innerHTML += "<p class='newstitle'>" + title + "</p>";
-        var news = q("pinned");
-        news.parentNode.insertBefore(div, news.nextSibling);
+        var news = q("news");
+        news.insertBefore(div, q("firstnews"));
 
         var pluswhat = sentNews.length - currentPinned;
         q("totop").innerHTML = "+" + pluswhat;
@@ -137,9 +137,9 @@ function setNews() {
             sentNews.push([source, day, title]);
         }
 
-        if (sentNews.length > 5) {
+        /*if (sentNews.length > 5) {
             q("news").children[7].setAttribute("class", "rembox d-none d-md-block");
-        }
+        }*/
 
     }
 }
