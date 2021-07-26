@@ -54,7 +54,7 @@ function start() {
         q("start").setAttribute("class", "d-none");
         q("pinned").setAttribute("class", "box d-block d-md-none");
         q("firstnews").setAttribute("class", "box d-none d-md-block");
-        q("sticky").setAttribute("class", "d-block d-md-none")
+        q("stickybtn").setAttribute("class", "d-block d-md-none lowbtn")
     }
 }
 
@@ -154,6 +154,22 @@ function updatePinned(i) {
         q("up").setAttribute("class", "active");
         q("down").setAttribute("class", "active");
         q("totop").setAttribute("style", "display: inline;");
+    }
+}
+
+var showGraph = false;
+
+function toggleGraph() {
+    if (showGraph) {
+        q("stickybtn").setAttribute("class", "d-block d-md-none lowbtn");
+        q("sticky").setAttribute("class", "d-none");
+        document.body.setAttribute("style", "padding-bottom: 5vh;")
+        showGraph = false;
+    } else {
+        q("stickybtn").setAttribute("class", "d-block d-md-none highbtn");
+        q("sticky").setAttribute("class", "d-block d-md-none");
+        document.body.setAttribute("style", "padding-bottom: 45vh;")
+        showGraph = true;
     }
 }
 
