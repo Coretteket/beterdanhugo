@@ -43,7 +43,7 @@ h1 {
 
 @media (max-width: 767px) {
     #twitter {
-        margin: 0 0 .5em;
+        margin: 0;
         text-align: left;
         font-size: 1.1rem;
         color: gray;
@@ -85,15 +85,25 @@ p {
         padding: .6em .6em 0 .6em;
         -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
         box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.0);
+        opacity: 0;
     }
     to {
         width: 100%;
         max-height: 30em;
-        margin-bottom: 1em;
+        margin-top: .8em;
+        margin-bottom: .8em;
         padding: .6em;
         -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
         box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+        opacity: 100%;
     }
+}
+
+#pinned {
+    min-height: calc(.8em + 60px);
+    padding-right: .25em;
+    animation: none!important;
+    margin: 1em 0!important;
 }
 
 .box {
@@ -101,7 +111,8 @@ p {
     align-items: center;*/
     line-height: 1.1;
     background-color: rgb(235, 235, 235);
-    margin-bottom: 1em;
+    margin-top: .8em;
+    margin-bottom: .8em;
     padding: .6em;
     overflow: none;
     width: 100%;
@@ -166,15 +177,12 @@ p {
     box-shadow: none;
 }
 
-#news {
-    margin-top: .5rem;
-}
-
-#pinned {
-    min-height: calc(.8em + 60px);
-    padding-right: .25em;
-    animation: none !important;
-    margin: .5em 0 1em;
+@media (min-width: 768px) {
+    #news {
+        height: 75vh!important;
+        overflow-y: scroll;
+        overflow-x: none;
+    }
 }
 
 @media (min-width: 768px) {
@@ -284,76 +292,6 @@ p {
     color: white!important;
 }
 
-.stat {
-    width: 32%;
-    display: inline-block;
-    font-size: 1.1em;
-}
-
-@media (min-width: 370px) {
-    .stat {
-        font-size: 1.3em;
-    }
-}
-
-@media (min-width: 768px) {
-    .stat {
-        font-size: 1.1em;
-    }
-}
-
-@media (min-width: 992px) {
-    .stat {
-        font-size: 1.2em;
-    }
-}
-
-.stat i {
-    margin-right: .1em;
-    color: rgb(138, 45, 45);
-    -webkit-text-shadow: 0 0 .5em rgba(0, 0, 0, .15);
-    text-shadow: 0 0 .5em rgba(0, 0, 0, .15);
-}
-
-#stats .app {
-    margin-bottom: .5em;
-    display: block;
-}
-
-#stats {
-    padding-right: .25em;
-}
-
-#scontent {
-    width: calc(100% - 37px);
-    margin: 0!important;
-    display: inline-block;
-    vertical-align: top;
-}
-
-#sarrows {
-    margin-left: .2rem;
-    width: 28px;
-    height: 100%;
-    display: inline-block;
-    box-shadow: none;
-}
-
-.active:hover {
-    cursor: pointer;
-}
-
-#center {
-    display: flex;
-    margin-left: .3em;
-    align-items: center;
-    height: calc(77px - 3em);
-}
-
-#scontent .app i {
-    margin-right: .3rem;
-}
-
 .active {
     opacity: 100%;
 }
@@ -425,4 +363,34 @@ select {
 
 .fa-exclamation-triangle {
     color: orange;
+}
+
+hr {
+    margin: .5em 0;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+#sticky {
+    position: sticky;
+    z-index: 10;
+    padding: .5vh 0 2vh;
+    margin-top: 1.5vh;
+    bottom: 0;
+    background-color: white;
+    -webkit-box-shadow: 0 0 1.5vh 0 white;
+    box-shadow: 0 0 1.5vh 0 white;
+}
+
+#graph {
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+    background-color: rgb(235, 235, 235);
+    padding: .5em;
+    margin: 0 2vh;
+    border-radius: .6em;
+    height: 30vh;
 }

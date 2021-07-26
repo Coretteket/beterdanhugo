@@ -54,6 +54,7 @@ function start() {
         q("start").setAttribute("class", "d-none");
         q("pinned").setAttribute("class", "box d-block d-md-none");
         q("firstnews").setAttribute("class", "box d-none d-md-block");
+        q("sticky").setAttribute("class", "d-block d-md-none")
     }
 }
 
@@ -80,7 +81,6 @@ function timer() {
         stats.r = [randBetween(0, 20) + "%", randBetween(50, 100) + "%", randBetween(0, 1) + "," + randBetween(0, 99)]
         stats.t = [randBetween(20, 90) + "k", randBetween(10, 20) + "k", randBetween(5, 10) + "k"];
 
-        setStats();
         setNews();
 
         counter = 0;
@@ -88,23 +88,6 @@ function timer() {
 
     setTimeout(timer, 100);
     counter += 100;
-
-}
-
-function setStats() {
-    if (currentStat == 0) {
-        q('stat1').innerHTML = stats.n[0];
-        q('stat2').innerHTML = stats.n[1];
-        q('stat3').innerHTML = stats.n[2];
-    } else if (currentStat == 1) {
-        q('stat1').innerHTML = stats.r[0];
-        q('stat2').innerHTML = stats.r[1];
-        q('stat3').innerHTML = stats.r[2];
-    } else if (currentStat == 2) {
-        q('stat1').innerHTML = stats.t[0];
-        q('stat2').innerHTML = stats.t[1];
-        q('stat3').innerHTML = stats.t[2];
-    }
 
 }
 
@@ -137,9 +120,9 @@ function setNews() {
             sentNews.push([source, day, title]);
         }
 
-        if (sentNews.length > 5) {
+        /*if (sentNews.length > 5) {
             q("news").children[7].setAttribute("class", "rembox d-none d-md-block");
-        }
+        }*/
 
     }
 }
@@ -174,55 +157,6 @@ function updatePinned(i) {
     }
 }
 
-function updateStats(i) {
-    console.log(i);
-
-    if (i >= Object.keys(stats).length || i < 0) {
-        return;
-    }
-
-    currentStat = i;
-    getStats();
-
-    if (i == 0 || i == 2) {
-        q("ico1").setAttribute("class", "fas fa-virus");
-        q("ico2").setAttribute("class", "fas fa-ambulance");
-        q("ico3").setAttribute("class", "fas fa-skull");
-    } else if (i == 1) {
-        q("ico1").setAttribute("class", "fas fa-virus");
-        q("ico2").setAttribute("class", "fas fa-ambulance");
-        q("ico3").setAttribute("class", "fas fa-project-diagram");
-    }
-
-    if (i == 0) {
-        q("statbar").innerHTML = '<i class="fas fa-chart-bar"></i> STATISTIEKEN &ndash; Dagcijfers</p>';
-        q("sdiv1").setAttribute("title", "Nieuwe besmettingen");
-        q("sdiv2").setAttribute("title", "Nieuwe ziekenhuisopnames");
-        q("sdiv3").setAttribute("title", "Nieuwe overlijdens");
-    } else if (i == 1) {
-        q("statbar").innerHTML = '<i class="fas fa-chart-bar"></i> STATISTIEKEN &ndash; Relatieve cijfers</p>';
-        q("sdiv1").setAttribute("title", "Percentage positief getest");
-        q("sdiv2").setAttribute("title", "Gebruikte ziekenhuiscapaciteit");
-        q("sdiv3").setAttribute("title", "Huidige R-waarde");
-    } else if (i == 2) {
-        q("statbar").innerHTML = '<i class="fas fa-chart-bar"></i> STATISTIEKEN &ndash; Totale cijfers</p>';
-        q("sdiv1").setAttribute("title", "Totale besmettingen");
-        q("sdiv2").setAttribute("title", "Totale ziekenhuisopnames");
-        q("sdiv3").setAttribute("title", "Totale overlijdens");
-    }
-
-    if (currentStat == Object.keys(stats).length - 1) {
-        q("sup").setAttribute("class", "active");
-        q("sdown").setAttribute("class", "inactive");
-    } else if (currentStat == 0) {
-        q("sup").setAttribute("class", "inactive");
-        q("sdown").setAttribute("class", "active");
-    } else {
-        q("sup").setAttribute("class", "active");
-        q("sdown").setAttribute("class", "active");
-    }
-}
-
 function dateToInt(y, m, d) {
     var get = new Date(y, m - 1, d).getTime() / 1000 - epoch;
     var get = get / 24 / 60 / 60
@@ -240,9 +174,6 @@ function intToDate(i) {
 }
 
 function setSpeed(i) {
-    if (day == 0 && i > 0) {
-        q("welcome").setAttribute("class", "d-none");
-    }
     q("s" + speed).setAttribute('class', 'btn');
     q("s" + i).setAttribute('class', 'btn tsel');
     if (speed == 0 && i > 0) {

@@ -53,7 +53,8 @@
     <meta property="twitter:image" content="">
 </head>
 
-<body data-simplebar>
+<body>
+    <!--data-simplebar-->
     <div class="container-sm mx-10">
         <div class="row">
             <div class="col-lg-1 d-none d-lg-block"></div>
@@ -71,7 +72,7 @@
                 <p class="d-none d-md-inline">De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke keuze heeft invloed
                     op het verloop van de pandemie, de economische schade, en jouw populariteit als minister.
                     <a href="./faq.html" target="_blank">Meer weten?</a></p>
-                <p class="d-inline d-md-none">In dit spel kom je voor dezelfde keuzes als Hugo te staan, maar moet je eigen weg door de pandemie kiezen. <a href="./faq.html" target="_blank">Meer weten?</a></p>
+                <hr class="d-none d-md-block">
             </div>
             <div class="col-lg-1 d-none d-lg-block"></div>
         </div>
@@ -80,6 +81,10 @@
             <div class="col-lg-1 d-none d-lg-block order-1"></div>
             <div class="col-md-6 col-lg-5 col-xl-6 order-3 order-md-2" id="dash">
                 <div id="start">
+                    <p style="margin-top:.5em;" class="d-block d-md-none">De afgelopen maanden kende ons land zeventien miljoen virologen, en hadden we allemaal wel wat aan te merken op de coronabestrijding. Maar kunnen we het echt beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag
+                        je je eigen weg door de pandemie kiezen.</p>
+                    <p class="d-block d-md-none">Elke keuze heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister.
+                        <a href="./faq.html" target="_blank">Meer weten?</a></p>
                     <p id="starttxt">Voor we beginnen, hoe mogen we je noemen?</p>
                     <div id="givename">
                         <input spellcheck="false" onfocus="if (this.value=='Je achternaam') this.value = ''" type="text" id="lname" name="lname" value="Je achternaam">
@@ -87,12 +92,6 @@
                     </div>
                 </div>
                 <div id="main" class="d-none">
-                    <div id="welcome">
-                        <p>Welkom terug in januari 2020. We maakten ons zorgen over een onrustige jaarwisseling, Australische bosbranden, en oplopende spanningen met Iran. Maar weinig mensen lazen het eerste bericht over een mysterieuze longziekte in China,
-                            die je
-                            <span class="d-none d-md-inline">hier rechts</span><span class="d-inline d-md-none">hierboven</span> kan zien.</p>
-                        <p>Klik op de <i class="fas fa-play" style="margin: 0 .05em;font-size: .8em;"></i>-knop om te tijd te laten lopen. Je kan de simulatie op elk moment pauzeren of versnellen.</p>
-                    </div>
                     <div id="timedash" class="time">
                         <p>Het is <span id="weekday">wo.</span> <span id="date">01 januari 2020</span>.</p>
                         <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i class="fas fa-pause"></i></a>
@@ -100,9 +99,6 @@
                         <a onclick="setSpeed(2);" id="s2" class="btn"><i class="fas fa-step-forward"></i></a>
                         <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
                     </div>
-                    <!--<p>Het OMT heeft een advies gegeven, wat moeten we daarmee doen?</p>
-                    <a class="btn txt">Scholen sluiten</a>
-                    <a class="btn txt" onclick="oldNews();">Oud nieuws</a>-->
                     <div id="control">
                         <p><i class="fas fa-exclamation-triangle"></i> <b>Belangrijk</b> &ndash; In het coronadebat is de kritiek van zowel coalitie- als oppositiepartijen groots. Een motie van wantrouwen lijkt een meerderheid te behalen, en het is niet
                             eens zeker of jouw eigen fractie tegen zal stemmen. Wat doe je?</p>
@@ -116,26 +112,6 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-5 col-xl-4 order-2 order-md-3" id="news">
-                <div class="box d-none" id="stats">
-                    <div id="scontent">
-                        <p class="app" id="statbar"><i class="fas fa-chart-bar"></i> STATISTIEKEN &ndash; Dagcijfers</p>
-                        <div id="center">
-                            <div id="sdiv1" title="Nieuwe besmettingen" class="stat">
-                                <i id="ico1" class="fas fa-virus"></i> <span id="stat1">673</span>
-                            </div>
-                            <div id="sdiv2" title="Nieuwe ziekenhuisopnames" class="stat">
-                                <i id="ico2" class="fas fa-ambulance"></i> <span id="stat2">212</span>
-                            </div>
-                            <div id="sdiv3" title="Nieuwe overlijdens" class="stat">
-                                <i id="ico3" class="fas fa-skull"></i> <span id="stat3">132</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="sarrows">
-                        <a onclick="updateStats(currentStat-1);"><img src="img/up.png" width="28" height="28" id="sup" class="inactive"></a>
-                        <a onclick="updateStats(currentStat+1);"><img src="img/up.png" width="28" height="28" id="sdown" class="active"></a>
-                    </div>
-                </div>
                 <div class="box d-none" id="pinned">
                     <div id="content">
                         <img src="img/reuters.png" width="16" height="16">
@@ -155,6 +131,11 @@
                 </div>
             </div>
             <div class="col-lg-1 d-none d-lg-block order-4"></div>
+        </div>
+    </div>
+    <div id="sticky" class="d-none">
+        <div id="graph">
+            <img src="img/test.png" height=100%>
         </div>
     </div>
     <script type="text/javascript" src="script.js"></script>
