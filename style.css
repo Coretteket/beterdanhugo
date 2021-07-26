@@ -375,7 +375,7 @@ hr {
 }
 
 #sticky {
-    position: fixed;
+    position: sticky;
     z-index: 10;
     padding: .5vh 0 2vh;
     margin-top: 1.5vh;
