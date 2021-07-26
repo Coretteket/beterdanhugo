@@ -37,7 +37,7 @@ h1 {
     margin: calc(20px + 0.5rem) 0 5px;
     text-align: right;
     font-size: 1.1rem;
-    color: rgb(73, 73, 73);
+    color: gray;
     font-weight: 700;
 }
 
@@ -46,13 +46,13 @@ h1 {
         margin: 0 0 .5em;
         text-align: left;
         font-size: 1.1rem;
-        color: rgb(73, 73, 73);
+        color: gray;
         font-weight: 700;
     }
 }
 
 #twitter a {
-    color: rgb(73, 73, 73);
+    color: gray;
 }
 
 #twitter a:hover {
@@ -100,7 +100,7 @@ p {
     /*display: flex;
     align-items: center;*/
     line-height: 1.1;
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(235, 235, 235);
     margin-bottom: 1em;
     padding: .6em;
     overflow: none;
@@ -141,7 +141,7 @@ p {
     max-height: 0;
     /*display: flex;
     align-items: center;*/
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(235, 235, 235);
     margin-bottom: 0 1em;
     padding: .6em .6em 0 .6em;
     overflow: none;
@@ -170,13 +170,12 @@ p {
     margin-top: .5rem;
 }
 
-
-/*#pinned {
+#pinned {
     min-height: calc(.8em + 60px);
     padding-right: .25em;
     animation: none !important;
     margin: .5em 0 1em;
-}*/
+}
 
 @media (min-width: 768px) {
     #head {
@@ -411,7 +410,7 @@ select {
 
 
 /*.warn {
-    background-color: rgb(253, 221, 211);
+    background-color: rgb(253, 235, 211);
     border-radius: .7em;
     margin-bottom: 1em;
     padding: .5em;
@@ -426,30 +425,4 @@ select {
 
 .fa-exclamation-triangle {
     color: orange;
-}
-
-hr {
-    margin: .5rem 0;
-}
-
-#newstoggle {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 10;
-    background-color: white;
-    box-shadow: 0 0 0.5em 0.5em white;
-}
-
-#pinned {
-    line-height: 1.1;
-    background-color: rgb(221, 221, 221)!important;
-    margin: .5em;
-    margin-top: .25em;
-    padding: .6em;
-    overflow: none;
-    border-radius: .6em;
-    text-align: left;
-    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
 }

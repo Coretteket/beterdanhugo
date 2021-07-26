@@ -53,8 +53,7 @@
     <meta property="twitter:image" content="">
 </head>
 
-<body>
-    <!--data-simplebar-->
+<body data-simplebar>
     <div class="container-sm mx-10">
         <div class="row">
             <div class="col-lg-1 d-none d-lg-block"></div>
@@ -73,7 +72,6 @@
                     op het verloop van de pandemie, de economische schade, en jouw populariteit als minister.
                     <a href="./faq.html" target="_blank">Meer weten?</a></p>
                 <p class="d-inline d-md-none">In dit spel kom je voor dezelfde keuzes als Hugo te staan, maar moet je eigen weg door de pandemie kiezen. <a href="./faq.html" target="_blank">Meer weten?</a></p>
-                <hr class="d-none d-md-block">
             </div>
             <div class="col-lg-1 d-none d-lg-block"></div>
         </div>
@@ -138,7 +136,18 @@
                         <a onclick="updateStats(currentStat+1);"><img src="img/up.png" width="28" height="28" id="sdown" class="active"></a>
                     </div>
                 </div>
-
+                <div class="box d-none" id="pinned">
+                    <div id="content">
+                        <img src="img/reuters.png" width="16" height="16">
+                        <p class="app">REUTERS &ndash; wo. 1 januari</p>
+                        <a id="totop" onclick="updatePinned(sentNews.length-1);" style="display: none;">+1</a>
+                        <p class="newstitle">Chinese officials investigate cause of pneumonia outbreak in Wuhan</p>
+                    </div>
+                    <div id="arrows">
+                        <a onclick="updatePinned(currentPinned+1);"><img src="img/up.png" class="inactive" width="28" height="28" id="up"></a>
+                        <a onclick="updatePinned(currentPinned-1);"><img src="img/up.png" class="inactive" width="28" height="28" id="down"></a>
+                    </div>
+                </div>
                 <div id="firstnews" class="rembox d-none d-md-block">
                     <img src="img/reuters.png" width="16" height="16">
                     <p class="app">REUTERS &ndash; wo. 1 januari</p>
@@ -146,20 +155,6 @@
                 </div>
             </div>
             <div class="col-lg-1 d-none d-lg-block order-4"></div>
-        </div>
-    </div>
-    <div class="d-none" id="newstoggle">
-        <div id="pinned">
-            <div id="content">
-                <img src="img/reuters.png" width="16" height="16">
-                <p class="app">REUTERS &ndash; wo. 1 januari</p>
-                <a id="totop" onclick="updatePinned(sentNews.length-1);" style="display: none;">+1</a>
-                <p class="newstitle">Chinese officials investigate cause of pneumonia outbreak in Wuhan</p>
-            </div>
-            <div id="arrows">
-                <a onclick="updatePinned(currentPinned+1);"><img src="img/up.png" class="inactive" width="28" height="28" id="up"></a>
-                <a onclick="updatePinned(currentPinned-1);"><img src="img/up.png" class="inactive" width="28" height="28" id="down"></a>
-            </div>
         </div>
     </div>
     <script type="text/javascript" src="script.js"></script>
