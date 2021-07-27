@@ -181,6 +181,11 @@ p {
 
 @media (min-width: 768px) {
     #scroll {
+        height: 71.5vh!important;
+        overflow-y: scroll;
+        overflow-x: none;
+    }
+    #scrollsmall {
         height: 48vh!important;
         overflow-y: scroll;
         overflow-x: none;
@@ -196,7 +201,8 @@ p {
 }
 
 #stats,
-#scroll {
+#scroll,
+#scrollsmall {
     padding: 0 15px;
 }
 
@@ -393,7 +399,11 @@ body {
     padding-bottom: 40vh;
 }
 
-#chartcnt {
+#chartbox {
+    padding-top: .4em;
+}
+
+.chartcnt {
     height: 7em!important;
 }
 
@@ -413,4 +423,33 @@ body {
     .faqtext {
         margin-top: .5em;
     }
+}
+
+.statbtn {
+    border-top: 3px solid #a8a8a8;
+    font-size: 1.06em;
+    margin: 0 2px;
+    padding: 4px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.statbtnactive {
+    border-top: 3.5px solid #a8a8a8;
+    padding-top: 3.5px;
+    background-color: #cfcfcf!important;
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.2);
+}
+
+.statbtn:hover {
+    background-color: #dfdfdf;
+}
+
+.statbtn i {
+    font-size: 0.9em;
+}
+
+#chartbox .row {
+    margin: 0;
 }

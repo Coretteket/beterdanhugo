@@ -108,11 +108,29 @@
             </div>
             <div class="col-md-6 col-lg-5 col-xl-4 order-2 order-md-3" id="news">
                 <div id="stats" class="d-none">
-                    <div id="chartbox" class="box">
-                        <div id="chartcnt">
-                            <canvas id="chart" style="width:100%;"></canvas>
+                    <div id="chartbox" class="box d-none">
+                        <div class="chartcnt" id="testCnt">
+                            <canvas id="testChart" style="width:100%;"></canvas>
                         </div>
-                        <span id="count" style="font-size:1.5em;">0</span>
+                        <div class="chartcnt d-none" id="hospCnt">
+                            <canvas id="hospChart" style="width:100%;"></canvas>
+                        </div>
+                        <div class="chartcnt d-none" id="deadCnt">
+                            <canvas id="deadChart" style="width:100%;"></canvas>
+                        </div>
+                        <div class="row">
+                            <div onclick="toggleStat('test');" id="testBtn" class="col statbtn statbtnactive">
+                                <i class="fas fa-virus"></i> <span id="testCount">0</span>
+                            </div>
+                            <div onclick="toggleStat('hosp');" id="hospBtn" class="col statbtn">
+                                <i class="fas fa-ambulance"></i> <span id="hospCount">0</span>
+                            </div>
+                            <div onclick="toggleStat('dead');" class="col statbtn" id="deadBtn">
+                                <i class="fas fa-skull"></i> <span id="deadCount">0</span>
+                            </div>
+                            <!--<div class="col statbtn d-none" id="vaxBtn"><i class="fas fa-syringe"></i> 0</div>-->
+                        </div>
+
                     </div>
                 </div>
                 <div id="scroll">
