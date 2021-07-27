@@ -29,7 +29,7 @@ var currentPinned = 0;
 var stats = { "n": [], "r": [], "t": [] };
 var currentStat = 0;
 
-var speeds = [0, 2500, 1500, 100];
+var speeds = [0, 2500, 1500, 750];
 var speed = 0;
 
 var w = 3;
