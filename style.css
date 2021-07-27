@@ -428,22 +428,28 @@ hr {
     padding: 4px 5px;
     border-radius: 5px;
     cursor: pointer;
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.1);
 }
 
 .statbtnactive {
-    border-top: 3.5px solid #a8a8a8;
+    border-top: 3.5px solid #797979;
     padding-top: 3.5px;
-    background-color: #cfcfcf!important;
-    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.2);
+    background-color: #d3d3d3!important;
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
 }
 
 .statbtn:hover {
-    background-color: #dfdfdf;
+    background-color: #d3d3d3!important;
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
 }
 
 .statbtn i {
-    font-size: 0.9em;
+    font-size: 1em;
+    padding-right: 1px;
+    color: #242424;
 }
 
 #chartbox .row {

@@ -29,7 +29,7 @@ var currentPinned = 0;
 var stats = { "n": [], "r": [], "t": [] };
 var currentStat = 0;
 
-var speeds = [0, 2500, 1500, 750];
+var speeds = [0, 2500, 1500, 100];
 var speed = 0;
 
 var w = 3;
@@ -78,12 +78,7 @@ function timer() {
             q("scroll").setAttribute("id", "scrollsmall")
         }
         if (day >= dateToInt(2020, 2, 28)) {
-            addData(testChart, day - dateToInt(2020, 2, 28), test[day - dateToInt(2020, 2, 28)]);
-            q("testCount").innerText = test[day - dateToInt(2020, 2, 28)];
-            addData(hospChart, day - dateToInt(2020, 2, 28), hosp[day - dateToInt(2020, 2, 28)]);
-            q("hospCount").innerText = hosp[day - dateToInt(2020, 2, 28)];
-            addData(deadChart, day - dateToInt(2020, 2, 28), dead[day - dateToInt(2020, 2, 28)]);
-            q("deadCount").innerText = dead[day - dateToInt(2020, 2, 28)];
+            updateStats();
         }
 
         if (day == dateToInt(2020, 3, 18)) {
@@ -199,6 +194,16 @@ function toggleStat(s) {
         q("testBtn").setAttribute("class", "col statbtn");
         q("hospBtn").setAttribute("class", "col statbtn");
     }
+}
+
+function updateStats() {
+    var covday = day - dateToInt(2020, 2, 28);
+    addData(testChart, covday, test[covday]);
+    q("testCount").innerText = test[covday];
+    addData(hospChart, covday, hosp[covday]);
+    q("hospCount").innerText = hosp[covday];
+    addData(deadChart, covday, dead[covday]);
+    q("deadCount").innerText = dead[covday];
 }
 
 var FAQ = false;
