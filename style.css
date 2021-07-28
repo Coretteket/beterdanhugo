@@ -73,14 +73,6 @@ p {
     height: 100%;
 }
 
-#hugo:before {
-    content: "Hugo";
-}
-
-#hugo:hover:before {
-    content: "Bruno";
-}
-
 @keyframes swipe {
     from {
         width: 100%;

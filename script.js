@@ -78,11 +78,6 @@ function timer() {
             updateStats();
         }
 
-        if (day == dateToInt(2020, 3, 18)) {
-            q("hugo").innerText = "Hugo";
-            q("hugo").removeAttribute('id', "hugo");
-        }
-
         var a = intToDate(day);
 
         //q('weekday').innerHTML = wdays[a[3]];
