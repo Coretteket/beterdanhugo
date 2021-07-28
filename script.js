@@ -18,18 +18,16 @@ var cont = true;
 var day = 0;
 var counter = 0;
 
-var wdays = ["zo.", "ma.", "di.", "wo.", "do.", "vr.", "za."];
+var ldays = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
+var wdays = ["zo", "ma.", "di.", "wo.", "do.", "vr.", "za."];
 var mos = ["err", "januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
-var outlets = { "nos": "NOS NIEUWS", "rtl": "RTL NIEUWS", "nu": "NU.NL", "bbc": "BBC NEWS", "volkskrant": "VOLKSKRANT", "telegraaf": "TELEGRAAF", "nrc": "NRC HANDELSBLAD", "reuters": "REUTERS", "nyt": "NEW YORK TIMES" };
-var sentNews = [
-    ["reuters", "0", "Chinese officials investigate cause of pneumonia outbreak in Wuhan"]
-];
+
 var currentPinned = 0;
 
 var stats = { "n": [], "r": [], "t": [] };
 var currentStat = 0;
 
-var speeds = [0, 2500, 1500, 750];
+var speeds = [0, 2000, 1000, 500];
 var speed = 0;
 
 var w = 3;
@@ -38,8 +36,19 @@ var m = 1;
 var y = 2020;
 
 var lname = "";
+var dev = false;
 
-function start() {
+var url = new URL(window.location.href);
+var dev = (url.searchParams.get("dev") != null);
+console.log(dev);
+
+if (dev) {
+    speeds[3] = 100;
+    lname = "De Jonge";
+    start();
+}
+
+function checkStart() {
     lname = q("lname").value.replace(/[\[\]0-9\(\)\.\,\?\!\=\+\<\>\/\\\n]/gi, '');
     var starttxt = q("starttxt");
     if (lname == "" || lname == "Je achternaam") {
@@ -49,13 +58,17 @@ function start() {
         starttxt.innerText = "Kies een kortere achternaam.";
         setTimeout(function() { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }, 4000);
     } else {
-        console.log(lname);
-        q("main").removeAttribute("class");
-        q("start").setAttribute("class", "d-none");
-        q("pinned").setAttribute("class", "box d-block d-md-none");
-        q("firstnews").setAttribute("class", "box d-none d-md-block");
-        q("stats").setAttribute("class", "d-block")
+        //console.log(lname);
+        start();
     }
+}
+
+function start() {
+    q("main").removeAttribute("class");
+    q("start").setAttribute("class", "d-none");
+    q("pinned").setAttribute("class", "box d-block d-md-none");
+    q("firstnews").setAttribute("class", "box d-none d-md-block");
+    q("stats").setAttribute("class", "d-block")
 }
 
 var test = [1, 1, 3, 5, 4, 10, 17, 40, 50, 32, 61, 130, 123, 127, 113, 219, 173, 270, 288, 347, 396, 533, 637, 604, 554, 749, 843, 1006, 1167, 1147, 1092, 873, 834, 1008, 1083, 1020, 1002, 1099, 945, 782, 958, 1209, 1327, 1301, 1171, 959, 862, 730, 1069, 1234, 1186, 1023, 748, 716, 708, 874, 805, 647, 651, 405, 193, 388, 507, 478, 437, 338, 201, 319, 319, 361, 319, 287, 243, 179, 195, 223, 274, 202, 194, 125, 148, 111, 187, 254, 184, 177, 173, 213, 129, 194, 178, 178, 141, 176, 104, 95, 93, 188, 217, 190, 239, 166, 164, 181, 162, 207, 181, 144, 159, 134, 113, 124, 108, 90, 95, 68, 70, 80, 110, 93, 77, 66, 76, 57, 62, 75, 76, 65, 72, 41, 34, 57, 60, 65, 84, 95, 72, 98, 109, 119, 109, 145, 145, 183, 169, 170, 164, 155, 184, 213, 209, 224, 248, 341, 341, 431, 359, 372, 487, 428, 605, 517, 484, 577, 787, 620, 651, 576, 627, 656, 498, 487, 493, 553, 531, 533, 507, 455, 573, 416, 572, 508, 501, 503, 506, 526, 467, 720, 599, 743, 649, 920, 795, 969, 1140, 837, 1271, 1222, 1087, 1297, 1376, 1537, 1739, 1955, 1892, 1844, 2211, 2237, 2334, 2536, 2764, 2700, 2976, 2902, 3004, 3286, 3253, 3804, 3935, 3983, 4555, 4519, 4972, 5784, 5960, 6478, 6342, 6803, 7333, 7252, 7778, 7951, 8105, 8148, 7985, 8145, 8715, 9250, 9975, 8642, 10168, 10303, 10267, 8077, 10247, 11067, 9772, 8679, 8265, 7738, 7600, 6946, 7226, 6616, 5656, 4669, 4644, 5383, 5619, 6068, 5897, 5418, 4842, 4280, 4584, 5686, 5932, 6004, 5358, 5181, 3947, 4910, 4468, 5752, 4465, 5565, 4572, 4038, 4908, 5594, 5891, 6529, 6761, 7094, 6119, 6544, 8709, 8837, 9122, 9878, 8461, 6631, 11166, 12778, 11957, 12224, 12997, 11156, 9822, 10393, 11494, 11495, 9815, 9005, 7398, 7518, 9449, 9664, 8170, 8589, 7396, 6632, 6369, 7090, 9678, 8112, 7330, 6602, 5448, 4942, 6091, 6499, 6025, 5295, 5582, 4784, 4295, 5569, 5805, 5746, 5446, 4880, 4090, 3958, 4726, 4691, 4397, 4171, 3678, 3237, 3549, 4018, 4200, 4317, 4089, 3918, 2257, 1759, 3173, 4427, 4325, 4174, 3425, 2842, 2690, 3368, 4558, 4676, 4539, 4669, 4179, 3809, 4369, 4985, 5089, 4923, 4635, 3749, 3965, 5023, 4091, 4663, 5312, 4508, 3884, 4286, 5259, 5297, 5975, 6375, 5954, 5502, 4942, 5908, 6131, 7349, 7602, 6970, 6299, 5609, 7556, 7688, 7559, 8782, 7470, 6781, 5855, 7629, 7819, 7214, 7597, 6861, 5335, 5559, 6369, 7760, 7661, 7659, 8141, 6659, 6722, 5440, 8693, 8890, 8251, 8523, 7160, 6822, 8472, 9578, 9237, 8062, 8020, 6226, 5304, 8652, 7283, 7765, 5783, 5461, 9187, 7757, 7247, 6751, 7461, 7424, 6637, 5861, 5525, 6341, 6012, 5543, 4472, 4424, 2858, 5325, 4549, 4616, 4138, 3173, 3423, 2728, 2484, 2738, 3374, 3840, 3345, 2622, 2020, 2480, 2559, 2761, 2395, 2118, 1569, 1469, 1437, 1751, 1578, 1390, 1240, 1041, 879, 1040, 1024, 1059, 891, 693, 713, 570, 698, 666, 697, 648, 555, 502, 567, 530, 643, 824, 942, 1124, 1204, 1517, 2197, 3614, 5401, 6892, 10246, 9318, 8449, 7814, 10418, 10995, 11277, 11073, 10197, 8886, 6787, 6887, 6249, 6399, 5275, 4635, 3914];
@@ -88,8 +101,8 @@ function timer() {
 
         var a = intToDate(day);
 
-        q('weekday').innerHTML = wdays[a[3]];
-        q("date").innerHTML = ((a[2] < 10) ? "0" + a[2] : a[2]) + " " + mos[a[1]] + " " + a[0];
+        //q('weekday').innerHTML = wdays[a[3]];
+        q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
 
         stats.n = [randBetween(10, 999), randBetween(10, 999), randBetween(10, 999)];
         stats.r = [randBetween(0, 20) + "%", randBetween(50, 100) + "%", randBetween(0, 1) + "," + randBetween(0, 99)]
@@ -124,17 +137,17 @@ function setNews() {
         var news = q("pinned");
         news.parentNode.insertBefore(div, news.nextSibling);
 
-        var pluswhat = sentNews.length - currentPinned;
+        var pluswhat = snws.length - currentPinned;
         q("totop").innerHTML = "+" + pluswhat;
 
-        if (currentPinned == sentNews.length - 1) {
-            sentNews.push([source, day, title]);
-            updatePinned(sentNews.length - 1);
+        if (currentPinned == snws.length - 1) {
+            snws.push([source, day, title]);
+            updatePinned(snws.length - 1);
         } else {
-            sentNews.push([source, day, title]);
+            snws.push([source, day, title]);
         }
 
-        /*if (sentNews.length > 5) {
+        /*if (snws.length > 5) {
             q("news").children[7].setAttribute("class", "rembox d-none d-md-block");
         }*/
 
@@ -142,21 +155,21 @@ function setNews() {
 }
 
 function updatePinned(i) {
-    if (i >= sentNews.length || i < 0) {
+    if (i >= snws.length || i < 0) {
         return;
     }
     var pin = q('content');
-    var a = intToDate(sentNews[i][1]);
-    pin.children[0].setAttribute('src', 'img/' + sentNews[i][0] + '.png');
-    pin.children[1].innerHTML = outlets[sentNews[i][0]] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]];
-    pin.children[3].innerHTML = sentNews[i][2];
+    var a = intToDate(snws[i][1]);
+    pin.children[0].setAttribute('src', 'img/' + snws[i][0] + '.png');
+    pin.children[1].innerHTML = outlets[snws[i][0]] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]];
+    pin.children[3].innerHTML = snws[i][2];
 
     currentPinned = i;
 
-    var pluswhat = sentNews.length - currentPinned - 1;
+    var pluswhat = snws.length - currentPinned - 1;
     q("totop").innerHTML = "+" + pluswhat;
 
-    if (currentPinned == sentNews.length - 1) {
+    if (currentPinned == snws.length - 1) {
         q("up").setAttribute("class", "inactive");
         q("down").setAttribute("class", "active");
         q("totop").setAttribute("style", "display: none;");
@@ -198,15 +211,16 @@ function toggleStat(s) {
 
 function updateStats() {
     var covday = day - dateToInt(2020, 2, 28);
-    addData(testChart, covday, test[covday]);
+    addData(testChart, covday + 1, test[covday]);
     q("testCount").innerText = test[covday];
-    addData(hospChart, covday, hosp[covday]);
+    addData(hospChart, covday + 1, hosp[covday]);
     q("hospCount").innerText = hosp[covday];
-    addData(deadChart, covday, dead[covday]);
+    addData(deadChart, covday + 1, dead[covday]);
     q("deadCount").innerText = dead[covday];
 }
 
 var FAQ = false;
+var preSpeed = 0;
 
 function toggleFAQ() {
     if (FAQ) {
@@ -214,11 +228,14 @@ function toggleFAQ() {
         q("news").setAttribute("class", "col-md-6 col-lg-5 col-xl-4 order-2 order-md-3");
         q("faq").setAttribute("class", "d-none");
         FAQ = false;
+        setSpeed(preSpeed);
     } else {
         q("dash").setAttribute("class", "d-none");
         q("news").setAttribute("class", "d-none");
         q("faq").setAttribute("class", "col-12 col-lg-10 order-2");
         FAQ = true;
+        preSpeed = speed;
+        setSpeed(0);
     }
 }
 
@@ -249,19 +266,6 @@ function setSpeed(i) {
     }
 }
 
-var oldnws = false;
-
-function oldNews() {
-    if (!oldnws) {
-        oldnws = true;
-        q("news").children.forEach(e => {
-            if (e.getAttribute("class").includes("rembox")) {
-                e.setAttribute("class", "box d-none d-md-block");
-            }
-        });
-    }
-}
-
 function randBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
@@ -272,7 +276,7 @@ function q(i) {
 
 q("lname").addEventListener('keydown', function(event) {
     if (event.key == "Enter") {
-        start();
+        checkStart();
     }
 });
 

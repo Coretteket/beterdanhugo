@@ -46,6 +46,7 @@ h1 {
 @media (max-width: 767px) {
     #twitter {
         margin: 0;
+        margin-bottom: .3em;
         text-align: left;
         font-size: 1.1rem;
         color: gray;
@@ -168,6 +169,7 @@ align-items: center;*/
     opacity: 0%;
 }
 
+#content img,
 .box .logo {
     float: left;
     margin-right: .3rem;
@@ -183,12 +185,12 @@ align-items: center;*/
 
 @media (min-width: 768px) {
     #scroll {
-        height: 80vh!important;
+        height: 78vh!important;
         overflow-y: scroll;
         overflow-x: none;
     }
     #scrollsmall {
-        height: 60vh!important;
+        height: 58vh!important;
         overflow-y: scroll;
         overflow-x: none;
     }
@@ -222,7 +224,7 @@ align-items: center;*/
     display: inline;
     font-size: 0.9rem;
     margin: 1px 0 0 0;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .newstitle {
@@ -261,9 +263,7 @@ align-items: center;*/
 
 #weekday,
 #date {
-    font-family: 'Courier Prime', monospace;
-    font-weight: 800;
-    font-size: 1.1rem;
+    font-weight: 700;
 }
 
 #cal {
@@ -273,7 +273,7 @@ align-items: center;*/
 }
 
 .time p {
-    margin: 0;
+    margin-bottom: .2em;
 }
 
 .time .btn {
@@ -430,26 +430,26 @@ hr {
 .statbtn {
     border-top: 3px solid #a8a8a8;
     font-size: 1.06em;
-    margin: 0 2px;
+    font-weight: 600;
+    margin: 0 4px;
     padding: 4px 5px;
     border-radius: 5px;
     cursor: pointer;
-    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.1);
+    transition: 0.2s;
 }
 
 .statbtnactive {
     border-top: 3.5px solid #797979;
     padding-top: 3.5px;
     background-color: #d3d3d3!important;
-    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.2)!important;
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.2)!important;
 }
 
 .statbtn:hover {
-    background-color: #d3d3d3!important;
-    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3);
+    background-color: #d3d3d3;
+    -webkit-box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.1);
 }
 
 .statbtn i {
@@ -467,7 +467,7 @@ hr {
     width: 100%;
     position: absolute;
     z-index: 10;
-    bottom: -52px;
+    bottom: -84px;
     background-color: white;
     filter: blur(10px);
 }
