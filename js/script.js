@@ -208,7 +208,7 @@ function toggleFAQ() {
     } else {
         q("dash").setAttribute("class", "d-none");
         q("news").setAttribute("class", "d-none");
-        q("faq").setAttribute("class", "col-12 col-lg-10 order-2");
+        q("faq").setAttribute("class", "col-12 col-xl-10 order-2");
         FAQ = true;
         preSpeed = speed;
         setSpeed(0);
