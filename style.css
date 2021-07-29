@@ -472,7 +472,7 @@ hr {
     position: absolute;
     z-index: 10;
     top: 78vh;
-    box-shadow: 0 0 2em 3em var(--back);
+    box-shadow: 0 0 1.5em 1.5em var(--back);
     /*background-color: var(--back);
     filter: blur(10px);*/
 }
