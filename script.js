@@ -12,7 +12,7 @@ var currentPinned = 0;
 var stats = { "n": [], "r": [], "t": [] };
 var currentStat = 0;
 
-var speeds = [0, 2000, 1000, 500];
+var speeds = [0, 2500, 1250, 750];
 var speed = 0;
 
 var w = 3;
@@ -25,6 +25,8 @@ var dev = false;
 
 var url = new URL(window.location.href);
 var dev = (url.searchParams.get("dev") != null);
+
+var gameOver = false;
 
 if (dev) {
     speeds[3] = 100;
@@ -245,12 +247,30 @@ function setSpeed(i) {
     }
 }
 
+var lightmode = true;
+
+function colorSwitch() {
+    if (lightmode) {
+        q("light").setAttribute("id", "dark");
+        q("colormode").getElementsByTagName("i")[0].setAttribute("class", "fas fa-sun");
+        lightmode = false;
+    } else {
+        q("dark").setAttribute("id", "light");
+        q("colormode").getElementsByTagName("i")[0].setAttribute("class", "fas fa-moon");
+        lightmode = true;
+    }
+}
+
 function randBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 function q(i) {
     return document.getElementById(i);
+}
+
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    colorSwitch();
 }
 
 q("lname").addEventListener('keydown', function(event) {
@@ -276,3 +296,11 @@ Object.keys(outlets).forEach(element => {
     var img = new Image();
     img.src = "./img/" + element + ".png";
 });
+
+if (!dev) {
+    $(window).bind('beforeunload', function() {
+        if (!gameOver) {
+            return window.confirm();
+        }
+    });
+}

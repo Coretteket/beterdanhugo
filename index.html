@@ -49,7 +49,7 @@
 
 </head>
 
-<body>
+<body id="light">
     <!--data-simplebar-->
     <div class="container-sm mx-10">
         <div class="row">
@@ -58,7 +58,7 @@
                 <h1>Beter dan Hugo</h1>
             </div>
             <div class="col-md-3 col-lg-4">
-                <div id="twitter"><a href="https://twitter.com/intent/user?screen_name=coretteket" target=”_blank”><i class="fab fa-twitter"></i> @coretteket</a></div>
+                <div id="twitter"><a onclick="colorSwitch();" target="_blank" id="colormode"><i class="fas fa-moon"></i></a><a href="https://twitter.com/intent/user?screen_name=coretteket" target=”_blank”><i class="fab fa-twitter"></i> @coretteket</a></div>
             </div>
             <div class="col-lg-1 d-none d-lg-block"></div>
         </div>
@@ -140,7 +140,7 @@
                     <div class="box d-none" id="pinned">
                         <div id="content">
                             <img src="img/reuters.png" width="16" height="16">
-                            <p class="app">Reuters &ndash; wo. 1 januari</p>
+                            <p class="app">Reuters &ndash; di. 31 december</p>
                             <a id="totop" onclick="updatePinned(sentNews.length-1);" style="display: none;">+1</a>
                             <p class="newstitle">Chinese officials investigate cause of pneumonia outbreak in Wuhan</p>
                         </div>
@@ -151,7 +151,7 @@
                     </div>
                     <div id="firstnews" class="rembox d-none d-md-block">
                         <img class="logo" src="img/reuters.png" width="16" height="16">
-                        <p class="app">Reuters &ndash; wo. 1 januari</p>
+                        <p class="app">Reuters &ndash; di. 31 december</p>
                         <p class="newstitle">Chinese officials investigate cause of pneumonia outbreak in Wuhan</p>
                     </div>
                 </div>

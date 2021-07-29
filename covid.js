@@ -34,10 +34,14 @@ const options = {
     scales: {
         y: {
             type: 'linear',
-            grace: '0%'
+            grace: '0%',
+            ticks: {
+                color: "gray",
+            }
         },
         x: {
             ticks: {
+                color: "gray",
                 autoSkip: true,
                 maxTicksLimit: 8,
                 maxRotation: 0,
