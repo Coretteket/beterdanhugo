@@ -200,7 +200,7 @@ var preSpeed = 0;
 
 function toggleFAQ() {
     if (FAQ) {
-        q("dash").setAttribute("class", "col-md-6 col-lg-5 col-xl-6 order-3 order-md-2");
+        q("dash").setAttribute("class", "col-md-6 col-lg-7 col-xl-6 order-3 order-md-2");
         q("news").setAttribute("class", "col-md-6 col-lg-5 col-xl-4 order-2 order-md-3");
         q("faq").setAttribute("class", "d-none");
         FAQ = false;
