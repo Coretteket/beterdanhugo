@@ -181,9 +181,17 @@ align-items: center;*/
     box-shadow: none;
 }
 
+#light-shadow,
+#dark-shadow {
+    width: 100%;
+    position: absolute;
+    bottom: -1px;
+    margin-left: -15px;
+}
+
 @media (min-width: 768px) {
     #scroll {
-        height: 78vh;
+        height: 77vh;
         overflow-y: scroll;
         overflow-x: none;
     }
@@ -463,16 +471,6 @@ hr {
 
 #chartbox .row {
     margin: 0;
-}
-
-#shadow {
-    height: 113px;
-    width: 100%;
-    position: absolute;
-    z-index: 10;
-    bottom: -84px;
-    background-color: var(--back);
-    filter: blur(10px);
 }
 
 hr {
