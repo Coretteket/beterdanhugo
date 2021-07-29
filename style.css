@@ -5,7 +5,7 @@ body {
     color: var(--txt);
     background-color: var(--back);
     overflow-x: hidden;
-    overflow-y: hidden;
+    /*overflow-y: hidden;*/
     padding: 0;
     margin: 0;
     height: 100%;
@@ -24,7 +24,7 @@ body {
     html,
     body {
         font-size: 15px;
-        overflow-y: auto;
+        overflow-y: scroll;
     }
 }
 
@@ -183,7 +183,7 @@ align-items: center;*/
 
 @media (min-width: 768px) {
     #scroll {
-        height: 78vh;
+        height: 77vh;
         overflow-y: scroll;
         overflow-x: none;
     }
@@ -466,13 +466,15 @@ hr {
 }
 
 #shadow {
-    height: 113px;
+    height: 1px;
+    /*113px*/
     width: 100%;
     position: absolute;
     z-index: 10;
-    bottom: -84px;
-    background-color: var(--back);
-    filter: blur(10px);
+    top: 78vh;
+    box-shadow: 0 0 2em 3em var(--back);
+    /*background-color: var(--back);
+    filter: blur(10px);*/
 }
 
 hr {

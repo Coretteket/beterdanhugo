@@ -64,8 +64,8 @@ function timer() {
         day++;
 
         if (day == dateToInt(2020, 2, 28)) {
-            q("chartbox").setAttribute("class", "box")
-            q("scroll").setAttribute("id", "scrollsmall")
+            q("chartbox").setAttribute("class", "box");
+            q("scroll").setAttribute("id", "scrollsmall");
         }
         if (day >= dateToInt(2020, 2, 28)) {
             updateStats();
