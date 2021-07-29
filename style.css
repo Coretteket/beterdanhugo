@@ -471,7 +471,7 @@ hr {
     width: 100%;
     position: absolute;
     z-index: 10;
-    top: 78vh;
+    bottom: 0;
     box-shadow: 0 0 1.5em 1.5em var(--back);
     /*background-color: var(--back);
     filter: blur(10px);*/
