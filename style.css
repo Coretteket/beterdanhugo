@@ -183,7 +183,7 @@ align-items: center;*/
 
 @media (min-width: 768px) {
     #scroll {
-        height: 77vh;
+        height: 78vh;
         overflow-y: scroll;
         overflow-x: none;
     }
@@ -466,15 +466,13 @@ hr {
 }
 
 #shadow {
-    height: 1px;
-    /*113px*/
+    height: 113px;
     width: 100%;
     position: absolute;
     z-index: 10;
-    bottom: 0;
-    box-shadow: 0 0 1.5em 1.5em var(--back);
-    /*background-color: var(--back);
-    filter: blur(10px);*/
+    bottom: -84px;
+    background-color: var(--back);
+    filter: blur(10px);
 }
 
 hr {
