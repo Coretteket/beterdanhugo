@@ -23,17 +23,11 @@
     <meta name="theme-color" content="#ffffff">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RW1X01HBYC"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-
         function gtag() {
-            dataLayer.push(arguments);
+            dataLayer.push(arguments)
         }
-        gtag('js', new Date());
-        gtag('config', 'G-RW1X01HBYC');
+        window.dataLayer = window.dataLayer || [], gtag("js", new Date), gtag("config", "G-RW1X01HBYC");
     </script>
-    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
-    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
-
     <meta name="description" content="De kritiek komt van alle kanten, maar kunnen we het echt beter dan Hugo de Jonge? In dit spel kan jij je eigen weg door de pandemie proberen te vinden.">
     <meta property="og:url" content="https://beterdanhugo.nl/">
     <meta property="og:type" content="website">
@@ -50,32 +44,31 @@
 </head>
 
 <body id="light">
-    <!--data-simplebar-->
     <div class="container-sm mx-10">
         <div class="row">
-            <div class="col-lg-1 d-none d-lg-block"></div>
-            <div class="col-md-9 col-lg-6">
+            <div class="col-xl-1 d-none d-xl-block"></div>
+            <div class="col-md-9 col-xl-6">
                 <h1>Beter dan Hugo</h1>
             </div>
-            <div class="col-md-3 col-lg-4">
+            <div class="col-md-3 col-xl-4">
                 <div id="twitter"><a onclick="colorSwitch();" target="_blank" id="colormode"><i class="fas fa-moon"></i></a><a href="https://twitter.com/intent/user?screen_name=coretteket" target=”_blank”><i class="fab fa-twitter"></i> @coretteket</a></div>
             </div>
-            <div class="col-lg-1 d-none d-lg-block"></div>
+            <div class="col-xl-1 d-none d-xl-block"></div>
         </div>
         <div class="row">
-            <div class="col-lg-1 d-none d-lg-block"></div>
-            <div class="col-md-12 col-lg-10" id="head">
+            <div class="col-xl-1 d-none d-xl-block"></div>
+            <div class="col-md-12 col-xl-10" id="head">
                 <p class="d-none d-md-inline">De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke keuze heeft invloed
                     op het verloop van de pandemie, de economische schade, en jouw populariteit als minister.
                     <a class="more" onclick="toggleFAQ();" target="_blank">Meer weten?</a></p>
                 <hr class="d-none d-md-block">
             </div>
-            <div class="col-lg-1 d-none d-lg-block"></div>
+            <div class="col-xl-1 d-none d-xl-block"></div>
         </div>
 
         <div class="row">
-            <div class="col-lg-1 d-none d-lg-block order-1"></div>
-            <div class="col-md-6 col-lg-5 col-xl-6 order-3 order-md-2" id="dash">
+            <div class="col-xl-1 d-none d-xl-block order-1"></div>
+            <div class="col-md-6 col-lg-7 col-xl-6 order-3 order-md-2" id="dash">
                 <div id="start">
                     <p style="margin-top:.5em;" class="d-block d-md-none">De afgelopen maanden kende ons land zeventien miljoen virologen, en hadden we allemaal wel wat aan te merken op de coronabestrijding. Maar kunnen we het echt beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag
                         je je eigen weg door de pandemie kiezen.</p>
@@ -102,6 +95,15 @@
                         <a class="btn txt">Volop in de aanval</a>
                         <a class="btn txt">Excuses aanbieden</a>
                         <a class="btn txt">Opstappen</a>
+                        <p>Het OMT heeft een advies gegeven over de te zetten stappen ten tijde van deze pandemie. Je kan deze volledig, gedeeltelijk, of niet naleven.</p>
+                        <a class="btn txt">Scholen sluiten</a>
+                        <a class="btn txt">Thuiswerkadvies</a>
+                        <p>Het OMT heeft een advies gegeven over de te zetten stappen ten tijde van deze pandemie. Je kan deze volledig, gedeeltelijk, of niet naleven.</p>
+                        <a class="btn txt">Scholen sluiten</a>
+                        <a class="btn txt">Thuiswerkadvies</a>
+                        <p>Het OMT heeft een advies gegeven over de te zetten stappen ten tijde van deze pandemie. Je kan deze volledig, gedeeltelijk, of niet naleven.</p>
+                        <a class="btn txt">Scholen sluiten</a>
+                        <a class="btn txt">Thuiswerkadvies</a>
                         <p>Het OMT heeft een advies gegeven over de te zetten stappen ten tijde van deze pandemie. Je kan deze volledig, gedeeltelijk, of niet naleven.</p>
                         <a class="btn txt">Scholen sluiten</a>
                         <a class="btn txt">Thuiswerkadvies</a>
@@ -141,7 +143,7 @@
                         <div id="content">
                             <img src="img/reuters.png" width="16" height="16">
                             <p class="app">Reuters &ndash; di. 31 december</p>
-                            <a id="totop" onclick="updatePinned(sentNews.length-1);" style="display: none;">+1</a>
+                            <a id="totop" onclick="updatePinned(snws.length-1);" style="display: none;">+1</a>
                             <p class="newstitle">Chinese officials investigate cause of pneumonia outbreak in Wuhan</p>
                         </div>
                         <div id="arrows">
@@ -161,13 +163,14 @@
                 <p class="faqtext">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa architecto quo itaque perspiciatis blanditiis sunt harum dolorum, consequatur, modi quae facilis eius, rem facere nihil sit? Nam laboriosam sapiente vitae.</p>
                 <a onclick="toggleFAQ();" class="btn txt">Terug naar spel</a>
             </div>
-            <div class="col-lg-1 d-none d-lg-block order-4"></div>
+            <div class="col-xl-1 d-none d-xl-block order-4"></div>
         </div>
 
     </div>
-    <script type="text/javascript" src="covid.js"></script>
-    <script type="text/javascript" src="news.js"></script>
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="./js/covid.js"></script>
+    <script type="text/javascript" src="./js/graph.js"></script>
+    <script type="text/javascript" src="./js/news.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
 
 </body>
 

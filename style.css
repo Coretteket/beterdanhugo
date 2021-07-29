@@ -57,8 +57,11 @@ h1 {
 }
 
 #colormode {
-    font-size: 1rem;
     margin-right: .5em;
+}
+
+.fa-moon {
+    font-size: 1rem;
 }
 
 #twitter a {
@@ -185,7 +188,7 @@ align-items: center;*/
         overflow-x: none;
     }
     #scrollsmall {
-        height: 58vh;
+        height: 56vh;
         overflow-y: scroll;
         overflow-x: none;
     }
@@ -254,6 +257,7 @@ align-items: center;*/
     width: 28px;
     height: 100%;
     display: inline-block;
+    filter: var(--arrows);
 }
 
 #weekday,
@@ -274,6 +278,10 @@ align-items: center;*/
 .time .btn {
     width: 32px;
     margin-top: .2em;
+}
+
+#control {
+    margin-bottom: 1em;
 }
 
 #control p {
@@ -315,7 +323,7 @@ align-items: center;*/
 }
 
 .active {
-    opacity: 100%;
+    opacity: 60%;
 }
 
 .inactive {
@@ -485,6 +493,7 @@ hr {
     --stat-back: #f2f2f2;
     --stat-border: #a8a8a8;
     --stat-border-thick: #797979;
+    --arrows: none;
 }
 
 #dark {
@@ -501,4 +510,5 @@ hr {
     --stat-back: #212529;
     --stat-border: #757b81;
     --stat-border-thick: #a2a6ab;
+    --arrows: invert(1);
 }
