@@ -245,6 +245,14 @@ function setSpeed(i) {
 var lightmode = true;
 
 function colorSwitch() {
+    console.log("boop")
+    document.documentElement.style.overflow = "hidden";
+    document.body.clientWidth;
+    document.documentElement.setAttribute(
+        "data-color-scheme",
+        !lightmode ? "light" : "dark"
+    );
+    document.documentElement.style.overflow = "";
     if (lightmode) {
         q("light").setAttribute("id", "dark");
         q("colormode").getElementsByTagName("i")[0].setAttribute("class", "fas fa-sun");
