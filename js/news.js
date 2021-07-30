@@ -1,7 +1,7 @@
 var outlets = {
     "nos": "NOS Nieuws",
     "rtl": "RTL Nieuws",
-    "nu": "Nu.nl",
+    "nu": "NU.nl",
     "bbc": "BBC News",
     "volkskrant": "Volkskrant",
     "telegraaf": "Telegraaf",
@@ -22,7 +22,8 @@ var cnws = {
     17: ["bbc", "New virus in China 'has likely already infected hundreds'"],
     19: ["rtl", "Chinese overheid: nieuw coronavirus is van mens op mens overdraagbaar"],
     21: ["cnn", "First US case of Wuhan coronavirus confirmed by CDC"],
-    24: ["nyt", "Coronavirus Is Spreading, but W.H.O. Says It’s Not a Global Emergency"]
+    24: ["nyt", "Coronavirus Is Spreading, but W.H.O. Says It’s Not a Global Emergency"],
+    26: ["nu","RIVM: kans op verspreiding van coronavirus in Nederland is klein"]
 };
 
 //high prio news - dag staat vast, nieuws niet

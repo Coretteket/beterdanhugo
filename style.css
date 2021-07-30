@@ -5,7 +5,7 @@ body {
     color: var(--txt);
     background-color: var(--back);
     overflow-x: hidden;
-    /*overflow-y: hidden;*/
+    overflow-y: auto;
     padding: 0;
     margin: 0;
     /*height: 100%;*/
@@ -20,11 +20,14 @@ body {
     user-select: none;
 }
 
+body {
+    overflow-y: hidden;
+}
+
 @media (max-width: 767px) {
     html,
     body {
         font-size: 15px;
-        overflow-y: scroll;
     }
 }
 
@@ -190,12 +193,12 @@ align-items: center;*/
 }
 
 @media (min-width: 768px) {
-    #scroll, #scrollsmall {
+    #scroll,
+    #scrollsmall {
         position: relative;
         overflow-y: scroll;
         overflow-x: none;
     }
-    
     #scroll {
         height: 77vh;
         min-height: 40em;
@@ -203,7 +206,6 @@ align-items: center;*/
     #scrollsmall {
         height: 56vh;
         min-height: 30em;
-        
     }
 }
 
@@ -521,7 +523,7 @@ hr {
 [data-color-scheme="dark"] {
     color-scheme: dark;
 }
-  
+
 [data-color-scheme="light"] {
     color-scheme: light;
 }
