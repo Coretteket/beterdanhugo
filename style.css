@@ -83,7 +83,7 @@ p {
     height: 100%;
 }
 
-/*@keyframes swipe {
+@keyframes swipe {
     from {
         width: 100%;
         max-height: 0;
@@ -100,12 +100,12 @@ p {
         padding: .6em;
         opacity: 100%;
     }
-}*/
+}
 
 #pinned {
     min-height: calc(.8em + 60px);
     padding-right: .25em;
-    /*animation: none;*/
+    animation: none;
     margin: 1em 0;
 }
 
@@ -124,11 +124,11 @@ align-items: center;*/
     -webkit-box-shadow: var(--full-shadow);
     box-shadow: var(--full-shadow);
     max-height: 10em;
-    /*animation-name: swipe;
-    animation-duration: .3s;*/
+    animation-name: swipe;
+    animation-duration: .3s;
 }
 
-/*@keyframes hide {
+@keyframes hide {
     from {
         width: 100%;
         max-height: 30em;
@@ -147,7 +147,7 @@ align-items: center;*/
         box-shadow: none;
         opacity: 0%
     }
-}*/
+}
 
 .rembox {
     display: none;
@@ -162,8 +162,8 @@ align-items: center;*/
     width: 100%;
     border-radius: .6em;
     text-align: left;
-    /*animation-name: hide;
-    animation-duration: .2s;*/
+    animation-name: hide;
+    animation-duration: .2s;
     opacity: 0%;
 }
 
@@ -453,7 +453,7 @@ hr {
     padding: 4px 5px;
     border-radius: 5px;
     cursor: pointer;
-    /*transition: 0.2s;*/
+    transition: 0.2s;
 }
 
 .statbtnactive {
