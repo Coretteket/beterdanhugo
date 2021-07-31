@@ -203,12 +203,14 @@ function toggleFAQ() {
         q("dash").setAttribute("class", "col-md-6 col-lg-7 col-xl-6 order-3 order-md-2");
         q("news").setAttribute("class", "col-md-6 col-lg-5 col-xl-4 order-2 order-md-3");
         q("faq").setAttribute("class", "d-none");
+        q("knowmore").innerHTML = "Meer weten?";
         FAQ = false;
         setSpeed(preSpeed);
     } else {
         q("dash").setAttribute("class", "d-none");
         q("news").setAttribute("class", "d-none");
         q("faq").setAttribute("class", "col-12 col-xl-10 order-2");
+        q("knowmore").innerHTML = "Terug naar spel.";
         FAQ = true;
         preSpeed = speed;
         setSpeed(0);
@@ -232,6 +234,11 @@ function intToDate(i) {
 }
 
 function setSpeed(i) {
+    if (day == 0 && i > 0) {
+        q("intro1").setAttribute("class","d-none");
+        q("intro2").setAttribute("class","d-none");
+        q("today").removeAttribute("class");
+    }
     q("s" + speed).setAttribute('class', 'btn');
     q("s" + i).setAttribute('class', 'btn tsel');
     if (speed == 0 && i > 0) {

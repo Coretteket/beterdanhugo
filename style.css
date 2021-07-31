@@ -59,12 +59,13 @@ h1 {
     }
 }
 
+#faqbtn,
 #colormode {
     margin-right: .5em;
 }
 
 .fa-moon {
-    font-size: 1rem;
+    font-size: .93em;
 }
 
 #twitter a {
@@ -201,11 +202,11 @@ align-items: center;*/
     }
     #scroll {
         height: 77vh;
-        min-height: 40em;
+        min-height: 39em;
     }
     #scrollsmall {
         height: 56vh;
-        min-height: 30em;
+        min-height: 29em;
     }
 }
 
@@ -288,8 +289,8 @@ align-items: center;*/
     background-color: red;
 }
 
-.time p {
-    margin-bottom: .2em;
+#today {
+    margin-bottom: .3em;
 }
 
 .time .btn {
