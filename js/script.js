@@ -81,6 +81,7 @@ function timer() {
         stats.t = [randBetween(20, 90) + "k", randBetween(10, 20) + "k", randBetween(5, 10) + "k"];
 
         setNews();
+        setActions();
 
         counter = 0;
     }
@@ -128,6 +129,35 @@ function setNews() {
         }*/
 
     }
+}
+
+var paused = false;
+
+function setActions() {
+    getActions();
+    if (action != "") {
+        q("action").removeAttribute("class");
+        q("action").innerHTML = "<p><i class='fas fa-exclamation-triangle'></i> <span style='font-weight:700;'>Belangrijk</span> &ndash; " + action + "</p>";
+        for (const [key, value] of Object.entries(actbtns)) {
+            console.log(key)
+            q("action").innerHTML += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
+        }
+        q("s1").setAttribute("style", "opacity:.4;");
+        q("s2").setAttribute("style", "opacity:.4;");
+        q("s3").setAttribute("style", "opacity:.4;");
+        preSpeed = speed;
+        setSpeed(0);
+        paused = true;
+    }
+}
+
+function delActions() {
+    q("action").setAttribute("class", "d-none");
+    q("s1").removeAttribute("style");
+    q("s2").removeAttribute("style");
+    q("s3").removeAttribute("style");
+    paused = false;
+    if (speed == 0) { setSpeed(preSpeed); }
 }
 
 function updatePinned(i) {
@@ -234,10 +264,12 @@ function intToDate(i) {
 }
 
 function setSpeed(i) {
+    if (paused) { return; }
     if (day == 0 && i > 0) {
-        q("intro1").setAttribute("class","d-none");
-        q("intro2").setAttribute("class","d-none");
+        q("intro1").setAttribute("class", "d-none");
+        q("intro2").setAttribute("class", "d-none");
         q("today").removeAttribute("class");
+        q("options").removeAttribute("class");
     }
     q("s" + speed).setAttribute('class', 'btn');
     q("s" + i).setAttribute('class', 'btn tsel');
@@ -252,12 +284,10 @@ function setSpeed(i) {
 var lightmode = true;
 
 function colorSwitch() {
-    console.log("boop")
     document.documentElement.style.overflow = "hidden";
     document.body.clientWidth;
     document.documentElement.setAttribute(
-        "data-color-scheme",
-        !lightmode ? "light" : "dark"
+        "data-color-scheme", !lightmode ? "light" : "dark"
     );
     document.documentElement.style.overflow = "";
     if (lightmode) {
@@ -294,9 +324,17 @@ q("lname").addEventListener('keydown', function(event) {
     }
 });
 
-document.addEventListener('keydown', function(event) {
+var spaceToggle = false;
+document.addEventListener('keypress', function(event) {
     //console.log(event.key);
-    if (event.key == 1) {
+    if (event.key == ' ' && spaceToggle) {
+        setSpeed(preSpeed);
+        spaceToggle = false;
+    } else if (event.key == ' ' && !spaceToggle) {
+        preSpeed = speed;
+        setSpeed(0);
+        spaceToggle = true;
+    } else if (event.key == 1) {
         setSpeed(0);
     } else if (event.key == 2) {
         setSpeed(1);

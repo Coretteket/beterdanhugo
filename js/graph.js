@@ -37,6 +37,9 @@ const options = {
             grace: '0%',
             ticks: {
                 color: "gray",
+                callback: function(label, index, labels) {
+                    return label.toString();
+                }
             }
         },
         x: {
