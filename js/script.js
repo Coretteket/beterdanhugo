@@ -142,9 +142,9 @@ function setActions() {
             console.log(key)
             q("action").innerHTML += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
         }
-        q("s1").setAttribute("style", "opacity:.4;");
-        q("s2").setAttribute("style", "opacity:.4;");
-        q("s3").setAttribute("style", "opacity:.4;");
+        q("s1").setAttribute("style", "opacity:.4;cursor:default;");
+        q("s2").setAttribute("style", "opacity:.4;cursor:default;");
+        q("s3").setAttribute("style", "opacity:.4;cursor:default;");
         preSpeed = speed;
         setSpeed(0);
         paused = true;
