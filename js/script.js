@@ -63,6 +63,10 @@ function timer() {
     if (counter >= speeds[speed]) {
         day++;
 
+        if (day == dateToInt(2020, 1, 2)) {
+            q("c0").setAttribute("class", "choice");
+        }
+
         if (day == dateToInt(2020, 2, 28)) {
             q("chartbox").setAttribute("class", "box");
             q("scroll").setAttribute("id", "scrollsmall");
@@ -136,8 +140,12 @@ var paused = false;
 function setActions() {
     getActions();
     if (action != "") {
-        q("action").removeAttribute("class");
-        q("action").innerHTML = "<p><i class='fas fa-exclamation-triangle'></i> <span style='font-weight:700;'>Belangrijk</span> &ndash; " + action + "</p>";
+        q("action").setAttribute("class", "choice");
+        q("action").innerHTML = "<p>";
+        if (important) {
+            q("action").innerHTML += "<i class='fas fa-exclamation-triangle'></i> <span style='font-weight:700;'>Belangrijk</span> &ndash; "
+        }
+        q("action").innerHTML += action + "</p>";
         for (const [key, value] of Object.entries(actbtns)) {
             console.log(key)
             q("action").innerHTML += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
@@ -269,7 +277,6 @@ function setSpeed(i) {
         q("intro1").setAttribute("class", "d-none");
         q("intro2").setAttribute("class", "d-none");
         q("today").removeAttribute("class");
-        q("options").removeAttribute("class");
     }
     q("s" + speed).setAttribute('class', 'btn');
     q("s" + i).setAttribute('class', 'btn tsel');
