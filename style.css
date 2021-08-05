@@ -152,12 +152,12 @@ align-items: center;*/
     }
 }
 
-.rembox {
+/* .rembox {
     display: none;
     height: 0;
     max-height: 0;
-    /*display: flex;
-align-items: center;*/
+    display: flex;
+    align-items: center;
     background-color: var(--box);
     margin-bottom: 0 1em;
     padding: .6em .6em 0 .6em;
@@ -168,7 +168,7 @@ align-items: center;*/
     animation-name: hide;
     animation-duration: .2s;
     opacity: 0%;
-}
+} */
 
 #content img,
 .box .logo {
@@ -424,7 +424,7 @@ hr {
 }
 
 .chartcnt {
-    height: 7em;
+    height: 8em;
 }
 
 .more {

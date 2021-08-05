@@ -68,16 +68,10 @@
                 </div>
                 <div id="main" class="d-none">
                     <div id="timedash" class="time">
-                        <p id="intro1">Welkom terug in januari 2020. Wereldwijd gaat het over Australische bosbranden, spanningen met Iran, en de impeachment van Trump. Niemand weet hoeveel invloed een klein bericht over een mysterieuze longziekte in Wuhan, die je hier<span class="d-none d-md-inline"> rechts</span><span class="d-inline d-md-none">boven</span> kan zien, zou hebben op de gehele wereldbevolking.</p>
-                        <p id="intro2" style="margin-top:.25em;">Klik op de <i class="fas fa-play" style="font-size:0.8em;"></i>-knop om de tijd te laten lopen, en meer nieuws binnen te laten stromen. Houd het nieuws goed in de gaten, om te weten hoe de pandemie verloopt. Je kan het spel op elk moment versnellen of pauzeren.</p>
-                        <p id="today" class="d-none">Het is vandaag <span id="date">1 januari 2020</span>. </p>
+                        <p id="today">Het is vandaag <span id="date">27 februari 2020</span>. </p>
                         <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i class="fas fa-pause"></i></a> <a onclick="setSpeed(1);" id="s1" class="btn"><i class="fas fa-play"></i></a> <a onclick="setSpeed(2);" id="s2" class="btn"><i class="fas fa-step-forward"></i></a> <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
                     </div>
                     <div id="control">
-                        <div id="c0" class="d-none">
-                            <p>In dit spel mag je zelf kiezen welke maatregelen je invoert, en op welk moment. Grenzen dicht, scholen dicht, winkels dicht, of juist alles open. Maar met de kennis van nu is het wel een heel makkelijk spel. Daarom verschijnen hier verschillende keuzes op het moment dat deze keuzes door het kabinet gemaakt moeten worden.</p>
-                            <!--<a class="btn txt">Lorem</a><a class="btn txt">Ipsum</a>-->
-                        </div>
                         <div id="action" class="d-none">
                             <p>Boop</p>
                         </div>
@@ -85,7 +79,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-5 col-xl-4 order-2 order-md-3" id="news">
-                <div id="stats" class="d-none">
+                <div id="stats">
                     <div id="chartbox" class="box d-none">
                         <div class="chartcnt" id="testCnt">
                             <canvas id="testChart" style="width:100%;"></canvas>
@@ -114,7 +108,7 @@
                         </div>
                         <div id="arrows"> <a onclick="updatePinned(currentPinned+1);"><img src="img/up.png" class="inactive" width="28" height="28" id="up"></a> <a onclick="updatePinned(currentPinned-1);"><img src="img/up.png" class="inactive" width="28" height="28" id="down"></a> </div>
                     </div>
-                    <div id="firstnews" class="rembox d-none d-md-block">
+                    <div id="firstnews" class="box d-none">
                         <img class="logo" src="img/reuters.png" width="16" height="16">
                         <p class="app">Reuters &ndash; di. 31 december</p>
                         <p class="newstitle">Chinese officials investigate cause of pneumonia outbreak in Wuhan</p>

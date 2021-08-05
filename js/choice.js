@@ -1,5 +1,9 @@
+var p = {
+    jan11_warning: false
+}
+
 var acts = {
-    10: ["Zoals nu: na het bericht over een eerste dode aan deze mysterieuze ziekte overweegt het Ministerie van Buitenlandse Zaken aanpassing van het reisadvies voor de stad Wuhan met een waarschuwing om dierenmarkten te vermijden. Wat is jouw advies?", {"Aanpassen": "delActions();", "Niet aanpassen": "delActions();"}, false]
+    //0: ["Welkom terug in 2020!", {"Aanpassen": "delActions();setSpeed(1);", "Niet aanpassen": "delActions();setSpeed(1);"}, false]
 }
 
 var action = ""
@@ -15,4 +19,8 @@ function getActions() {
         actbtns = {};
         important = false;
     }
+}
+
+function cPar(i,j) {
+    p[i] = j;
 }

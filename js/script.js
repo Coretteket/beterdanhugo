@@ -1,4 +1,4 @@
-const epoch = 1577833200;
+const epoch = 1582758000;
 var cont = true;
 var day = 0;
 var counter = 0;
@@ -12,9 +12,9 @@ var currentPinned = 0;
 var speeds = [0, 2500, 1250, 750];
 var speed = 0;
 
-var w = 3;
-var d = 1;
-var m = 1;
+var w = 4;
+var d = 27;
+var m = 2;
 var y = 2020;
 
 var lname = "";
@@ -23,6 +23,7 @@ var dev = false;
 var url = new URL(window.location.href);
 var dev = (url.searchParams.get("dev") != null);
 
+var started = false;
 var gameOver = false;
 
 if (dev) {
@@ -47,11 +48,14 @@ function checkStart() {
 }
 
 function start() {
+    setActions();
     q("main").removeAttribute("class");
     q("start").setAttribute("class", "d-none");
     q("pinned").setAttribute("class", "box d-block d-md-none");
     q("firstnews").setAttribute("class", "box d-none d-md-block");
-    q("stats").setAttribute("class", "d-block")
+    q("chartbox").setAttribute("class", "box");
+    q("scroll").setAttribute("id", "scrollsmall");
+    started = true;
 }
 
 function timer() {
@@ -62,28 +66,10 @@ function timer() {
 
     if (counter >= speeds[speed]) {
         day++;
-
-        if (day == dateToInt(2020, 1, 2)) {
-            q("c0").setAttribute("class", "choice");
-        }
-
-        if (day == dateToInt(2020, 2, 28)) {
-            q("chartbox").setAttribute("class", "box");
-            q("scroll").setAttribute("id", "scrollsmall");
-        }
-        if (day >= dateToInt(2020, 2, 28)) {
-            updateStats();
-        }
-
         var a = intToDate(day);
-
-        //q('weekday').innerHTML = wdays[a[3]];
         q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
 
-        stats.n = [randBetween(10, 999), randBetween(10, 999), randBetween(10, 999)];
-        stats.r = [randBetween(0, 20) + "%", randBetween(50, 100) + "%", randBetween(0, 1) + "," + randBetween(0, 99)]
-        stats.t = [randBetween(20, 90) + "k", randBetween(10, 20) + "k", randBetween(5, 10) + "k"];
-
+        updateStats();
         setNews();
         setActions();
 
@@ -141,11 +127,12 @@ function setActions() {
     getActions();
     if (action != "") {
         q("action").setAttribute("class", "choice");
-        q("action").innerHTML = "<p>";
+        var sethtml = "<p>";
         if (important) {
-            q("action").innerHTML += "<i class='fas fa-exclamation-triangle'></i> <span style='font-weight:700;'>Belangrijk</span> &ndash; "
+            sethtml += "<i class='fas fa-exclamation-triangle'></i> <span style='font-weight:700;'>Belangrijk</span> &ndash; "
         }
-        q("action").innerHTML += action + "</p>";
+        sethtml += action + "</p>";
+        q("action").innerHTML = sethtml;
         for (const [key, value] of Object.entries(actbtns)) {
             console.log(key)
             q("action").innerHTML += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
@@ -224,13 +211,14 @@ function toggleStat(s) {
 }
 
 function updateStats() {
-    var covday = day - dateToInt(2020, 2, 28);
-    addData(testChart, covday + 1, test[covday]);
-    q("testCount").innerText = test[covday];
-    addData(hospChart, covday + 1, hosp[covday]);
-    q("hospCount").innerText = hosp[covday];
-    addData(deadChart, covday + 1, dead[covday]);
-    q("deadCount").innerText = dead[covday];
+    calcCOV();
+    //addData(testChart, covday + 1, test[covday]);
+    addData(testChart, day, s.dI);
+    q("testCount").innerText = Math.round(s.dI);
+    addData(hospChart, day, hosp[day]);
+    q("hospCount").innerText = hosp[day];
+    addData(deadChart, day, s.dF);
+    q("deadCount").innerText = Math.round(s.dF);
 }
 
 var FAQ = false;
@@ -273,11 +261,10 @@ function intToDate(i) {
 
 function setSpeed(i) {
     if (paused) { return; }
-    if (day == 0 && i > 0) {
-        q("intro1").setAttribute("class", "d-none");
-        q("intro2").setAttribute("class", "d-none");
-        q("today").removeAttribute("class");
+    if (speed > 0) {
+        preSpeed = speed;
     }
+
     q("s" + speed).setAttribute('class', 'btn');
     q("s" + i).setAttribute('class', 'btn tsel');
     if (speed == 0 && i > 0) {
@@ -314,12 +301,18 @@ function colorSwitch() {
 }
 
 function randBetween(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
+    return Math.random() * (max - min + 1) + min; //Math.floor(
 }
 
 function q(i) {
     return document.getElementById(i);
 }
+
+if (!Array.prototype.last){
+    Array.prototype.last = function(){
+        return this[this.length - 1];
+    };
+};
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     colorSwitch();
@@ -331,23 +324,19 @@ q("lname").addEventListener('keydown', function(event) {
     }
 });
 
-var spaceToggle = false;
 document.addEventListener('keypress', function(event) {
     //console.log(event.key);
-    if (event.key == ' ' && spaceToggle) {
+    if (event.key == ' ' && speed == 0) {
         setSpeed(preSpeed);
-        spaceToggle = false;
-    } else if (event.key == ' ' && !spaceToggle) {
-        preSpeed = speed;
+    } else if (event.key == ' ' && speed > 0) {
         setSpeed(0);
-        spaceToggle = true;
-    } else if (event.key == 1) {
+    } else if (event.key == 1 && started) {
         setSpeed(0);
-    } else if (event.key == 2) {
+    } else if (event.key == 2 && started) {
         setSpeed(1);
-    } else if (event.key == 3) {
+    } else if (event.key == 3 && started) {
         setSpeed(2);
-    } else if (event.key == 4) {
+    } else if (event.key == 4 && started) {
         setSpeed(3)
     }
 });
@@ -364,3 +353,5 @@ if (!dev) {
         }
     });
 }
+
+console.log(new Date(y, m - 1, d).getTime() / 1000)
