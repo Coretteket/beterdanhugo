@@ -26,6 +26,7 @@ e = {//changes in covid dynamics (%hosp etc.)
 s = {
     a: 0,
     b: 0.2,
+    c: 1 / 270,
     N: 17500000,
     S: 17500000 - 1000,
     I: 1000,
@@ -44,9 +45,9 @@ function calcR() {
 
 function calcCOV() {
     s.a = calcR() * s.b * s.N / s.S;
-    var dS = -s.a * s.S * s.I / s.N;
+    var dS = -s.a * s.S * s.I / s.N + s.I * s.c;
     var dI = s.a * s.S * s.I / s.N - s.b * s.I;
-    var dR = s.b * s.I;
+    var dR = s.b * s.I - s.I * s.c;
     s.S += dS;
     s.I += dI;
     s.R += dR;
