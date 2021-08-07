@@ -66,6 +66,7 @@ function timer() {
 
     if (counter >= speeds[speed]) {
         day++;
+
         var a = intToDate(day);
         q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
 
@@ -212,11 +213,10 @@ function toggleStat(s) {
 
 function updateStats() {
     calcCOV();
-    //addData(testChart, covday + 1, test[covday]);
     addData(testChart, day, s.dI);
     q("testCount").innerText = Math.round(s.dI);
-    addData(hospChart, day, hosp[day]);
-    q("hospCount").innerText = hosp[day];
+    // addData(hospChart, day, hosp[day]);
+    // q("hospCount").innerText = hosp[day];
     addData(deadChart, day, s.dF);
     q("deadCount").innerText = Math.round(s.dF);
 }
@@ -354,4 +354,8 @@ if (!dev) {
     });
 }
 
-console.log(new Date(y, m - 1, d).getTime() / 1000)
+// var covday = 0;
+// for (var i = 0; i < 10; i++) {
+//     calcCOV();
+//     covday++;
+// }
