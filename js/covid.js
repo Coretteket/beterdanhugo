@@ -17,20 +17,24 @@ function lin(y1, y2, x1, x2) {
     }
 }
 
-m = { //coefficients for effectiveness of active measures
+var m = { //coefficients for effectiveness of active measures
 
 }
 
-e = { //changes in covid dynamics, like undercounting
+var e = { //changes in covid dynamics, like undercounting
     death: function() {
         foundLin = false;
         lin(1, 1, 0, 120);
-        lin(1, 0.55, 120, 170);
-        lin(0.55, 0.55, 170, 999);
+        lin(1, 0.55, 120, 180);
+        lin(0.55, 0.55, 180, 999);
         return ans;
     },
     underdeath: function() {
-        var underrate = 0.6;
+        foundLin = false;
+        lin(0, 0.2, 0, 30)
+        lin(0.2, 0.6, 30, 45);
+        lin(0.6, 0.6, 45, 999)
+
         var wday = new Date((epoch + day * 60 * 60 * 24) * 1000).getDay();
         var weff = [
             0.518,
@@ -41,13 +45,14 @@ e = { //changes in covid dynamics, like undercounting
             1.101,
             1.128
         ];
-        return weff[wday] * underrate;
+        return weff[wday] * ans;
     },
     test: function() {
         foundLin = false;
-        lin(0.003, 0.04, 0, 14);
-        lin(0.04, 0.04, 14, 80);
-        lin(0.04, 0.1, 80, 130);
+        lin(0, 0.01, 0, 20);
+        lin(0.01, 0.035, 20, 30);
+        lin(0.035, 0.035, 30, 80);
+        lin(0.035, 0.1, 80, 130);
         lin(0.1, 0.35, 130, 150);
         lin(0.35, 0.35, 150, 999);
         return ans;
@@ -67,7 +72,7 @@ e = { //changes in covid dynamics, like undercounting
     }
 }
 
-a = [ // age specific info for vax
+var a = [ // age specific info for vax
     { perc: 0.10185, aifr: 0.00048, vax: 0 }, // 0 - 9
     { perc: 0.11503, aifr: 0.00161, vax: 0 }, // 10 - 19
     { perc: 0.12831, aifr: 0.00538, vax: 0 }, // 20 - 29
@@ -80,7 +85,7 @@ a = [ // age specific info for vax
     { perc: 0.00746, aifr: 26.3875, vax: 0 }, // 90+
 ]
 
-s = { // spread info
+var s = { // spread info
     a: 0,
     b: 1 / 5,
     c: 1 / 270,
@@ -108,6 +113,12 @@ s = { // spread info
     Ps: [0],
     Hs: [0],
     Ds: [0],
+}
+
+var c = { //preset constant early values
+    Ps: [0, 1, 1, 3, 5, 4, 10],
+    Hs: [],
+    Ds: [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4]
 }
 
 function calcIFR() {
@@ -143,9 +154,13 @@ function calcCOV() {
     s.Rs.push(s.R);
     s.Fs.push(s.F);
 
-    s.P = s.dIs[covday - 7] * e.test() * e.testday() * randBetween(0.85, 1.15);
+    if (day + 1 < c.Ps.length) { s.P = c.Ps[day] } else {
+        s.P = Math.round(s.dIs[covday - 7] * e.test() * e.testday() * randBetween(0.85, 1.15));
+    };
     s.H = 0;
-    s.D = s.dFs[covday - 7] * e.underdeath() * randBetween(0.85, 1.15);
+    if (day + 1 < c.Ds.length) { s.D= c.Ds[day] } else {
+        s.D = Math.round(s.dFs[covday - 7] * e.underdeath() * randBetween(0.85, 1.15));
+    }
 
     s.Ps.push(s.P);
     s.Hs.push(s.H);

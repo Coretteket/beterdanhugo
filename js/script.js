@@ -214,11 +214,11 @@ function toggleStat(s) {
 function updateStats() {
     calcCOV();
     addData(testChart, day, s.P);
-    q("testCount").innerText = Math.round(s.P);
+    q("testCount").innerText = s.P;
     // addData(hospChart, day, hosp[day]);
     // q("hospCount").innerText = hosp[day];
     addData(deadChart, day, s.D);
-    q("deadCount").innerText = Math.round(s.D);
+    q("deadCount").innerText = s.D;
 }
 
 var FAQ = false;
