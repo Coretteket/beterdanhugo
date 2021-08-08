@@ -213,12 +213,12 @@ function toggleStat(s) {
 
 function updateStats() {
     calcCOV();
-    addData(testChart, day, s.dI);
-    q("testCount").innerText = Math.round(s.dI);
+    addData(testChart, day, s.P);
+    q("testCount").innerText = Math.round(s.P);
     // addData(hospChart, day, hosp[day]);
     // q("hospCount").innerText = hosp[day];
-    addData(deadChart, day, s.dF);
-    q("deadCount").innerText = Math.round(s.dF);
+    addData(deadChart, day, s.D);
+    q("deadCount").innerText = Math.round(s.D);
 }
 
 var FAQ = false;
@@ -301,7 +301,7 @@ function colorSwitch() {
 }
 
 function randBetween(min, max) {
-    return Math.random() * (max - min + 1) + min; //Math.floor(
+    return Math.random() * (max - min) + min; //Math.floor(
 }
 
 function q(i) {
@@ -354,8 +354,7 @@ if (!dev) {
     });
 }
 
-// var covday = 0;
-// for (var i = 0; i < 10; i++) {
-//     calcCOV();
-//     covday++;
-// }
+var covday = 0;
+for (var i = 0; i < 10; i++) {
+    calcCOV();
+}
