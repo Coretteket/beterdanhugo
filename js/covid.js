@@ -8,11 +8,11 @@ var foundLin = false
 function lin(y1, y2, x1, x2) {
     if (foundLin) {
         return;
-    } else if (day >= x1 && day < x2 && y1 == y2) {
+    } else if (covday >= x1 && covday < x2 && y1 == y2) {
         ans = y1;
         foundLin = true;
-    } else if (day >= x1 && day < x2) {
-        ans = (y2 - y1) / (x2 - x1) * (day - x1) + y1;
+    } else if (covday >= x1 && covday < x2) {
+        ans = (y2 - y1) / (x2 - x1) * (covday - x1) + y1;
         foundLin = true;
     }
 }
@@ -124,9 +124,9 @@ var s = { // spread info
 }
 
 var b = { //preset constant beginning values
-    Ps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 5, 4, 10],
+    Ps: [0, 1, 1, 3, 5, 4, 10],
     Hs: [],
-    Ds: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4]
+    Ds: [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4]
 }
 
 function calcIFR() {
@@ -136,7 +136,7 @@ function calcIFR() {
 }
 
 function calcR() {
-    return Rts[day + 10];
+    return Rts[covday];
 }
 
 function calcCOV() {
@@ -162,15 +162,17 @@ function calcCOV() {
     s.Rs.push(s.R);
     s.Fs.push(s.F);
 
-    if (day + 11 < b.Ps.length) { s.P = b.Ps[day] } else {
-        s.P = Math.round(s.dIs[day - 7] * e.test() * e.testday() * randBetween(0.85, 1.15));
+    if (day + 1 < b.Ps.length) { s.P = b.Ps[day] } else {
+        s.P = Math.round(s.dIs[covday - 7] * e.test() * e.testday() * randBetween(0.85, 1.15));
     };
     s.H = 0;
-    if (day + 11 < b.Ds.length) { s.D = b.Ds[day] } else {
-        s.D = Math.round(s.dFs[day - 7] * e.underdeath() * randBetween(0.85, 1.15));
+    if (day + 1 < b.Ds.length) { s.D= b.Ds[day] } else {
+        s.D = Math.round(s.dFs[covday - 7] * e.underdeath() * randBetween(0.85, 1.15));
     }
 
     s.Ps.push(s.P);
     s.Hs.push(s.H);
     s.Ds.push(s.D);
+
+    covday++;
 }

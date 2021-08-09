@@ -3,7 +3,7 @@ var acts = {
 }
 
 var chos = {
-    //1: ["Welkom terug in 2020!", {"Aanpassen": "delActions();", "Niet aanpassen": "delActions();"}, false]
+    1: ["Welkom terug in 2020!", {"Aanpassen": "delActions();", "Niet aanpassen": "delActions();"}, false]
 }
 
 var choice = ""
