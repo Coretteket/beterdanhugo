@@ -1,6 +1,6 @@
 const epoch = 1582758000;
 var cont = true;
-var day = 0;
+var day = -10;
 var counter = 0;
 
 var ldays = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
@@ -365,7 +365,7 @@ if (!dev) {
     });
 }
 
-var covday = 0;
 for (var i = 0; i < 10; i++) {
     calcCOV();
+    day++;
 }
