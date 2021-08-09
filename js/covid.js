@@ -8,61 +8,83 @@ var foundLin = false
 function lin(y1, y2, x1, x2) {
     if (foundLin) {
         return;
-    } else if (covday >= x1 && covday < x2 && y1 == y2) {
+    }
+    if (x2 == -1) {
+        x2 = 999999;
+    }
+    if (day >= x1 && day < x2 && y1 == y2) {
         ans = y1;
         foundLin = true;
-    } else if (covday >= x1 && covday < x2) {
-        ans = (y2 - y1) / (x2 - x1) * (covday - x1) + y1;
+    } else if (day >= x1 && day < x2) {
+        ans = (y2 - y1) / (x2 - x1) * (day - x1) + y1;
         foundLin = true;
     }
 }
 
 var a = { //geselecteerde acties
-    boop: -1
+    foo: -1,
+    bar: -1
 }
 
 var c = { //gemaakte keuzes
     jan11_warning: false
 }
 
-var m = { //coefficients for effectiveness of active measures
-
+var delay = 4;
+var e = { //coefficients for effectiveness of selected measures
+    foo: function() {
+        if (a.foo > 0) {
+            foundLin = false;
+            lin(1, 2, a.foo, a.foo + delay);
+            lin(2, 2, a.foo + delay, -1);
+            return ans;
+        } else {
+            foundLin = false;
+            lin(2, 1, -a.foo, -a.foo + delay);
+            lin(1, 1, -a.foo + delay, -1);
+            return ans;
+        }
+    },
+    bar: function() {
+        if (a.bar > 0) {
+            foundLin = false;
+            lin(1, .5, a.bar, a.bar + delay);
+            lin(.5, .5, a.bar + delay, -1);
+            return ans;
+        } else {
+            foundLin = false;
+            lin(.5, 1, -a.bar, -a.bar + delay);
+            lin(1, 1, -a.bar + delay, -1);
+            return ans;
+        }
+    }
 }
 
-var e = { //changes in covid dynamics, like undercounting
+var r = { //changes in covid dynamic rates, like undercounting
     death: function() {
         foundLin = false;
         lin(1, 1, 0, 120);
         lin(1, 0.55, 120, 180);
-        lin(0.55, 0.55, 180, 999);
+        lin(0.55, 0.55, 180, -1);
         return ans;
     },
     underdeath: function() {
         foundLin = false;
         lin(0, 0.2, 0, 30)
         lin(0.2, 0.6, 30, 45);
-        lin(0.6, 0.6, 45, 999)
-
+        lin(0.6, 0.6, 45, -1)
         var wday = new Date((epoch + day * 60 * 60 * 24) * 1000).getDay();
-        var weff = [
-            0.518,
-            0.549,
-            1.407,
-            1.238,
-            1.062,
-            1.101,
-            1.128
-        ];
+        var weff = [0.518, 0.549, 1.407, 1.238, 1.062, 1.101, 1.128];
         return weff[wday] * ans;
     },
     test: function() {
         foundLin = false;
-        lin(0, 0.01, 0, 20);
-        lin(0.01, 0.035, 20, 30);
-        lin(0.035, 0.035, 30, 80);
-        lin(0.035, 0.1, 80, 130);
+        lin(0, 0.015, 0, 20);
+        lin(0.015, 0.033, 20, 30);
+        lin(0.033, 0.033, 30, 80);
+        lin(0.033, 0.1, 80, 130);
         lin(0.1, 0.35, 130, 150);
-        lin(0.35, 0.35, 150, 999);
+        lin(0.35, 0.35, 150, -1);
         return ans;
     },
     testday: function() {
@@ -124,23 +146,24 @@ var s = { // spread info
 }
 
 var b = { //preset constant beginning values
-    Ps: [0, 1, 1, 3, 5, 4, 10],
+    Ps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 5, 4, 10],
     Hs: [],
-    Ds: [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4]
+    Ds: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4]
 }
 
 function calcIFR() {
     var ifr = 0.01;
-    return ifr * e.death();
+    return ifr * r.death();
 
 }
 
 function calcR() {
-    return Rts[covday];
+    //return 2 * e.foo() * e.bar();
+    return Rts[day] * s.N / s.S;
 }
 
 function calcCOV() {
-    s.a = calcR() * s.b * s.N / s.S;
+    s.a = calcR() * s.b;
 
     var dS = s.R * s.c;
     var dI = s.a * s.S * s.I / s.N;
@@ -163,16 +186,14 @@ function calcCOV() {
     s.Fs.push(s.F);
 
     if (day + 1 < b.Ps.length) { s.P = b.Ps[day] } else {
-        s.P = Math.round(s.dIs[covday - 7] * e.test() * e.testday() * randBetween(0.85, 1.15));
+        s.P = Math.round(s.dIs[day - 7] * r.test() * r.testday() * randBetween(0.85, 1.15));
     };
     s.H = 0;
-    if (day + 1 < b.Ds.length) { s.D= b.Ds[day] } else {
-        s.D = Math.round(s.dFs[covday - 7] * e.underdeath() * randBetween(0.85, 1.15));
-    }
+    if (day + 1 < b.Ds.length) { s.D = b.Ds[day] } else {
+        s.D = Math.round(s.dFs[day - 7] * r.underdeath()); // * randBetween(0.85, 1.15));
+    };
 
     s.Ps.push(s.P);
     s.Hs.push(s.H);
     s.Ds.push(s.D);
-
-    covday++;
 }
