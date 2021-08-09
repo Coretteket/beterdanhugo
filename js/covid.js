@@ -17,6 +17,14 @@ function lin(y1, y2, x1, x2) {
     }
 }
 
+var a = { //geselecteerde acties
+    boop: -1
+}
+
+var c = { //gemaakte keuzes
+    jan11_warning: false
+}
+
 var m = { //coefficients for effectiveness of active measures
 
 }
@@ -72,7 +80,7 @@ var e = { //changes in covid dynamics, like undercounting
     }
 }
 
-var a = [ // age specific info for vax
+var v = [ // age specific info for vax
     { perc: 0.10185, aifr: 0.00048, vax: 0 }, // 0 - 9
     { perc: 0.11503, aifr: 0.00161, vax: 0 }, // 10 - 19
     { perc: 0.12831, aifr: 0.00538, vax: 0 }, // 20 - 29
@@ -115,7 +123,7 @@ var s = { // spread info
     Ds: [0],
 }
 
-var c = { //preset constant early values
+var b = { //preset constant beginning values
     Ps: [0, 1, 1, 3, 5, 4, 10],
     Hs: [],
     Ds: [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4]
@@ -154,11 +162,11 @@ function calcCOV() {
     s.Rs.push(s.R);
     s.Fs.push(s.F);
 
-    if (day + 1 < c.Ps.length) { s.P = c.Ps[day] } else {
+    if (day + 1 < b.Ps.length) { s.P = b.Ps[day] } else {
         s.P = Math.round(s.dIs[covday - 7] * e.test() * e.testday() * randBetween(0.85, 1.15));
     };
     s.H = 0;
-    if (day + 1 < c.Ds.length) { s.D= c.Ds[day] } else {
+    if (day + 1 < b.Ds.length) { s.D= b.Ds[day] } else {
         s.D = Math.round(s.dFs[covday - 7] * e.underdeath() * randBetween(0.85, 1.15));
     }
 

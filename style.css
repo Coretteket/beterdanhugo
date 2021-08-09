@@ -310,6 +310,7 @@ align-items: center;*/
     box-shadow: var(--half-shadow);
 }
 
+
 .txt {
     padding: .1em .4em;
     color: rgb(65, 65, 65);
@@ -319,7 +320,7 @@ align-items: center;*/
     /* background-color: var(--back); */
 }
 
-.txt:hover {
+.txtsel {
     background-color: var(--dark-txt);
     color: var(--back)!important;
 }

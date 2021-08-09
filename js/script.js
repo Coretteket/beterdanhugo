@@ -126,17 +126,17 @@ var paused = false;
 
 function setActions() {
     getActions();
-    if (action != "") {
-        q("action").setAttribute("class", "choice");
+    if (choice != "") {
+        q("choice").setAttribute("class", "choice");
         var sethtml = "<p>";
         if (important) {
             sethtml += "<i class='fas fa-exclamation-triangle'></i> <span style='font-weight:700;'>Belangrijk</span> &ndash; "
         }
-        sethtml += action + "</p>";
-        q("action").innerHTML = sethtml;
-        for (const [key, value] of Object.entries(actbtns)) {
+        sethtml += choice + "</p>";
+        q("choice").innerHTML = sethtml;
+        for (const [key, value] of Object.entries(chobtns)) {
             console.log(key)
-            q("action").innerHTML += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
+            q("choice").innerHTML += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
         }
         q("s1").setAttribute("style", "opacity:.4;cursor:default;");
         q("s2").setAttribute("style", "opacity:.4;cursor:default;");
@@ -148,7 +148,7 @@ function setActions() {
 }
 
 function delActions() {
-    q("action").setAttribute("class", "d-none");
+    q("choice").setAttribute("class", "d-none");
     q("s1").removeAttribute("style");
     q("s2").removeAttribute("style");
     q("s3").removeAttribute("style");
@@ -240,6 +240,17 @@ function toggleFAQ() {
         FAQ = true;
         preSpeed = speed;
         setSpeed(0);
+    }
+}
+
+function toggleBtn(btn) {
+    var abtn = eval("a." + btn);
+    if (abtn < 0) {
+        q("btn-" + btn).setAttribute("class","btn txt txtsel");
+        act(btn, day);
+    } else {
+        q("btn-" + btn).setAttribute("class","btn txt");
+        act(btn, -1);
     }
 }
 

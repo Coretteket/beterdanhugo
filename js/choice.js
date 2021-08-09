@@ -1,26 +1,30 @@
-var p = {
-    jan11_warning: false
-}
-
 var acts = {
-    //0: ["Welkom terug in 2020!", {"Aanpassen": "delActions();setSpeed(1);", "Niet aanpassen": "delActions();setSpeed(1);"}, false]
+    //te maken acties
 }
 
-var action = ""
-var actbtns = {}
+var chos = {
+    1: ["Welkom terug in 2020!", {"Aanpassen": "delActions();", "Niet aanpassen": "delActions();"}, false]
+}
+
+var choice = ""
+var chobtns = {}
 
 function getActions() {
-    if (day in acts) {
-        action = acts[day][0];
-        actbtns = acts[day][1];
-        important = acts[day][2];
+    if (day in chos) {
+        choice = chos[day][0];
+        chobtns = chos[day][1];
+        important = chos[day][2];
     } else {
-        action = "";
-        actbtns = {};
+        choice = "";
+        chobtns = {};
         important = false;
     }
 }
 
-function cPar(i,j) {
-    p[i] = j;
+function act(i,j) {
+    a[i] = j;
+}
+
+function choose(i,j) {
+    c[i] = j;
 }
