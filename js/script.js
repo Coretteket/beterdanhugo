@@ -127,11 +127,11 @@ var paused = false;
 
 function updateStats() {
     calcCOV();
-    addData(testChart, day, s.P);
+    addData(testChart, day - 10, s.P);
     q("testCount").innerText = s.P;
-    addData(hospChart, day, calcR());
-    q("hospCount").innerText = Math.round(calcR());
-    addData(deadChart, day, s.D);
+    addData(hospChart, day - 10, calcR());
+    q("hospCount").innerText = Math.round((calcR() + Number.EPSILON) * 100) / 100;
+    addData(deadChart, day - 10, s.D);
     q("deadCount").innerText = s.D;
 }
 

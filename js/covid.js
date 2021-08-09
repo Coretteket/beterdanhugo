@@ -89,15 +89,7 @@ var r = { //changes in covid dynamic rates, like undercounting
     },
     testday: function() {
         var wday = new Date((epoch + day * 60 * 60 * 24) * 1000).getDay();
-        var weff = [
-            1.008,
-            0.901,
-            0.863,
-            0.988,
-            1.088,
-            1.092,
-            1.048
-        ];
+        var weff = [1.008, 0.901, 0.863, 0.988, 1.088, 1.092, 1.048];
         return weff[wday];
     }
 }
