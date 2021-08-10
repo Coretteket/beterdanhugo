@@ -149,9 +149,9 @@ function setActions() {
             console.log(key)
             q("choice").innerHTML += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
         }
-        q("s1").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
-        q("s2").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
-        q("s3").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
+        q("s1").setAttribute("style", "opacity:.4;cursor:default;transition:opacity .5s;transform: none;");
+        q("s2").setAttribute("style", "opacity:.4;cursor:default;transition:opacity .5s;transform: none;");
+        q("s3").setAttribute("style", "opacity:.4;cursor:default;transition:opacity .5s;transform: none;");
         preSpeed = speed;
         setSpeed(0);
         paused = true;
@@ -160,9 +160,9 @@ function setActions() {
 
 function delActions() {
     q("choice").setAttribute("class", "d-none");
-    q("s1").setAttribute("style", "opacity:1;transition: opacity .5s;");
-    q("s2").setAttribute("style", "opacity:1;transition: opacity .5s;");
-    q("s3").setAttribute("style", "opacity:1;transition: opacity .5s;");
+    q("s1").setAttribute("style", "opacity:1;transition:opacity .5s;");
+    q("s2").setAttribute("style", "opacity:1;transition:opacity .5s;");
+    q("s3").setAttribute("style", "opacity:1;transition:opacity .5s;");
     paused = false;
     if (speed == 0) { setSpeed(preSpeed); }
 }
@@ -281,7 +281,7 @@ function toggleBtn(btn) {
 function checkBtn() {
     if (day in freeze) {
         for (var i = 0; i < freeze[day].length; i++) {
-            q("btn-" + freeze[day][i]).setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
+            q("btn-" + freeze[day][i]).setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;transform: none;");
             q("btn-" + freeze[day][i]).removeAttribute("onclick");
         }
     }
