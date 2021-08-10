@@ -140,8 +140,7 @@ var s = { // spread info
 var b = { //preset constant beginning values
     Ps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 5, 4, 10],
     Hs: [],
-    Ds: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4],
-    Rs: [1.7355679702048417, 1.929383116883117, 1.8795345653661877, 2.0273573923166475, 1.999517141477547, 1.915492957746479, 2.1394557823129254, 2.236842105263158, 2.1914279369309346, 2.221305595408895]
+    Ds: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4]
 }
 
 function calcIFR() {
@@ -151,19 +150,11 @@ function calcIFR() {
 }
 
 function calcR() {
-    if (day + 1 < b.Rs.length) {
-        var R0 = b.Rs[day] * s.N / s.S;
-        return;
-    } else {
-        var R0 = 2;
-        for (const [key, value] of Object.entries(e)) { R0 *= e[key](); }
-        //var R0 = Rts[day] * s.N / s.S;
-    }
-    return R0;
+    //return 2 * e.foo() * e.bar();
+    return Rts[day] * s.N / s.S;
 }
 
 function calcCOV() {
-    console.log(s.S)
     s.a = calcR() * s.b;
 
     var dS = s.R * s.c;
@@ -188,11 +179,10 @@ function calcCOV() {
 
     if (day + 1 < b.Ps.length) { s.P = b.Ps[day] } else {
         s.P = Math.round(s.dIs[day - 7] * r.test() * r.testday() * randBetween(0.85, 1.15));
-        console.log(s.P)
     };
     s.H = 0;
     if (day + 1 < b.Ds.length) { s.D = b.Ds[day] } else {
-        s.D = Math.round(s.dFs[day - 7] * r.underdeath() * randBetween(0.85, 1.15));
+        s.D = Math.round(s.dFs[day - 7] * r.underdeath()); // * randBetween(0.85, 1.15));
     };
 
     s.Ps.push(s.P);
