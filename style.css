@@ -152,7 +152,6 @@ align-items: center;*/
     }
 }
 
-
 /* .rembox {
     display: none;
     height: 0;
@@ -311,25 +310,19 @@ align-items: center;*/
     box-shadow: var(--half-shadow);
 }
 
+
 .txt {
     padding: .1em .4em;
     color: rgb(65, 65, 65);
     font-weight: 600;
     font-size: .95em;
     margin-right: .2em;
-    transform: none;
-    transition: transform .1s;
     /* background-color: var(--back); */
 }
 
 .txtsel {
     background-color: var(--dark-txt);
     color: var(--back)!important;
-}
-
-.btn:hover {
-    transform: perspective(75em) rotateX(20deg);
-    transition: transform .1s;
 }
 
 .btn i {
@@ -370,13 +363,13 @@ align-items: center;*/
     margin-left: .4em;
 }
 
-/* #givename .btn:hover {
+#givename .btn:hover {
     background-color: var(--dark-txt);
 }
 
 #givename .btn:hover i {
     color: var(--back);
-} */
+}
 
 #givename {
     vertical-align: top;
