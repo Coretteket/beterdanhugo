@@ -249,7 +249,7 @@ var freeze = {};
 
 function toggleBtn(btn) {
     var abtn = eval("a." + btn);
-    if (abtn < 0) {
+    if (abtn <= 0) {
         q("btn-" + btn).setAttribute("class", "btn txt txtsel");
         act(btn, day);
         if (day + 1 in freeze) {

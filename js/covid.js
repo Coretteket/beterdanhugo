@@ -3,10 +3,10 @@ var Rts = [
 ];
 
 var ans = 0;
-var foundLin = false
+var f = false
 
 function lin(y1, y2, x1, x2) {
-    if (foundLin) {
+    if (f) {
         return;
     }
     if (x2 == -1) {
@@ -14,16 +14,16 @@ function lin(y1, y2, x1, x2) {
     }
     if (day >= x1 && day < x2 && y1 == y2) {
         ans = y1;
-        foundLin = true;
+        f = true;
     } else if (day >= x1 && day < x2) {
         ans = (y2 - y1) / (x2 - x1) * (day - x1) + y1;
-        foundLin = true;
+        f = true;
     }
 }
 
 var a = { //geselecteerde acties
-    foo: -1,
-    bar: -1
+    foo: 0,
+    bar: 0
 }
 
 var c = { //gemaakte keuzes
@@ -32,29 +32,37 @@ var c = { //gemaakte keuzes
 
 var delay = 4;
 var e = { //coefficients for effectiveness of selected measures
+    scare: function() {
+        f = ![];
+        lin(1, 0.65, 10, 21);
+        lin(0.65, 0.65, 21, -1);
+        return ans;
+    },
     foo: function() {
-        if (a.foo > 0) {
-            foundLin = false;
-            lin(1, 2, a.foo, a.foo + delay);
-            lin(2, 2, a.foo + delay, -1);
+        var par = a.foo;
+        if (par > 0) {
+            f = ![];
+            lin(1, 2, par, par + delay);
+            lin(2, 2, par + delay, -1);
             return ans;
         } else {
-            foundLin = false;
-            lin(2, 1, -a.foo, -a.foo + delay);
-            lin(1, 1, -a.foo + delay, -1);
+            f = ![];
+            lin(2, 1, -par, -par + delay);
+            lin(1, 1, -par + delay, -1);
             return ans;
         }
     },
     bar: function() {
-        if (a.bar > 0) {
-            foundLin = false;
-            lin(1, .5, a.bar, a.bar + delay);
-            lin(.5, .5, a.bar + delay, -1);
+        var par = a.bar;
+        if (par > 0) {
+            f = ![];
+            lin(1, .5, par, par + delay);
+            lin(.5, .5, par + delay, -1);
             return ans;
         } else {
-            foundLin = false;
-            lin(.5, 1, -a.bar, -a.bar + delay);
-            lin(1, 1, -a.bar + delay, -1);
+            f = ![];
+            lin(.5, 1, -par, -par + delay);
+            lin(1, 1, -par + delay, -1);
             return ans;
         }
     }
@@ -62,14 +70,14 @@ var e = { //coefficients for effectiveness of selected measures
 
 var r = { //changes in covid dynamic rates, like undercounting
     death: function() {
-        foundLin = false;
+        f = ![];
         lin(1, 1, 0, 120);
         lin(1, 0.55, 120, 180);
         lin(0.55, 0.55, 180, -1);
         return ans;
     },
     underdeath: function() {
-        foundLin = false;
+        f = ![];
         lin(0, 0.2, 0, 30)
         lin(0.2, 0.6, 30, 45);
         lin(0.6, 0.6, 45, -1)
@@ -78,7 +86,7 @@ var r = { //changes in covid dynamic rates, like undercounting
         return weff[wday] * ans;
     },
     test: function() {
-        foundLin = false;
+        f = ![];
         lin(0, 0.015, 0, 20);
         lin(0.015, 0.033, 20, 30);
         lin(0.033, 0.033, 30, 80);
@@ -140,7 +148,8 @@ var s = { // spread info
 var b = { //preset constant beginning values
     Ps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 5, 4, 10],
     Hs: [],
-    Ds: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4]
+    Ds: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4],
+    Rts: [1.7355679702048417, 1.929383116883117, 1.8795345653661877, 2.0273573923166475, 1.999517141477547, 1.915492957746479, 2.1394557823129254, 2.236842105263158, 2.1914279369309346, 2.221305595408895, 2.26765638512539]
 }
 
 function calcIFR() {
@@ -150,8 +159,14 @@ function calcIFR() {
 }
 
 function calcR() {
-    //return 2 * e.foo() * e.bar();
-    return Rts[day] * s.N / s.S;
+    var R0 = b.Rts.last();
+    if (day + 1 < b.Rts.length) {
+        R0 = b.Rts[day]
+    } else {
+        //R0 *= e.scare();
+        for (const [key, value] of Object.entries(e)) { R0 *= e[key](); }
+    }
+    return R0;
 }
 
 function calcCOV() {
