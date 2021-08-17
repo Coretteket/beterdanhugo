@@ -1,4 +1,4 @@
-const epoch = 1581894000;
+const epoch = 1581894e3;
 var cont = true;
 var day = -1;
 var counter = 0;
@@ -26,21 +26,17 @@ var dev = (url.searchParams.get("dev") != null);
 var started = false;
 var gameOver = false;
 
-if (dev) {
-    speeds[3] = 100;
-    lname = "De Jonge";
-    start();
-}
+dev && (speeds[3] = 100, lname = "De Jonge", start());
 
 function checkStart() {
     lname = q("lname").value.replace(/[\[\]0-9\(\)\.\,\?\!\=\+\<\>\/\\\n]/gi, '');
     var starttxt = q("starttxt");
     if (lname == "" || lname == "Je achternaam") {
         starttxt.innerText = "Kies eerst een achternaam.";
-        setTimeout(function() { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }, 4000);
+        setTimeout((function() { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
     } else if (lname.length > 20) {
         starttxt.innerText = "Kies een kortere achternaam.";
-        setTimeout(function() { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }, 4000);
+        setTimeout((function() { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
     } else {
         //
         start();
@@ -366,28 +362,21 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
     colorSwitch();
 }
 
-q("lname").addEventListener('keydown', function(event) {
+q("lname").addEventListener('keydown', (function(event) {
     if (event.key == "Enter") {
         checkStart();
     }
-});
+}));
 
-document.addEventListener('keypress', function(event) {
-    //
+document.addEventListener('keypress', (function(event) {
     if (event.key == ' ' && speed == 0) {
         setSpeed(preSpeed);
     } else if (event.key == ' ' && speed > 0) {
         setSpeed(0);
-    } else if (event.key == 1 && started) {
-        setSpeed(0);
-    } else if (event.key == 2 && started) {
-        setSpeed(1);
-    } else if (event.key == 3 && started) {
-        setSpeed(2);
-    } else if (event.key == 4 && started) {
-        setSpeed(3)
+    } else if (event.key > 0 && event.key < 5 && started) {
+        setSpeed(event.key - 1);
     }
-});
+}));
 
 Object.keys(outlets).forEach(element => {
     var img = new Image();
@@ -395,13 +384,12 @@ Object.keys(outlets).forEach(element => {
 });
 
 if (!dev) {
-    $(window).bind('beforeunload', function() {
+    $(window).bind('beforeunload', (function() {
         if (!gameOver) {
             return window.confirm();
         }
-    });
+    }));
 }
-
 
 for (var i = day; i < 10; i++) {
     day++;
