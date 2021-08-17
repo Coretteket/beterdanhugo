@@ -25,7 +25,7 @@ body {
     padding-left: calc(100vw - 100%);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 370px) {
     html,
     body {
         font-size: 15px;
@@ -103,6 +103,10 @@ p {
 
 .choice {
     animation: swipe .2s;
+}
+
+.choice a {
+    margin-right: .45em;
 }
 
 #pinned {
@@ -205,7 +209,7 @@ align-items: center;*/
     }
     #scrollsmall {
         height: 56vh;
-        min-height: 29em;
+        min-height: 28em;
     }
 }
 
@@ -317,6 +321,7 @@ align-items: center;*/
     font-weight: 600;
     font-size: .95em;
     margin-right: .2em;
+    min-width: 4em;
     /* background-color: var(--back); */
 }
 
@@ -426,6 +431,7 @@ hr {
 
 .chartcnt {
     height: 8em;
+    margin-bottom: .3em;
 }
 
 .more {

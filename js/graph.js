@@ -44,11 +44,10 @@ const options = {
         },
         x: {
             ticks: {
+                display: false,
                 color: "gray",
                 autoSkip: true,
-                maxTicksLimit: 8,
-                maxRotation: 0,
-                minRotation: 0
+                maxTicksLimit: 12
             }
         }
     }
@@ -62,7 +61,7 @@ var testData = {
         borderColor: 'rgb(255, 99, 132)',
         fill: true
     }],
-    labels: ['0']
+    labels: ['27 feb.']
 };
 var testChart = new Chart(testctx, {
     type: 'line',
@@ -78,7 +77,7 @@ var hospData = {
         borderColor: 'rgb(85, 145, 242)',
         fill: true
     }],
-    labels: ['0']
+    labels: ['27 feb.']
 };
 var hospChart = new Chart(hospctx, {
     type: 'line',
@@ -94,7 +93,7 @@ var deadData = {
         borderColor: 'rgb(255, 203, 99)',
         fill: true
     }],
-    labels: ['0']
+    labels: ['27 feb.']
 };
 var deadChart = new Chart(deadctx, {
     type: 'line',

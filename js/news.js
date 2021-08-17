@@ -13,14 +13,22 @@ var outlets = {
 
 //constant news - dag staat vast, nieuws ook
 var cnws = {
-    // 2: ["bbc", "China pneumonia outbreak: Mystery virus probed in Wuhan"]
+    11: ["bbc", "China pneumonia outbreak: Mystery virus probed in Wuhan"],
+    15: ["nos", "Tot nu toe 59 gevallen van mysterieuze longziekte in China"],
+    19: ["rtl", "Mysterieuze longziekte lijkt nieuw virus, mogelijk verwant aan SARS"],
+    23: ["volkskrant", "Mysterieus longvirus eist eerste leven: 61-jarige Chinees overleden"],
+    27: ["nyt", "As First Thailand Case Emerges, WHO Urges China to Search for Virus Source"],
+    31: ["nos", "Nieuw virus ook in Japan vastgesteld, patiënt maakt het goed"],
+    35: ["bbc", "New virus in China 'has likely already infected hundreds'"],
+    39: ["rtl", "Chinese overheid: nieuw coronavirus is van mens op mens overdraagbaar"],
+    43: ["nos", "Minister $lname: Nederland goed voorbereid op nieuw virus"]
 };
 
 //high prio news - dag staat vast, nieuws niet
 var hnws = {
     // 17: [
-    //     ["p['jan11_warning']", "telegraaf", "Mogelijk meer dan duizend besmet in Wuhan, reisadvies aangepast"],
-    //     ["!p['jan11_warning']", "telegraaf", "Mogelijk meer dan duizend besmet in Wuhan, tientallen Nederlanders gestrand"]
+    //     ["c['jan11_warning']", "telegraaf", "Mogelijk meer dan duizend besmet in Wuhan, reisadvies aangepast"],
+    //     ["!c['jan11_warning']", "telegraaf", "Mogelijk meer dan duizend besmet in Wuhan, tientallen Nederlanders gestrand"]
     // ]
 }
 

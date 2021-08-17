@@ -1,6 +1,6 @@
 const epoch = 1581894000;
 var cont = true;
-var day = 0;
+var day = -1;
 var counter = 0;
 
 var ldays = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
@@ -48,7 +48,7 @@ function checkStart() {
 }
 
 function start() {
-    setActions();
+    setChoices();
     q("main").removeAttribute("class");
     q("start").setAttribute("class", "d-none");
     q("pinned").setAttribute("class", "box d-block d-md-none");
@@ -72,7 +72,8 @@ function timer() {
 
         updateStats();
         setNews();
-        setActions();
+        setChoices();
+        showActions();
         checkBtn();
 
         counter = 0;
@@ -127,26 +128,23 @@ var paused = false;
 
 function updateStats() {
     calcCOV();
-    addData(testChart, day - 10, s.P);
+    addData(testChart, day, s.P);
     q("testCount").innerText = s.P;
-    addData(hospChart, day - 10, calcR());
-    q("hospCount").innerText = Math.round((calcR() + Number.EPSILON) * 100) / 100;
-    addData(deadChart, day - 10, s.D);
+    addData(hospChart, day, calcR() * s.S / s.N);
+    q("hospCount").innerText = Math.round((calcR() * s.S / s.N + Number.EPSILON) * 100) / 100;
+    addData(deadChart, day, s.D);
     q("deadCount").innerText = s.D;
 }
 
-function setActions() {
-    getActions();
-    if (choice != "") {
+function setChoices() {
+    getChoices();
+    if (cho != "") {
         q("choice").setAttribute("class", "choice");
         var sethtml = "<p>";
-        if (important) {
-            sethtml += "<i class='fas fa-exclamation-triangle'></i> <span style='font-weight:700;'>Belangrijk</span> &ndash; "
-        }
-        sethtml += choice + "</p>";
+        sethtml += "<i class='fas fa-exclamation-triangle'></i> <span style='font-weight:700;'>Belangrijk</span> &ndash; "
+        sethtml += cho + "</p>";
         q("choice").innerHTML = sethtml;
         for (const [key, value] of Object.entries(chobtns)) {
-            console.log(key)
             q("choice").innerHTML += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
         }
         q("s1").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
@@ -248,7 +246,7 @@ var unfreeze = {};
 var freeze = {};
 
 function toggleBtn(btn) {
-    var abtn = eval("a." + btn);
+    var abtn = eval("a." + btn)[0];
     if (abtn <= 0) {
         q("btn-" + btn).setAttribute("class", "btn txt txtsel");
         act(btn, day);
@@ -405,7 +403,7 @@ if (!dev) {
 }
 
 
-for (var i = 0; i < 10; i++) {
-    calcCOV();
+for (var i = day; i < 10; i++) {
     day++;
+    calcCOV();
 }
