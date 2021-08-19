@@ -4,16 +4,18 @@ var acts = {
 }
 
 var chos = {
-    // 12: ["Welkom terug in 2020! Een journalist vraagt je of we ons zorgen moeten maken over de mysterieuze longziekte uit Wuhan, die nu ook Frankrijk heeft bereikt. Hoe reageer je?", {"Aanpassen": "delActions();", "Niet aanpassen": "delActions();"}]
+    12: ["Belangrijk", "Welkom terug in 2020! Een journalist vraagt je of we ons zorgen moeten maken over de mysterieuze longziekte uit Wuhan, die nu ook Frankrijk heeft bereikt. Hoe reageer je?", {"Aanpassen": "delActions();", "Niet aanpassen": "delActions();"}]
 }
 
+var chotit = ""
 var cho = "";
 var chobtns = {};
 
 function getChoices() {
     if (day in chos) {
-        cho = chos[day][0];
-        chobtns = chos[day][1];
+        chotit = chos[day][0];
+        cho = chos[day][1];
+        chobtns = chos[day][2];
     } else {
         cho = "";
         chobtns = {};

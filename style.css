@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap');
 html,
 body {
@@ -33,12 +33,19 @@ body {
 }
 
 h1 {
-    font-weight: 1000;
+    font-weight: 900;
     text-align: left;
     font-family: 'Nunito Sans', sans-serif;
     line-height: 1.1;
     font-size: 2.2rem;
     margin: 20px 0 5px;
+}
+
+b {
+    display: block;
+    font-weight: 800;
+    font-size: 1.05rem;
+    margin: .5em 0 .2em;
 }
 
 #twitter {
@@ -78,8 +85,12 @@ h1 {
     color: var(--dark-txt);
 }
 
+/* #head p {
+    font-size: 1.05em;
+} */
+
 p {
-    font-size: 1.05rem;
+    font-size: 1em;
     margin-bottom: .5em;
 }
 
@@ -155,6 +166,7 @@ align-items: center;*/
         opacity: 0%
     }
 }
+
 
 /* .rembox {
     display: none;
@@ -301,29 +313,28 @@ align-items: center;*/
     min-height: 20em;
 }
 
-#control p {
-    margin-top: .5em;
-}
-
 .btn {
     border: 1.6px solid var(--dark-txt);
     padding: 0;
-    margin: 0 0 .5em;
+    margin: 0 0 .7em;
     border-radius: 6px;
     -webkit-box-shadow: var(--half-shadow);
     box-shadow: var(--half-shadow);
 }
 
-
 .txt {
     padding: .1em .4em;
-    color: rgb(65, 65, 65);
     font-weight: 600;
-    font-size: .95em;
+    font-size: .9em;
     margin-right: .2em;
     min-width: 4em;
+    /* transition: transform .1s; */
     /* background-color: var(--back); */
 }
+
+/* .btn:hover {
+    transform: scale(1.01);
+} */
 
 .txtsel {
     background-color: var(--dark-txt);

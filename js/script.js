@@ -126,8 +126,8 @@ function updateStats() {
     calcCOV();
     addData(testChart, day, s.P);
     q("testCount").innerText = s.P;
-    addData(hospChart, day, calcR() * s.S / s.N);
-    q("hospCount").innerText = Math.round((calcR() * s.S / s.N + Number.EPSILON) * 100) / 100;
+    addData(hospChart, day, calcR());
+    q("hospCount").innerText = Math.round((calcR() + Number.EPSILON) * 100) / 100;
     addData(deadChart, day, s.D);
     q("deadCount").innerText = s.D;
 }
@@ -136,9 +136,8 @@ function setChoices() {
     getChoices();
     if (cho != "") {
         q("choice").setAttribute("class", "choice");
-        var sethtml = "<p>";
-        sethtml += "<i class='fas fa-exclamation-triangle'></i> <span style='font-weight:700;'>Belangrijk</span> &ndash; "
-        sethtml += cho + "</p>";
+        var sethtml = "<b>" + chotit + "</b>"
+        sethtml += "<p>" + cho + "</p>";
         q("choice").innerHTML = sethtml;
         for (const [key, value] of Object.entries(chobtns)) {
             q("choice").innerHTML += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
@@ -146,6 +145,7 @@ function setChoices() {
         q("s1").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
         q("s2").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
         q("s3").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
+        q("non-choice").setAttribute("style", "opacity:.4;filter:blur(.75px);transition: opacity .5s;");
         preSpeed = speed;
         setSpeed(0);
         paused = true;
@@ -157,6 +157,7 @@ function delActions() {
     q("s1").setAttribute("style", "opacity:1;transition: opacity .5s;");
     q("s2").setAttribute("style", "opacity:1;transition: opacity .5s;");
     q("s3").setAttribute("style", "opacity:1;transition: opacity .5s;");
+    q("non-choice").setAttribute("style", "opacity:1;filter:blur(0);transition: opacity .5s;");
     paused = false;
     if (speed == 0) { setSpeed(preSpeed); }
 }
@@ -238,41 +239,56 @@ function toggleFAQ() {
     }
 }
 
+var toggles = [];
 var unfreeze = {};
 var freeze = {};
 
 function toggleBtn(btn) {
-    var abtn = eval("a." + btn)[0];
-    if (abtn <= 0) {
+    if (paused) { return; }
+    if (toggles.includes(btn)) {
+        removeItem(toggles, btn);
+    } else {
+        toggles.push(btn);
+    };
+    if (!q("btn-" + btn).classList.contains("txtsel")) {
         q("btn-" + btn).setAttribute("class", "btn txt txtsel");
-        act(btn, day);
-        if (day + 1 in freeze) {
-            freeze[day + 1].push(btn);
-        } else {
-            freeze[day + 1] = [btn];
-        }
-        if (day + delay in unfreeze) {
-            unfreeze[day + delay].push(btn);
-        } else {
-            unfreeze[day + delay] = [btn];
-        }
     } else {
         q("btn-" + btn).setAttribute("class", "btn txt");
-        act(btn, -day);
-        if (day + 1 in freeze) {
-            freeze[day + 1].push(btn);
-        } else {
-            freeze[day + 1] = [btn];
-        }
-        if (day + delay in unfreeze) {
-            unfreeze[day + delay].push(btn);
-        } else {
-            unfreeze[day + delay] = [btn];
-        }
     }
 }
 
 function checkBtn() {
+    for (var i = 0; i < toggles.length; i++) {
+        var btn = toggles[i];
+        var abtn = eval("a." + btn);
+        var delay = abtn[2];
+        if (abtn[0] <= 0) {
+            act(btn, day);
+            if (day + 1 in freeze) {
+                freeze[day + 1].push(btn);
+            } else {
+                freeze[day + 1] = [btn];
+            }
+            if (day + delay in unfreeze) {
+                unfreeze[day + delay].push(btn);
+            } else {
+                unfreeze[day + delay] = [btn];
+            }
+        } else {
+            act(btn, -day);
+            if (day + 1 in freeze) {
+                freeze[day + 1].push(btn);
+            } else {
+                freeze[day + 1] = [btn];
+            }
+            if (day + delay in unfreeze) {
+                unfreeze[day + delay].push(btn);
+            } else {
+                unfreeze[day + delay] = [btn];
+            }
+        }
+    }
+    toggles = [];
     if (day in freeze) {
         for (var i = 0; i < freeze[day].length; i++) {
             q("btn-" + freeze[day][i]).setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
@@ -343,6 +359,15 @@ function colorSwitch() {
         lightmode = true;
     }
 }
+
+function removeItem(arr, value) {
+    var index = arr.indexOf(value);
+    if (index > -1) {
+        arr.splice(index, 1);
+    }
+    return arr;
+}
+
 
 function randBetween(min, max) {
     return Math.random() * (max - min) + min; //Math.floor(
