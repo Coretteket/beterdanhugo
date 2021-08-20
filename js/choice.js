@@ -4,7 +4,7 @@ var acts = {
 }
 
 var chos = {
-    12: ["Belangrijk", "Welkom terug in 2020! Een journalist vraagt je of we ons zorgen moeten maken over de mysterieuze longziekte uit Wuhan, die nu ook Frankrijk heeft bereikt. Hoe reageer je?", {"Aanpassen": "delActions();", "Niet aanpassen": "delActions();"}]
+    //12: ["Belangrijk", "Welkom terug in 2020! Een journalist vraagt je of we ons zorgen moeten maken over de mysterieuze longziekte uit Wuhan, die nu ook Frankrijk heeft bereikt. Hoe reageer je?", {"Aanpassen": "delActions();", "Niet aanpassen": "delActions();"}]
 }
 
 var chotit = ""

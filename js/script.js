@@ -126,8 +126,8 @@ function updateStats() {
     calcCOV();
     addData(testChart, day, s.P);
     q("testCount").innerText = s.P;
-    addData(hospChart, day, calcR());
-    q("hospCount").innerText = Math.round((calcR() + Number.EPSILON) * 100) / 100;
+    addData(hospChart, day, s.H);
+    q("hospCount").innerText = s.H;
     addData(deadChart, day, s.D);
     q("deadCount").innerText = s.D;
 }

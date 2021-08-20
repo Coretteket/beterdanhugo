@@ -292,12 +292,6 @@ align-items: center;*/
     font-weight: 700;
 }
 
-#cal {
-    width: 4em;
-    height: 4em;
-    background-color: red;
-}
-
 #today {
     margin-bottom: .3em;
 }
@@ -311,6 +305,19 @@ align-items: center;*/
     position: relative;
     margin-bottom: 1em;
     min-height: 20em;
+}
+
+#disclaimer {
+    color: #8f8f8f;
+    margin-top: .75em;
+    font-size: .75em;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    #disclaimer {
+        font-size: .8em;
+    }
 }
 
 .btn {

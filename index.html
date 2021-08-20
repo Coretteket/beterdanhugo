@@ -65,6 +65,7 @@
                     <p class="d-block d-md-none">Elke keuze heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister. <a class="more" onclick="toggleFAQ();" target="_blank">Meer weten?</a> </p>
                     <p id="starttxt">Voor we beginnen, hoe mogen we je noemen?</p>
                     <div id="givename"> <input spellcheck="false" onfocus="if (this.value=='Je achternaam') this.value=''" type="text" id="lname" name="lname" value="Je achternaam"> <a onclick="checkStart();" id="name" class="btn"><i class="fas fa-play"></i></a> </div>
+                    <div id="disclaimer">Disclaimer: dit is een spel, en dus geen realistische simulatie.</div>
                 </div>
                 <div id="main" class="d-none">
                     <div id="timedash" class="time">
@@ -83,14 +84,15 @@
                             <a class="btn txt" id="btn-hands" onclick="toggleBtn('hands');">Handen wassen</a>
 
                             <b>Recreatie</b>
-                            <p>Evenementen, zoals festivals, en kleine bijeenkomsten, zoals huwelijken en begravenissen, kunnen veel besmettingen veroorzaken.</p>
+                            <p>Evenementen, zoals festivals, enls kleine bijeenkomsten, zoals huwelijken en begravenissen, kunnen veel besmettingen veroorzaken.</p>
                             <a class="btn txt" id="btn-events" onclick="toggleBtn('events');">Evenementen verbieden</a>
-                            <a class="btn txt" id="btn-theater" onclick="toggleBtn('theater');">Theaters sluiten</a>
+                            <a class="btn txt" id="btn-theater" onclick="toggleBtn('theater');">Cultuursector sluiten</a>
                             <a class="btn txt" id="btn-gather" onclick="toggleBtn('gather');">Bijeenkomsten verbieden</a>
 
                             <b>Horeca en winkels</b>
-                            <p>Contactmomenten in (niet-essentiele) winkels kunnen ook de oorzaak zijn van meer besmettingen.</p>
+                            <p>Deze gelegenheden kunnen mogelijk als hotspots voor het virus fungeren.</p>
                             <a class="btn txt" id="btn-horeca" onclick="toggleBtn('horeca');">Horeca sluiten</a>
+                            <a class="btn txt" id="btn-clubs" onclick="toggleBtn('clubs');">Nachtclubs sluiten</a>
                             <a class="btn txt" id="btn-shops" onclick="toggleBtn('shops');">Veel winkels sluiten</a>
 
                             <b>Onderwijs</b>
@@ -99,18 +101,10 @@
                             <a class="btn txt" id="btn-edmid" onclick="toggleBtn('edmid');">Middelbaar sluiten</a>
                             <a class="btn txt" id="btn-eduni" onclick="toggleBtn('eduni');">Hoger sluiten</a>
 
-                            <!-- br><br>
-                        <a class="btn txt" id="btn-p1000" onclick="toggleBtn('p1000');">1000 mensen</a>
-                        <a class="btn txt" id="btn-p100" onclick="toggleBtn('p100');">100 mensen</a>
-                        <a class="btn txt" id="btn-p10" onclick="toggleBtn('p10');">10 mensen</a>
-                        <br>
-                        <a class="btn txt" id="btn-bhigh" onclick="toggleBtn('bhigh');">Contactberoepen</a>
-                        <a class="btn txt" id="btn-ball" onclick="toggleBtn('ball');">Alle beroepen</a>
-                        <br>
-                        <a class="btn txt" id="btn-uni" onclick="toggleBtn('uni');">Universiteiten</a>
-                        <a class="btn txt" id="btn-sch" onclick="toggleBtn('sch');">Scholen</a>
-                        <br>
-                        <a class="btn txt" id="btn-lock" onclick="toggleBtn('lock');">Lockdown</a> -->
+                            <b>Lockdowns</b>
+                            <p>Tijdens een lockdown mag je enkel je huis verlaten voor essentiële bezigheden, bij een avondklok geldt 's nachts hetzelfde.</p>
+                            <a class="btn txt" id="btn-lockdown" onclick="toggleBtn('lockdown');">Volledige lockdown</a>
+                            <a class="btn txt" id="btn-curfew" onclick="toggleBtn('curfew');">Avondklok</a>
                         </div>
                     </div>
                 </div>
