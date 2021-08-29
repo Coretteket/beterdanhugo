@@ -24,7 +24,8 @@ function lin(y1, y2, x1, x2) {
 function siMe(arr) { //simplemeasure
     var par = arr[0];
     var ch = arr[1];
-    var delay = arr[2];
+    var bck = arr[2];
+    var delay = arr[3];
     if (ch == 1) {
         return 1;
     } else if (par > 0) {
@@ -34,7 +35,8 @@ function siMe(arr) { //simplemeasure
         return ans;
     } else if (par < 0) {
         f = ![];
-        lin(ch, 1, -par, -par + delay);
+        lin(ch, bck, -par, -par + delay / 2);
+        lin(bck, 1, -par + delay / 2, -par + delay);
         lin(1, 1, -par + delay, -1);
         return ans;
     } else {
@@ -43,33 +45,24 @@ function siMe(arr) { //simplemeasure
 }
 
 var a = { //geselecteerde acties
-    hands: [0, 1 - .025, 3],
-    socdis: [0, 1 - .075, 3],
-    workhome: [0, 1 - .075, 3],
+    hands: [0, .975, 1, 3],
+    socdis: [0, .95, 1, 3],
+    masks: [0, .9, 1.1, 3],
 
-    events: [0, 1 - 0.25, 7],
-    theater: [0, 1 - 0.1, 7],
-    gather: [0, 1 - 0.1, 7],
+    events: [0, .85, 1.3, 7],
+    theater: [0, .9, 1.05, 7],
+    gather: [0, .9, 1.1, 7],
 
-    horeca: [0, 1 - 0.15, 7],
-    clubs: [0, 1 - 0.1, 7],
-    shops: [0, 1 - 0.15, 7],
+    horeca: [0, .85, 1.05, 7],
+    clubs: [0, .9, 1.5, 7],
+    shops: [0, .85, 1.05, 7],
 
-    edlow: [0, 1 - 0.063, 7],
-    edmid: [0, 1 - 0.125, 7],
-    eduni: [0, 1 - 0.188, 7],
+    edlow: [0, .925, 1, 7],
+    edmid: [0, .875, 1.2, 7],
+    eduni: [0, .815, 1.2, 7],
 
-    lockdown: [0, 1 - 0.15, 7],
-    curfew: [0, 1 - 0.075, 7]
-
-    // p1000: [0, 1 - .23, 7],
-    // p100: [0, 1 - .34, 7],
-    // p10: [0, 1 - .42, 7],
-    // bhigh: [0, 1 - .18, 7],
-    // ball: [0, 1 - .27, 7],
-    // uni: [0, 1 - .17, 7],
-    // sch: [0, 1 - .38, 7],
-    // lock: [0, 1 - .13, 7]
+    lockdown: [0, .85, 1.05, 7],
+    curfew: [0, .925, 1.05, 7]
 }
 
 var c = { //gemaakte keuzes
@@ -99,8 +92,8 @@ var r = { //changes in covid dynamic rates, like undercounting
         lin(0.015, 0.033, 20, 30);
         lin(0.033, 0.033, 30, 80);
         lin(0.033, 0.1, 80, 130);
-        lin(0.1, 0.35, 130, 150);
-        lin(0.35, 0.35, 150, -1);
+        lin(0.1, 0.32, 130, 150);
+        lin(0.32, 0.32, 150, -1);
         return ans;
     },
     testday: function() {
@@ -120,11 +113,11 @@ var r = { //changes in covid dynamic rates, like undercounting
     },
     hosp: function() {
         f = ![];
-        lin(0.003, 0.017, 0, 31);
-        lin(0.017, 0.01, 31, 42);
-        lin(0.01, 0.01, 42, 73);
-        lin(0.01, 0.0035, 73, 164);
-        lin(0.0035, 0.0035, 164, -1);
+        lin(0.003, 0.003, 0, 20);
+        lin(0.003, 0.017, 20, 42);
+        lin(0.017, 0.01, 42, 73);
+        lin(0.01, 0.0037, 73, 164);
+        lin(0.0037, 0.0037, 164, -1);
         var wday = new Date((epoch + day * 60 * 60 * 24) * 1000).getDay();
         var weff = [0.908, 0.875, 1.104, 1.031, 1.048, 1.028, 1.006]
         return weff[wday] * ans;
@@ -177,7 +170,7 @@ var s = { // spread info
 
 var b = { //preset constant beginning values
     Ps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 5, 4, 10],
-    Hs: [],
+    Hs: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 3, 5, 7, 12, 4, 12, 15, 23],
     Ds: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4],
     Rts: [1.73556, 1.92938, 1.87953, 2.02735, 1.99951, 1.91549, 2.13945, 2.23684, 2.19142, 2.22130, 2.26765]
 }

@@ -242,6 +242,7 @@ function toggleFAQ() {
 var toggles = [];
 var unfreeze = {};
 var freeze = {};
+var lock = ["eduni", "shops", "horeca", "clubs", "gather", "theater", "events", "workhome", "masks"];
 
 function toggleBtn(btn) {
     if (paused) { return; }
@@ -252,8 +253,49 @@ function toggleBtn(btn) {
     };
     if (!q("btn-" + btn).classList.contains("txtsel")) {
         q("btn-" + btn).setAttribute("class", "btn txt txtsel");
+        if (btn == "lockdown" && q("btn-curfew").classList.contains("txtsel")) {
+            q("btn-curfew").setAttribute("class", "btn txt");
+            if (toggles.includes("curfew")) {
+                removeItem(toggles, "curfew");
+            } else {
+                toggles.push("curfew");
+            }
+        } else if (btn == "curfew" && q("btn-lockdown").classList.contains("txtsel")) {
+            q("btn-lockdown").setAttribute("class", "btn txt");
+            if (toggles.includes("lockdown")) {
+                removeItem(toggles, "lockdown");
+            } else {
+                toggles.push("lockdown");
+            }
+        }
     } else {
         q("btn-" + btn).setAttribute("class", "btn txt");
+        if (q("btn-lockdown").classList.contains("txtsel") && lock.includes(btn)) {
+            q("btn-lockdown").setAttribute("class", "btn txt");
+            if (toggles.includes("lockdown")) {
+                removeItem(toggles, "lockdown");
+            } else {
+                toggles.push("lockdown");
+            }
+        } else if (q("btn-curfew").classList.contains("txtsel") && btn == "clubs") {
+            q("btn-curfew").setAttribute("class", "btn txt");
+            if (toggles.includes("curfew")) {
+                removeItem(toggles, "curfew");
+            } else {
+                toggles.push("curfew");
+            }
+        }
+    }
+    if (btn == "lockdown") {
+        for (var i = 0; i < lock.length; i++) {
+            if (!q("btn-" + lock[i]).classList.contains("txtsel")) {
+                toggleBtn(lock[i]);
+            }
+        }
+    } else if (btn == "curfew") {
+        if (!q("btn-clubs").classList.contains("txtsel")) {
+            toggleBtn("clubs");
+        }
     }
 }
 
@@ -261,7 +303,7 @@ function checkBtn() {
     for (var i = 0; i < toggles.length; i++) {
         var btn = toggles[i];
         var abtn = eval("a." + btn);
-        var delay = abtn[2];
+        var delay = abtn[3];
         if (abtn[0] <= 0) {
             act(btn, day);
             if (day + 1 in freeze) {
