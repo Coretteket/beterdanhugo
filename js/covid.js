@@ -45,7 +45,7 @@ function siMe(arr) { //simplemeasure
 }
 
 var a = { //geselecteerde acties
-    hands: [0, .975, 1, 3],
+    workhome: [0, .95, 1, 3],
     socdis: [0, .95, 1, 3],
     masks: [0, .9, 1.1, 3],
 
@@ -54,7 +54,7 @@ var a = { //geselecteerde acties
     gather: [0, .9, 1.1, 7],
 
     horeca: [0, .85, 1.05, 7],
-    clubs: [0, .9, 1.5, 7],
+    clubs: [0, .9, 2, 7],
     shops: [0, .85, 1.05, 7],
 
     edlow: [0, .925, 1, 7],
