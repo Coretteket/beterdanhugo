@@ -113,6 +113,10 @@ p {
     }
 }
 
+a {
+    font-weight: 600;
+}
+
 .choice {
     animation: swipe .2s;
 }
@@ -513,7 +517,7 @@ hr {
 
 #light {
     --back: white;
-    --link: #007bff;
+    --link: #0072ec;
     --link-hover: #0056b3;
     --box: rgb(229 229 229);
     --light-txt: gray;
@@ -530,8 +534,8 @@ hr {
 
 #dark {
     --back: #212529;
-    --link: #007bff;
-    --link-hover: #3496ff;
+    --link: #4fa4ff;
+    --link-hover: #6eb4ff;
     --box: #343a3f;
     --light-txt: rgb(199, 199, 199);
     --dark-txt: rgb(235, 235, 235);
