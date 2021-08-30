@@ -35,8 +35,8 @@ function siMe(arr) { //simplemeasure
         return ans;
     } else if (par < 0) {
         f = ![];
-        lin(ch, bck, -par, -par + delay / 2);
-        lin(bck, 1, -par + delay / 2, -par + delay);
+        lin(ch, bck, -par, -par + delay * 2 / 3);
+        lin(bck, 1, -par + delay * 2 / 3, -par + delay);
         lin(1, 1, -par + delay, -1);
         return ans;
     } else {
@@ -49,12 +49,12 @@ var a = { //geselecteerde acties
     socdis: [0, .95, 1, 3],
     masks: [0, .9, 1.1, 3],
 
-    events: [0, .85, 1.3, 7],
+    events: [0, .85, 1.4, 7],
     theater: [0, .9, 1.05, 7],
     gather: [0, .9, 1.1, 7],
 
     horeca: [0, .85, 1.05, 7],
-    clubs: [0, .9, 2, 7],
+    clubs: [0, .9, 1.5, 7],
     shops: [0, .85, 1.05, 7],
 
     edlow: [0, .925, 1, 7],
@@ -62,7 +62,8 @@ var a = { //geselecteerde acties
     eduni: [0, .815, 1.2, 7],
 
     lockdown: [0, .85, 1.05, 7],
-    curfew: [0, .925, 1.05, 7]
+    curfew: [0, .925, 1.2, 7],
+    border: [0, .9, 1.2, 7]
 }
 
 var c = { //gemaakte keuzes
@@ -73,8 +74,8 @@ var r = { //changes in covid dynamic rates, like undercounting
     death: function() {
         f = ![];
         lin(1, 1, 0, 120);
-        lin(1, 0.55, 120, 180);
-        lin(0.55, 0.55, 180, -1);
+        lin(1, 0.6, 120, 180);
+        lin(0.6, 0.6, 180, -1);
         return ans;
     },
     underdeath: function() {
@@ -116,8 +117,8 @@ var r = { //changes in covid dynamic rates, like undercounting
         lin(0.003, 0.003, 0, 20);
         lin(0.003, 0.017, 20, 42);
         lin(0.017, 0.01, 42, 73);
-        lin(0.01, 0.0037, 73, 164);
-        lin(0.0037, 0.0037, 164, -1);
+        lin(0.01, 0.005, 73, 164);
+        lin(0.005, 0.005, 164, -1);
         var wday = new Date((epoch + day * 60 * 60 * 24) * 1000).getDay();
         var weff = [0.908, 0.875, 1.104, 1.031, 1.048, 1.028, 1.006]
         return weff[wday] * ans;
@@ -176,7 +177,7 @@ var b = { //preset constant beginning values
 }
 
 function calcIFR() {
-    var ifr = 0.01;
+    var ifr = 0.011;
     return ifr * r.death();
 
 }

@@ -242,7 +242,7 @@ function toggleFAQ() {
 var toggles = [];
 var unfreeze = {};
 var freeze = {};
-var lock = ["eduni", "shops", "horeca", "clubs", "gather", "theater", "events", "workhome", "masks"];
+var lock = ["eduni", "shops", "horeca", "clubs", "gather", "theater", "events", "workhome", "socdis"];
 
 function toggleBtn(btn) {
     if (paused) { return; }
