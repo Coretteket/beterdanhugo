@@ -49,11 +49,11 @@
             </div>
             <div class="col-xl-1 d-none d-xl-block"></div>
         </div>
-        <div class="row">
+        <div class="row ">
             <div class="col-xl-1 d-none d-xl-block"></div>
-            <div class="col-md-12 col-xl-10" id="head">
-                <p>De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? <span class="d-none d-md-inline">In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke keuze heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister. </span><a id="knowmore" class="more d-none d-md-inline" onclick="toggleFAQ();" target="_blank">Meer weten?</a><a id="knowmore" class="more d-inline d-md-none" onclick="toggleFAQ();" target="_blank">Lees meer.</a> </p>
-                <hr class="d-none d-md-block">
+            <div class="col-md-12 col-xl-10 d-none d-md-inline" id="head">
+                <p>De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke keuze heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister. <a id="knowmore" class="more" onclick="toggleFAQ();" target="_blank">Lees meer.</a></p>
+                <hr>
             </div>
             <div class="col-xl-1 d-none d-xl-block"></div>
         </div>
@@ -61,7 +61,8 @@
             <div class="col-xl-1 d-none d-xl-block order-1"></div>
             <div class="col-md-6 col-lg-7 col-xl-6 order-3 order-md-2" id="dash">
                 <div id="start">
-                    <p class="d-block d-md-none">In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke keuze heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister.</p>
+                    <p class="d-block d-md-none">De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen.</p>
+                    <p class="d-block d-md-none">Elke keuze heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister.</p>
                     <p id="starttxt">Voor we beginnen, hoe mogen we je noemen?</p>
                     <div id="givename"> <input spellcheck="false" onfocus="if (this.value=='Je achternaam') this.value=''" type="text" id="lname" name="lname" value="Je achternaam"> <a onclick="checkStart();" id="name" class="btn"><i class="fas fa-play"></i></a> </div>
                     <div id="disclaimer">Disclaimer: dit is een spel, en dus geen realistische simulatie.</div>
@@ -75,36 +76,74 @@
                         <div id="choice" class="d-none">
                             <p>Boop</p>
                         </div>
-                        <div id="non-choice">
-                            <b>Basisregels</b>
-                            <!-- <p>Hygiëneadviezen werken tegen veel virussen, maar of ze effectief zijn tegen corona is onzeker. Er is momenteel wel een mondkapjestekort.</p> -->
-                            <a class="btn txt" id="btn-socdis" onclick="toggleBtn('socdis');">Afstand houden</a>
+                        <div id="non-choice" class="row">
+                            <div class="col-lg-6">
+                                <b>Basisregels</b>
+                                <div class="opt">Afstand houden<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                                <div class="opt">Thuiswerken<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                                <div class="opt">Mondkapjes<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+
+                                <b>Recreatie</b>
+                                <div class="opt">Evenementen verbieden<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                                <div class="opt">Theaters sluiten<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                                <div class="opt">Bijeenkomsten verbieden<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+
+                                <b>Horeca en winkels</b>
+                                <div class="opt">Horeca sluiten<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                                <div class="opt">Nachtclubs sluiten<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                                <div class="opt">Winkels sluiten<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <b>Lockdowns</b>
+                                <div class="opt">Volledige lockdown<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                                <div class="opt">Avondklok<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                                <div class="opt">Grenzen sluiten<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+
+                                <b>Onderwijs</b>
+                                <div class="opt">Basis sluiten<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                                <div class="opt">Middelbaar sluiten<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                                <div class="opt">Hoger sluiten<div class="switch"><input id="btn-socdis" type="checkbox" onchange="console.log('boop');" /><label for="btn-socdis" btn-socdis></label></div>
+                                </div>
+                            </div>
+
+                            <!-- <a class="btn txt" id="btn-socdis" onclick="toggleBtn('socdis');">Afstand houden</a>
                             <a class="btn txt" id="btn-workhome" onclick="toggleBtn('workhome');">Thuiswerken</a>
                             <a class="btn txt" id="btn-masks" onclick="toggleBtn('masks');">Mondkapjes</a>
 
                             <b>Recreatie</b>
-                            <!-- <p>Evenementen, zoals festivals, en kleine bijeenkomsten, zoals huwelijken en begravenissen, kunnen veel besmettingen veroorzaken.</p> -->
                             <a class="btn txt" id="btn-events" onclick="toggleBtn('events');">Evenementen verbieden</a>
                             <a class="btn txt" id="btn-theater" onclick="toggleBtn('theater');">Theaters sluiten</a>
                             <a class="btn txt" id="btn-gather" onclick="toggleBtn('gather');">Bijeenkomsten verbieden</a>
 
                             <b>Horeca en winkels</b>
-                            <!-- <p>Deze gelegenheden kunnen mogelijk als hotspots voor het virus fungeren.</p> -->
                             <a class="btn txt" id="btn-horeca" onclick="toggleBtn('horeca');">Horeca sluiten</a>
                             <a class="btn txt" id="btn-clubs" onclick="toggleBtn('clubs');">Nachtclubs sluiten</a>
                             <a class="btn txt" id="btn-shops" onclick="toggleBtn('shops');">Winkels sluiten</a>
 
                             <b>Onderwijs</b>
-                            <!-- <p>Het is waarschijnlijk dat jongeren ook het virus overdragen, maar in welke mate is nog onduidelijk.</p> -->
                             <a class="btn txt" id="btn-edlow" onclick="toggleBtn('edlow');">Basis sluiten</a>
                             <a class="btn txt" id="btn-edmid" onclick="toggleBtn('edmid');">Middelbaar sluiten</a>
                             <a class="btn txt" id="btn-eduni" onclick="toggleBtn('eduni');">Hoger sluiten</a>
 
                             <b>Lockdowns</b>
-                            <!-- <p>Tijdens een lockdown of avondklok mag je enkel je huis verlaten voor essentiële bezigheden. Bij gesloten grenzen gelden strenge voorwaarden.</p> -->
                             <a class="btn txt" id="btn-lockdown" onclick="toggleBtn('lockdown');">Volledige lockdown</a>
                             <a class="btn txt" id="btn-curfew" onclick="toggleBtn('curfew');">Avondklok</a>
-                            <a class="btn txt" id="btn-border" onclick="toggleBtn('border');">Grenzen sluiten</a>
+                            <a class="btn txt" id="btn-border" onclick="toggleBtn('border');">Grenzen sluiten</a> -->
                         </div>
                     </div>
                 </div>
