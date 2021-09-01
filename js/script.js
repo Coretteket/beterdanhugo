@@ -182,15 +182,15 @@ function updatePinned(i) {
     if (currentPinned == snws.length - 1) {
         q("up").setAttribute("class", "inactive");
         q("down").setAttribute("class", "active");
-        q("totop").setAttribute("style", "display: none;");
+        q("totop").setAttribute("style", "opacity: 0;");
     } else if (currentPinned == 0) {
         q("up").setAttribute("class", "active");
         q("down").setAttribute("class", "inactive");
-        q("totop").setAttribute("style", "display: inline;");
+        q("totop").setAttribute("style", "opacity: 1;");
     } else {
         q("up").setAttribute("class", "active");
         q("down").setAttribute("class", "active");
-        q("totop").setAttribute("style", "display: inline;");
+        q("totop").setAttribute("style", "opacity: 1;");
     }
 }
 
@@ -427,7 +427,7 @@ if (!Array.prototype.last) {
     };
 };
 
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !dev) {
     colorSwitch();
 }
 

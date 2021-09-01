@@ -278,7 +278,7 @@ align-items: center;*/
 
 .newstitle {
     display: block;
-    margin-top: .4em;
+    margin-top: .3em;
     margin-bottom: 0;
 }
 
@@ -330,6 +330,7 @@ align-items: center;*/
     margin-bottom: 1em;
 }
 
+#disclaimermob,
 #disclaimer {
     color: #8f8f8f;
     margin-top: .75em;
@@ -337,10 +338,11 @@ align-items: center;*/
     font-weight: 600;
 }
 
-@media (max-width: 768px) {
-    #disclaimer {
-        font-size: .8em;
-    }
+#disclaimermob {
+    font-size: .8em;
+    position: absolute;
+    bottom: 0;
+    margin: 15px;
 }
 
 .btn {

@@ -38,6 +38,7 @@
 </head>
 
 <body id="light">
+    <div id="disclaimermob" class="d-block d-md-none">Disclaimer: dit is een spel, en dus geen realistische simulatie.</div>
     <div class="container-sm mx-10">
         <div class="row">
             <div class="col-xl-1 d-none d-xl-block"></div>
@@ -65,7 +66,7 @@
                     <p class="d-block d-md-none">Elke keuze heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister.</p>
                     <p id="starttxt">Voor we beginnen, hoe mogen we je noemen?</p>
                     <div id="givename"> <input spellcheck="false" onfocus="if (this.value=='Je achternaam') this.value=''" type="text" id="lname" name="lname" value="Je achternaam"> <a onclick="checkStart();" id="name" class="btn"><i class="fas fa-play"></i></a> </div>
-                    <div id="disclaimer">Disclaimer: dit is een spel, en dus geen realistische simulatie.</div>
+                    <div id="disclaimer" class="d-none d-md-block">Disclaimer: dit is een spel, en dus geen realistische simulatie.</div>
                 </div>
                 <div id="main" class="d-none">
                     <div id="timedash" class="time">
@@ -140,7 +141,7 @@
                         <div id="content">
                             <img src="img/reuters.png" width="16" height="16">
                             <p class="app">Reuters &ndash; di. 31 december</p>
-                            <a id="totop" onclick="updatePinned(snws.length-1);" style="display: none;">+1</a>
+                            <a id="totop" onclick="updatePinned(snws.length-1);" style="opacity: 0;">+1</a>
                             <p class="newstitle">Chinese officials investigate cause of pneumonia outbreak in Wuhan</p>
                         </div>
                         <div id="arrows"> <a onclick="updatePinned(currentPinned+1);"><img src="img/up.png" class="inactive" width="28" height="28" id="up"></a> <a onclick="updatePinned(currentPinned-1);"><img src="img/up.png" class="inactive" width="28" height="28" id="down"></a> </div>
