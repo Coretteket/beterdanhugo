@@ -139,13 +139,15 @@ function setChoices() {
         var sethtml = "<b>" + chotit + "</b>"
         sethtml += "<p>" + cho + "</p>";
         q("choice").innerHTML = sethtml;
+        var setchos = "<div class='row'>";
         for (const [key, value] of Object.entries(chobtns)) {
-            q("choice").innerHTML += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
+            setchos += "<div class='col-lg-4'><a class='btn txt' onclick='" + value + "'>" + key + "</a></div>"
         }
+        q("choice").innerHTML += setchos + "</div>";
         q("s1").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
         q("s2").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
         q("s3").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
-        q("non-choice").setAttribute("style", "opacity:.4;filter:blur(.75px);transition: opacity .5s;");
+        q("toggles").setAttribute("style", "opacity:.4;filter:blur(.75px);transition: opacity .5s;");
         preSpeed = speed;
         setSpeed(0);
         paused = true;
@@ -157,7 +159,7 @@ function delActions() {
     q("s1").setAttribute("style", "opacity:1;transition: opacity .5s;");
     q("s2").setAttribute("style", "opacity:1;transition: opacity .5s;");
     q("s3").setAttribute("style", "opacity:1;transition: opacity .5s;");
-    q("non-choice").setAttribute("style", "opacity:1;filter:blur(0);transition: opacity .5s;");
+    q("toggles").setAttribute("style", "opacity:1;filter:blur(0);transition: opacity .5s;");
     paused = false;
     if (speed == 0) { setSpeed(preSpeed); }
 }
@@ -306,10 +308,10 @@ function checkBtn() {
         var delay = abtn[3];
         if (abtn[0] <= 0) {
             act(btn, day);
-            if (day + 1 in freeze) {
-                freeze[day + 1].push(btn);
+            if (day in freeze) {
+                freeze[day].push(btn);
             } else {
-                freeze[day + 1] = [btn];
+                freeze[day] = [btn];
             }
             if (day + delay in unfreeze) {
                 unfreeze[day + delay].push(btn);
@@ -318,10 +320,10 @@ function checkBtn() {
             }
         } else {
             act(btn, -day);
-            if (day + 1 in freeze) {
-                freeze[day + 1].push(btn);
+            if (day in freeze) {
+                freeze[day].push(btn);
             } else {
-                freeze[day + 1] = [btn];
+                freeze[day] = [btn];
             }
             if (day + delay in unfreeze) {
                 unfreeze[day + delay].push(btn);
