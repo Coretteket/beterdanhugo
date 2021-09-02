@@ -57,7 +57,7 @@ var testctx = document.getElementById("testChart").getContext('2d');
 var testData = {
     datasets: [{
         data: [0],
-        backgroundColor: 'rgba(255, 99, 132, 0.7)',
+        backgroundColor: 'rgba(255, 99, 132, 0.8)',
         borderColor: 'rgb(255, 99, 132)',
         fill: true
     }],
@@ -73,7 +73,7 @@ var hospctx = document.getElementById("hospChart").getContext('2d');
 var hospData = {
     datasets: [{
         data: [0],
-        backgroundColor: 'rgba(85, 145, 242, 0.7)',
+        backgroundColor: 'rgba(85, 145, 242, 0.8)',
         borderColor: 'rgb(85, 145, 242)',
         fill: true
     }],
@@ -89,7 +89,7 @@ var deadctx = document.getElementById("deadChart").getContext('2d');
 var deadData = {
     datasets: [{
         data: [0],
-        backgroundColor: 'rgba(255, 203, 99, 0.7)',
+        backgroundColor: 'rgba(255, 203, 99, 0.8)',
         borderColor: 'rgb(255, 203, 99)',
         fill: true
     }],

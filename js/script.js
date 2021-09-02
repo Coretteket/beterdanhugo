@@ -51,6 +51,7 @@ function start() {
     q("firstnews").setAttribute("class", "box d-none d-md-block");
     q("chartbox").setAttribute("class", "box");
     q("scroll").setAttribute("id", "scrollsmall");
+    q("disclaimermob").setAttribute("class","d-none")
     started = true;
 }
 

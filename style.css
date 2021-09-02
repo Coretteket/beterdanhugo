@@ -45,21 +45,22 @@ b {
     display: block;
     font-weight: 800;
     font-size: 1.05rem;
-    margin: .5em 0 .2em;
+    margin: 1em 0 .2em;
+}
+
+@media (max-width:768px) {
+    b {
+        margin-top: .4em;
+    }
 }
 
 #choice .row,
 #toggles .row {
     margin-top: .3em;
-    margin-bottom: 1em;
     padding: 0 10px;
 }
 
-#choice .col-lg-2,
-#choice .col-lg-3,
 #choice .col-lg-4,
-#choice .col-lg-5,
-#choice .col-lg-6,
 #toggles .col-lg-4 {
     padding: 0 5px;
 }
@@ -152,8 +153,7 @@ a {
 }
 
 .box {
-    /*display: flex;
-align-items: center;*/
+    border: 2px solid var(--stat-border);
     line-height: 1.1;
     background-color: var(--box);
     margin-top: .4em;
@@ -163,8 +163,6 @@ align-items: center;*/
     width: 100%;
     border-radius: .6em;
     text-align: left;
-    -webkit-box-shadow: var(--full-shadow);
-    box-shadow: var(--full-shadow);
     max-height: 50em;
     animation-name: swipe;
     animation-duration: .3s;
@@ -176,8 +174,6 @@ align-items: center;*/
         max-height: 30em;
         margin: 0 .8em;
         padding: .6em;
-        -webkit-box-shadow: var(--full-shadow);
-        box-shadow: var(--full-shadow);
         opacity: 100%;
     }
     to {
@@ -215,8 +211,6 @@ align-items: center;*/
     float: left;
     margin-right: .3rem;
     border-radius: 30%;
-    -webkit-box-shadow: var(--full-shadow);
-    box-shadow: var(--full-shadow);
 }
 
 .box a img {
@@ -350,45 +344,29 @@ align-items: center;*/
     padding: 0;
     margin: 0 0 .6em;
     border-radius: 6px;
-    -webkit-box-shadow: var(--full-shadow);
-    box-shadow: var(--full-shadow);
 }
 
 .txt {
     display: flex;
     justify-content: left;
-    text-align:left;
+    text-align: left;
     align-items: center;
     line-height: 1;
-    min-height: 85%;
+    height: 2.3em;
     padding: .4em .8em;
     font-weight: 600;
     font-size: .9em;
     margin-right: .2em;
     min-width: 4em;
     width: 100%;
-    /* transition: transform .1s; */
-    /* background-color: var(--back); */
+    transition: transform .05s;
+    transition-timing-function: ease-in-out;
+    background-color: var(--back);
 }
 
-@media (min-width: 768px) {
-    .txt:not(#choice div div a) {
-        line-height: .9;
-        height: 2.9em;
-        /* text-align:center;
-        justify-content: center; */
-    }
-    #choice div div a.txt {
-        line-height: .9;
-        align-items: center;
-        min-height: 86%;
-    }
-}
-
-
-/* .btn:hover {
+.txt:hover {
     transform: scale(1.01);
-} */
+}
 
 .txtsel {
     background-color: var(--dark-txt);
@@ -421,8 +399,6 @@ align-items: center;*/
     padding: .3em;
     padding-left: .5em;
     border-radius: 6px;
-    -webkit-box-shadow: var(--full-shadow);
-    box-shadow: var(--full-shadow);
     font-size: 1rem;
     font-weight: 600;
     width: 15em;
@@ -532,14 +508,12 @@ hr {
     border-top: 3.5px solid var(--stat-border-thick);
     padding-top: 3.5px;
     background-color: var(--stat-back);
-    /* -webkit-box-shadow: var(--full-shadow);
-    box-shadow: var(--full-shadow); */
+    /*      */
 }
 
 .statbtn:hover {
     background-color: var(--stat-back);
-    /* -webkit-box-shadow: var(--full-shadow);
-    box-shadow: var(--full-shadow); */
+    /*      */
 }
 
 .statbtn i {
@@ -623,13 +597,12 @@ hr {
     --back: white;
     --link: #0072ec;
     --link-hover: #0056b3;
-    --box: rgb(229 229 229);
+    --box: rgb(222, 222, 222);
+    --box-border: rgb(181 181 181);
     --light-txt: gray;
     --dark-txt: rgb(68, 68, 68);
     --txt: #212529;
     --hr: rgba(0, 0, 0, .1);
-    /* --full-shadow: 0 0 .5em 0 rgba(0, 0, 0, 0.3); */
-    --full-shadow: 0 0 .25em 0 rgba(0, 0, 0, 0.15);
     --stat-back: #f6f6f6;
     --stat-border: #a8a8a8;
     --stat-border-thick: #797979;
@@ -641,12 +614,11 @@ hr {
     --link: #4fa4ff;
     --link-hover: #6eb4ff;
     --box: #343a3f;
+    --box-border: rgb(181 181 181);
     --light-txt: rgb(199, 199, 199);
     --dark-txt: rgb(235, 235, 235);
     --txt: white;
     --hr: rgba(255, 255, 255, 0.1);
-    /* --full-shadow: 0 0 .4em 0 rgba(255, 255, 255, 0.2); */
-    --full-shadow: 0 0 .25em 0 rgba(255, 255, 255, 0.15);
     --stat-back: #212529;
     --stat-border: #757b81;
     --stat-border-thick: #a2a6ab;
