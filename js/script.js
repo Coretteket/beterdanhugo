@@ -145,10 +145,10 @@ function setChoices() {
             setchos += "<div class='col-lg-4'><a class='btn txt' onclick='" + value + "'>" + key + "</a></div>"
         }
         q("choice").innerHTML += setchos + "</div>";
-        q("s1").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
-        q("s2").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
-        q("s3").setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
-        q("toggles").setAttribute("style", "opacity:.4;filter:blur(.75px);transition: opacity .5s;");
+        q("s1").setAttribute("style", "opacity:.4;cursor:default;transition:opacity .5s;");
+        q("s2").setAttribute("style", "opacity:.4;cursor:default;transition:opacity .5s;");
+        q("s3").setAttribute("style", "opacity:.4;cursor:default;transition:opacity .5s;");
+        q("toggles").setAttribute("class", "row freeze");
         preSpeed = speed;
         setSpeed(0);
         paused = true;
@@ -160,7 +160,7 @@ function delActions() {
     q("s1").setAttribute("style", "opacity:1;transition: opacity .5s;");
     q("s2").setAttribute("style", "opacity:1;transition: opacity .5s;");
     q("s3").setAttribute("style", "opacity:1;transition: opacity .5s;");
-    q("toggles").setAttribute("style", "opacity:1;filter:blur(0);transition: opacity .5s;");
+    q("toggles").setAttribute("class", "row");
     paused = false;
     if (speed == 0) { setSpeed(preSpeed); }
 }

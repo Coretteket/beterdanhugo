@@ -201,7 +201,6 @@ function calcR() {
 }
 
 function calcCOV() {
-    console.log(calcR())
     s.a = calcR() * s.b;
 
     var dS = s.R * s.c;
