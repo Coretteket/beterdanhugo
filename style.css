@@ -25,10 +25,26 @@ body {
     padding-left: calc(100vw - 100%);
 }
 
-@media (max-width: 370px) {
+@media (max-width: 768px) {
     html,
     body {
-        font-size: 15px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 370px) {
+    #totop {
+        display: none;
+    }
+    #pinned {
+        min-height: 6.2em;
+    }
+    .statbtn {
+        font-size: 15px!important;
+    }
+    html,
+    body {
+        font-size: 16px
     }
 }
 
@@ -167,7 +183,6 @@ a {
 }
 
 #pinned {
-    min-height: calc(.8em + 60px);
     padding-right: .25em;
     animation: none;
     margin: 1em 0 .6em;
@@ -251,7 +266,8 @@ a {
     position: absolute;
     bottom: 0;
     z-index: 10;
-    background: linear-gradient(0deg, var(--back) 15%, rgba(0,0,0,0) 100%);;
+    background: linear-gradient(0deg, var(--back) 15%, rgba(0, 0, 0, 0) 100%);
+    ;
 }
 
 @media (min-width: 768px) {
@@ -370,6 +386,7 @@ a {
 }
 
 .btn {
+    font-size: 1em!important;
     border: 2px solid var(--dark-txt);
     padding: 0;
     margin: 0 0 .6em;
@@ -385,7 +402,7 @@ a {
     line-height: 1;
     height: 2.3em;
     padding: .4em .8em;
-    font-weight: 600;
+    /* font-weight: 600; */
     font-size: .9em;
     margin-right: .2em;
     min-width: 4em;
