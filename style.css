@@ -245,12 +245,13 @@ a {
     box-shadow: none;
 }
 
-#light-shadow,
-#dark-shadow {
+#shadow {
     width: 100%;
+    height: 6em;
     position: absolute;
-    bottom: -5px;
+    bottom: 0;
     z-index: 10;
+    background: linear-gradient(0deg, var(--back) 15%, rgba(0,0,0,0) 100%);;
 }
 
 @media (min-width: 768px) {

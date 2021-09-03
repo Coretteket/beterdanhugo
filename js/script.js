@@ -393,15 +393,11 @@ function colorSwitch() {
     if (lightmode) {
         q("light").setAttribute("id", "dark");
         q("colormode").getElementsByTagName("i")[0].setAttribute("class", "fas fa-sun");
-        q("light-shadow").setAttribute("class", "d-none");
-        q("dark-shadow").setAttribute("class", "d-none d-md-block");
 
         lightmode = false;
     } else {
         q("dark").setAttribute("id", "light");
         q("colormode").getElementsByTagName("i")[0].setAttribute("class", "fas fa-moon");
-        q("dark-shadow").setAttribute("class", "d-none");
-        q("light-shadow").setAttribute("class", "d-none d-md-block");
         lightmode = true;
     }
 }
