@@ -44,14 +44,13 @@ function checkStart() {
 }
 
 function start() {
-    setChoices();
     q("main").removeAttribute("class");
     q("start").setAttribute("class", "d-none");
     q("pinned").setAttribute("class", "box d-block d-md-none");
     q("firstnews").setAttribute("class", "box d-none d-md-block");
     q("chartbox").setAttribute("class", "box");
     q("scroll").setAttribute("id", "scrollsmall");
-    q("disclaimermob").setAttribute("class","d-none")
+    q("disclaimermob").setAttribute("class", "d-none")
     started = true;
 }
 
@@ -137,7 +136,8 @@ function setChoices() {
     getChoices();
     if (cho != "") {
         q("choice").setAttribute("class", "choice");
-        var sethtml = "<b>" + chotit + "</b>"
+        var sethtml = "";
+        sethtml += chotit != "" ? "<b>" + chotit + "</b>" : "";
         sethtml += "<p>" + cho + "</p>";
         q("choice").innerHTML = sethtml;
         var setchos = "<div class='row'>";
@@ -373,6 +373,7 @@ function setSpeed(i) {
     q("s" + speed).setAttribute('class', 'btn');
     q("s" + i).setAttribute('class', 'btn tsel');
     if (speed == 0 && i > 0) {
+        q("s1").classList.remove("nudge")
         speed = i;
         timer();
     } else {
@@ -461,7 +462,10 @@ if (!dev) {
     }));
 }
 
-for (var i = day; i < 10; i++) {
+for (var i = day; i < 13; i++) {
     day++;
-    calcCOV();
+    day < 10 ? calcCOV() : updateStats();
 }
+var aa = intToDate(day);
+q("date").innerHTML = aa[2] + " " + mos[aa[1]] + " " + aa[0];
+setChoices();

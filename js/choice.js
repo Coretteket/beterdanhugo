@@ -4,7 +4,7 @@ var acts = {
 }
 
 var chos = {
-    30: ["Belangrijk", "Welkom terug in 2020! Een journalist vraagt je of we ons zorgen moeten maken over de mysterieuze longziekte uit Wuhan, die nu ook Frankrijk heeft bereikt. Hoe reageer je?", {"Aanpassen": "delActions();", "Niet aanpassen": "delActions();"}]
+    //10: ["", "Je bent live in een tv-programma over het oprukkende coronavirus, als een assistent je een briefje doorschuift. De eerste Nederlandse coronapatiënt blijkt zojuist in het ziekenhuis te zijn opgenomen. Als minister is het vanaf nu jouw taak om de uitbraak onder controle te krijgen.", {"Aanpassen": "delActions();", "Niet aanpassen": "delActions();"}]
 }
 
 var chotit = ""

@@ -48,14 +48,26 @@ b {
     margin: 1em 0 .2em;
 }
 
-@media (max-width:768px) {
-    b {
-        margin-top: .4em;
-    }
+#choice {
+    margin-top: .4em;
+}
+
+#choice b {
+    margin: 0 0 .2em;
 }
 
 #toggles {
     transition: opacity .5s, filter .5s;
+    margin-top: -.6em;
+}
+
+@media (max-width:768px) {
+    b {
+        margin-top: .4em;
+    }
+    #toggles {
+        margin-top: 0;
+    }
 }
 
 .freeze {
@@ -137,7 +149,7 @@ p {
     }
     to {
         width: 100%;
-        max-height: 15em;
+        max-height: 7em;
         opacity: 100%;
     }
 }
@@ -158,11 +170,11 @@ a {
     min-height: calc(.8em + 60px);
     padding-right: .25em;
     animation: none;
-    margin: 1em 0;
+    margin: 1em 0 .6em;
 }
 
 .box {
-    border: 2px solid var(--stat-border);
+    border: 2px solid var(--border);
     line-height: 1.1;
     background-color: var(--box);
     margin-top: .4em;
@@ -173,10 +185,16 @@ a {
     border-radius: .6em;
     text-align: left;
     max-height: 50em;
-    animation-name: swipe;
-    animation-duration: .3s;
 }
 
+.box:not(#chartbox) {
+    animation-name: swipe;
+    animation-duration: .2s;
+    animation-timing-function: ease-out;
+}
+
+
+/* 
 @keyframes hide {
     from {
         width: 100%;
@@ -194,7 +212,7 @@ a {
         box-shadow: none;
         opacity: 0%
     }
-}
+} */
 
 
 /* .rembox {
@@ -309,7 +327,7 @@ a {
 }
 
 #arrows {
-    margin-left: .2rem;
+    margin-left: 0;
     width: 28px;
     height: 100%;
     display: inline-block;
@@ -322,7 +340,7 @@ a {
 }
 
 #today {
-    margin-bottom: .3em;
+    margin: .3em 0;
 }
 
 .time .btn {
@@ -355,6 +373,7 @@ a {
     padding: 0;
     margin: 0 0 .6em;
     border-radius: 6px;
+    background-color: var(--back);
 }
 
 .txt {
@@ -508,7 +527,7 @@ hr {
 }
 
 .statbtn {
-    border-top: 3px solid var(--stat-border);
+    border-top: 3px solid var(--border);
     font-size: 1.06em;
     font-weight: 600;
     margin: 0 4px;
@@ -519,7 +538,7 @@ hr {
 }
 
 .statbtnactive {
-    border-top: 3.5px solid var(--stat-border-thick);
+    border-top: 3.5px solid var(--border-thick);
     padding-top: 3.5px;
     background-color: var(--stat-back);
     /*      */
@@ -545,82 +564,62 @@ hr {
 }
 
 
-/* --------------------- */
-
-.opt {
-    margin: .45em 0;
+/* .nudge {
+    animation: nudge .5s ease-in-out infinite alternate-reverse;
 }
 
-.switch {
-    display: inline;
-    float: right;
-}
+@keyframes nudge {
+    from {
+        transform: rotate(-7deg);
+    }
+    to {
+        transform: rotate(7deg);
+    }
+} */
 
-.switch>input[type="checkbox"] {
-    display: none;
-}
-
-.switch>label {
-    cursor: pointer;
-    height: 0px;
-    position: relative;
-    width: 40px;
-}
-
-.switch>label::before {
-    background: rgb(0, 0, 0);
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
+.nudge::before {
     content: '';
-    height: 16px;
-    margin-top: -8px;
+    background-color: var(--nudge);
     position: absolute;
-    opacity: 0.3;
-    transition: all 0.4s ease-in-out;
-    width: 40px;
+    width: 1.7em;
+    height: 1.7em;
+    margin-left: -.01em;
+    margin-top: .05em;
+    z-index: -1;
+    border-radius: 50%;
+    animation: nudge 1.4s ease-out 1s infinite;
+    opacity: 0;
+    filter: blur(1px);
 }
 
-.switch>label::after {
-    background: rgb(255, 255, 255);
-    border-radius: 16px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-    content: '';
-    height: 24px;
-    left: -4px;
-    margin-top: -8px;
-    position: absolute;
-    top: -4px;
-    transition: all 0.3s ease-in-out;
-    width: 24px;
+@keyframes nudge {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(4);
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
 }
-
-.switch>input[type="checkbox"]:checked+label::before {
-    background: inherit;
-    opacity: 0.5;
-}
-
-.switch>input[type="checkbox"]:checked+label::after {
-    background: inherit;
-    left: 20px;
-}
-
-
-/* ---------------------------— */
 
 #light {
     --back: white;
     --link: #0072ec;
     --link-hover: #0056b3;
     --box: rgb(222, 222, 222);
-    --box-border: rgb(181 181 181);
     --light-txt: gray;
     --dark-txt: rgb(68, 68, 68);
     --txt: #212529;
     --hr: rgba(0, 0, 0, .1);
     --stat-back: #f6f6f6;
-    --stat-border: #a0a0a0;;
-    --stat-border-thick: #797979;
+    --border: #a0a0a0;
+    --border-thick: #797979;
     --arrows: none;
+    --nudge: rgb(207, 207, 207);
 }
 
 #dark {
@@ -628,15 +627,15 @@ hr {
     --link: #4fa4ff;
     --link-hover: #6eb4ff;
     --box: #343a3f;
-    --box-border: rgb(181 181 181);
     --light-txt: rgb(199, 199, 199);
     --dark-txt: rgb(235, 235, 235);
     --txt: white;
     --hr: rgba(255, 255, 255, 0.1);
     --stat-back: #212529;
-    --stat-border: #7f858b;;
-    --stat-border-thick: #a2a6ab;
+    --border: #7f858b;
+    --border-thick: #a2a6ab;
     --arrows: invert(1);
+    --nudge: #6f7479;
 }
 
 [data-color-scheme="dark"] {
