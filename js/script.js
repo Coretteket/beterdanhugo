@@ -52,31 +52,65 @@ function start() {
     started = true;
 }
 
-function timer() {
-    if (speed == 0) {
-        counter = 0;
-        return;
-    }
-    if (counter >= speeds[speed]) {
-        day++;
-
-        var a = intToDate(day);
-        q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
-
-        updateStats();
-        setNews();
-        setChoices();
-        showActions();
-        checkBtn();
-        showTut();
-
-        counter = 0;
-    }
-
-    setTimeout(timer, 50);
-    counter += 50;
-
+function startTimer() {
+    startedAt = Date.now();
+    requestAnimationFrame(timer);
 }
+
+function timer() {
+    if (speed == 0) return;
+    let playback = (Date.now() - startedAt) / speeds[speed];
+    if (playback >= 1) update();
+
+    if (playback > 0 && playback < 1) {
+        requestAnimationFrame(timer)
+    } else {
+        startTimer();
+    }
+}
+
+function update() {
+    console.log(Date.now() - startedAt);
+    day++;
+
+    var a = intToDate(day);
+    q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
+
+    updateStats();
+    setNews();
+    setChoices();
+    showActions();
+    checkBtn();
+    showTut();
+}
+
+// function timer() {
+//     if (speed == 0) {
+//         counter = 0;
+//         return;
+//     }
+//     if (counter >= speeds[speed]) {
+//         day++;
+
+//         var a = intToDate(day);
+//         q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
+
+//         updateStats();
+//         setNews();
+//         setChoices();
+//         showActions();
+//         checkBtn();
+//         showTut();
+
+//         console.log(counter);
+//         counter = 0;
+//         lastHit = new Date();
+//     }
+
+//     setTimeout(timer, 10);
+//     var hit = new Date();
+//     counter = hit - lastHit;
+// }
 
 var title = "";
 var source = "";
@@ -379,6 +413,7 @@ function intToDate(i) {
 var sped = false;
 
 function setSpeed(i) {
+    if (speed == i) return;
     if (paused) { return; }
     if (day > 11 && day < 29) {
         sped = true;
@@ -392,7 +427,7 @@ function setSpeed(i) {
     if (speed == 0 && i > 0) {
         q("s1").classList.remove("nudge")
         speed = i;
-        timer();
+        startTimer();
     } else {
         speed = i;
     }
