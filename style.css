@@ -597,6 +597,10 @@ hr {
     padding: 0;
 }
 
+.remtut p {
+    display: none;
+}
+
 .remtut i {
     animation: hidex .12s ease-out forwards!important;
 }

@@ -70,7 +70,6 @@ function timer() {
 }
 
 function update() {
-    console.log(Date.now() - startedAt);
     day++;
 
     var a = intToDate(day);
@@ -235,9 +234,7 @@ function updatePinned(i) {
 var toggled = false;
 
 function toggleStat(s) {
-    if (day < 21) {
-        toggled = true;
-    }
+    toggled = true;
     if (s == 'test') {
         q("testCnt").classList = "chartcnt";
         q("hospCnt").classList = "chartcnt d-none";
@@ -415,9 +412,7 @@ var sped = false;
 function setSpeed(i) {
     if (speed == i) return;
     if (paused) { return; }
-    if (day > 11 && day < 29) {
-        sped = true;
-    }
+    sped = true;
     if (speed > 0) {
         preSpeed = speed;
     }
