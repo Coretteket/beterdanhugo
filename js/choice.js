@@ -26,9 +26,9 @@ function showActions() {
     if (day in acts) {
         for (var i = 0; i < acts[day].length; i++) {
             if (q(acts[day][i]).classList.contains("d-none")) {
-                q(acts[day][i]).setAttribute("class","btn txt");
+                q(acts[day][i]).classList = "btn txt";
             } else {
-                q(acts[day][i]).setAttribute("class","btn txt d-none");
+                q(acts[day][i]).classList = "btn txt d-none";
             }
         }
     }

@@ -1,7 +1,6 @@
 const epoch = 1581894e3;
 var cont = true;
 var day = -1;
-var counter = 0;
 
 var ldays = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
 var wdays = ["zo", "ma.", "di.", "wo.", "do.", "vr.", "za."];
@@ -9,8 +8,9 @@ var mos = ["err", "januari", "februari", "maart", "april", "mei", "juni", "juli"
 
 var currentPinned = 0;
 
-var speeds = [0, 2500, 1250, 750];
+var speeds = [0, 3000, 1500, 750];
 var speed = 0;
+var counter = speeds[3] * 2 / 3;
 
 var w = 4;
 var d = 27;
@@ -18,10 +18,7 @@ var m = 2;
 var y = 2020;
 
 var lname = "";
-var dev = false;
-
-var url = new URL(window.location.href);
-var dev = (url.searchParams.get("dev") != null);
+//dev in graph.js
 
 var started = false;
 var gameOver = false;
@@ -29,12 +26,13 @@ var gameOver = false;
 dev && (speeds[3] = 100, lname = "De Jonge", start());
 
 function checkStart() {
-    lname = q("lname").value.replace(/[\[\]0-9\(\)\.\,\?\!\=\+\<\>\/\\\n]/gi, '');
+    lname = q("lname").value.replace(/[\[\]0-9\(\)\.,?!=+<>/\\\n%_@#$€^&*]/gi, '');
+    lname = lname.charAt(0).toUpperCase() + lname.slice(1);
     var starttxt = q("starttxt");
-    if (lname == "" || lname == "Je achternaam") {
+    if (lname.replace(/ /g, '') == "") {
         starttxt.innerText = "Kies eerst een achternaam.";
         setTimeout((function() { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
-    } else if (lname.length > 20) {
+    } else if (lname.length > 25) {
         starttxt.innerText = "Kies een kortere achternaam.";
         setTimeout((function() { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
     } else {
@@ -45,12 +43,12 @@ function checkStart() {
 
 function start() {
     q("main").removeAttribute("class");
-    q("start").setAttribute("class", "d-none");
-    q("pinned").setAttribute("class", "box d-block d-md-none");
-    q("firstnews").setAttribute("class", "box d-none d-md-block");
-    q("chartbox").setAttribute("class", "box");
+    q("start").classList = "d-none";
+    q("pinned").classList = "box d-block d-md-none";
+    q("firstnews").classList = "box d-none d-md-block";
+    q("chartbox").classList = "box";
     q("scroll").setAttribute("id", "scrollsmall");
-    q("disclaimermob").setAttribute("class", "d-none")
+    q("disclaimermob").classList = "d-none"
     started = true;
 }
 
@@ -59,7 +57,6 @@ function timer() {
         counter = 0;
         return;
     }
-
     if (counter >= speeds[speed]) {
         day++;
 
@@ -71,12 +68,13 @@ function timer() {
         setChoices();
         showActions();
         checkBtn();
+        showTut();
 
         counter = 0;
     }
 
-    setTimeout(timer, 100);
-    counter += 100;
+    setTimeout(timer, 50);
+    counter += 50;
 
 }
 
@@ -100,7 +98,7 @@ function setNews() {
         div.innerHTML += '<img class="logo" src="img/' + source + '.png" width="16" height="16">';
         div.innerHTML += '<p class="app">' + outlets[source] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]] + '</p>';
         div.innerHTML += "<p class='newstitle'>" + title + "</p>";
-        var news = q("pinned");
+        var news = q("tut");
         news.parentNode.insertBefore(div, news.nextSibling);
 
         var pluswhat = snws.length - currentPinned;
@@ -126,8 +124,13 @@ function updateStats() {
     calcCOV();
     addData(testChart, day, s.P);
     q("testCount").innerText = s.P;
-    addData(hospChart, day, s.H);
-    q("hospCount").innerText = s.H;
+    if (dev) {
+        addData(hospChart, day, calcR());
+        q("hospCount").innerText = Math.round(calcR() * 100) / 100;
+    } else {
+        addData(hospChart, day, s.H);
+        q("hospCount").innerText = s.H;
+    }
     addData(deadChart, day, s.D);
     q("deadCount").innerText = s.D;
 }
@@ -135,7 +138,7 @@ function updateStats() {
 function setChoices() {
     getChoices();
     if (cho != "") {
-        q("choice").setAttribute("class", "choice");
+        q("choice").classList = "choice";
         var sethtml = "";
         sethtml += chotit != "" ? "<b>" + chotit + "</b>" : "";
         sethtml += "<p>" + cho + "</p>";
@@ -145,10 +148,10 @@ function setChoices() {
             setchos += "<div class='col-lg-4'><a class='btn txt' onclick='" + value + "'>" + key + "</a></div>"
         }
         q("choice").innerHTML += setchos + "</div>";
-        q("s1").setAttribute("style", "opacity:.4;cursor:default;transition:opacity .5s;");
-        q("s2").setAttribute("style", "opacity:.4;cursor:default;transition:opacity .5s;");
-        q("s3").setAttribute("style", "opacity:.4;cursor:default;transition:opacity .5s;");
-        q("toggles").setAttribute("class", "row freeze");
+        q("s1").style = "opacity:.4;cursor:default;transition:opacity .5s;";
+        q("s2").style = "opacity:.4;cursor:default;transition:opacity .5s;";
+        q("s3").style = "opacity:.4;cursor:default;transition:opacity .5s;";
+        q("toggles").classList = "row freeze";
         preSpeed = speed;
         setSpeed(0);
         paused = true;
@@ -156,11 +159,11 @@ function setChoices() {
 }
 
 function delActions() {
-    q("choice").setAttribute("class", "d-none");
-    q("s1").setAttribute("style", "opacity:1;transition: opacity .5s;");
-    q("s2").setAttribute("style", "opacity:1;transition: opacity .5s;");
-    q("s3").setAttribute("style", "opacity:1;transition: opacity .5s;");
-    q("toggles").setAttribute("class", "row");
+    q("choice").classList = "d-none";
+    q("s1").style = "opacity:1;transition: opacity .5s;";
+    q("s2").style = "opacity:1;transition: opacity .5s;";
+    q("s3").style = "opacity:1;transition: opacity .5s;";
+    q("toggles").classList = "row";
     paused = false;
     if (speed == 0) { setSpeed(preSpeed); }
 }
@@ -181,42 +184,47 @@ function updatePinned(i) {
     q("totop").innerHTML = "+" + pluswhat;
 
     if (currentPinned == snws.length - 1) {
-        q("up").setAttribute("class", "inactive");
-        q("down").setAttribute("class", "active");
-        q("totop").setAttribute("style", "opacity: 0;");
+        q("up").classList = "inactive";
+        q("down").classList = "active";
+        q("totop").style = "opacity: 0;";
     } else if (currentPinned == 0) {
-        q("up").setAttribute("class", "active");
-        q("down").setAttribute("class", "inactive");
-        q("totop").setAttribute("style", "opacity: 1;");
+        q("up").classList = "active";
+        q("down").classList = "inactive";
+        q("totop").style = "opacity: 1;";
     } else {
-        q("up").setAttribute("class", "active");
-        q("down").setAttribute("class", "active");
-        q("totop").setAttribute("style", "opacity: 1;");
+        q("up").classList = "active";
+        q("down").classList = "active";
+        q("totop").style = "opacity: 1;";
     }
 }
 
+var toggled = false;
+
 function toggleStat(s) {
+    if (day < 21) {
+        toggled = true;
+    }
     if (s == 'test') {
-        q("testCnt").setAttribute("class", "chartcnt");
-        q("hospCnt").setAttribute("class", "chartcnt d-none");
-        q("deadCnt").setAttribute("class", "chartcnt d-none");
-        q("testBtn").setAttribute("class", "col statbtn statbtnactive");
-        q("hospBtn").setAttribute("class", "col statbtn");
-        q("deadBtn").setAttribute("class", "col statbtn");
+        q("testCnt").classList = "chartcnt";
+        q("hospCnt").classList = "chartcnt d-none";
+        q("deadCnt").classList = "chartcnt d-none";
+        q("testBtn").classList = "col statbtn statbtnactive";
+        q("hospBtn").classList = "col statbtn";
+        q("deadBtn").classList = "col statbtn";
     } else if (s == 'hosp') {
-        q("hospCnt").setAttribute("class", "chartcnt");
-        q("testCnt").setAttribute("class", "chartcnt d-none");
-        q("deadCnt").setAttribute("class", "chartcnt d-none");
-        q("hospBtn").setAttribute("class", "col statbtn statbtnactive");
-        q("testBtn").setAttribute("class", "col statbtn");
-        q("deadBtn").setAttribute("class", "col statbtn");
+        q("hospCnt").classList = "chartcnt";
+        q("testCnt").classList = "chartcnt d-none";
+        q("deadCnt").classList = "chartcnt d-none";
+        q("hospBtn").classList = "col statbtn statbtnactive";
+        q("testBtn").classList = "col statbtn";
+        q("deadBtn").classList = "col statbtn";
     } else if (s == 'dead') {
-        q("deadCnt").setAttribute("class", "chartcnt");
-        q("testCnt").setAttribute("class", "chartcnt d-none");
-        q("hospCnt").setAttribute("class", "chartcnt d-none");
-        q("deadBtn").setAttribute("class", "col statbtn statbtnactive");
-        q("testBtn").setAttribute("class", "col statbtn");
-        q("hospBtn").setAttribute("class", "col statbtn");
+        q("deadCnt").classList = "chartcnt";
+        q("testCnt").classList = "chartcnt d-none";
+        q("hospCnt").classList = "chartcnt d-none";
+        q("deadBtn").classList = "col statbtn statbtnactive";
+        q("testBtn").classList = "col statbtn";
+        q("hospBtn").classList = "col statbtn";
     }
 }
 
@@ -225,16 +233,20 @@ var preSpeed = 0;
 
 function toggleFAQ() {
     if (FAQ) {
-        q("dash").setAttribute("class", "col-md-6 col-lg-7 col-xl-6 order-3 order-md-2");
-        q("news").setAttribute("class", "col-md-6 col-lg-5 col-xl-4 order-2 order-md-3");
-        q("faq").setAttribute("class", "d-none");
+        if (!started) {
+            q("disclaimermob").classList = "d-block d-md-none"
+        }
+        q("dash").classList = "col-md-6 col-lg-7 col-xl-6 order-3 order-md-2";
+        q("news").classList = "col-md-6 col-lg-5 col-xl-4 order-2 order-md-3";
+        q("faq").classList = "d-none";
         q("knowmore").innerHTML = "Meer weten?";
         FAQ = false;
         setSpeed(preSpeed);
     } else {
-        q("dash").setAttribute("class", "d-none");
-        q("news").setAttribute("class", "d-none");
-        q("faq").setAttribute("class", "col-12 col-xl-10 order-2");
+        q("disclaimermob").classList = "d-none"
+        q("dash").classList = "d-none";
+        q("news").classList = "d-none";
+        q("faq").classList = "col-12 col-xl-10 order-2";
         q("knowmore").innerHTML = "Terug naar spel.";
         FAQ = true;
         preSpeed = speed;
@@ -255,16 +267,16 @@ function toggleBtn(btn) {
         toggles.push(btn);
     };
     if (!q("btn-" + btn).classList.contains("txtsel")) {
-        q("btn-" + btn).setAttribute("class", "btn txt txtsel");
+        q("btn-" + btn).classList = "btn txt txtsel";
         if (btn == "lockdown" && q("btn-curfew").classList.contains("txtsel")) {
-            q("btn-curfew").setAttribute("class", "btn txt");
+            q("btn-curfew").classList = "btn txt";
             if (toggles.includes("curfew")) {
                 removeItem(toggles, "curfew");
             } else {
                 toggles.push("curfew");
             }
         } else if (btn == "curfew" && q("btn-lockdown").classList.contains("txtsel")) {
-            q("btn-lockdown").setAttribute("class", "btn txt");
+            q("btn-lockdown").classList = "btn txt";
             if (toggles.includes("lockdown")) {
                 removeItem(toggles, "lockdown");
             } else {
@@ -272,16 +284,16 @@ function toggleBtn(btn) {
             }
         }
     } else {
-        q("btn-" + btn).setAttribute("class", "btn txt");
+        q("btn-" + btn).classList = "btn txt";
         if (q("btn-lockdown").classList.contains("txtsel") && lock.includes(btn)) {
-            q("btn-lockdown").setAttribute("class", "btn txt");
+            q("btn-lockdown").classList = "btn txt";
             if (toggles.includes("lockdown")) {
                 removeItem(toggles, "lockdown");
             } else {
                 toggles.push("lockdown");
             }
         } else if (q("btn-curfew").classList.contains("txtsel") && btn == "clubs") {
-            q("btn-curfew").setAttribute("class", "btn txt");
+            q("btn-curfew").classList = "btn txt";
             if (toggles.includes("curfew")) {
                 removeItem(toggles, "curfew");
             } else {
@@ -336,13 +348,13 @@ function checkBtn() {
     toggles = [];
     if (day in freeze) {
         for (var i = 0; i < freeze[day].length; i++) {
-            q("btn-" + freeze[day][i]).setAttribute("style", "opacity:.4;cursor:default;transition: opacity .5s;");
+            q("btn-" + freeze[day][i]).style = "opacity:.4;cursor:default;transition: opacity .5s;";
             q("btn-" + freeze[day][i]).removeAttribute("onclick");
         }
     }
     if (day in unfreeze) {
         for (var i = 0; i < unfreeze[day].length; i++) {
-            q("btn-" + unfreeze[day][i]).setAttribute("style", "opacity:1;transition: opacity .5s;");
+            q("btn-" + unfreeze[day][i]).style = "opacity:1;transition: opacity .5s;";
             q("btn-" + unfreeze[day][i]).setAttribute("onclick", "toggleBtn('" + unfreeze[day][i] + "');");
         }
     }
@@ -364,8 +376,13 @@ function intToDate(i) {
     return [y, m, d, w];
 }
 
+var sped = false;
+
 function setSpeed(i) {
     if (paused) { return; }
+    if (day > 11 && day < 29) {
+        sped = true;
+    }
     if (speed > 0) {
         preSpeed = speed;
     }
@@ -452,13 +469,13 @@ Object.keys(outlets).forEach(element => {
 
 if (!dev) {
     $(window).bind('beforeunload', (function() {
-        if (!gameOver) {
+        if (!gameOver && started) {
             return window.confirm();
         }
     }));
 }
 
-for (var i = day; i < 13; i++) {
+for (var i = day; i < 11; i++) {
     day++;
     day < 10 ? calcCOV() : updateStats();
 }

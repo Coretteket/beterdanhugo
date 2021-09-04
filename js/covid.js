@@ -196,7 +196,7 @@ function calcR() {
         for (const [key, value] of Object.entries(a)) { R0 *= siMe(a[key]); }
         for (const [key, value] of Object.entries(c)) { R0 *= siMe(c[key]); }
     }
-    return R0 * randBetween(0.9, 1.1);
+    return R0 * (dev ? 1 : randBetween(0.9, 1.1));
     // return Rts[day] / s.S * s.N;
 }
 
@@ -227,15 +227,12 @@ function calcCOV() {
 
     if (day + 1 < b.Ps.length) { s.P = b.Ps[day] } else {
         s.P = Math.round(s.dIs[day - 7] * r.test() * r.testday() * randBetween(0.85, 1.15));
-        (s.P <= 5) && (s.P = Math.round(randBetween(0, 5)));
     };
     if (day + 1 < b.Hs.length) { s.H = b.Hs[day] } else {
         s.H = Math.round(s.dIs[day - 7] * calcIHR() * randBetween(0.8, 1.2));
-        (s.H <= 5) && (s.H = Math.round(randBetween(0, 5)));
     };
     if (day + 1 < b.Ds.length) { s.D = b.Ds[day] } else {
         s.D = Math.round(s.dFs[day - 7] * r.underdeath() * randBetween(0.8, 1.2));
-        (s.D <= 5) && (s.D = Math.round(randBetween(0, 5)));
     };
 
     s.Ps.push(s.P);

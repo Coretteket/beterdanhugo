@@ -1,3 +1,6 @@
+var url = new URL(window.location.href);
+var dev = (url.searchParams.get("dev") != null);
+
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach((dataset) => {
@@ -16,6 +19,7 @@ function removeData(chart) {
 
 const options = {
     maintainAspectRatio: false,
+    responsive: true,
     plugins: {
         legend: false,
         tooltip: false,
@@ -33,9 +37,13 @@ const options = {
     },
     scales: {
         y: {
+            min: 0,
+            suggestedMax: dev ? 1 : 10,
             type: 'linear',
             grace: '0%',
             ticks: {
+                precision: 0,
+                beginAtZero: true,
                 color: "gray",
                 callback: function(label, index, labels) {
                     return label.toString();
