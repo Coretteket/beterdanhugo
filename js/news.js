@@ -8,28 +8,27 @@ var outlets = {
     "nrc": "NRC Handelsblad",
     "reuters": "Reuters",
     "nyt": "New York Times",
-    "cnn": "CNN"
+    "cnn": "CNN",
+    "ad": "Algemeen Dagblad"
 };
 
 //constant news - dag staat vast, nieuws ook
 var cnws = {
-    11: ["bbc", "China pneumonia outbreak: Mystery virus probed in Wuhan"],
-    15: ["nos", "Tot nu toe 59 gevallen van mysterieuze longziekte in China"],
-    19: ["rtl", "Mysterieuze longziekte lijkt nieuw virus, mogelijk verwant aan SARS"],
-    23: ["volkskrant", "Mysterieus longvirus eist eerste leven: 61-jarige Chinees overleden"],
-    27: ["nyt", "As First Thailand Case Emerges, WHO Urges China to Search for Virus Source"],
-    31: ["nos", "Nieuw virus ook in Japan vastgesteld, patiënt maakt het goed"],
-    35: ["bbc", "New virus in China 'has likely already infected hundreds'"],
-    39: ["rtl", "Chinese overheid: nieuw coronavirus is van mens op mens overdraagbaar"],
-    43: ["nos", "Minister $lname: Nederland goed voorbereid op nieuw virus"]
+    10: ["nos", "Eerste Nederlander met coronavirus opgenomen in Tilburg, ‘man vierde carnaval’"],
+    15: ["nyt", "‘It’s Pure Panic’: In China, Coronavirus Takes Toll on Other Patients"],
+    18: ["ad", "Eerste overleden coronapatiënt (86) uit Oud-Beijerland ‘was ontzettend lieve man’"],
+    24: ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"]
+
 };
 
 //high prio news - dag staat vast, nieuws niet
 var hnws = {
-    // 17: [
-    //     ["c['jan11_warning']", "telegraaf", "Mogelijk meer dan duizend besmet in Wuhan, reisadvies aangepast"],
-    //     ["!c['jan11_warning']", "telegraaf", "Mogelijk meer dan duizend besmet in Wuhan, tientallen Nederlanders gestrand"]
-    // ]
+    21: [
+        ["!anyMeasures()", "nu", "Experts slaan alarm: Nederlandse maatregelen tegen corona dringend nodig"],
+        ["g('lockdown')&&g('edlow')&&g('edmid')", "nu", "Nederland volledig op slot: alleen huis uit als het echt nodig is, scholen ook dicht"],
+        ["g('lockdown')&&g('border')", "nu", "Nederland volledig op slot: alleen huis uit als het echt nodig is, grenzen gesloten"],
+        ["g('lockdown')", "nu", "Nederland volledig op slot: alleen huis uit als het echt nodig is, vermijd groepen"]
+    ]
 }
 
 //low prio news - dag staat niet vast, nieuws ook niet
@@ -46,16 +45,17 @@ function getNews() {
                 source = hnws[day][i][1];
                 title = vars(hnws[day][i][2]);
                 lastNews = day;
-                console.log(dev);
-                break;
+                return;
             }
         }
     } else if (day in cnws) {
         source = cnws[day][0];
         title = vars(cnws[day][1]);
         lastNews = day;
+        return;
+    } else if (day > lastNews + 3) {
+        //
     }
-    // lnws if >=2 days
 }
 
 function vars(a) {

@@ -70,6 +70,14 @@ var c = { //gemaakte keuzes
     jan11warning: [0, 1]
 }
 
+function g(boop) {
+    if (a[boop][0] > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 var r = { //changes in covid dynamic rates, like undercounting
     death: function() {
         f = ![];

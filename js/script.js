@@ -52,6 +52,27 @@ function start() {
     started = true;
 }
 
+function end() {
+    pause();
+    gameOver = true;
+
+    var resImmune = (Math.round(s.R / s.N * 1000) / 10).toLocaleString('nl-NL', { minimumFractionDigits: 0 });;
+    var resImmuneSev = Math.abs((s.R / s.N - 0.047) / 0.047) > .8 ? "veel " : "";
+    var resDeadSev = Math.abs((s.R / s.N - 0.047) / 0.047) > .8 ? "" : "iets ";
+    var resMore = s.R / s.N > 0.047 ? "meer" : "minder";
+    var resGood = s.R / s.N < 0.047 ? "gelukkig" : "helaas";
+    var resDead = (Math.round(s.F / 100) * 100).toLocaleString('nl-NL', { minimumFractionDigits: 0 });
+    q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd zo'n <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>${resImmuneSev}${resMore} mensen</strong> dan de 4,7% die in het echt besmet raakten. Hierdoor vielen er ${resGood} ook ${resDeadSev}${resMore} doden te betreuren in jouw simulatie, er was namelijk een oversterfte van ongeveer <strong>${resDead} mensen</strong>.`;
+
+    setTimeout(function() {
+        q("dash").classList = "d-none";
+        q("news").classList = "d-none";
+        q("gameover").classList = "col-12 col-xl-10 order-2 gameover";
+        // confettiStart = Date.now()
+        // confettiFrame();
+    }, !dev ? 1500 : 0);
+}
+
 function startTimer() {
     startedAt = Date.now();
     requestAnimationFrame(timer);
@@ -71,6 +92,8 @@ function timer() {
 
 function update() {
     day++;
+
+    if (day == dateToInt(2020, 7, 1)) { end(); return; };
 
     var a = intToDate(day);
     q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
@@ -168,6 +191,25 @@ function updateStats() {
     q("deadCount").innerText = s.D;
 }
 
+function pause() {
+    q("s1").style = "opacity:.4;cursor:default;transition:opacity .5s;";
+    q("s2").style = "opacity:.4;cursor:default;transition:opacity .5s;";
+    q("s3").style = "opacity:.4;cursor:default;transition:opacity .5s;";
+    q("toggles").classList = "row freeze";
+    preSpeed = speed;
+    setSpeed(0);
+    paused = true;
+}
+
+function unpause() {
+    q("s1").style = "opacity:1;transition: opacity .5s;";
+    q("s2").style = "opacity:1;transition: opacity .5s;";
+    q("s3").style = "opacity:1;transition: opacity .5s;";
+    q("toggles").classList = "row";
+    paused = false;
+    setSpeed(preSpeed);
+}
+
 function setChoices() {
     getChoices();
     if (cho != "") {
@@ -181,24 +223,13 @@ function setChoices() {
             setchos += "<div class='col-lg-4'><a class='btn txt' onclick='" + value + "'>" + key + "</a></div>"
         }
         q("choice").innerHTML += setchos + "</div>";
-        q("s1").style = "opacity:.4;cursor:default;transition:opacity .5s;";
-        q("s2").style = "opacity:.4;cursor:default;transition:opacity .5s;";
-        q("s3").style = "opacity:.4;cursor:default;transition:opacity .5s;";
-        q("toggles").classList = "row freeze";
-        preSpeed = speed;
-        setSpeed(0);
-        paused = true;
+        pause();
     }
 }
 
 function delActions() {
     q("choice").classList = "d-none";
-    q("s1").style = "opacity:1;transition: opacity .5s;";
-    q("s2").style = "opacity:1;transition: opacity .5s;";
-    q("s3").style = "opacity:1;transition: opacity .5s;";
-    q("toggles").classList = "row";
-    paused = false;
-    if (speed == 0) { setSpeed(preSpeed); }
+    unpause();
 }
 
 function updatePinned(i) {
@@ -263,7 +294,7 @@ var FAQ = false;
 var preSpeed = 0;
 
 function toggleFAQ() {
-    if (FAQ) {
+    if (FAQ && !gameOver) {
         if (!started) {
             q("disclaimermob").classList = "d-block d-md-none"
         }
@@ -273,10 +304,15 @@ function toggleFAQ() {
         q("knowmore").innerHTML = "Meer weten?";
         FAQ = false;
         setSpeed(preSpeed);
+    } else if (FAQ) {
+        q("faq").classList = "d-none";
+        end();
+        FAQ = false;
     } else {
         q("disclaimermob").classList = "d-none"
         q("dash").classList = "d-none";
         q("news").classList = "d-none";
+        q("gameover").classList = "d-none";
         q("faq").classList = "col-12 col-xl-10 order-2";
         q("knowmore").innerHTML = "Terug naar spel.";
         FAQ = true;
@@ -410,8 +446,7 @@ function intToDate(i) {
 var sped = false;
 
 function setSpeed(i) {
-    if (speed == i) return;
-    if (paused) { return; }
+    if (speed == i || paused || gameOver) return;
     sped = true;
     if (speed > 0) {
         preSpeed = speed;
@@ -457,6 +492,40 @@ function removeItem(arr, value) {
     return arr;
 }
 
+// <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+// var colors = ["#F94144", "#F8961E", "#F9C74F", "#43AA8B", "#277DA1"];
+
+// function confettiFrame() {
+//     var mob = $(document).height() > $(document).width();
+//     if (!mob) {
+//         confetti({
+//             particleCount: 5,
+//             angle: 60,
+//             spread: 120,
+//             origin: { x: -.05, y: .4 },
+//             colors: colors,
+//         });
+//         confetti({
+//             particleCount: 5,
+//             angle: 120,
+//             spread: 120,
+//             origin: { x: 1.05, y: .4 },
+//             colors: colors,
+//         });
+//     } else {
+//         confetti({
+//             particleCount: 5,
+//             angle: 270,
+//             spread: 55,
+//             origin: { y: -.5 },
+//             colors: colors,
+//         });
+//     }
+
+//     if (Date.now() < confettiStart + 1000) {
+//         requestAnimationFrame(confettiFrame);
+//     }
+// }
 
 function randBetween(min, max) {
     return Math.random() * (max - min) + min; //Math.floor(

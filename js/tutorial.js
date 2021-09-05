@@ -1,5 +1,4 @@
-var tutdays = [13, 23, 33, 43];
-var byetuts = [22, 32, 42, 52];
+var tutdays = [12, 20, 28, 36, 44];
 
 var tut = [
     ["!anyMeasures();", "Je kan op elk moment een maatregel invoeren of afschaffen door op de bijbehorende knop te klikken."],
@@ -24,6 +23,10 @@ function anyMeasures() {
 
 function showTut() {
     if (tutdays.includes(day) && !dev) {
+        if (tut.length == 0) {
+            remTut();
+            return;
+        }
         console.log(day);
         for (var i = 0; i < tut.length; i++) {
             var tuttxt = "";
@@ -43,10 +46,6 @@ function showTut() {
             }
         }
 
-    }
-    if (nowtut && byetuts.includes(day)) {
-        remTut();
-        nowtut = false;
     }
 }
 
