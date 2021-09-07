@@ -605,14 +605,14 @@ function newsSize() {
         var pos1 = Math.round(q('stats').getBoundingClientRect().bottom);
         var pos2 = Math.round(q('news').getBoundingClientRect().top);
         var height = document.documentElement.clientHeight;
-        q('news').setAttribute("style", "max-height: " + (height - pos2 - 10) + "px;");
+        q('news').setAttribute("style", "height: " + (height - pos2 - 10) + "px;");
         q('scroll').setAttribute("style", "max-height: " + (height - pos1 - 10) + "px;");
     } else {
         var maxheight = q('timechoice').offsetHeight;
         var sheight = q('stats').offsetHeight;
         maxheight += q('col1').offsetHeight;
         maxheight += q('col2').offsetHeight;
-        q('news').setAttribute("style", "max-height: " + maxheight + "px;");
+        q('news').setAttribute("style", "height: " + maxheight + "px;");
         q('scroll').setAttribute("style", "max-height: " + (maxheight - sheight) + "px;");
     }
 }
