@@ -17,7 +17,10 @@ var cnws = {
     10: ["nos", "Eerste Nederlander met coronavirus opgenomen in Tilburg, ‘man vierde carnaval’"],
     15: ["nyt", "‘It’s Pure Panic’: In China, Coronavirus Takes Toll on Other Patients"],
     18: ["ad", "Eerste overleden coronapatiënt (86) uit Oud-Beijerland ‘was ontzettend lieve man’"],
-    24: ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"]
+    24: ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"],
+    25: ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"],
+    26: ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"],
+    27: ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"]
 
 };
 

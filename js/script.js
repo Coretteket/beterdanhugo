@@ -42,13 +42,16 @@ function checkStart() {
 }
 
 function start() {
-    q("main").removeAttribute("class");
+    q("timechoice").removeAttribute("class");
+    q("col1").removeAttribute("class");
+    q("col2").removeAttribute("class");
+    q("news").removeAttribute("class");
     q("start").classList = "d-none";
-    q("pinned").classList = "box d-block d-md-none";
-    q("firstnews").classList = "box d-none d-md-block";
+    q("pinned").classList = "box mob";
+    q("firstnews").classList = "box desk";
     q("chartbox").classList = "box";
-    q("scroll").setAttribute("id", "scrollsmall");
     q("disclaimermob").classList = "d-none"
+    newsSize();
     started = true;
 }
 
@@ -65,11 +68,13 @@ function end() {
     q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd zo'n <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>${resImmuneSev}${resMore} mensen</strong> dan de 4,7% die in het echt besmet raakten. Hierdoor vielen er ${resGood} ook ${resDeadSev}${resMore} doden te betreuren in jouw simulatie, er was namelijk een oversterfte van ongeveer <strong>${resDead} mensen</strong>.`;
 
     setTimeout(function() {
-        q("dash").classList = "d-none";
+        q("timechoice").classList = "d-none";
+        q("col1").classList = "d-none";
+        q("col2").classList = "d-none";
         q("news").classList = "d-none";
-        q("gameover").classList = "col-12 col-xl-10 order-2 gameover";
-        // confettiStart = Date.now()
-        // confettiFrame();
+        q("gameover").classList = "";
+        confettiStart = Date.now()
+        confettiFrame();
     }, !dev ? 1500 : 0);
 }
 
@@ -150,7 +155,7 @@ function setNews() {
     if (title != "") {
         var a = intToDate(day);
         var div = document.createElement('div');
-        div.setAttribute("class", "box d-none d-md-block");
+        div.setAttribute("class", "box desk");
         div.innerHTML += '<img class="logo" src="img/' + source + '.png" width="16" height="16">';
         div.innerHTML += '<p class="app">' + outlets[source] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]] + '</p>';
         div.innerHTML += "<p class='newstitle'>" + title + "</p>";
@@ -168,7 +173,7 @@ function setNews() {
         }
 
         /*if (snws.length > 5) {
-            q("news").children[7].setAttribute("class", "rembox d-none d-md-block");
+            q("news").children[7].setAttribute("class", "rembox desk");
         }*/
 
     }
@@ -195,7 +200,8 @@ function pause() {
     q("s1").style = "opacity:.4;cursor:default;transition:opacity .5s;";
     q("s2").style = "opacity:.4;cursor:default;transition:opacity .5s;";
     q("s3").style = "opacity:.4;cursor:default;transition:opacity .5s;";
-    q("toggles").classList = "row freeze";
+    q("col1").classList = "freeze";
+    q("col2").classList = "freeze";
     preSpeed = speed;
     setSpeed(0);
     paused = true;
@@ -294,26 +300,38 @@ var FAQ = false;
 var preSpeed = 0;
 
 function toggleFAQ() {
-    if (FAQ && !gameOver) {
-        if (!started) {
-            q("disclaimermob").classList = "d-block d-md-none"
-        }
-        q("dash").classList = "col-md-6 col-lg-7 col-xl-6 order-3 order-md-2";
-        q("news").classList = "col-md-6 col-lg-5 col-xl-4 order-2 order-md-3";
+    if (FAQ && !gameOver && started) {
+        window.scrollTo(0, 0);
+        q("timechoice").classList = "";
+        q("col1").classList = "";
+        q("col2").classList = "";
+        q("news").classList = "";
         q("faq").classList = "d-none";
         q("knowmore").innerHTML = "Meer weten?";
         FAQ = false;
         setSpeed(preSpeed);
-    } else if (FAQ) {
+    } else if (FAQ && !started) {
+        window.scrollTo(0, 0);
+        q("disclaimermob").classList = "mob";
+        q("start").classList = "";
         q("faq").classList = "d-none";
-        end();
+        FAQ = false;
+        q("knowmore").innerHTML = "Meer weten?";
+    } else if (FAQ && gameover) {
+        window.scrollTo(0, 0);
+        q("faq").classList = "d-none";
+        q("gameover").classList = "";
         FAQ = false;
     } else {
-        q("disclaimermob").classList = "d-none"
-        q("dash").classList = "d-none";
-        q("news").classList = "d-none";
+        window.scrollTo(0, 0);
+        q("disclaimermob").classList = "d-none";
         q("gameover").classList = "d-none";
-        q("faq").classList = "col-12 col-xl-10 order-2";
+        q("timechoice").classList = "d-none";
+        q("col1").classList = "d-none";
+        q("col2").classList = "d-none";
+        q("news").classList = "d-none";
+        q("start").classList = "d-none";
+        q("faq").classList = "";
         q("knowmore").innerHTML = "Terug naar spel.";
         FAQ = true;
         preSpeed = speed;
@@ -492,40 +510,40 @@ function removeItem(arr, value) {
     return arr;
 }
 
-// <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
-// var colors = ["#F94144", "#F8961E", "#F9C74F", "#43AA8B", "#277DA1"];
 
-// function confettiFrame() {
-//     var mob = $(document).height() > $(document).width();
-//     if (!mob) {
-//         confetti({
-//             particleCount: 5,
-//             angle: 60,
-//             spread: 120,
-//             origin: { x: -.05, y: .4 },
-//             colors: colors,
-//         });
-//         confetti({
-//             particleCount: 5,
-//             angle: 120,
-//             spread: 120,
-//             origin: { x: 1.05, y: .4 },
-//             colors: colors,
-//         });
-//     } else {
-//         confetti({
-//             particleCount: 5,
-//             angle: 270,
-//             spread: 55,
-//             origin: { y: -.5 },
-//             colors: colors,
-//         });
-//     }
+var colors = ["#F94144", "#F8961E", "#F9C74F", "#43AA8B", "#277DA1"];
 
-//     if (Date.now() < confettiStart + 1000) {
-//         requestAnimationFrame(confettiFrame);
-//     }
-// }
+function confettiFrame() {
+    var mob = $(document).height() > $(document).width();
+    if (!mob) {
+        confetti({
+            particleCount: 5,
+            angle: 60,
+            spread: 120,
+            origin: { x: -.05, y: .4 },
+            colors: colors,
+        });
+        confetti({
+            particleCount: 5,
+            angle: 120,
+            spread: 120,
+            origin: { x: 1.05, y: .4 },
+            colors: colors,
+        });
+    } else {
+        confetti({
+            particleCount: 5,
+            angle: 270,
+            spread: 55,
+            origin: { y: -.5 },
+            colors: colors,
+        });
+    }
+
+    if (Date.now() < confettiStart + 1000) {
+        requestAnimationFrame(confettiFrame);
+    }
+}
 
 function randBetween(min, max) {
     return Math.random() * (max - min) + min; //Math.floor(
@@ -581,3 +599,24 @@ for (var i = day; i < 11; i++) {
 var aa = intToDate(day);
 q("date").innerHTML = aa[2] + " " + mos[aa[1]] + " " + aa[0];
 setChoices();
+
+function newsSize() {
+    if (q('col1').offsetHeight == q('col2').offsetHeight) {
+        var pos1 = Math.round(q('stats').getBoundingClientRect().bottom);
+        var pos2 = Math.round(q('news').getBoundingClientRect().top);
+        var height = document.documentElement.clientHeight;
+        q('news').setAttribute("style", "max-height: " + (height - pos2 - 10) + "px;");
+        q('scroll').setAttribute("style", "max-height: " + (height - pos1 - 10) + "px;");
+    } else {
+        var maxheight = q('timechoice').offsetHeight;
+        var sheight = q('stats').offsetHeight;
+        maxheight += q('col1').offsetHeight;
+        maxheight += q('col2').offsetHeight;
+        q('news').setAttribute("style", "max-height: " + maxheight + "px;");
+        q('scroll').setAttribute("style", "max-height: " + (maxheight - sheight) + "px;");
+    }
+}
+
+window.addEventListener('resize', function(event) {
+    newsSize();
+}, true);
