@@ -197,7 +197,7 @@ b {
 
 #faqbtn,
 #colormode {
-    margin-right: .5em;
+    padding-right: .5em;
 }
 
 .fa-moon {
@@ -949,7 +949,7 @@ strong {
         margin: 0;
         margin-bottom: .6em;
         text-align: left;
-        font-size: 1.1em;
+        font-size: 1.2em;
         color: var(--light-txt);
         font-weight: 700;
     }
