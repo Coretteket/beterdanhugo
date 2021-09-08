@@ -609,7 +609,7 @@ function newsSize() {
         q('scroll').setAttribute("style", "max-height: " + (height - pos1 - 10) + "px;");
     } else {
         var maxheight = q('timechoice').offsetHeight;
-        var sheight = q('stats').offsetHeight;
+        var sheight = q('stats').offsetHeight + 10;
         maxheight += q('col1').offsetHeight;
         maxheight += q('col2').offsetHeight;
         q('news').setAttribute("style", "max-height: " + maxheight + "px;");

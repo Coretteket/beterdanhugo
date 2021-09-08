@@ -481,6 +481,14 @@ a {
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 button,
 input,
 optgroup,
@@ -591,6 +599,7 @@ textarea {
 #givename .btn {
     margin: 0;
     margin-left: .4em;
+    width: 30px;
 }
 
 #givename .btn:hover {

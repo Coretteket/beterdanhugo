@@ -27,7 +27,6 @@ function showTut() {
             remTut();
             return;
         }
-        console.log(day);
         for (var i = 0; i < tut.length; i++) {
             var tuttxt = "";
             for (var j = 0; j < tut[i].length; j += 2) {
