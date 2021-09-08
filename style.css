@@ -100,7 +100,6 @@ p {
 
 #timechoice {
     grid-area: timechoice;
-    max-height: 0em!important;
 }
 
 #col1 {
@@ -920,9 +919,6 @@ strong {
 }
 
 @media (max-width: 900px) {
-    #timechoice {
-        max-height: none!important;
-    }
     .txt {
         padding-top: .4em;
         padding-bottom: .4em;
