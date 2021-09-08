@@ -31,7 +31,7 @@ main {
     padding: 0 3vw;
     display: grid;
     gap: 0 1em;
-    grid-template-rows: auto;
+    grid-template-rows: repeat(5, auto) 4em auto;
     grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) 350px;
     grid-template-areas: "title title twitter" "head head head" "faq faq faq" "start start start" "gameover gameover gameover" "timechoice timechoice news" "col1 col2 news";
 }
@@ -46,6 +46,7 @@ main {
 
 @media (max-width: 900px) {
     main {
+        grid-template-rows: auto;
         grid-template-columns: 1fr 350px;
         grid-template-areas: "title twitter" "head head" "gameover gameover" "faq faq" "start start" "timechoice news" "col1 news" "col2 news";
     }
