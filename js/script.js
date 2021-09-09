@@ -60,8 +60,8 @@ function end() {
     gameOver = true;
 
     var resImmune = (Math.round(s.R / s.N * 1000) / 10).toLocaleString('nl-NL', { minimumFractionDigits: 0 });;
-    var resImmuneSev = Math.abs((s.R / s.N - 0.047) / 0.047) > .8 ? "veel " : "";
-    var resDeadSev = Math.abs((s.R / s.N - 0.047) / 0.047) > .8 ? "" : "iets ";
+    var resImmuneSev = Math.abs((s.R / s.N - 0.047) / 0.047) > .5 ? "veel " : "";
+    var resDeadSev = Math.abs((s.R / s.N - 0.047) / 0.047) > .5 ? "" : "iets ";
     var resMore = s.R / s.N > 0.047 ? "meer" : "minder";
     var resGood = s.R / s.N < 0.047 ? "gelukkig" : "helaas";
     var resDead = (Math.round(s.F / 100) * 100).toLocaleString('nl-NL', { minimumFractionDigits: 0 });
@@ -156,7 +156,7 @@ function setNews() {
         var a = intToDate(day);
         var div = document.createElement('div');
         div.setAttribute("class", "box desk");
-        div.innerHTML += '<img class="logo" src="img/' + source + '.png" width="16" height="16">';
+        div.innerHTML += '<img class="logo" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo">';
         div.innerHTML += '<p class="app">' + outlets[source] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]] + '</p>';
         div.innerHTML += "<p class='newstitle'>" + title + "</p>";
         var news = q("tut");
@@ -244,7 +244,7 @@ function updatePinned(i) {
     }
     var pin = q('content');
     var a = intToDate(snws[i][1]);
-    pin.children[0].setAttribute('src', 'img/' + snws[i][0] + '.png');
+    pin.children[0].setAttribute('src', 'img/' + snws[i][0] + '.jpg');
     pin.children[1].innerHTML = outlets[snws[i][0]] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]];
     pin.children[3].innerHTML = snws[i][2];
 
@@ -581,7 +581,7 @@ document.addEventListener('keypress', (function(event) {
 
 Object.keys(outlets).forEach(element => {
     var img = new Image();
-    img.src = "./img/" + element + ".png";
+    img.src = "./img/" + element + ".jpg";
 });
 
 if (!dev) {

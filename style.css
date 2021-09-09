@@ -28,7 +28,7 @@ body {
 main {
     max-width: 924px;
     margin: 0 auto;
-    padding: 0 3vw;
+    padding: 0 min(5vw,25px);
     display: grid;
     gap: 0 1em;
     grid-template-rows: repeat(5, auto) 4em auto;
@@ -380,7 +380,7 @@ a {
 }
 
 #firstnews {
-    margin-bottom: 25px;
+    margin-bottom: 75px;
 }
 
 #news {
@@ -449,6 +449,15 @@ a {
     width: 32px;
     height: 32px;
     margin-top: .2em;
+    background-color: var(--back);
+}
+
+.tsel {
+    background-color: var(--dark-txt)!important;
+}
+
+.tsel i {
+    color: var(--back)!important;
 }
 
 #disclaimermob,
@@ -486,7 +495,7 @@ textarea,
 button,
 select,
 a {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 button,
@@ -547,13 +556,7 @@ textarea {
     color: var(--dark-txt);
 }
 
-.tsel {
-    background-color: var(--dark-txt);
-}
 
-.tsel i {
-    color: var(--back);
-}
 
 .active {
     opacity: 60%;
@@ -703,6 +706,7 @@ hr {
 }
 
 .statbtn:hover {
+    transform: scale(1.01);
     background-color: var(--stat-back);
 }
 
@@ -765,6 +769,7 @@ hr {
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
+    margin-bottom: 1em;
 }
 
 strong {

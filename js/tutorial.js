@@ -1,10 +1,10 @@
 var tutdays = [12, 20, 28, 36, 44];
 
 var tut = [
-    ["!anyMeasures();", "Je kan op elk moment een maatregel invoeren of afschaffen door op de bijbehorende knop te klikken."],
-    ["!toggled", "<span class='d-none d-md-inline'>Hierboven</span><span class='d-inline d-md-none'>Bovenaan</span> staan actuele cijfers over de verspreiding van corona. Met de knoppen kan je de verschillende grafieken zien."],
-    ["!sped", "Met de tijdsknoppen <span class='d-none d-md-inline'>links</span><span class='d-inline d-md-none'>hieronder</span> kan je de simulatie versnellen of op pauze zetten."],
-    ["anytuts", "Het is belangrijk om het nieuws <span class='d-none d-md-inline'>hieronder</span><span class='d-inline d-md-none'>hierboven</span> in de gaten te houden, zodat je weet wat er in de samenleving speelt."]
+    ["!anyMeasures();", "Je kan op elk moment een maatregel invoeren of afschaffen door <span class='desk'>links</span><span class='mob'>hieronder</span> op één van de knoppen te klikken."],
+    ["!toggled", "<span class='desk'>Hierboven</span><span class='mob'>Bovenaan</span> staan actuele cijfers over de verspreiding van corona. Met de knoppen kan je de verschillende grafieken zien."],
+    ["!sped", "Met de tijdsknoppen <span class='desk'>links</span><span class='mob'>hieronder</span> kan je de simulatie versnellen of op pauze zetten."],
+    ["anytuts", "Het is belangrijk om het nieuws <span class='desk'>hieronder</span><span class='mob'>hierboven</span> in de gaten te houden, zodat je weet wat er in de samenleving speelt."]
 ]
 
 var anymeas = false;
