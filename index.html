@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <title>Beter dan Hugo</title>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script> -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
     <script src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous"></script>
     <link type="text/css" rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,7 +44,9 @@
             <h1>Beter dan Hugo</h1>
         </div>
         <div id="twitter">
-            <a onclick="colorSwitch();" id="colormode"><i class="fas fa-moon"></i></a><a onclick="toggleFAQ();" id="faqbtn"><i class="fas fa-question-circle"></i></a><a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank"><i class="fab fa-twitter"></i> @coretteket</a>
+            <a onclick="colorSwitch();" id="colormode"><i class="fas fa-moon"></i></a>
+            <a onclick="toggleFAQ();" id="faqbtn"><i class="fas fa-question-circle"></i></a>
+            <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank"><i class="fab fa-twitter"></i> @coretteket</a>
         </div>
         <div id="head">
             <p>De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke maatregel die je invoert heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister. <a id="knowmore" class="more" onclick="toggleFAQ();">Lees meer.</a></p>
@@ -60,15 +62,15 @@
             </div>
             <div id="disclaimer" class="desk">Disclaimer: dit is een spel, en dus geen realistische simulatie.</div>
         </div>
-        <div id="timechoice" class="d-none">
+        <div id="timechoice" class="hide">
             <p id="today">Het is vandaag <span id="date">27 februari 2020</span>. </p>
             <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i class="fas fa-pause"></i></a>
             <a onclick="setSpeed(1);" id="s1" class="btn nudge"><i class="fas fa-play"></i></a>
             <a onclick="setSpeed(2);" id="s2" class="btn"><i class="fas fa-step-forward"></i></a>
             <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
-            <div id="choice" class="d-none"></div>
+            <div id="choice" class="hide"></div>
         </div>
-        <div id="col1" class="d-none">
+        <div id="col1" class="hide">
             <div id="btns-base">
                 <b>Basisregels</b>
                 <a class="btn txt" id="btn-socdis" onclick="toggleBtn('socdis');">Afstand houden</a>
@@ -89,7 +91,7 @@
                 <a class="btn txt" id="btn-shops" onclick="toggleBtn('shops');">Winkels sluiten</a>
             </div>
         </div>
-        <div id="col2" class="d-none">
+        <div id="col2" class="hide">
             <div id="btns-edu">
                 <b>Onderwijs</b>
                 <a class="btn txt" id="btn-edlow" onclick="toggleBtn('edlow');">Basisscholen sluiten</a>
@@ -104,16 +106,16 @@
             </div>
         </div>
         </div>
-        <div id="news" class="d-none">
+        <div id="news" class="hide">
             <div id="stats">
-                <div id="chartbox" class="box d-none">
+                <div id="chartbox" class="box">
                     <div class="chartcnt" id="testCnt">
                         <canvas id="testChart" style="width:100%;"></canvas>
                     </div>
-                    <div class="chartcnt d-none" id="hospCnt">
+                    <div class="chartcnt hide" id="hospCnt">
                         <canvas id="hospChart" style="width:100%;"></canvas>
                     </div>
-                    <div class="chartcnt d-none" id="deadCnt">
+                    <div class="chartcnt hide" id="deadCnt">
                         <canvas id="deadChart" style="width:100%;"></canvas>
                     </div>
                     <div class="statbtns">
@@ -125,7 +127,7 @@
             </div>
             <div id="shadow" class="desk"></div>
             <div id="scroll">
-                <div class="box d-none" id="pinned">
+                <div class="box mob" id="pinned">
                     <div id="content">
                         <img src="img/nos.jpg" width="16" height="16" alt="NOS logo">
                         <p class="app">NOS &ndash; do. 27 februari</p>
@@ -137,26 +139,26 @@
                         <a onclick="updatePinned(currentPinned-1);"><img src="img/up.png" class="inactive" width="28" height="28" id="down" alt="Lees ouder nieuws"></a>
                     </div>
                 </div>
-                <div id="tut" class="box tut d-none"></div>
-                <div id="firstnews" class="box d-none">
+                <div id="tut" class="box tut hide"></div>
+                <div id="firstnews" class="box desk">
                     <img class="logo" src="img/nos.jpg" width="16" height="16" alt="NOS logo">
                     <p class="app">NOS &ndash; do. 27 februari</p>
                     <p class="newstitle">Eerste Nederlander met coronavirus opgenomen in Tilburg, ‘man vierde carnaval’</p>
                 </div>
             </div>
         </div>
-        <div id="gameover" class="d-none">
-            <b>Gefeliciteerd, je hebt de eerste golf overleefd! 🎉</b>
+        <div id="gameover" class="hide">
+            <b>Gefeliciteerd, je hebt de eerste golf overleefd!
+                <!-- 🎉 -->
+            </b>
             <p>Bedankt dat je de bèta-versie van Beter dan Hugo hebt geprobeerd! De uiteindelijke versie zal de gehele pandemie bevatten, waaronder dus ook nieuwe corona&shy;varianten, vaccinaties, en, jawel, de CDA-lijst&shy;trekkers&shy;verkiezing. Tot die tijd zou het me heel erg helpen als je je feedback over het spel met me deelt in een DM.</p>
             <a href="https://twitter.com/messages/compose?recipient_id=793888775223046144" rel="noreferrer" target="_blank" class="btn txt faqbtn">Stuur Twitter DM</a>
             <p id="results"></p>
-            <p>Natuurlijk kan je het ook nog een keer proberen, om te kijken wat er zou gebeuren als je eerder of juist later, meer of juist minder maatregelen zou nemen.</p>
+            <p>Natuurlijk kan je het altijd opnieuw proberen, om te kijken hoe het virus en de samenleving reageert als je op een ander moment, andere maatregelen zou nemen.</p>
             <a onclick="window.location.reload(false);" class="btn txt faqbtn">Opnieuw spelen</a>
         </div>
-        <div id="faq" class="d-none faqtext">
+        <div id="faq" class="hide faqtext">
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.</p>
-            <p>Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia.</p>
-            <p>Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Sed lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci. Nunc nec neque. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi.</p>
             </p>
             <a onclick="toggleFAQ();" class="btn txt faqbtn">Terug naar spel</a>
             <a href="https://twitter.com/messages/compose?recipient_id=793888775223046144" rel="noreferrer" target="_blank" class="btn txt faqbtn">Stuur DM</a>
@@ -167,6 +169,7 @@
     <script type="text/javascript" src="./js/graph.js"></script>
     <script type="text/javascript" src="./js/choice.js"></script>
     <script type="text/javascript" src="./js/tutorial.js"></script>
+    <script type="text/javascript" src="./js/stability.js"></script>
     <script type="text/javascript" src="./js/news.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
 </body>

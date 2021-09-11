@@ -45,25 +45,25 @@ function siMe(arr) { //simplemeasure
 }
 
 var a = { //geselecteerde acties
-    workhome: [0, .95, 1, 3],
-    socdis: [0, .95, 1, 3],
-    masks: [0, .9, 1.1, 3],
+    workhome: [0, .95, 1, 3, 2],
+    socdis: [0, .95, 1, 3, 4],
+    masks: [0, .9, 1.1, 3, 1],
 
-    events: [0, .85, 1.4, 7],
-    theater: [0, .9, 1.05, 7],
-    gather: [0, .9, 1.1, 7],
+    events: [0, .85, 1.4, 7, 5],
+    theater: [0, .9, 1.05, 7, 4],
+    gather: [0, .9, 1.1, 7, 8],
 
-    horeca: [0, .85, 1.05, 7],
-    clubs: [0, .9, 1.5, 7],
-    shops: [0, .85, 1.05, 7],
+    horeca: [0, .85, 1.05, 7, 8],
+    clubs: [0, .9, 1.5, 7, 3],
+    shops: [0, .85, 1.05, 7, 7],
 
-    edlow: [0, .925, 1, 7],
-    edmid: [0, .875, 1.2, 7],
-    eduni: [0, .815, 1.2, 7],
+    edlow: [0, .925, 1, 7, 10],
+    edmid: [0, .875, 1.2, 7, 7],
+    eduni: [0, .815, 1.2, 7, 5],
 
-    lockdown: [0, .85, 1.05, 7],
-    curfew: [0, .925, 1.2, 7],
-    border: [0, .9, 1.2, 7]
+    lockdown: [0, .85, 1.05, 7, 20],
+    curfew: [0, .925, 1.2, 7, 10],
+    border: [0, .95, 1.2, 7, 8]
 }
 
 var c = { //gemaakte keuzes
@@ -99,8 +99,9 @@ var r = { //changes in covid dynamic rates, like undercounting
         f = ![];
         lin(0, 0.015, 0, 20);
         lin(0.015, 0.033, 20, 30);
-        lin(0.033, 0.033, 30, 80);
-        lin(0.033, 0.1, 80, 130);
+        lin(0.033, 0.033, 30, 45);
+        lin(0.033, 0.044, 45, 80);
+        lin(0.044, 0.1, 80, 130);
         lin(0.1, 0.32, 130, 150);
         lin(0.32, 0.32, 150, -1);
         return ans;
@@ -174,7 +175,9 @@ var s = { // spread info
 
     Ps: [0],
     Hs: [0],
-    Ds: [0]
+    Ds: [0],
+
+    Xs: [0]
 }
 
 var b = { //preset constant beginning values
@@ -185,7 +188,7 @@ var b = { //preset constant beginning values
 }
 
 function calcIFR() {
-    var ifr = 0.011;
+    var ifr = 0.0105;
     return ifr * r.death();
 
 }

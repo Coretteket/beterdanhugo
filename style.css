@@ -78,7 +78,7 @@ p {
     margin-bottom: 1rem;
 }
 
-.d-none {
+.hide {
     display: none!important;
 }
 
@@ -264,8 +264,8 @@ a {
 }
 
 .choice {
-    -webkit-animation: swipe .2s;
-    animation: swipe .2s;
+    -webkit-animation: swipe .4s;
+    animation: swipe .4s;
 }
 
 .choice a {
@@ -296,8 +296,8 @@ a {
 .box:not(#chartbox) {
     -webkit-animation-name: swipe;
     animation-name: swipe;
-    -webkit-animation-duration: .2s;
-    animation-duration: .2s;
+    -webkit-animation-duration: .4s;
+    animation-duration: .4s;
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
 }
@@ -410,7 +410,7 @@ a {
     color: var(--back);
     border-radius: 20%;
     padding: .5px 3px;
-    margin-left: 3px;
+    margin-left: 6px;
 }
 
 #sdown,

@@ -12,52 +12,49 @@ var outlets = {
     "ad": "Algemeen Dagblad"
 };
 
-//constant news - dag staat vast, nieuws ook
-var cnws = {
-    10: ["nos", "Eerste Nederlander met coronavirus opgenomen in Tilburg, ‘man vierde carnaval’"],
-    15: ["nyt", "‘It’s Pure Panic’: In China, Coronavirus Takes Toll on Other Patients"],
-    18: ["ad", "Eerste overleden coronapatiënt (86) uit Oud-Beijerland ‘was ontzettend lieve man’"],
-    24: ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"],
-    25: ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"],
-    26: ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"],
-    27: ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"]
-
-};
-
-//high prio news - dag staat vast, nieuws niet
-var hnws = {
+var nws = {
+    11: [
+        ["nos", "Eerste Nederlander met coronavirus opgenomen in Tilburg, ‘man vierde carnaval’"],
+        ["telegraaf", "Eerste opgenomen corona-patiënt is 56-jarige zakenman uit Loon op Zand"],
+        ["nu", "RIVM: eerste coronageval in Nederland, man kwam uit risicogebied Italië"]
+    ],
+    15: [
+        ["nyt", "‘It’s Pure Panic’: In China, Coronavirus Takes Toll on Other Patients"]
+    ],
+    18: [
+        ["ad", "Eerste overleden coronapatiënt (86) uit Oud-Beijerland ‘was ontzettend lieve man’"]
+    ],
+    24: [
+        ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"]
+    ],
     21: [
         ["!anyMeasures()", "nu", "Experts slaan alarm: Nederlandse maatregelen tegen corona dringend nodig"],
-        ["g('lockdown')&&g('edlow')&&g('edmid')", "nu", "Nederland volledig op slot: alleen huis uit als het echt nodig is, scholen ook dicht"],
+        ["g('lockdown')&&g('edlow')&&g('edmid')", "nu", "Nederland volledig op slot: alleen huis uit als het nodig is, scholen ook dicht"],
         ["g('lockdown')&&g('border')", "nu", "Nederland volledig op slot: alleen huis uit als het echt nodig is, grenzen gesloten"],
         ["g('lockdown')", "nu", "Nederland volledig op slot: alleen huis uit als het echt nodig is, vermijd groepen"]
     ]
 }
 
-//low prio news - dag staat niet vast, nieuws ook niet
-var lnws = {
-
-}
-
 var lastNews = -1;
 
 function getNews() {
-    if (day in hnws) {
-        for (var i = 0; i < hnws[day].length; i++) {
-            if (eval(hnws[day][i][0])) {
-                source = hnws[day][i][1];
-                title = vars(hnws[day][i][2]);
-                lastNews = day;
-                return;
+    if (day in nws) {
+        if (Object.keys(outlets).includes(nws[day][0][0])) {
+            rI = randInt(0, nws[day].length - 1);
+            source = nws[day][rI][0];
+            title = vars(nws[day][rI][1]);
+            lastNews = day;
+            return;
+        } else {
+            for (var i = 1; i < nws[day].length - 1; i++) {
+                if (eval(nws[day][i][0])) {
+                    source = nws[day][i][1];
+                    title = vars(nws[day][i][2]);
+                    lastNews = day;
+                    return;
+                }
             }
         }
-    } else if (day in cnws) {
-        source = cnws[day][0];
-        title = vars(cnws[day][1]);
-        lastNews = day;
-        return;
-    } else if (day > lastNews + 3) {
-        //
     }
 }
 

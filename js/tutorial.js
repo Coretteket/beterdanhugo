@@ -46,6 +46,9 @@ function showTut() {
         }
 
     }
+    if (tutdays.includes(day+1) && !dev) {
+        remTut();
+    }
 }
 
 function remTut() {

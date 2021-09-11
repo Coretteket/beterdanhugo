@@ -31,26 +31,18 @@ function checkStart() {
     var starttxt = q("starttxt");
     if (lname.replace(/ /g, '') == "") {
         starttxt.innerText = "Kies eerst een achternaam.";
-        setTimeout((function() { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
+        setTimeout((() => { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
     } else if (lname.length > 25) {
         starttxt.innerText = "Kies een kortere achternaam.";
-        setTimeout((function() { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
+        setTimeout((() => { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
     } else {
-        //
         start();
     }
 }
 
 function start() {
-    q("timechoice").removeAttribute("class");
-    q("col1").removeAttribute("class");
-    q("col2").removeAttribute("class");
-    q("news").removeAttribute("class");
-    q("start").classList = "d-none";
-    q("pinned").classList = "box mob";
-    q("firstnews").classList = "box desk";
-    q("chartbox").classList = "box";
-    q("disclaimermob").classList = "d-none"
+    show("timechoice", "col1", "col2", "news");
+    hide("start", "disclaimermob");
     newsSize();
     started = true;
 }
@@ -58,23 +50,24 @@ function start() {
 function end() {
     pause();
     gameOver = true;
-
+    var prop = Math.abs((s.R / s.N - 0.047) / 0.047);
     var resImmune = (Math.round(s.R / s.N * 1000) / 10).toLocaleString('nl-NL', { minimumFractionDigits: 0 });;
-    var resImmuneSev = Math.abs((s.R / s.N - 0.047) / 0.047) > .5 ? "veel " : "";
-    var resDeadSev = Math.abs((s.R / s.N - 0.047) / 0.047) > .5 ? "" : "iets ";
-    var resMore = s.R / s.N > 0.047 ? "meer" : "minder";
-    var resGood = s.R / s.N < 0.047 ? "gelukkig" : "helaas";
     var resDead = (Math.round(s.F / 100) * 100).toLocaleString('nl-NL', { minimumFractionDigits: 0 });
-    q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd zo'n <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>${resImmuneSev}${resMore} mensen</strong> dan de 4,7% die in het echt besmet raakten. Hierdoor vielen er ${resGood} ook ${resDeadSev}${resMore} doden te betreuren in jouw simulatie, er was namelijk een oversterfte van ongeveer <strong>${resDead} mensen</strong>.`;
+    if (prop < .1) {
+        var resImmuneSev = prop > .5 ? "veel " : "";
+        var resDeadSev = prop > .5 ? "" : "iets ";
+        var resMore = s.R / s.N > 0.047 ? "meer" : "minder";
+        var resGood = s.R / s.N < 0.047 ? "gelukkig" : "helaas";
+        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>${resImmuneSev}${resMore} mensen</strong> dan de 4,7% die in het echt besmet raakten. Hierdoor vielen er ${resGood} ook ${resDeadSev}${resMore} doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
+    } else {
+        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>ongeveer evenveel mensen</strong> als de 4,7% die in het echt besmet raakten. Hierdoor vielen er helaas ook een vergelijkbaar aantal doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
+    }
 
-    setTimeout(function() {
-        q("timechoice").classList = "d-none";
-        q("col1").classList = "d-none";
-        q("col2").classList = "d-none";
-        q("news").classList = "d-none";
-        q("gameover").classList = "";
-        confettiStart = Date.now()
-        confettiFrame();
+    setTimeout(() => {
+        hide("timechoice", "col1", "col2", "news");
+        show("gameover");
+        // confettiStart = Date.now()
+        // confettiFrame();
     }, !dev ? 1500 : 0);
 }
 
@@ -103,12 +96,13 @@ function update() {
     var a = intToDate(day);
     q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
 
-    updateStats();
     setNews();
     setChoices();
     showActions();
     checkBtn();
     showTut();
+    getIndex();
+    updateStats();
 }
 
 // function timer() {
@@ -142,9 +136,7 @@ function update() {
 var title = "";
 var source = "";
 
-var snws = [
-    ["reuters", "-1", "Chinese officials investigate cause of pneumonia outbreak in Wuhan"]
-];
+var snws = [];
 
 function setNews() {
     title = ""
@@ -152,7 +144,15 @@ function setNews() {
 
     getNews();
 
-    if (title != "") {
+    if (day == 11) {
+        var div = q("firstnews");
+        div.innerHTML = '<img class="logo" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' &ndash; do. 27 februari</p><p class="newstitle">' + title + '</p>';
+        var div = q("content");
+        div.innerHTML = '<img src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' &ndash; do. 27 februari</p><a id="totop" onclick="updatePinned(snws.length-1);" style="opacity: 0;">+1</a><p class="newstitle">' + title + '</p>';
+        snws = [
+            [source, "-1", title]
+        ];
+    } else if (title != "") {
         var a = intToDate(day);
         var div = document.createElement('div');
         div.setAttribute("class", "box desk");
@@ -186,8 +186,8 @@ function updateStats() {
     addData(testChart, day, s.P);
     q("testCount").innerText = s.P;
     if (dev) {
-        addData(hospChart, day, calcR());
-        q("hospCount").innerText = Math.round(calcR() * 100) / 100;
+        addData(hospChart, day, index);
+        q("hospCount").innerText = Math.round(index);
     } else {
         addData(hospChart, day, s.H);
         q("hospCount").innerText = s.H;
@@ -234,7 +234,7 @@ function setChoices() {
 }
 
 function delActions() {
-    q("choice").classList = "d-none";
+    hide("choice");
     unpause();
 }
 
@@ -270,30 +270,17 @@ function updatePinned(i) {
 
 var toggled = false;
 
+
 function toggleStat(s) {
+    var o = ["test", "hosp", "dead"];
+    if (!o.includes(s)) return;
     toggled = true;
-    if (s == 'test') {
-        q("testCnt").classList = "chartcnt";
-        q("hospCnt").classList = "chartcnt d-none";
-        q("deadCnt").classList = "chartcnt d-none";
-        q("testBtn").classList = "col statbtn statbtnactive";
-        q("hospBtn").classList = "col statbtn";
-        q("deadBtn").classList = "col statbtn";
-    } else if (s == 'hosp') {
-        q("hospCnt").classList = "chartcnt";
-        q("testCnt").classList = "chartcnt d-none";
-        q("deadCnt").classList = "chartcnt d-none";
-        q("hospBtn").classList = "col statbtn statbtnactive";
-        q("testBtn").classList = "col statbtn";
-        q("deadBtn").classList = "col statbtn";
-    } else if (s == 'dead') {
-        q("deadCnt").classList = "chartcnt";
-        q("testCnt").classList = "chartcnt d-none";
-        q("hospCnt").classList = "chartcnt d-none";
-        q("deadBtn").classList = "col statbtn statbtnactive";
-        q("testBtn").classList = "col statbtn";
-        q("hospBtn").classList = "col statbtn";
-    }
+    removeItem(o, s);
+    show(s + "Cnt");
+    hide(o[0] + "Cnt", o[1] + "Cnt");
+    q(s + "Btn").classList.add("statbtnactive");
+    q(o[0] + "Btn").classList.remove("statbtnactive");
+    q(o[1] + "Btn").classList.remove("statbtnactive");
 }
 
 var FAQ = false;
@@ -302,36 +289,26 @@ var preSpeed = 0;
 function toggleFAQ() {
     if (FAQ && !gameOver && started) {
         window.scrollTo(0, 0);
-        q("timechoice").classList = "";
-        q("col1").classList = "";
-        q("col2").classList = "";
-        q("news").classList = "";
-        q("faq").classList = "d-none";
+        show("timechoice", "col1", "col2", "news");
+        hide("faq");
         q("knowmore").innerHTML = "Meer weten?";
         FAQ = false;
         setSpeed(preSpeed);
     } else if (FAQ && !started) {
         window.scrollTo(0, 0);
-        q("disclaimermob").classList = "mob";
-        q("start").classList = "";
-        q("faq").classList = "d-none";
-        FAQ = false;
+        show("disclaimermob", "start");
+        hide("faq");
         q("knowmore").innerHTML = "Meer weten?";
+        FAQ = false;
     } else if (FAQ && gameover) {
         window.scrollTo(0, 0);
-        q("faq").classList = "d-none";
-        q("gameover").classList = "";
+        hide("faq");
+        show("gameover");
         FAQ = false;
     } else {
         window.scrollTo(0, 0);
-        q("disclaimermob").classList = "d-none";
-        q("gameover").classList = "d-none";
-        q("timechoice").classList = "d-none";
-        q("col1").classList = "d-none";
-        q("col2").classList = "d-none";
-        q("news").classList = "d-none";
-        q("start").classList = "d-none";
-        q("faq").classList = "";
+        hide("disclaimermob", "gameover", "timechoice", "col1", "col2", "news", "start");
+        show("faq");
         q("knowmore").innerHTML = "Terug naar spel.";
         FAQ = true;
         preSpeed = speed;
@@ -511,50 +488,66 @@ function removeItem(arr, value) {
 }
 
 
-var colors = ["#F94144", "#F8961E", "#F9C74F", "#43AA8B", "#277DA1"];
+// var colors = ["#F94144", "#F8961E", "#F9C74F", "#43AA8B", "#277DA1"];
 
-function confettiFrame() {
-    var mob = $(document).height() > $(document).width();
-    if (!mob) {
-        confetti({
-            particleCount: 5,
-            angle: 60,
-            spread: 120,
-            origin: { x: -.05, y: .4 },
-            colors: colors,
-        });
-        confetti({
-            particleCount: 5,
-            angle: 120,
-            spread: 120,
-            origin: { x: 1.05, y: .4 },
-            colors: colors,
-        });
-    } else {
-        confetti({
-            particleCount: 5,
-            angle: 270,
-            spread: 55,
-            origin: { y: -.5 },
-            colors: colors,
-        });
-    }
+// function confettiFrame() {
+//     var mob = $(document).height() > $(document).width();
+//     if (!mob) {
+//         confetti({
+//             particleCount: 5,
+//             angle: 60,
+//             spread: 120,
+//             origin: { x: -.05, y: .4 },
+//             colors: colors,
+//         });
+//         confetti({
+//             particleCount: 5,
+//             angle: 120,
+//             spread: 120,
+//             origin: { x: 1.05, y: .4 },
+//             colors: colors,
+//         });
+//     } else {
+//         confetti({
+//             particleCount: 5,
+//             angle: 270,
+//             spread: 55,
+//             origin: { y: -.5 },
+//             colors: colors,
+//         });
+//     }
 
-    if (Date.now() < confettiStart + 1000) {
-        requestAnimationFrame(confettiFrame);
-    }
-}
+//     if (Date.now() < confettiStart + 1000) {
+//         requestAnimationFrame(confettiFrame);
+//     }
+// }
 
 function randBetween(min, max) {
     return Math.random() * (max - min) + min; //Math.floor(
+}
+
+function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 function q(i) {
     return document.getElementById(i);
 }
 
+function show() {
+    for (j = 0; j < arguments.length; j++) {
+        q(arguments[j]).classList.remove("hide");
+    }
+}
+
+function hide() {
+    for (j = 0; j < arguments.length; j++) {
+        q(arguments[j]).classList.add("hide");
+    }
+}
+
 if (!Array.prototype.last) {
-    Array.prototype.last = function() {
+    Array.prototype.last = () => {
         return this[this.length - 1];
     };
 };
@@ -585,20 +578,12 @@ Object.keys(outlets).forEach(element => {
 });
 
 if (!dev) {
-    $(window).bind('beforeunload', (function() {
+    window.onbeforeunload = () => {
         if (!gameOver && started) {
-            return window.confirm();
+            return "";
         }
-    }));
+    }
 }
-
-for (var i = day; i < 11; i++) {
-    day++;
-    day < 10 ? calcCOV() : updateStats();
-}
-var aa = intToDate(day);
-q("date").innerHTML = aa[2] + " " + mos[aa[1]] + " " + aa[0];
-setChoices();
 
 function newsSize() {
     if (q('col1').offsetHeight == q('col2').offsetHeight) {
@@ -620,3 +605,12 @@ function newsSize() {
 window.addEventListener('resize', function(event) {
     newsSize();
 }, true);
+
+for (var i = day; i < 11; i++) {
+    day++;
+    day < 10 ? calcCOV() : updateStats();
+}
+var aa = intToDate(day);
+q("date").innerHTML = aa[2] + " " + mos[aa[1]] + " " + aa[0];
+setChoices();
+setNews();
