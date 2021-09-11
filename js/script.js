@@ -572,10 +572,10 @@ document.addEventListener('keypress', (function(event) {
     }
 }));
 
-Object.keys(outlets).forEach(element => {
-    var img = new Image();
-    img.src = "./img/" + element + ".jpg";
-});
+// Object.keys(outlets).forEach(element => {
+//     var img = new Image();
+//     img.src = "./img/" + element + ".jpg";
+// });
 
 if (!dev) {
     window.onbeforeunload = () => {
