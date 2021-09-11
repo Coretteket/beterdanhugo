@@ -53,7 +53,7 @@ function end() {
     var prop = Math.abs((s.R / s.N - 0.047) / 0.047);
     var resImmune = (Math.round(s.R / s.N * 1000) / 10).toLocaleString('nl-NL', { minimumFractionDigits: 0 });;
     var resDead = (Math.round(s.F / 100) * 100).toLocaleString('nl-NL', { minimumFractionDigits: 0 });
-    if (prop < .1) {
+    if (prop > .1) {
         var resImmuneSev = prop > .5 ? "veel " : "";
         var resDeadSev = prop > .5 ? "" : "iets ";
         var resMore = s.R / s.N > 0.047 ? "meer" : "minder";
