@@ -32,7 +32,8 @@ dev && (speeds[3] = 100, start());
 
 if (beta) {
     show("start", "head");
-    hide("wip");
+} else {
+    show("wip");
 }
 
 function checkStart() {
