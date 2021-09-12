@@ -52,8 +52,8 @@ function start() {
     hide("start", "disclaimermob", "wip");
     newsSize();
     started = true;
-    post(`id=${id}&start=${startTime}`);
-    // setTimeout(() => { post(`id=${id}&start=${startTime}`); }, 1e3);
+    // post(`id=${id}&start=${startTime}`);
+    setTimeout(() => { post(`id=${id}&start=${startTime}`); }, 5e3);
 }
 
 function end() {
