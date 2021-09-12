@@ -72,7 +72,7 @@ function start() {
     hide("start", "disclaimermob", "wip");
     newsSize();
     started = true;
-    var delay = 5000 - new Date() + visitTimeL + 100;
+    var delay = 5000 - new Date() + visitTimeL + 500;
     !dev && setTimeout(() => { post(post1); }, delay > 0 ? delay : 0);
 }
 
