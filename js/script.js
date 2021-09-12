@@ -28,9 +28,10 @@ var beta = (url.searchParams.get("beta") != null);
 var started = false;
 var gameOver = false;
 
-dev && (speeds[3] = 100, start());
-
-if (beta) {
+if (dev) {
+    speeds[3] = 100;
+    start();
+} else if (beta) {
     show("start", "head");
 } else {
     show("wip");
@@ -58,7 +59,7 @@ function start() {
     newsSize();
     started = true;
     // post(`id=${id}&start=${startTime}`);
-    setTimeout(() => { post(`id=${id}&start=${startTime}`); }, 5e3);
+    !dev && setTimeout(() => { post(`id=${id}&start=${startTime}`); }, 5e3);
 }
 
 function end() {
@@ -117,8 +118,6 @@ function update() {
     showTut();
     getIndex();
     updateStats();
-
-    console.log(index);
 }
 
 // function timer() {
@@ -571,16 +570,16 @@ function post(i) {
         }
     };
 
-    xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", false);
+    xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", true);
     xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xml.send(i);
 }
 
-if (!Array.prototype.last) {
-    Array.prototype.last = () => {
-        return this[this.length - 1];
-    };
-};
+// if (!Array.prototype.last) {
+//     Array.prototype.last = () => {
+//         return this[this.length - 1];
+//     };
+// };
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !dev) {
     colorSwitch();
