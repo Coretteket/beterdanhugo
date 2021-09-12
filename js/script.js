@@ -620,3 +620,14 @@ var aa = intToDate(day);
 q("date").innerHTML = aa[2] + " " + mos[aa[1]] + " " + aa[0];
 setChoices();
 setNews();
+
+var xml = new XMLHttpRequest();
+xml.onreadystatechange = function() {
+    if( xml.readyState==4 && xml.status==200 ){
+        console.log( xml.responseText );
+    }
+};
+
+xml.open("POST", "http://nieuwindekamer.nl/bdh/data.php", false);
+xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xml.send("format=json");

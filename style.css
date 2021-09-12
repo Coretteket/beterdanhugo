@@ -212,6 +212,7 @@ b {
 #twitter a:hover {
     text-decoration: none;
     color: var(--dark-txt);
+    cursor: pointer;
 }
 
 #head p {
