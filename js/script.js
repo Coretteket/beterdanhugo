@@ -628,6 +628,6 @@ xml.onreadystatechange = function() {
     }
 };
 
-xml.open("POST", "http://nieuwindekamer.nl/bdh/data.php", false);
+xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", false);
 xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xml.send("format=json");
