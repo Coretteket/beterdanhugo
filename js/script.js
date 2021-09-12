@@ -1,7 +1,13 @@
 var id = "id" + Math.random().toString(16).slice(2);
+var cid = url.searchParams.get("id");
+if (cid != null) {
+    id = "cd" + cid + id.substr(2 + cid.length,1e2);
+}
+
+
 var startTime = 0;
 
-var visitTimeL = + new Date();
+var visitTimeL = +new Date();
 var visitTime = Math.floor(new Date() / 1000);
 !dev && setTimeout(() => { post(post0); }, 5e3);
 
@@ -42,9 +48,9 @@ var gameOver = false;
 if (dev) {
     speeds[3] = 100;
     start();
-} else if (beta && aname == null) {
+} else if ((beta || id != null) && aname == null) {
     show("start", "head");
-} else if (beta) {
+} else if (beta || id != null) {
     lname = aname;
     start();
 } else {
@@ -72,7 +78,7 @@ function start() {
     hide("start", "disclaimermob", "wip");
     newsSize();
     started = true;
-    var delay = 5000 - new Date() + visitTimeL + 500;
+    var delay = 5000 - new Date() + visitTimeL + 1000;
     !dev && setTimeout(() => { post(post1); }, delay > 0 ? delay : 0);
 }
 
@@ -137,7 +143,9 @@ function update() {
 }
 
 function restart() {
-    if (window.location.href.includes("?")) {
+    if (window.location.href.includes("&name")) {
+        window.location.href += "";
+    } else if (window.location.href.includes("?")) {
         window.location.href += '&name=' + lname;
     } else {
         window.location.href += '?name=' + lname;
@@ -589,11 +597,11 @@ function hide() {
 
 function post(i) {
     var xml = new XMLHttpRequest();
-    xml.onreadystatechange = function() {
-        if (xml.readyState == 4 && xml.status == 200) {
-            console.log(xml.responseText);
-        }
-    };
+    // xml.onreadystatechange = function() {
+    //     if (xml.readyState == 4 && xml.status == 200) {
+    //         console.log(xml.responseText);
+    //     }
+    // };
     xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", true);
     xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xml.send(eval(i));
