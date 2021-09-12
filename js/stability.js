@@ -1,5 +1,7 @@
 var maxIndex = 0;
-var index = 0;
+var mindex = 0;
+var dindex = 0;
+var index = 100;
 
 for (const [key, value] of Object.entries(a)) {
     if (key == "curfew") continue;
@@ -19,6 +21,8 @@ function getIndex() {
             tIndex += value[4] * (7 - (day + value[0] + 1)) / 7;
         }
     }
-    index = tIndex / maxIndex * 100;
-    s.Xs.push(index);
+    mindex = tIndex / maxIndex * 100;
+    dindex = -100 / (s.Ds[s.Ds.length - 1] / 50 + 1) + 100;
+
+    s.Xs.push(mindex);
 }

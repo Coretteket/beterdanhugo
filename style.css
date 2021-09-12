@@ -191,7 +191,7 @@ b {
 #twitter {
     margin: calc(20px + 0.5em) 0 5px;
     text-align: right;
-    font-size: 1.1em;
+    font-size: 1.15em;
     color: var(--light-txt);
     font-weight: 700;
 }

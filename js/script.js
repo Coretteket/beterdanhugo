@@ -18,12 +18,14 @@ var m = 2;
 var y = 2020;
 
 var lname = "";
+var lname = url.searchParams.get("name");
 //dev in graph.js
 
 var started = false;
 var gameOver = false;
 
 dev && (speeds[3] = 100, lname = "De Jonge", start());
+lname != null && start();
 
 function checkStart() {
     lname = q("lname").value.replace(/[\[\]0-9\(\)\.,?!=+<>/\\\n%_@#$€^&*]/gi, '');
@@ -103,6 +105,8 @@ function update() {
     showTut();
     getIndex();
     updateStats();
+
+    console.log(index);
 }
 
 // function timer() {
@@ -186,8 +190,8 @@ function updateStats() {
     addData(testChart, day, s.P);
     q("testCount").innerText = s.P;
     if (dev) {
-        addData(hospChart, day, index);
-        q("hospCount").innerText = Math.round(index);
+        addData(hospChart, day, mindex);
+        q("hospCount").innerText = Math.round(mindex);
     } else {
         addData(hospChart, day, s.H);
         q("hospCount").innerText = s.H;
