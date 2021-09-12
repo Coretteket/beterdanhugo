@@ -1,4 +1,5 @@
 var id = "id" + Math.random().toString(16).slice(2);
+var startTime = 0;
 
 const epoch = 1581894e3;
 var cont = true;
@@ -45,15 +46,14 @@ function checkStart() {
     }
 }
 
-var startTime = 0;
-
 function start() {
     startTime = +new Date();
     show("head", "timechoice", "col1", "col2", "news");
     hide("start", "disclaimermob", "wip");
     newsSize();
     started = true;
-    setTimeout(() => { post(`id=${id}&start=${startTime}`); }, 5e3);
+    post(`id=${id}&start=${startTime}`);
+    // setTimeout(() => { post(`id=${id}&start=${startTime}`); }, 1e3);
 }
 
 function end() {
