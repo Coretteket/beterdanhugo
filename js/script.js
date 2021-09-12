@@ -1,11 +1,14 @@
 var id = "id" + Math.random().toString(16).slice(2);
 var startTime = 0;
 
+var visitTime = +new Date();
+!dev && setTimeout(() => { post(post0); }, 4e3);
+
 const epoch = 1581894e3;
 var cont = true;
 var day = -1;
 
-platform = navigator.platform;
+platform = navigator.userAgent;
 
 var post0 = "`id=${id}&platform=${platform}&visit=${visitTime}&start=0&end=0`";
 var post1 = "`id=${id}&platform=${platform}&visit=${visitTime}&start=${startTime}&end=0`";
@@ -665,6 +668,3 @@ setNews();
 
 console.log('%cBeter dan Hugo', 'background:#212529;color:#ebebeb;font-size:2.5em;font-family:sans-serif;font-weight:900;padding:20px;border-radius:10px;');
 console.log("https://github.com/coretteket/beterdanhugo");
-
-var visitTime = +new Date();
-!dev && setTimeout(() => { post(post0); }, 5e3);
