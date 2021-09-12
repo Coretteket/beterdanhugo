@@ -29,7 +29,11 @@ var started = false;
 var gameOver = false;
 
 dev && (speeds[3] = 100, start());
-beta && start();
+
+if (beta) {
+    show("start", "head");
+    hide("wip");
+}
 
 function checkStart() {
     lname = q("lname").value.replace(/[\[\]0-9\(\)\.,?!=+<>/\\\n%_@#$€^&*]/gi, '');
