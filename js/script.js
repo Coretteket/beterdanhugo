@@ -5,6 +5,12 @@ const epoch = 1581894e3;
 var cont = true;
 var day = -1;
 
+platform = navigator.platform;
+
+var post0 = "`id=${id}&platform=${platform}&visit=${visitTime}&start=0&end=0`";
+var post1 = "`id=${id}&platform=${platform}&visit=${visitTime}&start=${startTime}&end=0`";
+var post2 = "`id=${id}&platform=${platform}&visit=${visitTime}&start=${startTime}&end=${endTime}`";
+
 var ldays = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
 var wdays = ["zo", "ma.", "di.", "wo.", "do.", "vr.", "za."];
 var mos = ["err", "januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
@@ -23,6 +29,7 @@ var y = 2020;
 var lname = "De Jonge";
 
 var beta = (url.searchParams.get("beta") != null);
+var aname = url.searchParams.get("name");
 //dev in graph.js
 
 var started = false;
@@ -31,8 +38,11 @@ var gameOver = false;
 if (dev) {
     speeds[3] = 100;
     start();
-} else if (beta) {
+} else if (beta && aname == null) {
     show("start", "head");
+} else if (beta) {
+    lname = aname;
+    start();
 } else {
     show("wip");
 }
@@ -58,8 +68,7 @@ function start() {
     hide("start", "disclaimermob", "wip");
     newsSize();
     started = true;
-    // post(`id=${id}&start=${startTime}`);
-    !dev && setTimeout(() => { post(`id=${id}&start=${startTime}`); }, 5e3);
+    !dev && setTimeout(() => { post(post1); }, 5e3);
 }
 
 function end() {
@@ -81,6 +90,8 @@ function end() {
     setTimeout(() => {
         hide("timechoice", "col1", "col2", "news");
         show("gameover");
+        endTime = +new Date();
+        !dev && post(post2);
         // confettiStart = Date.now()
         // confettiFrame();
     }, !dev ? 1500 : 0);
@@ -118,6 +129,15 @@ function update() {
     showTut();
     getIndex();
     updateStats();
+}
+
+function restart() {
+    if (window.location.href.includes("?")) {
+        window.location.href += '&name=' + lname;
+    } else {
+        window.location.href += '?name=' + lname;
+    }
+    
 }
 
 // function timer() {
@@ -564,14 +584,14 @@ function hide() {
 
 function post(i) {
     var xml = new XMLHttpRequest();
-    // xml.onreadystatechange = function() {
-    //     if (xml.readyState == 4 && xml.status == 200) {
-    //         console.log(xml.responseText);
-    //     }
-    // };
+    xml.onreadystatechange = function() {
+        if (xml.readyState == 4 && xml.status == 200) {
+            console.log(xml.responseText);
+        }
+    };
     xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", true);
     xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xml.send(i);
+    xml.send(eval(i));
 }
 
 // if (!Array.prototype.last) {
@@ -645,3 +665,6 @@ setNews();
 
 console.log('%cBeter dan Hugo', 'background:#212529;color:#ebebeb;font-size:2.5em;font-family:sans-serif;font-weight:900;padding:20px;border-radius:10px;');
 console.log("https://github.com/coretteket/beterdanhugo");
+
+var visitTime = +new Date();
+!dev && setTimeout(() => { post(post0); }, 5e3);
