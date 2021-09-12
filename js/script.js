@@ -62,7 +62,6 @@ function start() {
     };
 
     xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", false);
-    xml.withCredentials = true;
     xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xml.send("start=" + startTime + "&id=" + id);
 }
