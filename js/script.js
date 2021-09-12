@@ -564,12 +564,11 @@ function hide() {
 
 function post(i) {
     var xml = new XMLHttpRequest();
-    xml.onreadystatechange = function() {
-        if (xml.readyState == 4 && xml.status == 200) {
-            console.log(xml.responseText);
-        }
-    };
-
+    // xml.onreadystatechange = function() {
+    //     if (xml.readyState == 4 && xml.status == 200) {
+    //         console.log(xml.responseText);
+    //     }
+    // };
     xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", true);
     xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xml.send(i);
@@ -643,3 +642,6 @@ var aa = intToDate(day);
 q("date").innerHTML = aa[2] + " " + mos[aa[1]] + " " + aa[0];
 setChoices();
 setNews();
+
+console.log('%cBeter dan Hugo', 'background:#212529;color:#ebebeb;font-size:2.5em;font-family:sans-serif;font-weight:900;padding:20px;border-radius:10px;');
+console.log("https://github.com/coretteket/beterdanhugo");
