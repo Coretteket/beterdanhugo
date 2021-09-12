@@ -53,17 +53,7 @@ function start() {
     hide("start", "disclaimermob", "wip");
     newsSize();
     started = true;
-
-    var xml = new XMLHttpRequest();
-    xml.onreadystatechange = function() {
-        if (xml.readyState == 4 && xml.status == 200) {
-            console.log(xml.responseText);
-        }
-    };
-
-    xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", false);
-    xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xml.send("start=" + startTime + "&id=" + id);
+    post(`id=${id}&start=${startTime}`);
 }
 
 function end() {
@@ -568,6 +558,19 @@ function hide() {
     }
 }
 
+function post(i) {
+    var xml = new XMLHttpRequest();
+    xml.onreadystatechange = function() {
+        if (xml.readyState == 4 && xml.status == 200) {
+            console.log(xml.responseText);
+        }
+    };
+
+    xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", false);
+    xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xml.send(i);
+}
+
 if (!Array.prototype.last) {
     Array.prototype.last = () => {
         return this[this.length - 1];
@@ -636,7 +639,3 @@ var aa = intToDate(day);
 q("date").innerHTML = aa[2] + " " + mos[aa[1]] + " " + aa[0];
 setChoices();
 setNews();
-
-// window.onload = () => {
-    
-// }
