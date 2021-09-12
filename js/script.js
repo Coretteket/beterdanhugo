@@ -1,3 +1,5 @@
+var id = "id" + Math.random().toString(16).slice(2);
+
 const epoch = 1581894e3;
 var cont = true;
 var day = -1;
@@ -43,11 +45,26 @@ function checkStart() {
     }
 }
 
+var startTime = 0;
+
 function start() {
+    startTime = +new Date();
     show("head", "timechoice", "col1", "col2", "news");
     hide("start", "disclaimermob", "wip");
     newsSize();
     started = true;
+
+    var xml = new XMLHttpRequest();
+    xml.onreadystatechange = function() {
+        if (xml.readyState == 4 && xml.status == 200) {
+            console.log(xml.responseText);
+        }
+    };
+
+    xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", false);
+    xml.withCredentials = true;
+    xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xml.send("start=" + startTime + "&id=" + id);
 }
 
 function end() {
@@ -621,13 +638,6 @@ q("date").innerHTML = aa[2] + " " + mos[aa[1]] + " " + aa[0];
 setChoices();
 setNews();
 
-var xml = new XMLHttpRequest();
-xml.onreadystatechange = function() {
-    if( xml.readyState==4 && xml.status==200 ){
-        console.log( xml.responseText );
-    }
-};
-
-xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", false);
-xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xml.send("format=json");
+// window.onload = () => {
+    
+// }
