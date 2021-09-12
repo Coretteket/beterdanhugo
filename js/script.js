@@ -1,8 +1,9 @@
 var id = "id" + Math.random().toString(16).slice(2);
 var startTime = 0;
 
-var visitTime = +new Date();
-!dev && setTimeout(() => { post(post0); }, 4e3);
+var visitTimeL = + new Date();
+var visitTime = Math.floor(new Date() / 1000);
+!dev && setTimeout(() => { post(post0); }, 5e3);
 
 const epoch = 1581894e3;
 var cont = true;
@@ -66,12 +67,13 @@ function checkStart() {
 }
 
 function start() {
-    startTime = +new Date();
+    startTime = Math.floor(new Date() / 1000);
     show("head", "timechoice", "col1", "col2", "news");
     hide("start", "disclaimermob", "wip");
     newsSize();
     started = true;
-    !dev && setTimeout(() => { post(post1); }, 5e3);
+    var delay = 5000 - new Date() + visitTimeL + 100;
+    !dev && setTimeout(() => { post(post1); }, delay > 0 ? delay : 0);
 }
 
 function end() {
@@ -93,7 +95,7 @@ function end() {
     setTimeout(() => {
         hide("timechoice", "col1", "col2", "news");
         show("gameover");
-        endTime = +new Date();
+        endTime = Math.floor(new Date() / 1000);
         !dev && post(post2);
         // confettiStart = Date.now()
         // confettiFrame();
@@ -140,7 +142,7 @@ function restart() {
     } else {
         window.location.href += '?name=' + lname;
     }
-    
+
 }
 
 // function timer() {
