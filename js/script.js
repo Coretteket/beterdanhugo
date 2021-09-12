@@ -18,14 +18,15 @@ var m = 2;
 var y = 2020;
 
 var lname = "";
-var lname = url.searchParams.get("name");
+
+var beta = (url.searchParams.get("beta") != null);
 //dev in graph.js
 
 var started = false;
 var gameOver = false;
 
 dev && (speeds[3] = 100, lname = "De Jonge", start());
-lname != null && start();
+beta && start();
 
 function checkStart() {
     lname = q("lname").value.replace(/[\[\]0-9\(\)\.,?!=+<>/\\\n%_@#$€^&*]/gi, '');
@@ -43,8 +44,8 @@ function checkStart() {
 }
 
 function start() {
-    show("timechoice", "col1", "col2", "news");
-    hide("start", "disclaimermob");
+    show("head", "timechoice", "col1", "col2", "news");
+    hide("start", "disclaimermob", "wip");
     newsSize();
     started = true;
 }

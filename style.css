@@ -28,7 +28,7 @@ body {
 main {
     max-width: 924px;
     margin: 0 auto;
-    padding: 0 min(5vw,25px);
+    padding: 0 min(5vw, 25px);
     display: grid;
     gap: 0 1em;
     grid-template-rows: repeat(5, auto) 4em auto;
@@ -556,8 +556,6 @@ textarea {
     color: var(--dark-txt);
 }
 
-
-
 .active {
     opacity: 60%;
 }
@@ -913,6 +911,34 @@ strong {
 #gameover b {
     margin: .4em 0;
     font-size: 1.2em;
+}
+
+.fa-hammer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12em;
+    color: var(--dark-txt);
+    opacity: .1;
+}
+
+.wip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(80vw, 20em);
+}
+
+.wip h2 {
+    font-weight: 900;
+    text-align:center;
+    margin: .2em 0 .2em 0;
+}
+
+.wip a {
+    color: var(--link);
 }
 
 @-webkit-keyframes fadein {
