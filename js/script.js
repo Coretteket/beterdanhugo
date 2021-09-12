@@ -17,7 +17,7 @@ var d = 27;
 var m = 2;
 var y = 2020;
 
-var lname = "";
+var lname = "De Jonge";
 
 var beta = (url.searchParams.get("beta") != null);
 //dev in graph.js
@@ -25,7 +25,7 @@ var beta = (url.searchParams.get("beta") != null);
 var started = false;
 var gameOver = false;
 
-dev && (speeds[3] = 100, lname = "De Jonge", start());
+dev && (speeds[3] = 100, start());
 beta && start();
 
 function checkStart() {
