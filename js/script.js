@@ -48,9 +48,9 @@ var gameOver = false;
 if (dev) {
     speeds[3] = 100;
     start();
-} else if ((beta || id != null) && aname == null) {
+} else if ((beta || cid != null) && aname == null) {
     show("start", "head");
-} else if (beta || id != null) {
+} else if (beta || cid != null) {
     lname = aname;
     start();
 } else {
