@@ -1035,7 +1035,7 @@ strong {
     --link: #0072ec;
     --link-hover: #0056b3;
     --box: rgb(222, 222, 222);
-    --light-txt: gray;
+    --light-txt: #727272;
     --dark-txt: rgb(68, 68, 68);
     --txt: #212529;
     --hr: rgba(0, 0, 0, .1);
@@ -1055,7 +1055,7 @@ strong {
     --link: #4fa4ff;
     --link-hover: #6eb4ff;
     --box: #343a3f;
-    --light-txt: rgb(199, 199, 199);
+    --light-txt: rgb(211, 211, 211);
     --dark-txt: rgb(235, 235, 235);
     --txt: white;
     --hr: rgba(255, 255, 255, 0.1);
