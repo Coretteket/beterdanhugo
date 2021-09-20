@@ -37,7 +37,7 @@
 </head>
 
 <body id="light">
-    <main>
+    <main id="main" class="wochoice">
         <noscript>Deze website werkt enkel met Javascript.</noscript>
         <div id="title">
             <h1>Beter dan Hugo</h1>
@@ -53,7 +53,10 @@
         </div>
         <div id="wip" class="hide">
             <i class="fas fa-hammer"></i>
-            <div class="wip"><h2>Werk in uitvoering</h2><p>Beter dan Hugo is momenteel nog niet klaar voor het grote publiek. Wil je de bèta proberen? <a href="https://twitter.com/messages/compose?recipient_id=793888775223046144" rel="noreferrer" target="_blank">Stuur me dan een DM.</a></p></div>
+            <div class="wip">
+                <h2>Werk in uitvoering</h2>
+                <p>Beter dan Hugo is momenteel nog niet klaar voor het grote publiek. Wil je de bèta proberen? <a href="https://twitter.com/messages/compose?recipient_id=793888775223046144" rel="noreferrer" target="_blank">Stuur me dan een DM.</a></p>
+            </div>
         </div>
         <div id="start" class="hide">
             <p class="mob">De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen.</p>
@@ -71,8 +74,8 @@
             <a onclick="setSpeed(1);" id="s1" class="btn nudge"><i class="fas fa-play"></i></a>
             <a onclick="setSpeed(2);" id="s2" class="btn"><i class="fas fa-step-forward"></i></a>
             <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
-            <div id="choice" class="hide"></div>
         </div>
+        <div id="choice" class="hide"></div>
         <div id="col1" class="hide">
             <div id="btns-base">
                 <b>Basisregels</b>
@@ -142,9 +145,7 @@
             </div>
         </div>
         <div id="gameover" class="hide">
-            <b>Gefeliciteerd, je hebt de eerste golf overleefd!
-                <!-- 🎉 -->
-            </b>
+            <b>Gefeliciteerd, je hebt de eerste golf overleefd!</b>
             <p>Bedankt dat je de bèta-versie van Beter dan Hugo hebt geprobeerd! De uiteindelijke versie zal de gehele pandemie bevatten, waaronder dus ook nieuwe corona&shy;varianten, vaccinaties, en, jawel, de CDA-lijst&shy;trekkers&shy;verkiezing. Tot die tijd zou het me heel erg helpen als je je feedback over het spel met me deelt in een DM.</p>
             <a href="https://twitter.com/messages/compose?recipient_id=793888775223046144" rel="noreferrer" target="_blank" class="btn txt faqbtn">Stuur Twitter DM</a>
             <p id="results"></p>
@@ -163,11 +164,8 @@
     <script type="text/javascript" src="./js/graph.js"></script>
     <script type="text/javascript" src="./js/choice.js"></script>
     <script type="text/javascript" src="./js/tutorial.js"></script>
-    <script type="text/javascript" src="./js/stability.js"></script>
     <script type="text/javascript" src="./js/news.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-RW1X01HBYC"></script>
-    <script>function gtag() { dataLayer.push(arguments) } window.dataLayer = window.dataLayer || [], gtag("js", new Date), gtag("config","G-RW1X01HBYC");</script> -->
 </body>
 
 </html>

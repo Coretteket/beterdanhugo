@@ -1,25 +1,26 @@
 var id = "id" + Math.random().toString(16).slice(2);
 var cid = url.searchParams.get("id");
 if (cid != null) {
-    id = "cd" + cid + id.substr(2 + cid.length,1e2);
+    id = "cd" + cid + id.substr(2 + cid.length, 1e2);
 }
 
+var pst = [
+    "`id=${id}&platform=${platform}&visit=${visitTime}&start=0&end=0&deaths=0`",
+    "`id=${id}&platform=${platform}&visit=${visitTime}&start=${startTime}&end=0&deaths=0`",
+    "`id=${id}&platform=${platform}&visit=${visitTime}&start=${startTime}&end=${endTime}&deaths=${Math.round(s.F)}`"
+]
 
 var startTime = 0;
 
 var visitTimeL = +new Date();
 var visitTime = Math.floor(new Date() / 1000);
-!dev && setTimeout(() => { post(post0); }, 5e3);
+!dev && setTimeout(() => { post(0); }, 5e3);
 
 const epoch = 1581894e3;
 var cont = true;
 var day = -1;
 
 platform = navigator.userAgent;
-
-var post0 = "`id=${id}&platform=${platform}&visit=${visitTime}&start=0&end=0`";
-var post1 = "`id=${id}&platform=${platform}&visit=${visitTime}&start=${startTime}&end=0`";
-var post2 = "`id=${id}&platform=${platform}&visit=${visitTime}&start=${startTime}&end=${endTime}`";
 
 var ldays = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
 var wdays = ["zo", "ma.", "di.", "wo.", "do.", "vr.", "za."];
@@ -79,7 +80,7 @@ function start() {
     newsSize();
     started = true;
     var delay = 5000 - new Date() + visitTimeL + 1000;
-    !dev && setTimeout(() => { post(post1); }, delay > 0 ? delay : 0);
+    !dev && setTimeout(() => { post(1); }, delay > 0 ? delay : 0);
 }
 
 function end() {
@@ -102,7 +103,7 @@ function end() {
         hide("timechoice", "col1", "col2", "news");
         show("gameover");
         endTime = Math.floor(new Date() / 1000);
-        !dev && post(post2);
+        !dev && post(2);
         // confettiStart = Date.now()
         // confettiFrame();
     }, !dev ? 1500 : 0);
@@ -135,7 +136,7 @@ function update() {
 
     setNews();
     setChoices();
-    showActions();
+    // showActions();
     checkBtn();
     showTut();
     getIndex();
@@ -153,33 +154,13 @@ function restart() {
 
 }
 
-// function timer() {
-//     if (speed == 0) {
-//         counter = 0;
-//         return;
-//     }
-//     if (counter >= speeds[speed]) {
-//         day++;
+function act(i,j) {
+    a[i][0] = j;
+}
 
-//         var a = intToDate(day);
-//         q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
-
-//         updateStats();
-//         setNews();
-//         setChoices();
-//         showActions();
-//         checkBtn();
-//         showTut();
-
-//         console.log(counter);
-//         counter = 0;
-//         lastHit = new Date();
-//     }
-
-//     setTimeout(timer, 10);
-//     var hit = new Date();
-//     counter = hit - lastHit;
-// }
+function choose(i,j) {
+    c[i][0] = j;
+}
 
 var title = "";
 var source = "";
@@ -245,21 +226,22 @@ function updateStats() {
 }
 
 function pause() {
-    q("s1").style = "opacity:.4;cursor:default;transition:opacity .5s;";
-    q("s2").style = "opacity:.4;cursor:default;transition:opacity .5s;";
-    q("s3").style = "opacity:.4;cursor:default;transition:opacity .5s;";
-    q("col1").classList = "freeze";
-    q("col2").classList = "freeze";
     preSpeed = speed;
     setSpeed(0);
+    q("s1").classList = "btn paused";
+    q("s2").classList = "btn paused";
+    q("s3").classList = "btn paused";
+    q("col1").classList.add("freeze");
+    q("col2").classList.add("freeze");
     paused = true;
 }
 
 function unpause() {
-    q("s1").style = "opacity:1;transition: opacity .5s;";
-    q("s2").style = "opacity:1;transition: opacity .5s;";
-    q("s3").style = "opacity:1;transition: opacity .5s;";
-    q("toggles").classList = "row";
+    q("s1").classList.remove("paused");
+    q("s2").classList.remove("paused");
+    q("s3").classList.remove("paused");
+    q("col1").classList.remove("freeze");
+    q("col2").classList.remove("freeze");
     paused = false;
     setSpeed(preSpeed);
 }
@@ -267,23 +249,28 @@ function unpause() {
 function setChoices() {
     getChoices();
     if (cho != "") {
-        q("choice").classList = "choice";
+        console.log(chobtns)
         var sethtml = "";
-        sethtml += chotit != "" ? "<b>" + chotit + "</b>" : "";
         sethtml += "<p>" + cho + "</p>";
-        q("choice").innerHTML = sethtml;
-        var setchos = "<div class='row'>";
         for (const [key, value] of Object.entries(chobtns)) {
-            setchos += "<div class='col-lg-4'><a class='btn txt' onclick='" + value + "'>" + key + "</a></div>"
+            sethtml += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
         }
-        q("choice").innerHTML += setchos + "</div>";
+        q("choice").innerHTML = sethtml;
+        q("main").classList = "withchoice";
+        q("choice").classList.remove("remchoice");
+        show("choice")
         pause();
     }
 }
 
 function delActions() {
-    hide("choice");
-    unpause();
+    q("choice").classList.add("remchoice");
+    setTimeout(() => {
+        hide("choice");
+        q("main").classList = "wochoice";
+        unpause();
+    }, 400);
+
 }
 
 function updatePinned(i) {
@@ -335,7 +322,7 @@ var FAQ = false;
 var preSpeed = 0;
 
 function toggleFAQ() {
-    if (!beta) return;
+    if ((!beta && !dev) || paused) return;
     if (FAQ && !gameOver && started) {
         window.scrollTo(0, 0);
         show("timechoice", "col1", "col2", "news");
@@ -459,13 +446,13 @@ function checkBtn() {
     toggles = [];
     if (day in freeze) {
         for (var i = 0; i < freeze[day].length; i++) {
-            q("btn-" + freeze[day][i]).style = "opacity:.4;cursor:default;transition: opacity .5s;";
+            q("btn-" + freeze[day][i]).classList.add("paused");
             q("btn-" + freeze[day][i]).removeAttribute("onclick");
         }
     }
     if (day in unfreeze) {
         for (var i = 0; i < unfreeze[day].length; i++) {
-            q("btn-" + unfreeze[day][i]).style = "opacity:1;transition: opacity .5s;";
+            q("btn-" + unfreeze[day][i]).classList.remove("paused");
             q("btn-" + unfreeze[day][i]).setAttribute("onclick", "toggleBtn('" + unfreeze[day][i] + "');");
         }
     }
@@ -510,6 +497,7 @@ function setSpeed(i) {
 var lightmode = true;
 
 function colorSwitch() {
+    q(lightmode ? "light" : "dark").classList.add("notrans");
     document.documentElement.style.overflow = "hidden";
     document.body.clientWidth;
     document.documentElement.setAttribute(
@@ -526,6 +514,8 @@ function colorSwitch() {
         q("colormode").getElementsByTagName("i")[0].setAttribute("class", "fas fa-moon");
         lightmode = true;
     }
+    q(lightmode ? "light" : "dark").offsetHeight;
+    q(lightmode ? "light" : "dark").classList.remove("notrans");
 }
 
 function removeItem(arr, value) {
@@ -596,15 +586,12 @@ function hide() {
 }
 
 function post(i) {
+    if (dev) return;
     var xml = new XMLHttpRequest();
-    // xml.onreadystatechange = function() {
-    //     if (xml.readyState == 4 && xml.status == 200) {
-    //         console.log(xml.responseText);
-    //     }
-    // };
+    // xml.onreadystatechange = function() { if (xml.readyState == 4 && xml.status == 200) { console.log(xml.responseText); }};
     xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", true);
     xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xml.send(eval(i));
+    xml.send(eval(pst[i]));
 }
 
 // if (!Array.prototype.last) {
