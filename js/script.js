@@ -154,11 +154,11 @@ function restart() {
 
 }
 
-function act(i,j) {
+function act(i, j) {
     a[i][0] = j;
 }
 
-function choose(i,j) {
+function choose(i, j) {
     c[i][0] = j;
 }
 
@@ -249,7 +249,6 @@ function unpause() {
 function setChoices() {
     getChoices();
     if (cho != "") {
-        console.log(chobtns)
         var sethtml = "";
         sethtml += "<p>" + cho + "</p>";
         for (const [key, value] of Object.entries(chobtns)) {

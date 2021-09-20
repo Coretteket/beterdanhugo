@@ -22,7 +22,7 @@ function anyMeasures() {
 }
 
 function showTut() {
-    if (tutdays.includes(day) && !dev) {
+    if (tutdays.includes(day) /*&& !dev*/ ) {
         if (tut.length == 0) {
             remTut();
             return;
@@ -40,15 +40,15 @@ function showTut() {
                 anytuts = true;
                 nowtut = true;
                 q("tut").innerHTML = "<p>" + tuttxt + "</p>" + "<i class='fas fa-times' onclick='remTut()'></i>";
-                q("tut").classList = "box tut";
+                show("tut");
                 break;
             }
         }
 
     }
-    if (tutdays.includes(day+1) && !dev) {
-        remTut();
-    }
+    // if (tutdays.includes(day+1) && !dev) {
+    //     remTut();
+    // }
 }
 
 function remTut() {

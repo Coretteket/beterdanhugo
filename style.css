@@ -287,6 +287,7 @@ a {
     grid-template-columns: repeat(3, 1fr);
 }
 
+
 /* .choice {
     -webkit-animation: swipe .4s;
     animation: swipe .4s;
@@ -824,10 +825,8 @@ strong {
     margin-top: .05em;
     z-index: -1;
     border-radius: 50%;
-    -webkit-animation: nudge 1.4s ease-out 1s infinite;
     animation: nudge 1.4s ease-out 1s infinite;
     opacity: 0;
-    -webkit-filter: blur(1px);
     filter: blur(1px);
 }
 
@@ -988,18 +987,18 @@ strong {
     --back: white;
     --link: #0072ec;
     --link-hover: #0056b3;
-    --box: rgb(222, 222, 222);
+    --box: #dedede;
     --light-txt: #727272;
-    --dark-txt: rgb(68, 68, 68);
+    --dark-txt: #444444;
     --txt: #212529;
-    --hr: rgba(0, 0, 0, .1);
+    --hr: #0000001a;
     --stat-back: #f6f6f6;
     --border: #a0a0a0;
     --border-thick: #797979;
     --arrows: none;
-    --nudge: rgb(207, 207, 207);
+    --nudge: #cfcfcf;
     --input: white;
-    --tut-box: #f0dbc0;
+    --tut-box: #f0dcc1;
     --tut-border: #aa9c8b;
     --tut-x: #796853;
 }
@@ -1009,10 +1008,10 @@ strong {
     --link: #4fa4ff;
     --link-hover: #6eb4ff;
     --box: #343a3f;
-    --light-txt: rgb(211, 211, 211);
-    --dark-txt: rgb(235, 235, 235);
+    --light-txt: #d3d3d3;
+    --dark-txt: #ebebeb;
     --txt: white;
-    --hr: rgba(255, 255, 255, 0.1);
+    --hr: #ffffff1a;
     --stat-back: #212529;
     --border: #7f858b;
     --border-thick: #a2a6ab;
