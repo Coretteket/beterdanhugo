@@ -9,8 +9,8 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
-    <script src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js" async></script>
+    <script src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous" async></script>
     <link type="text/css" rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" sizes="180x180" href="./ico/apple-touch-icon.png">
@@ -140,7 +140,6 @@
                         <a onclick="updatePinned(currentPinned-1);"><img src="img/up.png" class="inactive" width="28" height="28" id="down" alt="Lees ouder nieuws"></a>
                     </div>
                 </div>
-                <div id="tut" class="box tut hide"><p></p></div>
                 <div id="firstnews" class="box desk"></div>
             </div>
         </div>
@@ -160,11 +159,9 @@
         </div>
     </main>
     <div id="disclaimermob" class="mob hide">Disclaimer: dit is een spel, en dus geen realistische simulatie.</div>
-    <div id="tutnudge" class="hide"></div>
     <script type="text/javascript" src="./js/covid.js"></script>
     <script type="text/javascript" src="./js/graph.js"></script>
     <script type="text/javascript" src="./js/choice.js"></script>
-    <script type="text/javascript" src="./js/tutorial.js"></script>
     <script type="text/javascript" src="./js/news.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
 </body>

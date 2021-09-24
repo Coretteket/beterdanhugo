@@ -20,7 +20,7 @@ const epoch = 1581894e3;
 var cont = true;
 var day = -1;
 
-platform = navigator.userAgent;
+var platform = navigator.userAgent;
 
 var ldays = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
 var wdays = ["zo", "ma.", "di.", "wo.", "do.", "vr.", "za."];
@@ -81,7 +81,6 @@ function start() {
     started = true;
     var delay = 5000 - new Date() + visitTimeL + 1000;
     !dev && setTimeout(() => { post(1); }, delay > 0 ? delay : 0);
-    setTimeout(() => { if (speed==0) showTut(); }, 10000)
 }
 
 function end() {
@@ -131,15 +130,16 @@ function update() {
     day++;
 
     if (day == dateToInt(2020, 7, 1)) { end(); return; };
+    if (day == 12) {
+        q("btn-socdis").classList.add("nudge");
+    }
 
     var a = intToDate(day);
     q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
 
     setNews();
     setChoices();
-    // showActions();
     checkBtn();
-    showTut();
     getIndex();
     updateStats();
 }
@@ -189,7 +189,7 @@ function setNews() {
         div.innerHTML += '<img class="logo" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo">';
         div.innerHTML += '<p class="app">' + outlets[source] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]] + '</p>';
         div.innerHTML += "<p class='newstitle'>" + title + "</p>";
-        var news = q("tut");
+        var news = q("pinned");
         news.parentNode.insertBefore(div, news.nextSibling);
 
         var pluswhat = snws.length - currentPinned;
