@@ -321,8 +321,8 @@ a {
 .box:not(#chartbox) {
     -webkit-animation-name: swipe;
     animation-name: swipe;
-    -webkit-animation-duration: .4s;
-    animation-duration: .4s;
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
 }
@@ -717,7 +717,7 @@ hr {
     width: calc(100% - 15px);
 }
 
-.tut i {
+.tut .fa-times {
     float: right;
     font-size: .9em;
     margin-top: -10px;
@@ -726,8 +726,9 @@ hr {
     color: var(--tut-x);
 }
 
-.tut i:hover {
+.tut .fa-times:hover {
     cursor: pointer;
+    opacity: .8;
 }
 
 .remtut {
@@ -756,7 +757,7 @@ hr {
     border-radius: .6em;
     position: absolute;
     z-index: -1;
-    animation: tutnudge .4s ease-out;
+    animation: tutnudge 1s ease;
     filter: blur(5px);
     opacity: 0;
 }

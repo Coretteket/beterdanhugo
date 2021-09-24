@@ -1,6 +1,7 @@
-var tutdays = [12, 20, 28, 36, 44];
+var tutdays = [11, 12, 20, 28, 36, 44];
 
 var tut = [
+    ["speed==0", "Klik op de startknop <span class='desk'>linksboven</span><span class='mob'>hieronder</span> om het spel te beginnen."],
     ["!anyMeasures();", "Je kan op elk moment een maatregel invoeren of afschaffen door <span class='desk'>links</span><span class='mob'>hieronder</span> op één van de knoppen te klikken."],
     ["!toggled", "<span class='desk'>Hierboven</span><span class='mob'>Bovenaan</span> staan actuele cijfers over de verspreiding van corona. Met de knoppen kan je de verschillende grafieken zien."],
     ["!sped", "Met de tijdsknoppen <span class='desk'>links</span><span class='mob'>hieronder</span> kan je de simulatie versnellen of op pauze zetten."],
@@ -21,9 +22,11 @@ function anyMeasures() {
     return anymeas;
 }
 
+var stoptut = false;
+
 function showTut() {
-    if (tutdays.includes(day) /*&& !dev*/ ) {
-        console.log(tut)
+    if (tutdays.includes(day) && !stoptut && aname == null) {
+        hide("tutnudge");
         if (tut.length == 0) {
             remTut();
             return;
@@ -38,7 +41,6 @@ function showTut() {
             tut.splice(i, 1);
             i--;
             if (tuttxt != "") {
-                console.log(tuttxt)
                 anytuts = true;
                 nowtut = true;
                 q("tut").innerHTML = "<p>" + tuttxt + "</p>" + "<i class='fas fa-times' onclick='remTut()'></i>";
@@ -53,12 +55,9 @@ function showTut() {
         }
 
     }
-    if (tutdays.includes(day+1)) {
-       hide("tutnudge");
-        //remTut();
-    }
 }
 
 function remTut() {
+    stoptut = true;
     q("tut").classList = "box tut remtut";
 }

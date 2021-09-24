@@ -81,6 +81,7 @@ function start() {
     started = true;
     var delay = 5000 - new Date() + visitTimeL + 1000;
     !dev && setTimeout(() => { post(1); }, delay > 0 ? delay : 0);
+    setTimeout(() => { if (speed==0) showTut(); }, 10000)
 }
 
 function end() {
