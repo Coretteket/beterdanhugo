@@ -23,6 +23,7 @@ function anyMeasures() {
 
 function showTut() {
     if (tutdays.includes(day) /*&& !dev*/ ) {
+        console.log(tut)
         if (tut.length == 0) {
             remTut();
             return;
@@ -37,10 +38,11 @@ function showTut() {
             tut.splice(i, 1);
             i--;
             if (tuttxt != "") {
+                console.log(tuttxt)
                 anytuts = true;
                 nowtut = true;
                 q("tut").innerHTML = "<p>" + tuttxt + "</p>" + "<i class='fas fa-times' onclick='remTut()'></i>";
-                show("tut");
+                q("tut").classList = "box tut";
                 break;
             }
         }
