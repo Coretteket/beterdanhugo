@@ -207,7 +207,7 @@ b {
 
 #choice .btn {
     width: fit-content;
-    margin: 0 .4em .4em 0;
+    margin: 0 .5em .4em 0;
     display: inline-block;
 }
 
@@ -282,7 +282,7 @@ a {
 
 .statbtns {
     display: grid;
-    gap: 0 5px;
+    gap: 0 10px;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(3, 1fr);
 }
@@ -433,6 +433,7 @@ a {
     width: 32px;
     height: 32px;
     margin-top: .2em;
+    margin-right: .2em;
     background: var(--back);
 }
 
@@ -487,6 +488,7 @@ button,
 input,
 optgroup,
 select,
+div,
 textarea {
     margin: 0;
     font-family: inherit;
@@ -745,6 +747,38 @@ hr {
     animation: hidex 0.12s ease-out forwards !important;
 }
 
+#tutnudge {
+    top: 0;
+    left: 0;
+    background: var(--tut-border);
+    width: 4em;
+    height: 4em;
+    border-radius: .6em;
+    position: absolute;
+    z-index: -1;
+    animation: tutnudge .4s ease-out;
+    filter: blur(5px);
+    opacity: 0;
+}
+
+@keyframes tutnudge {
+    0% {
+        padding: 0;
+        margin: 0;
+        opacity: .8;
+    }
+    70% {
+        padding: 10px;
+        margin: -10px 0 0 -10px;
+        opacity: 0;
+    }
+    100% {
+        padding: 0;
+        margin: 0;
+        opacity: 0;
+    }
+}
+
 .faqbtn {
     width: -webkit-fit-content;
     width: -moz-fit-content;
@@ -825,9 +859,9 @@ strong {
     margin-top: .05em;
     z-index: -1;
     border-radius: 50%;
-    animation: nudge 1.4s ease-out 1s infinite;
+    animation: nudge 1.5s ease-out 2s infinite;
     opacity: 0;
-    filter: blur(1px);
+    filter: blur(3px);
 }
 
 @keyframes nudge {
@@ -940,6 +974,9 @@ strong {
     #choice p {
         margin: .5em 0;
     }
+    .statbtns {
+        gap: 0 5px;
+    }
     #twitter {
         margin: 0;
         margin-bottom: .6em;
@@ -996,7 +1033,7 @@ strong {
     --border: #a0a0a0;
     --border-thick: #797979;
     --arrows: none;
-    --nudge: #cfcfcf;
+    --nudge: #afafaf;
     --input: white;
     --tut-box: #f0dcc1;
     --tut-border: #aa9c8b;
@@ -1016,7 +1053,7 @@ strong {
     --border: #7f858b;
     --border-thick: #a2a6ab;
     --arrows: invert(1);
-    --nudge: #6f7479;
+    --nudge: #8f959b;
     --input: #343a3f;
     --tut-box: #403b30;
     --tut-border: #796853;

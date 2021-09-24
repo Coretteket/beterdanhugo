@@ -43,14 +43,20 @@ function showTut() {
                 nowtut = true;
                 q("tut").innerHTML = "<p>" + tuttxt + "</p>" + "<i class='fas fa-times' onclick='remTut()'></i>";
                 q("tut").classList = "box tut";
+
+                setTimeout(() => {
+                    q("tutnudge").style = `top:${q("tut").getBoundingClientRect().top}px;left:${q("tut").getBoundingClientRect().left}px;height:${q("tut").offsetHeight }px;width:${q("tut").offsetWidth}px;`;
+                    show("tutnudge")
+                }, 400);
                 break;
             }
         }
 
     }
-    // if (tutdays.includes(day+1) && !dev) {
-    //     remTut();
-    // }
+    if (tutdays.includes(day+1)) {
+       hide("tutnudge");
+        //remTut();
+    }
 }
 
 function remTut() {
