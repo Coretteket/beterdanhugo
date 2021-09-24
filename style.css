@@ -390,11 +390,12 @@ a {
 #totop {
     position: relative;
     top: -2px;
-    font-family: 'Courier Prime', monospace;
+    font-size: .85em;
+    font-family: monospace;
     background: var(--dark-txt);
     color: var(--back);
     border-radius: 20%;
-    padding: .5px 3px;
+    padding: 0 5px 1px;
     margin-left: 6px;
 }
 
