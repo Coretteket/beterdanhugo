@@ -322,7 +322,7 @@ var FAQ = false;
 var preSpeed = 0;
 
 function toggleFAQ() {
-    if ((!beta && !dev) || paused) return;
+    if ((!beta && !dev) || (paused && !gameOver)) return;
     if (FAQ && !gameOver && started) {
         window.scrollTo(0, 0);
         show("timechoice", "col1", "col2", "news");
