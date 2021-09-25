@@ -22,12 +22,13 @@ var nws = {
         ["nu", "RIVM: eerste coronageval in Nederland, man kwam uit risicogebied Italië"]
     ],
     14: [
-        ["nrc", "Zijn we voorbereid een epidemie? `Kabinet moet harde maatregelen durven nemen'"],
+        ["nrc", "Zijn we voorbereid op een epidemie? `Kabinet moet harde maatregelen durven nemen'"],
         ["volkskrant","Epidemiologen waarschuwen: `Coronavirus kan heel snel uit de hand lopen'"],
         ['trouw',"`Het verleden leert ons: maatregelen tegen een epidemie komen eigenlijk altijd te laat'"]
     ],
     18: [
-        ["ad", "Eerste overleden coronapatiënt (86) uit Oud-Beijerland ‘was ontzettend lieve man’"]
+        ["ad", "Eerste overleden coronapatiënt (86) uit Oud-Beijerland `was ontzettend lieve man'"],
+        ["telegraaf","Eerste Nederlandse coronadode (86) in Ikazia Ziekenhuis te Rotterdam"]
     ],
     24: [
         ["telegraaf", "Coronahaard in Italië: kwart van bevolking in quarantaine, 196 doden in een dag"]

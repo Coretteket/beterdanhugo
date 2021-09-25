@@ -4,11 +4,9 @@ if (cid != null) {
     id = "cd" + cid + id.substr(2 + cid.length, 1e2);
 }
 
-var pst = [
-    "`id=${id}&platform=${platform}&visit=${visitTime}&start=0&end=0&deaths=0`",
-    "`id=${id}&platform=${platform}&visit=${visitTime}&start=${startTime}&end=0&deaths=0`",
-    "`id=${id}&platform=${platform}&visit=${visitTime}&start=${startTime}&end=${endTime}&deaths=${Math.round(s.F)}`"
-]
+var screenwidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+var pst = ["`id=${id}&os=${jscd.os}&osv=${jscd.osv}&browser=${jscd.browser}&browserv=${jscd.browserv}&width=${screenwidth}&mobile=${jscd.mobile}&visit=${visitTime}`", "`id=${id}&start=${startTime}`", "`id=${id}&end=${endTime}&deaths=${Math.round(s.F)}`"]
 
 var startTime = 0;
 
@@ -588,7 +586,7 @@ function hide() {
 function post(i) {
     if (dev) return;
     var xml = new XMLHttpRequest();
-    // xml.onreadystatechange = function() { if (xml.readyState == 4 && xml.status == 200) { console.log(xml.responseText); }};
+    // xml.onreadystatechange = function() { if (xml.readyState == 4 && xml.status == 200) { console.log(xml.responseText); } };
     xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", true);
     xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xml.send(eval(pst[i]));
