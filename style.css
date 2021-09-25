@@ -89,7 +89,7 @@ main {
     main {
         max-width: 450px;
         grid-template-rows: auto;
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(120px,1fr);
         grid-template-areas: "title" "twitter" "start" "news" "timechoice" "choice" "col1" "col2" "faq" "gameover";
     }
 }
@@ -554,6 +554,8 @@ textarea {
     border-radius: 6px;
     width: 15em;
     background: var(--input);
+    color: var(--dark-txt);
+    height: 1.2em;
 }
 
 ::-webkit-input-placeholder {
@@ -649,6 +651,8 @@ hr {
     width: 0;
     background: transparent;
 }
+
+#scroll {scrollbar-width: none;}
 
 #chartbox {
     padding-top: .4em;
