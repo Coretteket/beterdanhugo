@@ -6,7 +6,7 @@ if (cid != null) {
 
 var screenwidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-var pst = ["`id=${id}&os=${jscd.os}&osv=${jscd.osv}&browser=${jscd.browser}&browserv=${jscd.browserv}&width=${screenwidth}&mobile=${jscd.mobile}&visit=${visitTime}`", "`id=${id}&start=${startTime}`", "`id=${id}&end=${endTime}&deaths=${Math.round(s.F)}`"]
+var pst = ["`id=${id}&os=${jscd.os}&osv=${jscd.osv}&browser=${jscd.browser}&browserv=${jscd.browserv}&width=${screenwidth}&mobile=${jscd.mobile}&visit=${visitTime}`", "`id=${id}&start=${startTime}`", "`id=${id}&start=${startTime}&end=${endTime}&deaths=${Math.round(s.F)}`"]
 
 var startTime = 0;
 
