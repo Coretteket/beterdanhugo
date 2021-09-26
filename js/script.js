@@ -88,11 +88,10 @@ function end() {
     var resImmune = (Math.round(s.R / s.N * 1000) / 10).toLocaleString('nl-NL', { minimumFractionDigits: 0 });;
     var resDead = (Math.round(s.F / 100) * 100).toLocaleString('nl-NL', { minimumFractionDigits: 0 });
     if (prop > .1) {
-        var resImmuneSev = prop > .5 ? "veel " : "";
-        var resDeadSev = prop > .5 ? "" : "iets ";
+        var resImmuneSev = prop > .5 ? "veel " : "iets ";
         var resMore = s.R / s.N > 0.047 ? "meer" : "minder";
         var resGood = s.R / s.N < 0.047 ? "gelukkig" : "helaas";
-        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>${resImmuneSev}${resMore} mensen</strong> dan de 4,7% die in het echt besmet raakten. Hierdoor vielen er ${resGood} ook ${resDeadSev}${resMore} doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
+        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>${resImmuneSev}${resMore} mensen</strong> dan de 4,7% die in het echt besmet raakten. Hierdoor vielen er ${resGood} ook ${resMore} doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
     } else {
         q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>ongeveer evenveel mensen</strong> als de 4,7% die in het echt besmet raakten. Hierdoor vielen er helaas ook een vergelijkbaar aantal doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
     }
@@ -135,11 +134,11 @@ function update() {
     var a = intToDate(day);
     q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
 
-    setNews();
     setChoices();
     checkBtn();
     getIndex();
     updateStats();
+    setNews();
 }
 
 function restart() {
@@ -174,9 +173,9 @@ function setNews() {
 
     if (day == 11) {
         var div = q("firstnews");
-        div.innerHTML = '<img class="logo" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' &ndash; do. 27 februari</p><p class="newstitle">' + title + '</p>';
+        div.innerHTML = '<img draggable="false" class="logo" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' · do. 27 februari</p><p class="newstitle">' + title + '</p>';
         var div = q("content");
-        div.innerHTML = '<img src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' &ndash; do. 27 februari</p><a id="totop" onclick="updatePinned(snws.length-1);" style="opacity: 0;">+1</a><p class="newstitle">' + title + '</p>';
+        div.innerHTML = '<img draggable="false" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' · do. 27 februari</p><a id="totop" onclick="updatePinned(snws.length-1);" style="opacity: 0;">+1</a><p class="newstitle">' + title + '</p>';
         snws = [
             [source, "-1", title]
         ];
@@ -184,8 +183,8 @@ function setNews() {
         var a = intToDate(day);
         var div = document.createElement('div');
         div.setAttribute("class", "box desk");
-        div.innerHTML += '<img class="logo" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo">';
-        div.innerHTML += '<p class="app">' + outlets[source] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]] + '</p>';
+        div.innerHTML += '<img class="logo" draggable="false" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo">';
+        div.innerHTML += '<p class="app">' + outlets[source] + ' · ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]] + '</p>';
         div.innerHTML += "<p class='newstitle'>" + title + "</p>";
         var news = q("pinned");
         news.parentNode.insertBefore(div, news.nextSibling);
@@ -278,7 +277,7 @@ function updatePinned(i) {
     var pin = q('content');
     var a = intToDate(snws[i][1]);
     pin.children[0].setAttribute('src', 'img/' + snws[i][0] + '.jpg');
-    pin.children[1].innerHTML = outlets[snws[i][0]] + ' &ndash; ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]];
+    pin.children[1].innerHTML = outlets[snws[i][0]] + ' · ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]];
     pin.children[3].innerHTML = snws[i][2];
 
     currentPinned = i;
@@ -445,6 +444,7 @@ function checkBtn() {
     if (day in freeze) {
         for (var i = 0; i < freeze[day].length; i++) {
             q("btn-" + freeze[day][i]).classList.add("paused");
+            q("btn-" + freeze[day][i]).classList.remove("nudge");
             q("btn-" + freeze[day][i]).removeAttribute("onclick");
         }
     }

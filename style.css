@@ -331,7 +331,7 @@ a {
 #content img,
 .box .logo {
     float: left;
-    margin-right: .3em;
+    margin-right: .5em;
     border-radius: 30%;
 }
 
@@ -406,7 +406,7 @@ a {
 }
 
 #content {
-    width: calc(100% - 37px);
+    width: calc(100% - 40px);
     margin: 0;
     display: inline-block;
     vertical-align: top;

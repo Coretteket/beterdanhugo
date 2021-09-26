@@ -123,9 +123,9 @@ var r = { //changes in covid dynamic rates, like undercounting
     },
     hosp: function() {
         f = ![];
-        lin(0.003, 0.003, 0, 20);
-        lin(0.003, 0.017, 20, 42);
-        lin(0.017, 0.01, 42, 73);
+        lin(0.001, 0.001, 0, 25);
+        lin(0.001, 0.017, 25, 50);
+        lin(0.017, 0.01, 50, 73);
         lin(0.01, 0.005, 73, 164);
         lin(0.005, 0.005, 164, -1);
         var wday = new Date((epoch + day * 60 * 60 * 24) * 1000).getDay();
@@ -236,13 +236,13 @@ function calcCOV() {
     s.Rs.push(s.R);
     s.Fs.push(s.F);
 
-    if (day + 1 < b.Ps.length) { s.P = b.Ps[day] } else {
+    if (day < b.Ps.length) { s.P = b.Ps[day] } else {
         s.P = Math.round(s.dIs[day - 7] * r.test() * r.testday() * randBetween(0.85, 1.15));
     };
-    if (day + 1 < b.Hs.length) { s.H = b.Hs[day] } else {
+    if (day < b.Hs.length) { s.H = b.Hs[day] } else {
         s.H = Math.round(s.dIs[day - 7] * calcIHR() * randBetween(0.8, 1.2));
     };
-    if (day + 1 < b.Ds.length) { s.D = b.Ds[day] } else {
+    if (day < b.Ds.length) { s.D = b.Ds[day] } else {
         s.D = Math.round(s.dFs[day - 7] * r.underdeath() * randBetween(0.8, 1.2));
     };
 
