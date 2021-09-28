@@ -56,6 +56,10 @@ main {
     display: inherit;
 }
 
+.big {
+    display: inherit;
+}
+
 @media (max-width: 900px) {
     .withchoice {
         grid-template-rows: auto;
@@ -432,7 +436,7 @@ a {
 
 #timechoice .btn {
     font-size: 1.1em !important;
-    width: 32px;
+    width: 34px;
     height: 32px;
     margin-top: .2em;
     margin-right: .2em;
@@ -919,6 +923,9 @@ strong {
 }
 
 @media (max-width: 370px) {
+    .big {
+        display: none;
+    }
     #totop {
         display: none;
     }

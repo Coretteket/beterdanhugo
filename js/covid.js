@@ -44,26 +44,26 @@ function siMe(arr) { //simplemeasure
     }
 }
 
-var a = { //geselecteerde acties
-    workhome: [0, .95, 1, 3, 2],
-    socdis: [0, .95, 1, 3, 4],
-    masks: [0, .9, 1.1, 3, 1],
+var a = { // active, eff, boost, delay, impact, no. days, ever used
+    workhome: [0, .95, 1, 3, 3, 0],
+    socdis: [0, .95, 1, 3, 4, 0],
+    masks: [0, .9, 1.1, 3, 2, 0],
 
-    events: [0, .85, 1.4, 7, 5],
-    theater: [0, .9, 1.05, 7, 4],
-    gather: [0, .9, 1.1, 7, 8],
+    events: [0, .85, 1.4, 7, 7, 0],
+    theater: [0, .9, 1.05, 7, 4, 0],
+    gather: [0, .9, 1.1, 7, 7, 0],
 
-    horeca: [0, .85, 1.05, 7, 8],
-    clubs: [0, .9, 1.5, 7, 3],
-    shops: [0, .85, 1.05, 7, 7],
+    horeca: [0, .85, 1.05, 7, 9, 0],
+    clubs: [0, .9, 1.5, 7, 4, 0],
+    shops: [0, .85, 1.05, 7, 8, 0],
 
-    edlow: [0, .925, 1, 7, 10],
-    edmid: [0, .875, 1.2, 7, 7],
-    eduni: [0, .815, 1.2, 7, 5],
+    edlow: [0, .925, 1, 7, 10, 0],
+    edmid: [0, .875, 1.2, 7, 7, 0],
+    eduni: [0, .815, 1.2, 7, 5, 0],
 
-    lockdown: [0, .85, 1.05, 7, 20],
-    curfew: [0, .925, 1.2, 7, 10],
-    border: [0, .95, 1.2, 7, 8]
+    lockdown: [0, .85, 1.05, 7, 15, 0],
+    curfew: [0, .925, 1.2, 7, 10, 0],
+    border: [0, .95, 1.2, 7, 8, 0]
 }
 
 var c = { //gemaakte keuzes
@@ -252,9 +252,7 @@ function calcCOV() {
 }
 
 var maxIndex = 0;
-var mindex = 0;
-var dindex = 0;
-var index = 100;
+var stringency = 0;
 
 for (const [key, value] of Object.entries(a)) {
     if (key == "curfew") continue;
@@ -262,20 +260,13 @@ for (const [key, value] of Object.entries(a)) {
 }
 
 function getIndex() {
-    var tIndex = 0;
-    for (const [key, value] of Object.entries(a)) {
-        if (value[0] > 0) {
-            if (day - value[0] < 7) {
-                tIndex += value[4] * (day - value[0] + 1) / 7;
-            } else {
-                tIndex += value[4];
-            }
-        } else if (day + value[0] < 7) {
-            tIndex += value[4] * (7 - (day + value[0] + 1)) / 7;
-        }
+    var maxIndex = 0;
+    for (const [k, v] of Object.entries(a)) {
+        if (k == "curfew") continue;
+        maxIndex += v[4];
     }
-    mindex = tIndex / maxIndex * 100;
-    dindex = -100 / (s.Ds[s.Ds.length - 1] / 50 + 1) + 100;
-
-    s.Xs.push(mindex);
+    for (const [k, v] of Object.entries(a)) {
+        stringency += v[4] * v[5] / maxIndex / (day - 13);
+    }
+    console.log(stringency);
 }

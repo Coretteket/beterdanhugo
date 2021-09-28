@@ -1,6 +1,3 @@
-var url = new URL(window.location.href);
-var dev = (url.searchParams.get("dev") != null);
-
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach((dataset) => {
@@ -38,7 +35,7 @@ const options = {
     scales: {
         y: {
             min: 0,
-            suggestedMax: dev ? 1 : 10,
+            suggestedMax: 10,
             type: 'linear',
             grace: '0%',
             ticks: {

@@ -1,4 +1,6 @@
 var id = "id" + Math.random().toString(16).slice(2);
+
+var url = new URL(window.location.href);
 var cid = url.searchParams.get("id");
 if (cid != null) {
     id = "cd" + cid + id.substr(2 + cid.length, 1e2);
@@ -12,7 +14,7 @@ var startTime = 0;
 
 var visitTimeL = +new Date();
 var visitTime = Math.floor(new Date() / 1000);
-!dev && setTimeout(() => { post(0); }, 5e3);
+setTimeout(() => { post(0); }, 5e3);
 
 const epoch = 1581894e3;
 var cont = true;
@@ -39,7 +41,7 @@ var lname = "De Jonge";
 
 var beta = (url.searchParams.get("beta") != null);
 var aname = url.searchParams.get("name");
-//dev in graph.js
+var dev = (url.searchParams.get("dev") != null);
 
 var started = false;
 var gameOver = false;
@@ -78,7 +80,7 @@ function start() {
     newsSize();
     started = true;
     var delay = 5000 - new Date() + visitTimeL + 1000;
-    !dev && setTimeout(() => { post(1); }, delay > 0 ? delay : 0);
+    setTimeout(() => { post(1); }, delay > 0 ? delay : 0);
 }
 
 function end() {
@@ -96,11 +98,13 @@ function end() {
         q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>ongeveer evenveel mensen</strong> als de 4,7% die in het echt besmet raakten. Hierdoor vielen er helaas ook een vergelijkbaar aantal doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
     }
 
+    getIndex();
+
     setTimeout(() => {
         hide("timechoice", "col1", "col2", "news");
         show("gameover");
         endTime = Math.floor(new Date() / 1000);
-        !dev && post(2);
+        post(2);
         // confettiStart = Date.now()
         // confettiFrame();
     }, !dev ? 1500 : 0);
@@ -131,12 +135,14 @@ function update() {
         q("btn-socdis").classList.add("nudge");
     }
 
-    var a = intToDate(day);
-    q("date").innerHTML = a[2] + " " + mos[a[1]] + " " + a[0];
+    for (const [k, v] of Object.entries(a)) { if (g(k)) a[k][5]++; };
+
+    var intdate = intToDate(day);
+    q("date").innerHTML = intdate[2] + " " + mos[intdate[1]] + " " + intdate[0];
 
     setChoices();
     checkBtn();
-    getIndex();
+    // getIndex();
     updateStats();
     setNews();
 }
@@ -175,7 +181,7 @@ function setNews() {
         var div = q("firstnews");
         div.innerHTML = '<img draggable="false" class="logo" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' · do. 27 februari</p><p class="newstitle">' + title + '</p>';
         var div = q("content");
-        div.innerHTML = '<img draggable="false" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' · do. 27 februari</p><a id="totop" onclick="updatePinned(snws.length-1);" style="opacity: 0;">+1</a><p class="newstitle">' + title + '</p>';
+        div.innerHTML = '<img draggable="false" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' · <span class="big">do. </span>27 februari</p><a id="totop" onclick="updatePinned(snws.length-1);" style="opacity: 0;">+1</a><p class="newstitle">' + title + '</p>';
         snws = [
             [source, "-1", title]
         ];
@@ -212,13 +218,8 @@ function updateStats() {
     calcCOV();
     addData(testChart, day, s.P);
     q("testCount").innerText = s.P;
-    if (dev) {
-        addData(hospChart, day, mindex);
-        q("hospCount").innerText = Math.round(mindex);
-    } else {
-        addData(hospChart, day, s.H);
-        q("hospCount").innerText = s.H;
-    }
+    addData(hospChart, day, s.H);
+    q("hospCount").innerText = s.H;
     addData(deadChart, day, s.D);
     q("deadCount").innerText = s.D;
 }
@@ -277,7 +278,7 @@ function updatePinned(i) {
     var pin = q('content');
     var a = intToDate(snws[i][1]);
     pin.children[0].setAttribute('src', 'img/' + snws[i][0] + '.jpg');
-    pin.children[1].innerHTML = outlets[snws[i][0]] + ' · ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]];
+    pin.children[1].innerHTML = outlets[snws[i][0]] + ' · <span class="big">' + wdays[a[3]] + ' </span>' + a[2] + ' ' + mos[a[1]];
     pin.children[3].innerHTML = snws[i][2];
 
     currentPinned = i;
@@ -598,7 +599,7 @@ function post(i) {
 //     };
 // };
 
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !dev) {
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     colorSwitch();
 }
 

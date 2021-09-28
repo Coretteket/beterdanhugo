@@ -12,6 +12,8 @@ var outlets = {
     "parool": "Parool",
     "metro": "Metro",
     "bnr": "BNR",
+    "1v": "EenVandaag",
+    "hvnl": "Hart van Nederland",
     "reuters": "Reuters",
     "ap": "Associated Press",
     "bbc": "BBC",
@@ -26,6 +28,7 @@ var pairs = [
     ["volkskrant", "telegraaf"],
     ["nrc", "trouw", "parool"],
     ["metro", "bnr"],
+    ["1v", "hvnl"],
     ["bbc", "cnn"],
     ["nyt", "wsj"],
     ["reuters", "ap"]
@@ -47,11 +50,10 @@ var nws = {
         [2, "Volgens het RIVM nog geen reden tot zorgen: `Nederland het best voorbereid'"],
         [3, "Zijn we voorbereid op een epidemie? `Kabinet moet niet bang zijn om in te grijpen'"],
         [3, "`Het verleden leert ons: maatregelen tegen een epidemie komen eigenlijk altijd te laat'"],
-        
     ],
     18: [
-        [2, "Eerste overleden coronapatiënt (86) uit Oud-Beijerland `was ontzettend lieve man'"],
-        [2, "Eerste Nederlander (86) aan corona&shy;virus overleden in Rotterdams ziekenhuis"],
+        [1, "Eerste overleden coronapatiënt (86) uit Oud-Beijerland `was ontzettend lieve man'"],
+        [1, "Eerste Nederlander (86) aan corona&shy;virus overleden in Rotterdams ziekenhuis"],
         [2, "Eerste corona-dode in Nederland, man (86) had al gezondheids&shy;problemen"]
     ],
     21: [
@@ -59,11 +61,38 @@ var nws = {
             [1, "Nederland volledig op slot: alleen huis uit als het echt nodig is, vermijd grote groepen"],
             [0, "Kabinet kiest voor harde lockdown: alleen je huis nog uit als het echt nodig is"]
         ]],
+        ["measureCount(2)", [
+            [0, "Kabinet in persconferentie: $announced"],
+            [1, "Maatregelen tegen corona: $announced"],
+        ]],
         ["true", [
             [3, "Afgelopen week $lastweekpos besmettingen: druk op kabinet om maatregelen te nemen groeit"],
             [3, "Kabinet neemt vooralsnog geen landelijke maatregelen, is dat wel verantwoord?"],
-            [3, "Explosief aantal corona&shy;besmettingen: `Wanneer gaat de politiek ingrijpen?'"]
+            [3, "Steeds meer corona&shy;besmettingen: `De politiek moet nu echt durven in te grijpen'"]
         ]],
+    ],
+    // 25: [], // werken mondkapjes wel? schrikbeeld italië? opiniestukken? scholensluiting?
+    29: [ // zorg voor minder []
+        ["g('lockdown')", [
+            [5, "Meerderheid steunt corona&shy;maatregelen, maar lockdown is controversieel"]
+        ]],
+        ["!measureCount(5)", [
+            [5, "Weinig vertrouwen in coronaminster $lname, meerderheid wil meer maatregelen"]
+        ]],
+        ["g('curfew')", [
+            [5, "Meerderheid steunt corona&shy;maatregelen, maar avondklok is controversieel"]
+        ]],
+        ["g('masks')", [
+            [5, "Grote meerderheid steunt corona&shy;maatregelen, mondkapjes wel impopulair"]
+        ]],
+        ["true", [
+            [5, "Veel vertrouwen in minster $lname én de maatregelen tegen het coronavirus"]
+        ]]
+    ],
+    32: [
+        [0, "`Hoopvolle en alarmerende speech van koning schudt Nederlanders wakker'"],
+        [0, "Koning in zeldzame toespraak: `Corona&shy;virus niet te stoppen, eenzaamheidsvirus wel'"],
+        [1, "Miljoenen zien toespraak van de koning: `We moeten hier samen doorheen'"]
     ]
 }
 
@@ -93,10 +122,24 @@ function getNews() {
     }
 }
 
+function measureCount(c) {
+    for (const [k, v] of Object.entries(a)) { if (v[0] > 0) { c-- }; if (c == 0) return true; };
+}
+
+var prio = { "edlow": "kinderen blijven thuis", "curfew": "avondklok ingevoerd", "shops": "alleen essentiële winkels open", "horeca": "horeca gesloten", "border": "grenzen gesloten", "edmid": "middelbare scholen gesloten", "events": "evenementen verboden", "eduni": "hoger onderwijs dicht", "socdis": "afstand van elkaar houden", "workhome": "vaker thuiswerken", "theater": "geen theater meer", "clubs": "nachtclubs dicht", "gather": "bijeenkomsten verboden", "masks": "een mondkapje dragen" };
+
+function announce() {
+    var an = [];
+    for (const [k, v] of Object.entries(prio)) { console.log(k); if (g(k)) an.push(v); if (an.length == 2) break }
+    var rtxt = an[0] + " en " + an[1];
+    return rtxt
+}
+
 function vars(a) {
     a = a.replace("$lname", lname);
     a = a.replace("$lastweekpos", s.Ps[day] + s.Ps[day - 1] + s.Ps[day - 2] + s.Ps[day - 3] + s.Ps[day - 4] + s.Ps[day - 5] + s.Ps[day - 6]);
     a = a.replace("$totalpos", s.Ps.reduce((p, a) => p + a, 0));
+    a = a.replace("$announced", announce());
     a = a.replace("`", "‘");
     a = a.replace("'", "’")
     return a;
