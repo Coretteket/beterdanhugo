@@ -357,6 +357,7 @@ var lock = ["eduni", "shops", "horeca", "clubs", "gather", "theater", "events", 
 
 function toggleBtn(btn) {
     if (paused) { return; }
+    if (q("btn-socdis").classList.contains("nudge")) q("btn-socdis").classList.remove("nudge");
     if (toggles.includes(btn)) {
         removeItem(toggles, btn);
     } else {
@@ -505,12 +506,12 @@ function colorSwitch() {
     document.documentElement.style.overflow = "";
     if (lightmode) {
         q("light").setAttribute("id", "dark");
-        q("colormode").getElementsByTagName("i")[0].setAttribute("class", "fas fa-sun");
+        q("colormode").getElementsByTagName("i")[0].innerHTML = "&#xf185;";
 
         lightmode = false;
     } else {
         q("dark").setAttribute("id", "light");
-        q("colormode").getElementsByTagName("i")[0].setAttribute("class", "fas fa-moon");
+        q("colormode").getElementsByTagName("i")[0].innerHTML = "&#xf186;";
         lightmode = true;
     }
     q(lightmode ? "light" : "dark").offsetHeight;

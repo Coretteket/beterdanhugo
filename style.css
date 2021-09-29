@@ -1,6 +1,23 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap"); */
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;900&display=block");
+@font-face {
+    font-family: 'SVG';
+    src: url('svg.woff2') format('woff2');
+    font-display: block;
+}
+
+i {
+    font-family: 'SVG'!important;
+    font-weight: 900;
+    font-style: normal;
+    display: inline-block;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: auto;
+}
+
 html,
 body {
     color: var(--txt);
@@ -93,7 +110,7 @@ main {
     main {
         max-width: 450px;
         grid-template-rows: auto;
-        grid-template-columns: minmax(120px,1fr);
+        grid-template-columns: minmax(120px, 1fr);
         grid-template-areas: "title" "twitter" "start" "news" "timechoice" "choice" "col1" "col2" "faq" "gameover";
     }
 }
@@ -227,10 +244,6 @@ b {
 #faqbtn,
 #colormode {
     padding-right: .5em;
-}
-
-.fa-moon {
-    font-size: .93em;
 }
 
 #twitter a {
@@ -642,10 +655,6 @@ margin-bottom: 0;
 background: var(--back);
 }*/
 
-.fa-exclamation-triangle {
-    color: orange;
-}
-
 hr {
     border: 0;
     margin: .5em 0;
@@ -656,7 +665,9 @@ hr {
     background: transparent;
 }
 
-#scroll {scrollbar-width: none;}
+#scroll {
+    scrollbar-width: none;
+}
 
 #chartbox {
     padding-top: .4em;
@@ -818,7 +829,7 @@ strong {
     font-size: 1.2em;
 }
 
-.fa-hammer {
+.hammer {
     position: absolute;
     top: 50%;
     left: 50%;

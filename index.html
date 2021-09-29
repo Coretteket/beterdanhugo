@@ -7,9 +7,9 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
-    <script src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous" async></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
+    <!-- <script src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous" async></script> -->
     <link type="text/css" rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" sizes="180x180" href="./ico/apple-touch-icon.png">
@@ -42,16 +42,16 @@
             <h1>Beter dan Hugo</h1>
         </div>
         <div id="twitter">
-            <a onclick="colorSwitch();" id="colormode"><i class="fas fa-moon"></i></a>
-            <a onclick="toggleFAQ();" id="faqbtn"><i class="fas fa-question-circle"></i></a>
-            <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank"><i class="fab fa-twitter"></i> @coretteket</a>
+            <a onclick="colorSwitch();" id="colormode"><i>&#xf186;</i></a>
+            <a onclick="toggleFAQ();" id="faqbtn"><i>&#xf059;</i></a>
+            <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank"><i>&#xf099;</i> @coretteket</a>
         </div>
         <div id="head" class="hide">
             <p>De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke maatregel die je invoert heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister. <a id="knowmore" class="more" onclick="toggleFAQ();">Lees meer.</a></p>
             <hr>
         </div>
         <div id="wip" class="hide">
-            <i class="fas fa-hammer"></i>
+            <i class="hammer">&#xf6e3;</i>
             <div class="wip">
                 <h2>Werk in uitvoering</h2>
                 <p>Beter dan Hugo is momenteel nog niet klaar voor het grote publiek. Wil je de bèta proberen? <a href="https://twitter.com/messages/compose?recipient_id=793888775223046144" rel="noreferrer" target="_blank">Stuur me dan een DM.</a></p>
@@ -63,16 +63,16 @@
             <p id="starttxt">Voor we beginnen, hoe mogen we je noemen?</p>
             <div id="givename">
                 <input spellcheck="false" type="text" id="lname" name="lastName" placeholder="Je achternaam" autocomplete="family-name">
-                <a onclick="checkStart();" id="name" class="btn"><i class="fas fa-play"></i></a>
+                <a onclick="checkStart();" id="name" class="btn"><i>&#xf04b;</i></a>
             </div>
             <div id="disclaimer" class="desk">Disclaimer: dit is een spel, en dus geen realistische simulatie.</div>
         </div>
         <div id="timechoice" class="hide">
             <p id="today">Het is vandaag <span id="date">27 februari 2020</span>. </p>
-            <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i class="fas fa-pause"></i></a>
-            <a onclick="setSpeed(1);" id="s1" class="btn nudge"><i class="fas fa-play"></i></a>
-            <a onclick="setSpeed(2);" id="s2" class="btn"><i class="fas fa-step-forward"></i></a>
-            <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
+            <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i>&#xf04c;</i></a>
+            <a onclick="setSpeed(1);" id="s1" class="btn nudge"><i>&#xf04b;</i></a>
+            <a onclick="setSpeed(2);" id="s2" class="btn"><i>&#xf051;</i></a>
+            <a onclick="setSpeed(3);" id="s3" class="btn"><i>&#xf050;</i></a>
         </div>
         <div id="choice" class="hide"></div>
         <div id="col1" class="hide">
@@ -124,9 +124,9 @@
                         <canvas id="deadChart" style="width:100%;"></canvas>
                     </div>
                     <div class="statbtns">
-                        <div onclick="toggleStat('test');" id="testBtn" class="statbtn statbtnactive"> <i class="fas fa-virus"></i> <span id="testCount">0</span> </div>
-                        <div onclick="toggleStat('hosp');" id="hospBtn" class="statbtn"> <i class="fas fa-ambulance"></i> <span id="hospCount">0</span> </div>
-                        <div onclick="toggleStat('dead');" class="statbtn" id="deadBtn"> <i class="fas fa-skull"></i> <span id="deadCount">0</span> </div>
+                        <div onclick="toggleStat('test');" id="testBtn" class="statbtn statbtnactive"> <i>&#xe074;</i> <span id="testCount">0</span> </div>
+                        <div onclick="toggleStat('hosp');" id="hospBtn" class="statbtn"> <i>&#xf0f9;</i> <span id="hospCount">0</span> </div>
+                        <div onclick="toggleStat('dead');" class="statbtn" id="deadBtn"> <i>&#xf54c;</i> <span id="deadCount">0</span> </div>
                     </div>
                 </div>
             </div>
