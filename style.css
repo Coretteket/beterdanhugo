@@ -464,19 +464,11 @@ a {
     color: var(--back)!important;
 }
 
-#disclaimermob,
 #disclaimer {
     color: #8f8f8f;
     margin-top: .75em;
-    font-size: .75em;
-    font-weight: 600;
-}
-
-#disclaimermob {
     font-size: .8em;
-    position: absolute;
-    bottom: 0;
-    margin: 15px;
+    font-weight: 600;
 }
 
 .btn {
@@ -697,8 +689,7 @@ hr {
     padding: 4px 5px;
     border-radius: 5px;
     cursor: pointer;
-    -webkit-transition: 0.2s;
-    transition: 0.2s;
+    transition: 0.1s;
 }
 
 .statbtnactive {

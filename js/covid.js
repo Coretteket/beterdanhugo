@@ -70,12 +70,9 @@ var c = { //gemaakte keuzes
     jan11warning: [0, 1]
 }
 
-function g(boop) {
-    if (a[boop][0] > 0) {
-        return true;
-    } else {
-        return false;
-    }
+function g(c, d) {
+    d = (typeof d === 'undefined') ? day : d;
+    if (a[c][0] > day - d) return true;
 }
 
 var r = { //changes in covid dynamic rates, like undercounting
@@ -151,6 +148,7 @@ var s = { // spread info
     a: 0,
     b: 1 / 5,
     c: 1 / 365,
+    d: 1 / 10,
 
     N: 17500000, //population
     S: 17500000 - 1000, //susceptible
@@ -172,12 +170,12 @@ var s = { // spread info
     P: 0, //positive tests
     H: 0, //hospitalisations
     D: 0, //counted deaths
+    B: 0, //currently hospitalized
 
     Ps: [0],
     Hs: [0],
     Ds: [0],
-
-    Xs: [0]
+    Bs: [0],
 }
 
 var b = { //preset constant beginning values
@@ -246,9 +244,13 @@ function calcCOV() {
         s.D = Math.round(s.dFs[day - 7] * r.underdeath() * randBetween(0.8, 1.2));
     };
 
+    s.B *= 1 - s.d;
+    s.B += s.H;
+
     s.Ps.push(s.P);
     s.Hs.push(s.H);
     s.Ds.push(s.D);
+    s.Bs.push(s.B);
 }
 
 var maxIndex = 0;

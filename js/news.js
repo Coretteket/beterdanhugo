@@ -42,21 +42,33 @@ var nws = {
             [0, "Kabinet in persconferentie: $announced"],
             [0, "Maatregelen tegen corona: $announced"],
         ]],
-        ["true", [
-            [0, "Afgelopen week $lastweekpos besmettingen: druk op kabinet om maatregelen te nemen groeit"],
-            [0, "Kabinet neemt vooralsnog geen landelijke maatregelen, is dat wel verantwoord?"],
-            [0, "Steeds meer corona&shy;besmettingen: `De politiek moet nu echt durven in te grijpen'"]
+        [true, [
+            [2, "Afgelopen week $lastweekpos besmettingen: druk op kabinet om maatregelen te nemen groeit"],
+            [2, "Kabinet neemt vooralsnog geen landelijke maatregelen, is dat wel verantwoord?"],
+            [2, "Steeds meer corona&shy;besmettingen: `De politiek moet ingrijpen voor het te laat is'"]
         ]],
     ],
-    // 25: [
-
-    // ], // werken mondkapjes wel? schrikbeeld italië? opiniestukken? scholensluiting?
+    25: [
+        ["measureCount(5)&&g('masks')", [
+            [1, "We moeten mondkapjes gaan dragen, maar `het is onwaarschijnlijk dat ze werken'"],
+            [1, "RIVM-baas Van Dissel: `Er is simpelweg geen bewijs voor mondkapjesadvies'"],
+            [1, "Zorg dreigt in de knel te komen door mondkapjestekort na oproep kabinet"]
+        ]],
+        ["measureCount(5)&&g('workhome')&&!g('edlow')&&!g('edmid')", [
+            [1, "Kritiek op kabinet tijdens virusdebat: `Openhouden scholen niet uit te leggen'"],
+            [1, "Zorgen in Tweede Kamer: `Onbegrijpelijk dat scholen niet dicht moeten'"]
+        ]],
+        ["!measureCount(5)", [
+            [0, "Tweede Kamer kritisch in virusdebat, roept kabinet op harder in te grijpen"],
+            [0, "Kamermeerderheid steunt oppositiemotie: kabinet moet actiever coronabeleid voeren"]
+        ]]
+    ], // werken mondkapjes wel? schrikbeeld italië? opiniestukken? scholensluiting?
     29: [
         ["g('lockdown')", 4, "Meerderheid steunt corona&shy;maatregelen, maar lockdown is controversieel"],
         ["!measureCount(5)", 4, "Weinig vertrouwen in minister $lname, meerderheid wil meer maatregelen"],
         ["g('curfew')", 4, "Meerderheid steunt corona&shy;maatregelen, maar avondklok is controversieel"],
-        ["g('masks')", 4, "Grote meerderheid steunt corona&shy;maatregelen, mondkapjes wel impopulair"],
-        ["true", 4, "Veel vertrouwen in minster $lname én de maatregelen tegen het coronavirus"]
+        ["g('masks')", 4, "Meerderheid steunt maatregelen tegen corona, mondkapjes wel impopulair"],
+        [true, 4, "Veel vertrouwen in minster $lname én de maatregelen tegen het coronavirus"]
     ],
     32: [
         [0, "`Hoopvolle en alarmerende speech van koning schudt Nederlanders wakker'"],
@@ -64,6 +76,12 @@ var nws = {
         [0, "Miljoenen zien toespraak van de koning: `We moeten hier samen doorheen'"]
     ],
 }
+
+var ovr = [
+    ["s.H>100", [
+        [0, "Zorg bedwelmd"]
+    ]]
+]
 
 var lastNews = -1;
 
@@ -76,6 +94,15 @@ function handleOutlets(pair) {
 function getNews() {
     if (day in nws) {
         lastNews = day;
+        for (var i = 0; i < ovr.length; i++) {
+            if (eval(ovr[i][0])) {
+                rI = randInt(0, ovr[i][1].length - 1);
+                handleOutlets(pairs[ovr[i][1][rI][0]]);
+                title = vars(ovr[i][1][rI][1]);
+                ovr.splice(rI, 1);
+                return;
+            }
+        }
         if (nws[day][0][0] % 1 == 0) {
             rI = randInt(0, nws[day].length - 1);
             handleOutlets(pairs[nws[day][rI][0]]);

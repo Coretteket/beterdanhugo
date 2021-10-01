@@ -76,7 +76,7 @@ function checkStart() {
 function start() {
     startTime = Math.floor(new Date() / 1000);
     show("head", "timechoice", "col1", "col2", "news");
-    hide("start", "disclaimermob", "wip");
+    hide("start", "wip");
     newsSize();
     started = true;
     var delay = 5000 - new Date() + visitTimeL + 1000;
@@ -218,7 +218,7 @@ function updateStats() {
     calcCOV();
     addData(testChart, day, s.P);
     q("testCount").innerText = s.P;
-    addData(hospChart, day, s.H);
+    addData(hospChart, day, s.B);
     q("hospCount").innerText = s.H;
     addData(deadChart, day, s.D);
     q("deadCount").innerText = s.D;
