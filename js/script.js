@@ -130,7 +130,7 @@ function timer() {
 function update() {
     day++;
 
-    if (day == dateToInt(2020, 7, 1)) { end(); return; };
+    // if (day == dateToInt(2020, 7, 1)) { end(); return; };
     if (day == 12) {
         q("btn-socdis").classList.add("nudge");
     }
@@ -216,9 +216,9 @@ var paused = false;
 
 function updateStats() {
     calcCOV();
-    addData(testChart, day, s.P);
-    q("testCount").innerText = s.P;
-    addData(hospChart, day, s.B);
+    addData(testChart, day, s.Q);
+    q("testCount").innerText = Math.round(s.Q);
+    addData(hospChart, day, s.H);
     q("hospCount").innerText = s.H;
     addData(deadChart, day, s.D);
     q("deadCount").innerText = s.D;

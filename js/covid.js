@@ -29,12 +29,12 @@ function siMe(arr) { //simplemeasure
     if (ch == 1) {
         return 1;
     } else if (par > 0) {
-        f = ![];
+        f = !1;
         lin(1, ch, par, par + delay);
         lin(ch, ch, par + delay, -1);
         return ans;
     } else if (par < 0) {
-        f = ![];
+        f = !1;
         lin(ch, bck, -par, -par + delay * 2 / 3);
         lin(bck, 1, -par + delay * 2 / 3, -par + delay);
         lin(1, 1, -par + delay, -1);
@@ -76,15 +76,15 @@ function g(c, d) {
 }
 
 var r = { //changes in covid dynamic rates, like undercounting
-    death: function() {
-        f = ![];
+    death: () => {
+        f = !1;
         lin(1, 1, 0, 120);
         lin(1, 0.6, 120, 180);
         lin(0.6, 0.6, 180, -1);
         return ans;
     },
-    underdeath: function() {
-        f = ![];
+    underdeath: () => {
+        f = !1;
         lin(0, 0.2, 0, 35)
         lin(0.2, 0.6, 35, 45);
         lin(0.6, 0.6, 45, -1)
@@ -92,8 +92,8 @@ var r = { //changes in covid dynamic rates, like undercounting
         var weff = [0.679, 0.699, 1.271, 1.159, 1.041, 1.067, 1.085];
         return weff[wday] * ans;
     },
-    test: function() {
-        f = ![];
+    test: () => {
+        f = !1;
         lin(0, 0.015, 0, 20);
         lin(0.015, 0.033, 20, 30);
         lin(0.033, 0.033, 30, 45);
@@ -103,23 +103,23 @@ var r = { //changes in covid dynamic rates, like undercounting
         lin(0.32, 0.32, 150, -1);
         return ans;
     },
-    testday: function() {
+    testday: () => {
         var wday = new Date((epoch + day * 60 * 60 * 24) * 1000).getDay();
         var weff = [1.008, 0.901, 0.863, 0.988, 1.088, 1.092, 1.048];
         return weff[wday];
     },
-    season: function() {
+    season: () => {
         return Math.cos(2 * Math.PI / 365 * day) * 0.2 + 1;
     },
-    scare: function() {
+    scare: () => {
         if (day < 90) {
             return (-(((day / 90) - 1) ** 2) + 1) * 0.3 + 0.7;
         } else {
             return 1;
         }
     },
-    hosp: function() {
-        f = ![];
+    hosp: () => {
+        f = !1;
         lin(0.001, 0.001, 0, 25);
         lin(0.001, 0.017, 25, 50);
         lin(0.017, 0.01, 50, 73);
@@ -128,6 +128,13 @@ var r = { //changes in covid dynamic rates, like undercounting
         var wday = new Date((epoch + day * 60 * 60 * 24) * 1000).getDay();
         var weff = [0.908, 0.875, 1.104, 1.031, 1.048, 1.028, 1.006]
         return weff[wday] * ans;
+    },
+    IC: () => {
+        f = !1;
+        lin(1.16, 1.16, 0, 100);
+        lin(1.16, 1, 100, 130);
+        lin(1, 1, 130, -1);
+        return ans;
     }
 }
 
@@ -148,14 +155,13 @@ var s = { // spread info
     a: 0,
     b: 1 / 5,
     c: 1 / 365,
-    d: 1 / 10,
+    d: 1 / 15,
 
     N: 17500000, //population
     S: 17500000 - 1000, //susceptible
     I: 1000, //infectious
     R: 0, //removed
     F: 0, //real fatalities
-    A: 0, //antibodies
 
     Ss: [17500000 - 1000],
     Is: [1000],
@@ -170,12 +176,14 @@ var s = { // spread info
     P: 0, //positive tests
     H: 0, //hospitalisations
     D: 0, //counted deaths
-    B: 0, //currently hospitalized
+    IC: 0, //currently in ICU
+
+    Q: 0,
 
     Ps: [0],
     Hs: [0],
     Ds: [0],
-    Bs: [0],
+    ICs: [0],
 }
 
 var b = { //preset constant beginning values
@@ -216,7 +224,6 @@ function calcCOV() {
     var dI = s.a * s.S * s.I / s.N;
     var dR = s.b * s.I * (1 - calcIFR());
     var dF = s.b * s.I * calcIFR();
-    var dA = s.b * s.I;
 
     s.dSs.push(dS);
     s.dIs.push(dI);
@@ -227,7 +234,6 @@ function calcCOV() {
     s.I += dI - dR - dF;
     s.R += dR - dS;
     s.F += dF;
-    s.A += dA;
 
     s.Ss.push(s.S);
     s.Is.push(s.I);
@@ -244,13 +250,15 @@ function calcCOV() {
         s.D = Math.round(s.dFs[day - 7] * r.underdeath() * randBetween(0.8, 1.2));
     };
 
-    s.B *= 1 - s.d;
-    s.B += s.H;
+    s.IC *= 1 - s.d;
+    s.IC += s.H / 3 * r.IC();
+
+    s.Q = (s.I / 17500000 * 40 * 4000) / (s.I / 17500000 * (40 - 1) + 1) * r.testday() * randBetween(0.85, 1.15);
 
     s.Ps.push(s.P);
     s.Hs.push(s.H);
     s.Ds.push(s.D);
-    s.Bs.push(s.B);
+    s.ICs.push(s.IC);
 }
 
 var maxIndex = 0;

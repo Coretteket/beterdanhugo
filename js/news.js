@@ -65,20 +65,23 @@ var nws = {
     ], // werken mondkapjes wel? schrikbeeld italië? opiniestukken? scholensluiting?
     29: [
         ["g('lockdown')", 4, "Meerderheid steunt corona&shy;maatregelen, maar lockdown is controversieel"],
-        ["!measureCount(5)", 4, "Weinig vertrouwen in minister $lname, meerderheid wil meer maatregelen"],
+        ["!measureCount(5)", 4, "Weinig vertrouwen in minister $lname, $worry% heeft grote zorgen over corona"],
         ["g('curfew')", 4, "Meerderheid steunt corona&shy;maatregelen, maar avondklok is controversieel"],
         ["g('masks')", 4, "Meerderheid steunt maatregelen tegen corona, mondkapjes wel impopulair"],
         [true, 4, "Veel vertrouwen in minster $lname én de maatregelen tegen het coronavirus"]
     ],
     32: [
-        [0, "`Hoopvolle en alarmerende speech van koning schudt Nederlanders wakker'"],
-        [0, "Koning in zeldzame toespraak: `Corona&shy;virus niet te stoppen, eenzaamheidsvirus wel'"],
-        [0, "Miljoenen zien toespraak van de koning: `We moeten hier samen doorheen'"]
+        [2, "`Hoopvolle en alarmerende speech van koning schudt Nederlanders wakker'"],
+        [2, "Koning in zeldzame toespraak: `Corona&shy;virus niet te stoppen, eenzaamheidsvirus wel'"],
+        [2, "Miljoenen zien toespraak van de koning: `We moeten hier samen doorheen'"]
+    ],
+    35: [
+        [0, "Boop"],
     ],
 }
 
 var ovr = [
-    ["s.H>100", [
+    ["s.IC > 600 - 6 * Math.sqrt(s.IC)", [
         [0, "Zorg bedwelmd"]
     ]]
 ]
@@ -154,6 +157,7 @@ function vars(a) {
     a = a.replace("$lastweekpos", s.Ps[day] + s.Ps[day - 1] + s.Ps[day - 2] + s.Ps[day - 3] + s.Ps[day - 4] + s.Ps[day - 5] + s.Ps[day - 6]);
     a = a.replace("$totalpos", s.Ps.reduce((p, a) => p + a, 0));
     a = a.replace("$announced", announce());
+    a = a.replace("$worry", randInt(61,74));
     a = a.replace("`", "‘");
     a = a.replace("'", "’")
     return a;
