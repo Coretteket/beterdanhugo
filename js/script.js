@@ -93,9 +93,9 @@ function end() {
         var resImmuneSev = prop > .5 ? "veel " : "iets ";
         var resMore = s.R / s.N > 0.047 ? "meer" : "minder";
         var resGood = s.R / s.N < 0.047 ? "gelukkig" : "helaas";
-        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>${resImmuneSev}${resMore} mensen</strong> dan de 4,7% die in het echt besmet raakten. Hierdoor vielen er ${resGood} ook ${resMore} doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
+        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>${resImmuneSev}${resMore} mensen</strong> dan de 4,7% die in het echt besmet raakten. <br class="mob">Hierdoor vielen er ${resGood} ook ${resMore} doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
     } else {
-        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>ongeveer evenveel mensen</strong> als de 4,7% die in het echt besmet raakten. Hierdoor vielen er ook een vergelijkbaar aantal doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
+        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>ongeveer evenveel mensen</strong> als de 4,7% die in het echt besmet raakten. <br class="mob">Hierdoor vielen er ook een vergelijkbaar aantal doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
     }
 
     getIndex();
@@ -130,7 +130,7 @@ function timer() {
 function update() {
     day++;
 
-    // if (day == dateToInt(2020, 7, 1)) { end(); return; };
+    if (day == dateToInt(2020, 7, 1) && !dev) { end(); return; };
     if (day == 12) {
         q("btn-socdis").classList.add("nudge");
     }

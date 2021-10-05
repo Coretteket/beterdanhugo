@@ -65,6 +65,15 @@ main {
     grid-template-areas: "title title twitter" "head head head" "faq faq faq" "start start start" "gameover gameover gameover" "timechoice timechoice news" "col1 col2 news";
 }
 
+
+br {
+    display: block;
+    margin: .5em 0;
+    content: " ";
+    line-height: 1em;
+}
+
+
 .mob {
     display: none;
 }
@@ -97,7 +106,6 @@ main {
         grid-template-columns: 1fr 1fr;
     }
 }
-
 @media (max-width: 600px) {
     .mob {
         display: inherit;
