@@ -95,7 +95,7 @@ function end() {
         var resGood = s.R / s.N < 0.047 ? "gelukkig" : "helaas";
         q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>${resImmuneSev}${resMore} mensen</strong> dan de 4,7% die in het echt besmet raakten. Hierdoor vielen er ${resGood} ook ${resMore} doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
     } else {
-        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>ongeveer evenveel mensen</strong> als de 4,7% die in het echt besmet raakten. Hierdoor vielen er helaas ook een vergelijkbaar aantal doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
+        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>ongeveer evenveel mensen</strong> als de 4,7% die in het echt besmet raakten. Hierdoor vielen er ook een vergelijkbaar aantal doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
     }
 
     getIndex();
@@ -216,8 +216,8 @@ var paused = false;
 
 function updateStats() {
     calcCOV();
-    addData(testChart, day, s.Q);
-    q("testCount").innerText = Math.round(s.Q);
+    addData(testChart, day, s.P);
+    q("testCount").innerText = s.P;
     addData(hospChart, day, s.H);
     q("hospCount").innerText = s.H;
     addData(deadChart, day, s.D);

@@ -65,10 +65,10 @@ var nws = {
     ], // werken mondkapjes wel? schrikbeeld italië? opiniestukken? scholensluiting?
     29: [
         ["g('lockdown')", 4, "Meerderheid steunt corona&shy;maatregelen, maar lockdown is controversieel"],
-        ["!measureCount(5)", 4, "Weinig vertrouwen in minister $lname, $worry% heeft grote zorgen over corona"],
+        ["!measureCount(5)", 4, "Weinig vertrouwen in minister $lname, $poll29% heeft grote zorgen over corona"],
         ["g('curfew')", 4, "Meerderheid steunt corona&shy;maatregelen, maar avondklok is controversieel"],
         ["g('masks')", 4, "Meerderheid steunt maatregelen tegen corona, mondkapjes wel impopulair"],
-        [true, 4, "Veel vertrouwen in minster $lname én de maatregelen tegen het coronavirus"]
+        [true, 4, "Veel vertrouwen in minster $lname: $poll29% steunt maatregelen tegen coronavirus"]
     ],
     32: [
         [2, "`Hoopvolle en alarmerende speech van koning schudt Nederlanders wakker'"],
@@ -157,7 +157,7 @@ function vars(a) {
     a = a.replace("$lastweekpos", s.Ps[day] + s.Ps[day - 1] + s.Ps[day - 2] + s.Ps[day - 3] + s.Ps[day - 4] + s.Ps[day - 5] + s.Ps[day - 6]);
     a = a.replace("$totalpos", s.Ps.reduce((p, a) => p + a, 0));
     a = a.replace("$announced", announce());
-    a = a.replace("$worry", randInt(61,74));
+    a = a.replace("$poll29", randInt(71,79));
     a = a.replace("`", "‘");
     a = a.replace("'", "’")
     return a;

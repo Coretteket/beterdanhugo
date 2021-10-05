@@ -356,9 +356,9 @@ a {
     width: 100%;
     height: 6em;
     position: absolute;
-    bottom: -1px;
+    bottom: -5px;
     z-index: 10;
-    background: linear-gradient(0deg, var(--back) 25%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(0deg, var(--back) 50%, rgba(0, 0, 0, 0) 100%);
 }
 
 @media (min-width: 600px) {
@@ -662,7 +662,7 @@ hr {
 }
 
 #chartbox {
-    padding-top: .4em;
+    padding: .4em;
 }
 
 .chartcnt {

@@ -49,21 +49,21 @@ var a = { // active, eff, boost, delay, impact, no. days, ever used
     socdis: [0, .95, 1, 3, 4, 0],
     masks: [0, .9, 1.1, 3, 2, 0],
 
-    events: [0, .85, 1.4, 7, 7, 0],
+    events: [0, .85, 1.1, 7, 7, 0],
     theater: [0, .9, 1.05, 7, 4, 0],
     gather: [0, .9, 1.1, 7, 7, 0],
 
     horeca: [0, .85, 1.05, 7, 9, 0],
-    clubs: [0, .9, 1.5, 7, 4, 0],
+    clubs: [0, .9, 1.2, 7, 4, 0],
     shops: [0, .85, 1.05, 7, 8, 0],
 
     edlow: [0, .925, 1, 7, 10, 0],
-    edmid: [0, .875, 1.2, 7, 7, 0],
-    eduni: [0, .815, 1.2, 7, 5, 0],
+    edmid: [0, .875, 1.1, 7, 7, 0],
+    eduni: [0, .815, 1.1, 7, 5, 0],
 
     lockdown: [0, .85, 1.05, 7, 15, 0],
-    curfew: [0, .925, 1.2, 7, 10, 0],
-    border: [0, .95, 1.2, 7, 8, 0]
+    curfew: [0, .925, 1.1, 7, 10, 0],
+    border: [0, .95, 1.1, 7, 8, 0]
 }
 
 var c = { //gemaakte keuzes
@@ -85,31 +85,42 @@ var r = { //changes in covid dynamic rates, like undercounting
     },
     underdeath: () => {
         f = !1;
-        lin(0, 0.2, 0, 35)
+        lin(0, 0.2, 0, 35);
         lin(0.2, 0.6, 35, 45);
         lin(0.6, 0.6, 45, -1)
-        var wday = new Date((epoch + day * 60 * 60 * 24) * 1000).getDay();
-        var weff = [0.679, 0.699, 1.271, 1.159, 1.041, 1.067, 1.085];
-        return weff[wday] * ans;
-    },
-    test: () => {
-        f = !1;
-        lin(0, 0.015, 0, 20);
-        lin(0.015, 0.033, 20, 30);
-        lin(0.033, 0.033, 30, 45);
-        lin(0.033, 0.044, 45, 80);
-        lin(0.044, 0.1, 80, 130);
-        lin(0.1, 0.32, 130, 150);
-        lin(0.32, 0.32, 150, -1);
         return ans;
     },
+    deathday: () => {
+        var wday = new Date(epoch + day * 8.64e7).getDay();
+        var weff = [0.786, 0.799, 1.181, 1.106, 1.027, 1.045, 1.057]
+        return weff[wday];
+    },
+    testratio: () => {
+        f = !1;
+        lin(40, 40, 0, 120);
+        lin(40, 12, 120, 160);
+        lin(12, 12, 160, -1);
+        return ans;
+    },
+    testcapacity: () => {
+        f = !1;
+        lin(0, 100, 10, 20);
+        lin(100, 750, 20, 30);
+        lin(750, 4000, 30, 40);
+        lin(4000, 10000, 40, 120)
+        lin(10000, 20000, 120, 160);
+        lin(20000, 100000, 160, 220);
+        lin(100000, 100000, 220, -1);
+        return ans + Math.sqrt(s.I) / 4;
+    },
     testday: () => {
-        var wday = new Date((epoch + day * 60 * 60 * 24) * 1000).getDay();
+        var wday = new Date(epoch + day * 8.64e7).getDay();
         var weff = [1.008, 0.901, 0.863, 0.988, 1.088, 1.092, 1.048];
         return weff[wday];
     },
     season: () => {
-        return Math.cos(2 * Math.PI / 365 * day) * 0.2 + 1;
+        // return Math.cos(2 * Math.PI / 365 * day) * 0.2 + 1;
+        return Math.cos(0.0172 * day) * .2 + 1;
     },
     scare: () => {
         if (day < 90) {
@@ -125,16 +136,26 @@ var r = { //changes in covid dynamic rates, like undercounting
         lin(0.017, 0.01, 50, 73);
         lin(0.01, 0.005, 73, 164);
         lin(0.005, 0.005, 164, -1);
-        var wday = new Date((epoch + day * 60 * 60 * 24) * 1000).getDay();
-        var weff = [0.908, 0.875, 1.104, 1.031, 1.048, 1.028, 1.006]
-        return weff[wday] * ans;
-    },
-    IC: () => {
-        f = !1;
-        lin(1.16, 1.16, 0, 100);
-        lin(1.16, 1, 100, 130);
-        lin(1, 1, 130, -1);
         return ans;
+    },
+    hospratio: () => {
+        f = !1;
+        lin(1, 100, 0, 30);
+        lin(100, 100, 30, 120);
+        lin(100, 20, 120, 160);
+        lin(20, 20, 160, -1);
+        return ans;
+    },
+    hospcapacity: () => {
+        f = !1;
+        lin(0, 1000, 0, 40);
+        lin(1000, 1000, 40, -1);
+        return ans;
+    },
+    hospday: () => {
+        var wday = new Date(epoch + day * 8.64e7).getDay();
+        var weff = [0.908, 0.875, 1.104, 1.031, 1.048, 1.028, 1.006]
+        return weff[wday] //* ans;
     }
 }
 
@@ -155,7 +176,6 @@ var s = { // spread info
     a: 0,
     b: 1 / 5,
     c: 1 / 365,
-    d: 1 / 15,
 
     N: 17500000, //population
     S: 17500000 - 1000, //susceptible
@@ -176,19 +196,15 @@ var s = { // spread info
     P: 0, //positive tests
     H: 0, //hospitalisations
     D: 0, //counted deaths
-    IC: 0, //currently in ICU
-
-    Q: 0,
 
     Ps: [0],
     Hs: [0],
     Ds: [0],
-    ICs: [0],
 }
 
 var b = { //preset constant beginning values
     Ps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 5, 4, 10],
-    Hs: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 3, 5, 7, 12, 4, 12, 15, 23],
+    Hs: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 3, 5, 7, 12, /*4, 12, 15, 23*/ ],
     Ds: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4],
     Rts: [1.73556, 1.92938, 1.87953, 2.02735, 1.99951, 1.91549, 2.13945, 2.23684, 2.19142, 2.22130, 2.26765]
 }
@@ -210,11 +226,13 @@ function calcR() {
     } else {
         R0 *= r.season();
         R0 *= r.scare();
-        for (const [key, value] of Object.entries(a)) { R0 *= siMe(a[key]); }
-        for (const [key, value] of Object.entries(c)) { R0 *= siMe(c[key]); }
+        var mult = 1;
+        for (const [key, value] of Object.entries(a)) { mult *= siMe(a[key]); }
+        for (const [key, value] of Object.entries(c)) { mult *= siMe(c[key]); }
+        R0 = mult > 1.2 ? 1.2 * R0 : mult * R0;
     }
-    return R0 * (dev ? 1 : randBetween(0.9, 1.1));
-    // return Rts[day] / s.S * s.N;
+    return R0 * randBetween(0.9, 1.1);
+    return Rts[day] / s.S * s.N;
 }
 
 function calcCOV() {
@@ -241,24 +259,24 @@ function calcCOV() {
     s.Fs.push(s.F);
 
     if (day < b.Ps.length) { s.P = b.Ps[day] } else {
-        s.P = Math.round(s.dIs[day - 7] * r.test() * r.testday() * randBetween(0.85, 1.15));
+        s.P = Math.round((s.I / s.N * r.testratio() * r.testcapacity()) / (s.I / s.N * (r.testratio() - 1) + 1) * r.testday() * randBetween(0.9, 1.1));
     };
     if (day < b.Hs.length) { s.H = b.Hs[day] } else {
-        s.H = Math.round(s.dIs[day - 7] * calcIHR() * randBetween(0.8, 1.2));
+        // s.H = Math.round(s.dIs[day - 7] * calcIHR() * randBetween(0.8, 1.2));
+        // s.H = Math.round((s.Is[day - 7] / s.N * r.hospratio() * r.hospcapacity()) / (s.Is[day - 7] / s.N * (r.hospratio() - 1) + 1) * r.hospday() * randBetween(0.8, 1.2));
+        s.H = Math.round(s.dIs[day - 7] * calcIHR() * randBetween(0.9, 1.1));
+        s.H = s.H > 300 ? Math.round(1600 - 1600 / (1 + s.H / 1000)) : s.H;
+        s.H = Math.round(s.H * r.hospday());
     };
     if (day < b.Ds.length) { s.D = b.Ds[day] } else {
-        s.D = Math.round(s.dFs[day - 7] * r.underdeath() * randBetween(0.8, 1.2));
+        s.D = s.dFs[day - 7] * r.underdeath() * randBetween(0.8, 1.2);
+        s.D = s.D > 300 ? 1200 - 1200 / (1 + s.D / 1000) : s.D;
+        s.D = Math.round(s.D * r.deathday());
     };
-
-    s.IC *= 1 - s.d;
-    s.IC += s.H / 3 * r.IC();
-
-    s.Q = (s.I / 17500000 * 40 * 4000) / (s.I / 17500000 * (40 - 1) + 1) * r.testday() * randBetween(0.85, 1.15);
 
     s.Ps.push(s.P);
     s.Hs.push(s.H);
     s.Ds.push(s.D);
-    s.ICs.push(s.IC);
 }
 
 var maxIndex = 0;
