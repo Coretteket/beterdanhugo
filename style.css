@@ -244,7 +244,7 @@ b {
 #twitter {
     margin: calc(20px + 0.5em) 0 5px;
     text-align: right;
-    font-size: 1.15em;
+    font-size: 1.2em;
     color: var(--light-txt);
     font-weight: 700;
 }
@@ -486,7 +486,7 @@ a {
     font-weight: 600;
     vertical-align: middle;
     font-size: 1em !important;
-    border: 2px solid var(--dark-txt);
+    border: 2px solid var(--btn-border);
     padding: 0;
     margin: 0 0 .6em;
     border-radius: 6px;
@@ -495,12 +495,11 @@ a {
     transition: transform .05s ease, opacity .5s ease, color .1s ease, background .1s ease;
 }
 
-input,
-textarea,
-button,
-select,
-a {
+*, *:focus {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    outline: none;
 }
 
 button,
@@ -527,7 +526,7 @@ textarea {
     line-height: 1;
     /* height: 2.3em; */
     padding: .5em max(1vw, 8px);
-    /* font-weight: 600; */
+    font-weight: 600;
     font-size: .9em;
     margin-right: .2em;
     min-width: 4em;
@@ -705,6 +704,38 @@ hr {
     padding-top: 3.5px;
     background: var(--stat-back);
 }
+
+/* .statbtnactive.lev0 {
+    border-top-color: var(--border-thick);
+} */
+
+/* .statbtnactive.lev1 {
+    border-top-color: var(--lev1);
+}
+.statbtnactive.lev2 {
+    border-top-color: var(--lev2);
+}
+.statbtnactive.lev3 {
+    border-top-color: var(--lev3);
+}
+.statbtnactive.lev4 {
+    border-top-color: var(--lev4);
+}
+.statbtnactive.lev5 {
+    border-top-color: var(--lev5);
+}
+.statbtnactive.lev6 {
+    border-top-color: var(--lev6);
+}
+
+html {
+    --lev1: hsl(50, 100%, 72%);
+    --lev2: hsl(40, 100%, 72%);
+    --lev3: hsl(30, 100%, 72%);
+    --lev4: hsl(20, 100%, 72%);
+    --lev5: hsl(10, 100%, 72%);
+    --lev6: hsl(0, 100%, 72%);
+} */
 
 .statbtn:hover {
     transform: scale(1.01);
@@ -954,7 +985,8 @@ strong {
     --link-hover: #0056b3;
     --box: #dedede;
     --light-txt: #727272;
-    --dark-txt: #444444;
+    --dark-txt: #272727;
+    --btn-border: #505050;
     --txt: #212529;
     --hr: #0000001a;
     --stat-back: #f6f6f6;
@@ -975,6 +1007,7 @@ strong {
     --box: #343a3f;
     --light-txt: #d3d3d3;
     --dark-txt: #ebebeb;
+    --btn-border: #ebebeb;;
     --txt: white;
     --hr: #ffffff1a;
     --stat-back: #212529;

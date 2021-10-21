@@ -140,7 +140,7 @@ var r = { //changes in covid dynamic rates, like undercounting
     },
     hospratio: () => {
         f = !1;
-        lin(1, 100, 0, 30);
+        lin(10, 100, 0, 30);
         lin(100, 100, 30, 120);
         lin(100, 20, 120, 160);
         lin(20, 20, 160, -1);
@@ -148,7 +148,7 @@ var r = { //changes in covid dynamic rates, like undercounting
     },
     hospcapacity: () => {
         f = !1;
-        lin(0, 1000, 0, 40);
+        lin(100, 1000, 0, 40);
         lin(1000, 1000, 40, -1);
         return ans;
     },
@@ -203,9 +203,9 @@ var s = { // spread info
 }
 
 var b = { //preset constant beginning values
-    Ps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 5, 4, 10],
-    Hs: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 3, 5, 7, 12, /*4, 12, 15, 23*/ ],
-    Ds: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4],
+    Ps: [0, 1, 1, 3, 5, 4, 10],
+    Hs: [0, 1, 0, 1, 0, 1, 1, 3, 5, 7, /*12, 4, 12, 15, 23*/ ],
+    Ds: [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 3, 3, 7, 4],
     Rts: [1.73556, 1.92938, 1.87953, 2.02735, 1.99951, 1.91549, 2.13945, 2.23684, 2.19142, 2.22130, 2.26765]
 }
 
@@ -258,17 +258,17 @@ function calcCOV() {
     s.Rs.push(s.R);
     s.Fs.push(s.F);
 
-    if (day < b.Ps.length) { s.P = b.Ps[day] } else {
+    if (day - 10 < b.Ps.length && day >= 10) { s.P = b.Ps[day - 10] } else {
         s.P = Math.round((s.I / s.N * r.testratio() * r.testcapacity()) / (s.I / s.N * (r.testratio() - 1) + 1) * r.testday() * randBetween(0.9, 1.1));
     };
-    if (day < b.Hs.length) { s.H = b.Hs[day] } else {
+    if (day - 10 < b.Hs.length && day >= 10) { s.H = b.Hs[day - 10] } else {
         // s.H = Math.round(s.dIs[day - 7] * calcIHR() * randBetween(0.8, 1.2));
         // s.H = Math.round((s.Is[day - 7] / s.N * r.hospratio() * r.hospcapacity()) / (s.Is[day - 7] / s.N * (r.hospratio() - 1) + 1) * r.hospday() * randBetween(0.8, 1.2));
-        s.H = Math.round(s.dIs[day - 7] * calcIHR() * randBetween(0.9, 1.1));
+        s.H = Math.round(s.dIs[day - 7] * calcIHR() * randBetween(0.95, 1.05));
         s.H = s.H > 300 ? Math.round(1600 - 1600 / (1 + s.H / 1000)) : s.H;
         s.H = Math.round(s.H * r.hospday());
     };
-    if (day < b.Ds.length) { s.D = b.Ds[day] } else {
+    if (day - 10 < b.Ds.length && day >= 10) { s.D = b.Ds[day - 10] } else {
         s.D = s.dFs[day - 7] * r.underdeath() * randBetween(0.8, 1.2);
         s.D = s.D > 300 ? 1200 - 1200 / (1 + s.D / 1000) : s.D;
         s.D = Math.round(s.D * r.deathday());
@@ -296,5 +296,6 @@ function getIndex() {
     for (const [k, v] of Object.entries(a)) {
         stringency += v[4] * v[5] / maxIndex / (day - 13);
     }
-    console.log(stringency);
+    stringency = Math.round(stringency * 1e4) / 1e4;
+    // console.log(stringency);
 }

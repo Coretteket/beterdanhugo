@@ -8,7 +8,7 @@ if (cid != null) {
 
 var screenwidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-var pst = ["`id=${id}&os=${jscd.os}&osv=${jscd.osv}&browser=${jscd.browser}&browserv=${jscd.browserv}&width=${screenwidth}&visit=${visitTime}`", "`id=${id}&start=${startTime}`", "`id=${id}&start=${startTime}&end=${endTime}&deaths=${Math.round(s.F)}`"]
+var pst = ["`id=${id}&os=${jscd.os}&osv=${jscd.osv}&browser=${jscd.browser}&browserv=${jscd.browserv}&width=${screenwidth}&visit=${visitTime}`", "`id=${id}&start=${startTime}`", "`id=${id}&end=${endTime}&deaths=${Math.round(s.F)}&stringency=${stringency}`"]
 
 var startTime = 0;
 
@@ -99,6 +99,7 @@ function end() {
     }
 
     getIndex();
+    console.log(stringency);
 
     setTimeout(() => {
         hide("timechoice", "col1", "col2", "news");
@@ -222,6 +223,7 @@ function updateStats() {
     q("hospCount").innerText = s.H;
     addData(deadChart, day, s.D);
     q("deadCount").innerText = s.D;
+    // statColor();
 }
 
 function pause() {
@@ -316,6 +318,26 @@ function toggleStat(s) {
     q(o[1] + "Btn").classList.remove("statbtnactive");
 }
 
+// var prevLevel = 0;
+// function statColor() {
+//     var pt = s.P / r.testcapacity();
+//     if (pt <= 0.025) level = 0;
+//     if (pt > 0.025 && pt <= 0.05) level = 1;
+//     if (pt > 0.05 && pt <= 0.075) level = 2;
+//     if (pt > 0.075 && pt <= 0.15) level = 3;
+//     if (pt > 0.15 && pt <= 0.3) level = 4;
+//     if (pt > 0.3 && pt <= 0.6) level = 5; 
+//     if (pt > 0.6) level = 6;
+//     if (prevLevel == level) return;
+//     for (let div of q("statbtns").children) {
+//         for (var i = 0; i <= 6; i++) {
+//             div.classList.remove("lev"+i);
+//         }
+//         div.classList.add("lev"+level);
+//     };
+//     prevLevel = level;
+// }
+
 var FAQ = false;
 var preSpeed = 0;
 
@@ -330,7 +352,7 @@ function toggleFAQ() {
         setSpeed(preSpeed);
     } else if (FAQ && !started) {
         window.scrollTo(0, 0);
-        show("disclaimermob", "start");
+        show( /*"disclaimermob",*/ "start");
         hide("faq");
         q("knowmore").innerHTML = "Meer weten?";
         FAQ = false;
@@ -341,7 +363,7 @@ function toggleFAQ() {
         FAQ = false;
     } else {
         window.scrollTo(0, 0);
-        hide("disclaimermob", "gameover", "timechoice", "col1", "col2", "news", "start");
+        hide( /*"disclaimermob",*/ "gameover", "timechoice", "col1", "col2", "news", "start");
         show("faq");
         q("knowmore").innerHTML = "Terug naar spel.";
         FAQ = true;
@@ -636,12 +658,12 @@ if (!dev) {
 function newsSize() {
     if (q('col1').offsetHeight == q('col2').offsetHeight) {
         var pos1 = Math.round(q('stats').getBoundingClientRect().bottom);
-        var pos2 = Math.round(q('news').getBoundingClientRect().top);
+        var pos = Math.round(q('news').getBoundingClientRect().top);
         var height = document.documentElement.clientHeight;
-        q('news').setAttribute("style", "max-height: " + (height - pos2 - 10) + "px;");
+        q('news').setAttribute("style", "max-height: " + ((height - pos > 760 ? 750 : height - pos - 10)) + "px;");
         q('scroll').setAttribute("style", "max-height: " + (height - pos1 - 10) + "px;");
     } else {
-        var maxheight = q('timechoice').offsetHeight;
+        var maxheight = q('timechoice').offsetHeight + q('col1').offsetHeight + q('col2').offsetHeight;
         var sheight = q('stats').offsetHeight + 10;
         maxheight += q('col1').offsetHeight;
         maxheight += q('col2').offsetHeight;

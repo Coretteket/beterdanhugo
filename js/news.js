@@ -51,13 +51,14 @@ var nws = {
     25: [
         ["measureCount(5)&&g('masks')", [
             [1, "We moeten mondkapjes gaan dragen, maar `het is onwaarschijnlijk dat ze werken'"],
-            [1, "RIVM-baas Van Dissel: `Er is simpelweg geen bewijs voor mondkapjesadvies'"],
-            [1, "Zorg dreigt in de knel te komen door mondkapjestekort na oproep kabinet"]
+            [1, "RIVM-baas Van Dissel: `Er is simpelweg geen bewijs voor mondkapjesplicht'"],
+            [1, "Zorg dreigt in de knel te komen door mondkapjestekort door verplichting"]
         ]],
         ["measureCount(5)&&g('workhome')&&!g('edlow')&&!g('edmid')", [
             [1, "Kritiek op kabinet tijdens virusdebat: `Openhouden scholen niet uit te leggen'"],
             [1, "Zorgen in Tweede Kamer: `Onbegrijpelijk dat scholen niet dicht moeten'"]
         ]],
+        // measurecount 5
         ["!measureCount(5)", [
             [0, "Tweede Kamer kritisch in virusdebat, roept kabinet op harder in te grijpen"],
             [0, "Kamermeerderheid steunt oppositiemotie: kabinet moet actiever coronabeleid voeren"]
@@ -75,8 +76,17 @@ var nws = {
         [2, "Koning in zeldzame toespraak: `Corona&shy;virus niet te stoppen, eenzaamheidsvirus wel'"],
         [2, "Miljoenen zien toespraak van de koning: `We moeten hier samen doorheen'"]
     ],
-    35: [
-        [0, "Boop"],
+    36: [
+        ["s.H>600", [
+            [0, "Elke dag dichterbij `code zwart': wat gebeurt er als er geen bedden meer zijn?"],
+            [0, "IC-arts Gommers: `Ook Nederland dichtbij Italiaanse toestanden, weinig bedden vrij'"],
+            [0, "De zorg `piept en kraakt': reëel scenario dat er over twee weken geen IC-bed meer vrij is"]
+        ]],
+        ["s.H>200", [
+            [0, "'Stuwmeer' aan behandelingen, coronavirus verhoogt druk op andere zorg"],
+            [0, "Helft van reguliere zorg uitgesteld vanwege ziekenhuisdruk door coronavirus"],
+            [0, "Niet-coronazorg ligt plat: `Er wacht ons een ramp met verborgen slachtoffers'"]
+        ]],
     ],
 }
 
