@@ -98,7 +98,7 @@ function end() {
         q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>ongeveer evenveel mensen</strong> als de 4,7% die in het echt besmet raakten. <br class="mob">Hierdoor vielen er ook een vergelijkbaar aantal doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
     }
 
-    getIndex();
+    getStringency();
     console.log(stringency);
 
     setTimeout(() => {
@@ -136,14 +136,14 @@ function update() {
         q("btn-socdis").classList.add("nudge");
     }
 
-    for (const [k, v] of Object.entries(a)) { if (g(k)) a[k][5]++; };
+    for (const [k, v] of Object.entries(a)) { if (checkm(k)) a[k][5]++; };
 
     var intdate = intToDate(day);
     q("date").innerHTML = intdate[2] + " " + mos[intdate[1]] + " " + intdate[0];
 
     setChoices();
     checkBtn();
-    // getIndex();
+    getIndex();
     updateStats();
     setNews();
 }

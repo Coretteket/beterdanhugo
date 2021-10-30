@@ -65,14 +65,12 @@ main {
     grid-template-areas: "title title twitter" "head head head" "faq faq faq" "start start start" "gameover gameover gameover" "timechoice timechoice news" "col1 col2 news";
 }
 
-
 br {
     display: block;
     margin: .5em 0;
     content: " ";
     line-height: 1em;
 }
-
 
 .mob {
     display: none;
@@ -106,6 +104,7 @@ br {
         grid-template-columns: 1fr 1fr;
     }
 }
+
 @media (max-width: 600px) {
     .mob {
         display: inherit;
@@ -173,6 +172,7 @@ p {
 
 #faq {
     grid-area: faq;
+    margin-top: .2em;
 }
 
 h1 {
@@ -370,6 +370,11 @@ a {
 }
 
 @media (min-width: 600px) {
+    .faqbox {
+        margin: 0 0 1em 1em;
+        float: right;
+        font-size: 16px;
+    }
     #scroll,
     #scroll {
         position: relative;
@@ -387,6 +392,31 @@ a {
 
 #stats .box {
     margin-bottom: .4em;
+}
+
+#faq p {
+    line-height: 1.2;
+    margin-bottom: .5em;
+}
+
+.faqbox {
+    padding: .75em 1em;
+    animation: none!important;
+    transition: none!important;
+}
+
+.faqbox {
+    font-weight: 700;
+}
+
+.faqbox b {
+    color: var(--btn-border);
+    margin: 0;
+    display: inline;
+}
+
+.faqbox a {
+    text-decoration: none;
 }
 
 #firstnews {
@@ -431,7 +461,7 @@ a {
 }
 
 #content {
-    width: calc(100% - 40px);
+    width: calc(100% - 42px);
     margin: 0;
     display: inline-block;
     vertical-align: top;
@@ -495,7 +525,8 @@ a {
     transition: transform .05s ease, opacity .5s ease, color .1s ease, background .1s ease;
 }
 
-*, *:focus {
+*,
+*:focus {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -ms-touch-action: manipulation;
     touch-action: manipulation;
@@ -528,7 +559,7 @@ textarea {
     padding: .5em max(1vw, 8px);
     font-weight: 600;
     font-size: .9em;
-    margin-right: .2em;
+    /* margin-right: .2em; */
     min-width: 4em;
     /* width: 100%; */
     background: var(--back);
@@ -677,6 +708,7 @@ hr {
     margin-bottom: .3em;
 }
 
+#faq a:not(.faqbtn),
 .more {
     color: var(--link) !important;
     text-decoration: none;
@@ -684,6 +716,7 @@ hr {
     cursor: pointer;
 }
 
+#faq a:hover:not(.faqbtn),
 .more:hover {
     color: var(--link-hover) !important;
     text-decoration: underline;
@@ -705,9 +738,11 @@ hr {
     background: var(--stat-back);
 }
 
+
 /* .statbtnactive.lev0 {
     border-top-color: var(--border-thick);
 } */
+
 
 /* .statbtnactive.lev1 {
     border-top-color: var(--lev1);
@@ -917,7 +952,7 @@ strong {
         margin-bottom: 1em;
     }
     b {
-        margin-top: 0!important;
+        margin-top: .2em!important;
     }
     #choice {
         margin: .25em 0 0 0;
@@ -925,9 +960,16 @@ strong {
 }
 
 @media (max-width: 600px) {
+    .faqbox {
+        max-width: 100%;
+        /* width: 100%; */
+    }
+    .btn {
+        margin-bottom: .45em;
+    }
     html,
     body {
-        font-size: 16px;
+        font-size: 17px;
     }
     #col1 {
         margin-top: .5em;
@@ -964,6 +1006,10 @@ strong {
 }
 
 @media (max-width: 370px) {
+    html,
+    body {
+        font-size: 16px;
+    }
     .big {
         display: none;
     }
@@ -981,8 +1027,8 @@ strong {
 
 #light {
     --back: white;
-    --link: #0072ec;
-    --link-hover: #0056b3;
+    --link: #1f5085;
+    --link-hover: #133c68;
     --box: #dedede;
     --light-txt: #727272;
     --dark-txt: #272727;
@@ -1002,12 +1048,13 @@ strong {
 
 #dark {
     --back: #212529;
-    --link: #4fa4ff;
-    --link-hover: #6eb4ff;
+    --link: #85c0ff;
+    --link-hover: #b4d8ff;
     --box: #343a3f;
     --light-txt: #d3d3d3;
     --dark-txt: #ebebeb;
-    --btn-border: #ebebeb;;
+    --btn-border: #ebebeb;
+    ;
     --txt: white;
     --hr: #ffffff1a;
     --stat-back: #212529;

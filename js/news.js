@@ -1,8 +1,18 @@
-var outlets = { nos: "NOS", rtl: "RTL", nu: "NU.nl", volkskrant: "Volkskrant", telegraaf: "Telegraaf", nrc: "NRC", trouw: "Trouw", ad: "AD", parool: "Parool", metro: "Metro", bnr: "BNR", "1v": "EenVandaag", hvnl: "Hart van Nederland", reuters: "Reuters", ap: "Associated Press", bbc: "BBC", nyt: "New York Times", wsj: "Wall Street Journal", cnn: "CNN" };
+function week(i) {
+    if (i == undefined) i = day;
+    var d = new Date(epoch * 1e3 + i * 864e5);
+    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+    var yearStart = new Date(Date.UTC(2020, 0, 1));
+    return Math.ceil((((d - yearStart) / 864e5) + 1) / 7)
+};
 
-var pairs = [
+function shuffle(a) { for (let b, c = a.length; 0 != c;) b = Math.floor(Math.random() * c), c--, [a[c], a[b]] = [a[b], a[c]]; return a }
+
+var outlets = { nos: "NOS", rtl: "RTL", nu: "NU.nl", vk: "Volkskrant", tgf: "Telegraaf", nrc: "NRC", trouw: "Trouw", ad: "AD", parool: "Parool", metro: "Metro", bnr: "BNR", "1v": "EenVandaag", hvnl: "Hart van Nederland", reuters: "Reuters", ap: "Associated Press", bbc: "BBC", nyt: "New York Times", wsj: "Wall Street Journal", cnn: "CNN" };
+
+pairs = [
     ["nos", "rtl", "nu", "ad"],
-    ["volkskrant", "telegraaf"],
+    ["vk", "tgf"],
     ["nrc", "trouw", "parool"],
     ["metro", "bnr"],
     ["1v", "hvnl"],
@@ -11,164 +21,127 @@ var pairs = [
     ["reuters", "ap"]
 ];
 
-for (const e in pairs) {
-    pairs[e] = pairs[e].map((value) => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value);
-}
-
-var nws = {
-    11: [
-        [0, "Eerste Nederlander met coronavirus opgenomen in Tilburg, `man vierde carnaval'"],
-        [0, "RIVM: eerste coronageval in Nederland, man kwam uit risicogebied Italië"],
-        [0, "Eerste besmetting coronavirus in Nederland: patiënt (56) in Tilburg geïsoleerd"],
-        [0, "Ondernemer uit Loon op Zand is eerste coronapatiënt in het ziekenhuis"]
-    ],
-    14: [
-        [1, "Viroloog over verslaggeving coronavirus: `Overdrijven we niet een beetje?'"],
-        [1, "Volgens het RIVM nog geen reden tot zorgen: `Nederland het best voorbereid'"],
-        [2, "Zijn we voorbereid op een epidemie? `Kabinet moet niet bang zijn om in te grijpen'"],
-        [2, "`Het verleden leert ons: maatregelen tegen een epidemie komen eigenlijk altijd te laat'"],
-    ],
-    18: [
-        [0, "Eerste overleden coronapatiënt (86) uit Oud-Beijerland `was ontzettend lieve man'"],
-        [0, "Eerste Nederlander (86) aan corona&shy;virus overleden in Rotterdams ziekenhuis"],
-        [1, "Eerste corona-dode in Nederland, man (86) had al gezondheids&shy;problemen"]
-    ],
-    21: [
-        ["g('lockdown')", [
-            [0, "Nederland volledig op slot: alleen huis uit als het echt nodig is, vermijd grote groepen"],
-            [0, "Kabinet kiest voor harde lockdown: alleen je huis nog uit als het echt nodig is"]
-        ]],
-        ["measureCount(2)", [
-            [0, "Kabinet in persconferentie: $announced"],
-            [0, "Maatregelen tegen corona: $announced"],
-        ]],
-        [true, [
-            [2, "Afgelopen week $lastweekpos besmettingen: druk op kabinet om maatregelen te nemen groeit"],
-            [2, "Kabinet neemt vooralsnog geen landelijke maatregelen, is dat wel verantwoord?"],
-            [2, "Steeds meer corona&shy;besmettingen: `De politiek moet ingrijpen voor het te laat is'"]
-        ]],
-    ],
-    25: [
-        ["measureCount(5)&&g('masks')", [
-            [1, "We moeten mondkapjes gaan dragen, maar `het is onwaarschijnlijk dat ze werken'"],
-            [1, "RIVM-baas Van Dissel: `Er is simpelweg geen bewijs voor mondkapjesplicht'"],
-            [1, "Zorg dreigt in de knel te komen door mondkapjestekort door verplichting"]
-        ]],
-        ["measureCount(5)&&g('workhome')&&!g('edlow')&&!g('edmid')", [
-            [1, "Kritiek op kabinet tijdens virusdebat: `Openhouden scholen niet uit te leggen'"],
-            [1, "Zorgen in Tweede Kamer: `Onbegrijpelijk dat scholen niet dicht moeten'"]
-        ]],
-        // measurecount 5
-        ["!measureCount(5)", [
-            [0, "Tweede Kamer kritisch in virusdebat, roept kabinet op harder in te grijpen"],
-            [0, "Kamermeerderheid steunt oppositiemotie: kabinet moet actiever coronabeleid voeren"]
-        ]]
-    ], // werken mondkapjes wel? schrikbeeld italië? opiniestukken? scholensluiting?
-    29: [
-        ["g('lockdown')", 4, "Meerderheid steunt corona&shy;maatregelen, maar lockdown is controversieel"],
-        ["!measureCount(5)", 4, "Weinig vertrouwen in minister $lname, $poll29% heeft grote zorgen over corona"],
-        ["g('curfew')", 4, "Meerderheid steunt corona&shy;maatregelen, maar avondklok is controversieel"],
-        ["g('masks')", 4, "Meerderheid steunt maatregelen tegen corona, mondkapjes wel impopulair"],
-        [true, 4, "Veel vertrouwen in minster $lname: $poll29% steunt maatregelen tegen coronavirus"]
-    ],
-    32: [
-        [2, "`Hoopvolle en alarmerende speech van koning schudt Nederlanders wakker'"],
-        [2, "Koning in zeldzame toespraak: `Corona&shy;virus niet te stoppen, eenzaamheidsvirus wel'"],
-        [2, "Miljoenen zien toespraak van de koning: `We moeten hier samen doorheen'"]
-    ],
-    36: [
-        ["s.H>600", [
-            [0, "Elke dag dichterbij `code zwart': wat gebeurt er als er geen bedden meer zijn?"],
-            [0, "IC-arts Gommers: `Ook Nederland dichtbij Italiaanse toestanden, weinig bedden vrij'"],
-            [0, "De zorg `piept en kraakt': reëel scenario dat er over twee weken geen IC-bed meer vrij is"]
-        ]],
-        ["s.H>200", [
-            [0, "'Stuwmeer' aan behandelingen, coronavirus verhoogt druk op andere zorg"],
-            [0, "Helft van reguliere zorg uitgesteld vanwege ziekenhuisdruk door coronavirus"],
-            [0, "Niet-coronazorg ligt plat: `Er wacht ons een ramp met verborgen slachtoffers'"]
-        ]],
-    ],
-}
-
-var ovr = [
-    ["s.IC > 600 - 6 * Math.sqrt(s.IC)", [
-        [0, "Zorg bedwelmd"]
-    ]]
-]
+for (const b in pairs) pairs[b] = pairs[b].map(b => ({ value: b, sort: Math.random() })).sort((b, c) => b.sort - c.sort).map(({ value: b }) => b);
 
 var lastNews = -1;
+var lastCat = -1;
+var newscounter = 0;
+var dls = [11, 14, 18];
 
-function handleOutlets(pair) {
-    pair.push(pair.shift());
-    if (pair.length == 4 && Math.random() > 0.5) pair[2] = pair.splice(3, 1, pair[2])[0];
-    source = pair[0];
-}
+var rdelay = 30;
+var repeat = {};
 
 function getNews() {
-    if (day in nws) {
-        lastNews = day;
-        for (var i = 0; i < ovr.length; i++) {
-            if (eval(ovr[i][0])) {
-                rI = randInt(0, ovr[i][1].length - 1);
-                handleOutlets(pairs[ovr[i][1][rI][0]]);
-                title = vars(ovr[i][1][rI][1]);
-                ovr.splice(rI, 1);
-                return;
-            }
-        }
-        if (nws[day][0][0] % 1 == 0) {
-            rI = randInt(0, nws[day].length - 1);
-            handleOutlets(pairs[nws[day][rI][0]]);
-            title = vars(nws[day][rI][1]);
-            return;
-        } else if (nws[day][0][1] % 1 == 0) {
-            for (var i = 0; i < nws[day].length; i++) {
-                if (eval(nws[day][i][0])) {
-                    handleOutlets(pairs[nws[day][i][1]]);
-                    title = vars(nws[day][i][2]);
-                    return;
-                }
-            }
-        } else {
-            for (var i = 0; i < nws[day].length; i++) {
-                if (eval(nws[day][i][0])) {
-                    rI = randInt(0, nws[day][i][1].length - 1);
-                    handleOutlets(pairs[nws[day][i][1][rI][0]]);
-                    title = vars(nws[day][i][1][rI][1]);
-                    return;
-                }
-            }
+    if (day in repeat && delete repeat[day], !(20 > day)) { if (3 > day - lastNews) return; if (5 > day - lastNews && .5 < Math.random()) return } else if (!dls.includes(day)) return;
+    shuffle(nws);
+    var max = [1e3, -1];
+    for (i in nws) {
+        if (nws[i][0] < max[0] && eval(nws[i][4]) && lastCat != nws[i][1] && !Object.values(repeat).includes(nws[i][5])) {
+            max = [nws[i][0], i];
+            if (max == 0) break;
         }
     }
-}
-
-function measureCount(c) {
-    for (const [k, v] of Object.entries(a)) { if (v[0] > 0) { c-- }; if (c == 0) return true; };
-}
-
-var prio = { edlow: "kinderen blijven thuis", curfew: "avondklok ingevoerd", shops: "niet-essenti\xEBle winkels dicht", horeca: "alle horeca dicht", border: "grenzen gesloten", edmid: "middelbare scholen dicht", events: "evenementen verboden", eduni: "hoger onderwijs dicht", socdis: "afstand van elkaar houden", workhome: "vaker thuiswerken", theater: "cultuursector dicht", clubs: "nachtclubs dicht", gather: "bijeenkomsten verboden", masks: "een mondkapje dragen" };
-
-function announce() {
-    var an = [];
-    if (g("shops") && g("horeca") && measureCount(3)) {
-        var oth = "";
-        for (const [k, v] of Object.entries(prio)) { if (g(k) && k != "shops" && k != "horeca") { oth = v; break } };
-        rtxt = oth + ", horeca en winkels gesloten"
-    } else {
-        for (const [k, v] of Object.entries(prio)) { if (an.length == 2) break; if (g(k)) an.push(v); }
-        var rtxt = an[1] + " en " + an[0];
-    }
-    if ((rtxt.match(/dicht/g) || []).length == 2) rtxt = rtxt.replace("dicht", '');
-    return rtxt
+    if (max[0] == 1e3) return;
+    repeat[day + rdelay] = nws[max[1]][5];
+    lastNews = day;
+    lastCat = nws[max[1]][1];
+    var pair = pairs[nws[max[1]][2]];
+    pair.push(pair.shift());
+    4 == pair.length && .5 < Math.random() && (pair[2] = pair.splice(3, 1, pair[2])[0]);
+    source = pair[0];
+    title = vars(nws[max[1]][3]);
+    nws.splice(max[1], 1);
 }
 
 function vars(a) {
     a = a.replace("$lname", lname);
-    a = a.replace("$lastweekpos", s.Ps[day] + s.Ps[day - 1] + s.Ps[day - 2] + s.Ps[day - 3] + s.Ps[day - 4] + s.Ps[day - 5] + s.Ps[day - 6]);
-    a = a.replace("$totalpos", s.Ps.reduce((p, a) => p + a, 0));
-    a = a.replace("$announced", announce());
-    a = a.replace("$poll29", randInt(71,79));
     a = a.replace("`", "‘");
     a = a.replace("'", "’")
     return a;
 }
+
+// 0. coronacijfers
+// 1. opinie
+// 2. maatregelen
+// 3. tweede kamer
+// 4. experts
+// 5. peiling
+// 6. event 
+
+var nws = [
+    // vast nieuws
+    [0, 0, 0, "Eerste Nederlander met coronavirus opgenomen in Tilburg, `man vierde carnaval'", "q11", 'b5'],
+    [0, 0, 0, "RIVM: eerste coronageval in Nederland, man kwam uit risicogebied Italië", "q11", 'b5'],
+    [0, 0, 0, "Eerste besmetting coronavirus in Nederland: patiënt (56) in Tilburg geïsoleerd", "q11", 'b5'],
+    [0, 0, 0, "Ondernemer uit Loon op Zand is eerste coronapatiënt in Nederlands ziekenhuis", "q11", 'b5'],
+    [0, 4, 1, "Viroloog over verslaggeving coronavirus: `Overdrijven we niet een beetje?'", "q14i0", 'zl'],
+    [0, 4, 1, "Geen reden tot zorgen door coronavirus: `Nederland is het best voorbereide land'", "q14i0", 'zl'],
+    [0, 4, 2, "Zijn we voorbereid op een epidemie? `Kabinet moet niet bang zijn om in te grijpen'", "q14I0", 'zl'],
+    [0, 4, 2, "`Het verleden leert ons: maatregelen tegen een epidemie komen eigenlijk altijd te laat'", "q14I0", 'zl'],
+    [0, 0, 0, "Eerste overleden coronapatiënt (86) uit Oud-Beijerland `was ontzettend lieve man'", "q18", 'WO'],
+    [0, 0, 0, "Eerste Nederlander (86) aan coronavirus overleden in Rotterdams ziekenhuis", "q18", 'WO'],
+    [0, 0, 1, "Eerste corona-dode in Nederland, man (86) had al gezondheidsproblemen", "q18", 'WO'],
+    // maatregelen
+    //// lockdown
+    [1, 2, 0, "Strenge maatregelen aangekondigd: vrijwel alles gesloten, iedereen blijft thuis", "MM14", 'wv'],
+    [1, 2, 0, "Kabinet kiest voor harde lockdown: alleen je huis nog uit als het echt nodig is", "MM14", 'wv'],
+    [1, 2, 0, "Nederland in lockdown: thuisblijven wordt de norm, alle gelegenheden dicht", "MM14", 'wv'],
+    //// scholen
+    [6, 1, 0, "Scholen gewoon open ondanks corona? `Mijn kinderen blijven thuis'", "D50i1nj0", "sc"],
+    [6, 1, 2, "`Als het niet veilig is op kantoor, is het voor kinderen ook niet veilig op school'", "D50i1ma0nj0", "sc"],
+    [6, 1, 0, "Leraren roepen kabinet op tot scholensluiting, steeds meer scholen vrijwillig dicht", "D50i1nj0", "sc"],
+    //// mondkapjes
+    [4, 4, 1, "We moeten mondkapjes dragen, maar `het is onwaarschijnlijk dat ze werken'", "MC30D75", 'Lu'],
+    [4, 4, 1, "RIVM-baas Van Dissel: `Er is simpelweg geen bewijs voor mondkapjesplicht'", "MC30D75", 'Lu'],
+    [4, 4, 2, "Zorg dreigt in de knel te komen door mondkapjestekort na verplichting", "MC30D75", 'Lu'],
+    [4, 4, 2, "WHO adviseert tegen mondkapjes: waarom voert $lname toch plicht in?", "MC30D75", 'Lu'],
+    // waarschuwingen
+    [1, 4, 2, "`Kabinet moet nu maatregelen nemen, of de zorg ligt binnen twee weken plat'", "d22D35I0", "RI"],
+    [1, 4, 0, "Geen grip op virus: artsen waarschuwen voor `code zwart' in ziekenhuizen", "d22D35i0I2", "RI"],
+    [1, 1, 0, "Kabinet zet geen grote stappen: is dit wel genoeg om het virus in toom te houden?", "d22D35i0I2", "RI"],
+    [2, 3, 1, "Felle kritiek op minister $lname in coronadebat: `Grijp in of stap op'", "d25D40I0", "Xf"],
+    [2, 3, 1, "Tweede Kamer woedend op $lname: `Luister naar onze zorghelden'", "d25D40I0", "Xf"],
+    [0, 3, 0, "Grote kamermeerderheid steunt motie van afkeuring: `Grijp in of stap op'", "h400I0r2"],
+    //ziekenhuizen
+    [1, 0, 0, "Ziekenhuizen zetten zich schrap: `Alle noodscenario's worden uit de kast getrokken'", "h100r2", 'kJ'],
+    [1, 0, 0, "Elke dag dichterbij `code zwart': wat gebeurt er als er geen bedden meer zijn?", "h100r2", 'kJ'],
+    [1, 0, 0, "Ziekenhuizen overweldigd door `tsnunami aan coronapatiënten', capaciteit nadert", "h100r2", 'kJ'],
+    // events
+    [9, 6, 2, "`Hoopvolle en alarmerende toespraak van koning schudt Nederlanders wakker'", "w12I2", "MD"],
+    [9, 6, 2, "Koning in zeldzame toespraak: `Coronavirus niet te stoppen, eenzaamheidsvirus wel'", "w12i2", "MD"],
+    [9, 6, 2, "Miljoenen zien toespraak van de koning: `We moeten hier samen doorheen'", "w12", "MD"],
+]
+
+var conds = { w: "week()==", q: "day==", d: "day", i: "index", s: "stringency", h: "s.H", r: "s.Rt" }
+
+function checkm(c) {
+    if (a[c][0] > 0) return day - a[c][0];
+}
+
+function checkn(c) {
+    if (a[c][0] <= 0) return day + a[c][0];
+}
+
+for (j in nws) {
+    var cond = nws[j][4].match(/[^\d\.\|]+|\d+|\.+|\|+/g),
+        ret = "";
+    for (i in cond) {
+        var cc = cond[i];
+        lc = cond[i].toLowerCase();
+        if (lc.startsWith("m") || lc.startsWith("n")) {
+            ret += "&&check" + lc[0] + "('" + Object.keys(a)[lc.charCodeAt(1) - 97] + "')"
+            ret += (cc == lc) ? ">" : "<=";
+        } else if (cc.match(/[a-z]/i)) {
+            ret += "&&" + conds[lc]
+            if (!ret.endsWith("==")) ret += (cc == lc) ? ">" : "<=";
+            if (lc == "i") ret += "0.";
+        } else {
+            ret += cc;
+        }
+    }
+    nws[j][4] = ret.replace("|&&", "|").substring(2);
+}
+
+
+//remove on launch
+function b64() { for (var a = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", b = "", c = 0; 2 > c; c++) b += a.charAt(Math.floor(Math.random() * a.length)); return b }
