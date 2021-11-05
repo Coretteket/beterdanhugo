@@ -176,6 +176,7 @@ p {
 }
 
 h1 {
+    color: var(--bw);
     font-weight: 900;
     text-align: left;
     font-family: 'Nunito Sans', sans-serif;
@@ -260,7 +261,7 @@ b {
 
 #twitter a:hover {
     text-decoration: none;
-    color: var(--dark-txt);
+    color: var(--txt);
     cursor: pointer;
 }
 
@@ -410,7 +411,7 @@ a {
 }
 
 .faqbox b {
-    color: var(--btn-border);
+    color: var(--txt);
     margin: 0;
     display: inline;
 }
@@ -447,7 +448,7 @@ a {
     top: -2px;
     font-size: .85em;
     font-family: monospace;
-    background: var(--dark-txt);
+    background: var(--txt);
     color: var(--back);
     border-radius: 20%;
     padding: 0 5px 1px;
@@ -495,7 +496,7 @@ a {
 }
 
 .tsel {
-    background: var(--dark-txt)!important;
+    background: var(--txt)!important;
 }
 
 .tsel i {
@@ -516,7 +517,7 @@ a {
     font-weight: 600;
     vertical-align: middle;
     font-size: 1em !important;
-    border: 2px solid var(--btn-border);
+    border: 2px solid var(--txt);
     padding: 0;
     margin: 0 0 .6em;
     border-radius: 6px;
@@ -546,8 +547,8 @@ textarea {
 }
 
 .txt {
-    background: var(--box);
-    color: var(--dark-txt);
+    color: var(--txt);
+    border-color: var(--btn-border);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -567,7 +568,7 @@ textarea {
 }
 
 .txt:hover:not(.freeze div a):not(.paused) {
-    color: var(--dark-txt);
+    color: var(--txt);
     -webkit-transform: scale(1.01);
     transform: scale(1.01);
 }
@@ -577,13 +578,14 @@ textarea {
 }
 
 .txtsel {
-    background: var(--dark-txt);
+    border-color: var(--txt);
+    background: var(--txt);
     color: var(--back) !important;
 }
 
 .btn i {
     padding: .4em;
-    color: var(--dark-txt);
+    color: var(--txt);
 }
 
 .active {
@@ -595,13 +597,13 @@ textarea {
 }
 
 #givename input {
-    border: 2px solid var(--dark-txt);
+    border: 2px solid var(--txt);
     padding: .3em;
     padding-left: .5em;
     border-radius: 6px;
     width: 15em;
     background: var(--input);
-    color: var(--dark-txt);
+    color: var(--txt);
     height: 1.2em;
 }
 
@@ -638,7 +640,7 @@ textarea {
 
 /*
 #givename .btn:hover {
-    background: var(--dark-txt);
+    background: var(--txt);
 }
 
 #givename .btn:hover i {
@@ -780,7 +782,7 @@ html {
 .statbtn i {
     font-size: 1em;
     padding-right: 1px;
-    color: var(--dark-txt);
+    color: var(--txt);
 }
 
 #chartbox .row {
@@ -799,7 +801,7 @@ hr {
 }
 
 strong {
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .paused {
@@ -900,7 +902,7 @@ strong {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 12em;
-    color: var(--dark-txt);
+    color: var(--txt);
     opacity: .1;
 }
 
@@ -1026,39 +1028,38 @@ strong {
 }
 
 #light {
+    --bw: black;
     --back: white;
     --link: #1f5085;
     --link-hover: #133c68;
     --box: #dedede;
-    --light-txt: #727272;
-    --dark-txt: #272727;
-    --btn-border: #505050;
+    --light-txt: #636363;
     --txt: #212529;
-    --hr: #0000001a;
+    --btn-border: #444c55;
     --stat-back: #f6f6f6;
-    --border: #a0a0a0;
+    --hr: #0000001a;
+    --border: #8a8a8a;
     --border-thick: #797979;
     --arrows: none;
-    --nudge: #838383;
+    --nudge: #c5c5c5;
     --input: white;
     --tut-box: #f0dcc1;
     --tut-border: #aa9c8b;
     --tut-x: #796853;
-}
+}   
 
 #dark {
+    --bw: white;
     --back: #212529;
     --link: #85c0ff;
     --link-hover: #b4d8ff;
     --box: #343a3f;
     --light-txt: #d3d3d3;
-    --dark-txt: #ebebeb;
-    --btn-border: #ebebeb;
-    ;
     --txt: white;
+    --btn-border: white;
     --hr: #ffffff1a;
     --stat-back: #212529;
-    --border: #7f858b;
+    --border: hsl(210, 5%, 45%);
     --border-thick: #a2a6ab;
     --arrows: invert(1);
     --nudge: #afb5bb;

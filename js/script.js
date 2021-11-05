@@ -28,7 +28,7 @@ var mos = ["err", "januari", "februari", "maart", "april", "mei", "juni", "juli"
 
 var currentPinned = 0;
 
-var speeds = [0, 3000, 1500, 750];
+var speeds = [0, 2500, 1500, 750];
 var speed = 0;
 var counter = speeds[3] * 2 / 3;
 
@@ -622,9 +622,9 @@ function post(i) {
 //     };
 // };
 
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    colorSwitch();
-}
+// if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+//     colorSwitch();
+// }
 
 q("lname").addEventListener('keydown', (function(event) {
     if (event.key == "Enter") {
