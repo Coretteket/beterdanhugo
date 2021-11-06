@@ -504,7 +504,7 @@ a {
 }
 
 #disclaimer {
-    color: #8f8f8f;
+    color: var(--border);
     margin-top: .75em;
     font-size: .8em;
     font-weight: 600;
@@ -552,12 +552,12 @@ textarea {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    justify-content: left;
-    text-align: left;
+    /* justify-content: center;
+    text-align: center; */
     align-items: center;
     line-height: 1;
     /* height: 2.3em; */
-    padding: .5em max(1vw, 8px);
+    padding: .5em max(1vw, 17.5px);
     font-weight: 600;
     font-size: .9em;
     /* margin-right: .2em; */
@@ -952,9 +952,12 @@ strong {
     }
     #col2 {
         margin-bottom: 1em;
+    } 
+    #btns-base b:first-child {
+        margin-top: 0!important;
     }
     b {
-        margin-top: .2em!important;
+        margin-top: .7em!important;
     }
     #choice {
         margin: .25em 0 0 0;
