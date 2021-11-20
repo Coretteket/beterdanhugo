@@ -1,10 +1,10 @@
-function week(i) {
-    if (i == undefined) i = day;
-    var d = new Date(epoch * 1e3 + i * 864e5);
-    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
-    var yearStart = new Date(Date.UTC(2020, 0, 1));
-    return Math.ceil((((d - yearStart) / 864e5) + 1) / 7)
-};
+function week(a) {
+    a == null && (a = day);
+    var b = new Date(1e3 * epoch + 864e5 * a);
+    b.setUTCDate(b.getUTCDate() + 4 - (b.getUTCDay() || 7));
+    var c = new Date(Date.UTC(2020, 0, 1));
+    return Math.ceil(((b - c) / 864e5 + 1) / 7)
+}
 
 function shuffle(a) { for (let b, c = a.length; 0 != c;) b = Math.floor(Math.random() * c), c--, [a[c], a[b]] = [a[b], a[c]]; return a }
 
@@ -25,14 +25,11 @@ for (const b in pairs) pairs[b] = pairs[b].map(b => ({ value: b, sort: Math.rand
 
 var lastNews = -1;
 var lastCat = -1;
-var newscounter = 0;
-var dls = [11, 14, 18];
-
 var rdelay = 30;
 var repeat = {};
 
 function getNews() {
-    if (day in repeat && delete repeat[day], !(20 > day)) { if (3 > day - lastNews) return; if (5 > day - lastNews && .5 < Math.random()) return } else if (!dls.includes(day)) return;
+    if (day in repeat && delete repeat[day], !(20 > day)) { if (3 > day - lastNews) return; if (5 > day - lastNews && .5 < Math.random()) return } else if (![11, 14, 18].includes(day)) return;
     shuffle(nws);
     var max = [1e3, -1];
     for (i in nws) {
@@ -45,6 +42,7 @@ function getNews() {
     repeat[day + rdelay] = nws[max[1]][5];
     lastNews = day;
     lastCat = nws[max[1]][1];
+    if (nws[max[1]].length > 6) chos[day + 1] = cchos[nws[max[1]][6]];
     var pair = pairs[nws[max[1]][2]];
     pair.push(pair.shift());
     4 == pair.length && .5 < Math.random() && (pair[2] = pair.splice(3, 1, pair[2])[0]);
@@ -99,9 +97,8 @@ var nws = [
     [1, 4, 2, "`Kabinet moet nu maatregelen nemen, of de zorg ligt binnen twee weken plat'", "d22D35I0", "RI"],
     [1, 4, 0, "Geen grip op virus: artsen waarschuwen voor `code zwart' in ziekenhuizen", "d22D35i0I2", "RI"],
     [1, 1, 0, "Kabinet zet geen grote stappen: is dit wel genoeg om het virus in toom te houden?", "d22D35i0I2", "RI"],
-    [2, 3, 1, "Felle kritiek op minister $lname in coronadebat: `Grijp in of stap op'", "d25D40I0", "Xf"],
-    [2, 3, 1, "Tweede Kamer woedend op $lname: `Luister naar onze zorghelden'", "d25D40I0", "Xf"],
-    [0, 3, 0, "Grote kamermeerderheid steunt motie van afkeuring: `Grijp in of stap op'", "h400I0r2"],
+    [2, 3, 1, "Felle kritiek op minister $lname in coronadebat: `Grijp in of stap op'", "d25D40I0", "Xf", "noMeasureMotion"],
+    [2, 3, 1, "Tweede Kamer woedend op $lname: `Luister naar de helden in de zorg'", "d25D40I0", "Xf", "noMeasureMotion"],
     //ziekenhuizen
     [1, 0, 0, "Ziekenhuizen zetten zich schrap: `Alle noodscenario's worden uit de kast getrokken'", "h100r2", 'kJ'],
     [1, 0, 0, "Elke dag dichterbij `code zwart': wat gebeurt er als er geen bedden meer zijn?", "h100r2", 'kJ'],
@@ -114,13 +111,9 @@ var nws = [
 
 var conds = { w: "week()==", q: "day==", d: "day", i: "index", s: "stringency", h: "s.H", r: "s.Rt" }
 
-function checkm(c) {
-    if (a[c][0] > 0) return day - a[c][0];
-}
+function checkm(b) { if (0 < a[b][0]) return day - a[b][0] }
 
-function checkn(c) {
-    if (a[c][0] <= 0) return day + a[c][0];
-}
+function checkn(b) { if (0 >= a[b][0]) return day + a[b][0] }
 
 for (j in nws) {
     var cond = nws[j][4].match(/[^\d\.\|]+|\d+|\.+|\|+/g),

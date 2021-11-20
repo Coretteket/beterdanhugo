@@ -47,7 +47,7 @@
             <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank"><i>&#xf099;</i> @coretteket</a>
         </div>
         <div id="head" class="hide">
-            <p>De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke maatregel die je invoert heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister. <a id="knowmore" class="more" onclick="toggleFAQ();">Lees meer.</a></p>
+            <!-- <p>De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke maatregel die je invoert heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister. <a id="knowmore" class="more" onclick="toggleFAQ();">Lees meer.</a></p> -->
             <hr>
         </div>
         <div id="wip" class="hide">
@@ -70,10 +70,12 @@
         </div>
         <div id="timechoice" class="hide">
             <p id="today">Het is vandaag <span id="date">27 februari 2020</span>. </p>
-            <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i>&#xf04c;</i></a>
-            <a onclick="setSpeed(1);" id="s1" class="btn nudge"><i>&#xf04b;</i></a>
-            <a onclick="setSpeed(2);" id="s2" class="btn"><i>&#xf051;</i></a>
-            <a onclick="setSpeed(3);" id="s3" class="btn"><i>&#xf050;</i></a>
+            <div id="btn-cont">
+                <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i>&#xf04c;</i></a>
+                <a onclick="setSpeed(1);" id="s1" class="btn nudge"><i>&#xf04b;</i></a>
+                <a onclick="setSpeed(2);" id="s2" class="btn"><i>&#xf051;</i></a>
+                <a onclick="setSpeed(3);" id="s3" class="btn"><i>&#xf050;</i></a>
+            </div>
         </div>
         <div id="choice" class="hide"></div>
         <div id="col1" class="hide">
@@ -135,11 +137,12 @@
             <div id="scroll">
                 <div class="box mob" id="pinned">
                     <div id="content"></div>
-                    <div id="arrows">
+                    <!-- <div id="arrows">
                         <a onclick="updatePinned(currentPinned+1);"><img src="img/up.png" class="inactive" width="28" height="28" id="up" alt="Lees nieuwer nieuws"></a>
                         <a onclick="updatePinned(currentPinned-1);"><img src="img/up.png" class="inactive" width="28" height="28" id="down" alt="Lees ouder nieuws"></a>
-                    </div>
+                    </div> -->
                 </div>
+                <div id="tut" class="box tut hide"><p></p></div>
                 <div id="firstnews" class="box desk"></div>
             </div>
         </div>
@@ -157,9 +160,10 @@
                 <b>&#10140; </b><a href="#wie">Wie heeft het gemaakt?</a><br>
                 <b>&#10140; </b><a href="#hoe">Hoe werkt het spel?</a>
             </div>
-            <b style="margin-top:0;"id="wat">Wat moet ik doen?</b>
+            <b style="margin-top:0;" id="wat">Wat moet ik doen?</b>
             <p>Lopen alle coronacijfers uit de hand en weet je niet wat je moet doen? Geen paniek! Het belangrijkste in het spel is dat je maatregelen neemt. Dat doe je door op de verschillende knoppen, zoals 'afstand houden' of 'winkels sluiten' te klikken. Hiermee voer je die coronamaatregel in.<br class="mob"> Zeker aan het begin van de pandemie is één maatregel alleen lang niet genoeg. Zoek dus een goede combinatie om ervoor te zorgen dat het virus zich niet ver kan verspreiden.</p>
-            <p>Tijdens het spel zie je in de grafieken de coronacijfers omhoog en omlaag gaan. Je kan zien hoeveel mensen er positief getest worden, hoeveel er in het ziekenhuis belanden, en hoeveel komen te overlijden. Zie je dat er nog steeds veel mensen besmet raken? Dan is een strikter beleid misschien nodig.<br class="mob"> Je wordt ook geholpen door het nieuws. Daar wordt je gewaarschuwd door experts, en hoor je wat mensen van jou als coronaminister vinden.</p><p>Het is belangrijk om het te volgen: als de Tweede Kamer jouw beleid onvoldoende of juist te ingrijpend vindt, kunnen ze je wegsturen, en is het spel voorbij.<br class="mob"> Je kan elk moment op de pauzeknop klikken, als je meer tijd nodig hebt om het nieuws te lezen, of om naar de cijfers te kijken. </p>
+            <p>Tijdens het spel zie je in de grafieken de coronacijfers omhoog en omlaag gaan. Je kan zien hoeveel mensen er positief getest worden, hoeveel er in het ziekenhuis belanden, en hoeveel komen te overlijden. Zie je dat er nog steeds veel mensen besmet raken? Dan is een strikter beleid misschien nodig.<br class="mob"> Je wordt ook geholpen door het nieuws. Daar wordt je gewaarschuwd door experts, en hoor je wat mensen van jou als coronaminister vinden.</p>
+            <p>Het is belangrijk om het te volgen: als de Tweede Kamer jouw beleid onvoldoende of juist te ingrijpend vindt, kunnen ze je wegsturen, en is het spel voorbij.<br class="mob"> Je kan elk moment op de pauzeknop klikken, als je meer tijd nodig hebt om het nieuws te lezen, of om naar de cijfers te kijken. </p>
             <p>Maar de belangrijkste tip: leef je uit. Grijp in op dag één om elke dode te voorkomen, of probeer juist zo veel mogelijk vrijheid te behouden. Iedereen irriteerde zich in de afgelopen maanden wel eens aan het coronabeleid. Dit is jouw kans om te bewijzen dat je het beter kan dan Hugo de Jonge.</p>
             <a onclick="toggleFAQ();" class="btn txt faqbtn">Terug naar spel</a>
             <b id="wie">Wie heeft het gemaakt?</b>
@@ -168,14 +172,17 @@
             <p>Voor meer uit de hand gelopen projecten &ndash; zoals een robot die nieuwe woorden in de Tweede Kamer vindt, of een kaart van Nederland als het zou stemmen als Amerika &ndash; <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank">ben ik te vinden op Twitter</a>.</p>
             <!-- <p>Maar net zoals zeventien miljoen anderen voelt dat na anderhalf jaar pandemie toch wel een beetje zo. <br class="mob">Wie was er de afgelopen maanden níét geirriteerd als er weer een of andere maatregel, versoepeling, of uitzondering verzonnen werd? Daarom heb ik ‘Beter dan Hugo’ gemaakt: het is een kans om je eigen coronabeleid te voeren.</p> -->
             <b id="hoe">Hoe werkt het spel?</b>
-            
+
         </div>
     </main>
+    <div id="disclaimer"><strong>Disclaimer:</strong> Dit is een spel, geen epidemiologisch model.</div>
+    <!-- <div id="tutnudge" class="hide"></div> -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
     <script type="text/javascript" src="./js/covid.js"></script>
     <script type="text/javascript" src="./js/graph.js"></script>
     <script type="text/javascript" src="./js/choice.js"></script>
     <script type="text/javascript" src="./js/news.js"></script>
+    <script type="text/javascript" src="./js/tutorial.js"></script>
     <script type="text/javascript" src="./js/os.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
 </body>

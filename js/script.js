@@ -77,10 +77,11 @@ function start() {
     startTime = Math.floor(new Date() / 1000);
     show("head", "timechoice", "col1", "col2", "news");
     hide("start", "wip");
-    newsSize();
+    // newsSize();
     started = true;
     var delay = 5000 - new Date() + visitTimeL + 1000;
     setTimeout(() => { post(1); }, delay > 0 ? delay : 0);
+    setTimeout(() => { if (speed==0) showTut(); }, 10000)
 }
 
 function end() {
@@ -141,9 +142,10 @@ function update() {
     var intdate = intToDate(day);
     q("date").innerHTML = intdate[2] + " " + mos[intdate[1]] + " " + intdate[0];
 
-    setChoices();
+    // setChoices();
     checkBtn();
     getIndex();
+    showTut();
     updateStats();
     setNews();
 }
@@ -159,6 +161,7 @@ function restart() {
 
 }
 
+
 function act(i, j) {
     a[i][0] = j;
 }
@@ -170,8 +173,6 @@ function choose(i, j) {
 var title = "";
 var source = "";
 
-var snws = [];
-
 function setNews() {
     title = ""
     source = "";
@@ -182,29 +183,38 @@ function setNews() {
         var div = q("firstnews");
         div.innerHTML = '<img draggable="false" class="logo" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' · do. 27 februari</p><p class="newstitle">' + title + '</p>';
         var div = q("content");
-        div.innerHTML = '<img draggable="false" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' · <span class="big">do. </span>27 februari</p><a id="totop" onclick="updatePinned(snws.length-1);" style="opacity: 0;">+1</a><p class="newstitle">' + title + '</p>';
-        snws = [
-            [source, "-1", title]
-        ];
+        div.innerHTML = '<img draggable="false" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo"><p class="app">' + outlets[source] + ' · <span class="big">do. </span>27 februari</p><p class="newstitle">' + title + '</p>';
+        // snws = [
+        //     [source, "-1", title]
+        // ];
     } else if (title != "") {
+        if (q("scroll").children.length > 4)  { 
+            q("scroll").addEventListener("mousedown", mouseDownHandler);
+            q("scroll").style.cursor = "grab";
+        }
         var a = intToDate(day);
         var div = document.createElement('div');
         div.setAttribute("class", "box desk");
         div.innerHTML += '<img class="logo" draggable="false" src="img/' + source + '.jpg" width="16" height="16" alt="' + outlets[source] + ' logo">';
         div.innerHTML += '<p class="app">' + outlets[source] + ' · ' + wdays[a[3]] + ' ' + a[2] + ' ' + mos[a[1]] + '</p>';
         div.innerHTML += "<p class='newstitle'>" + title + "</p>";
-        var news = q("pinned");
+        var news = q("tut");
         news.parentNode.insertBefore(div, news.nextSibling);
 
-        var pluswhat = snws.length - currentPinned;
-        q("totop").innerHTML = "+" + pluswhat;
+        var pin = q('content');
+        pin.children[0].setAttribute('src', 'img/' + source + '.jpg');
+        pin.children[1].innerHTML = outlets[source] + ' · <span class="big">' + wdays[a[3]] + ' </span>' + a[2] + ' ' + mos[a[1]];
+        pin.children[2].innerHTML = title;
 
-        if (currentPinned == snws.length - 1) {
-            snws.push([source, day, title]);
-            updatePinned(snws.length - 1);
-        } else {
-            snws.push([source, day, title]);
-        }
+        // var pluswhat = snws.length - currentPinned;
+        // q("totop").innerHTML = "+" + pluswhat;
+
+        // if (currentPinned == snws.length - 1) {
+        //     snws.push([source, day, title]);
+        //     updatePinned(snws.length - 1);
+        // } else {
+        //     snws.push([source, day, title]);
+        // }
 
         /*if (snws.length > 5) {
             q("news").children[7].setAttribute("class", "rembox desk");
@@ -253,7 +263,7 @@ function setChoices() {
         var sethtml = "";
         sethtml += "<p>" + cho + "</p>";
         for (const [key, value] of Object.entries(chobtns)) {
-            sethtml += "<a class='btn txt' onclick='" + value + "'>" + key + "</a>"
+            sethtml += "<a class='btn txt' onclick='" + value + "delActions()'>" + key + "</a>"
         }
         q("choice").innerHTML = sethtml;
         q("main").classList = "withchoice";
@@ -273,35 +283,35 @@ function delActions() {
 
 }
 
-function updatePinned(i) {
-    if (i >= snws.length || i < 0) {
-        return;
-    }
-    var pin = q('content');
-    var a = intToDate(snws[i][1]);
-    pin.children[0].setAttribute('src', 'img/' + snws[i][0] + '.jpg');
-    pin.children[1].innerHTML = outlets[snws[i][0]] + ' · <span class="big">' + wdays[a[3]] + ' </span>' + a[2] + ' ' + mos[a[1]];
-    pin.children[3].innerHTML = snws[i][2];
+// function updatePinned(i) {
+//     if (i >= snws.length || i < 0) {
+//         return;
+//     }
+//     var pin = q('content');
+//     var a = intToDate(snws[i][1]);
+//     pin.children[0].setAttribute('src', 'img/' + snws[i][0] + '.jpg');
+//     pin.children[1].innerHTML = outlets[snws[i][0]] + ' · <span class="big">' + wdays[a[3]] + ' </span>' + a[2] + ' ' + mos[a[1]];
+//     pin.children[3].innerHTML = snws[i][2];
 
-    currentPinned = i;
+//     currentPinned = i;
 
-    var pluswhat = snws.length - currentPinned - 1;
-    q("totop").innerHTML = "+" + pluswhat;
+//     var pluswhat = snws.length - currentPinned - 1;
+//     q("totop").innerHTML = "+" + pluswhat;
 
-    if (currentPinned == snws.length - 1) {
-        q("up").classList = "inactive";
-        q("down").classList = "active";
-        q("totop").style = "opacity: 0;";
-    } else if (currentPinned == 0) {
-        q("up").classList = "active";
-        q("down").classList = "inactive";
-        q("totop").style = "opacity: 1;";
-    } else {
-        q("up").classList = "active";
-        q("down").classList = "active";
-        q("totop").style = "opacity: 1;";
-    }
-}
+//     if (currentPinned == snws.length - 1) {
+//         q("up").classList = "inactive";
+//         q("down").classList = "active";
+//         q("totop").style = "opacity: 0;";
+//     } else if (currentPinned == 0) {
+//         q("up").classList = "active";
+//         q("down").classList = "inactive";
+//         q("totop").style = "opacity: 1;";
+//     } else {
+//         q("up").classList = "active";
+//         q("down").classList = "active";
+//         q("totop").style = "opacity: 1;";
+//     }
+// }
 
 var toggled = false;
 
@@ -347,14 +357,14 @@ function toggleFAQ() {
         window.scrollTo(0, 0);
         show("timechoice", "col1", "col2", "news");
         hide("faq");
-        q("knowmore").innerHTML = "Meer weten?";
+        // q("knowmore").innerHTML = "Meer weten?";
         FAQ = false;
         setSpeed(preSpeed);
     } else if (FAQ && !started) {
         window.scrollTo(0, 0);
         show( /*"disclaimermob",*/ "start");
         hide("faq");
-        q("knowmore").innerHTML = "Meer weten?";
+        // q("knowmore").innerHTML = "Meer weten?";
         FAQ = false;
     } else if (FAQ && gameover) {
         window.scrollTo(0, 0);
@@ -365,7 +375,7 @@ function toggleFAQ() {
         window.scrollTo(0, 0);
         hide( /*"disclaimermob",*/ "gameover", "timechoice", "col1", "col2", "news", "start");
         show("faq");
-        q("knowmore").innerHTML = "Terug naar spel.";
+        // q("knowmore").innerHTML = "Terug naar spel.";
         FAQ = true;
         preSpeed = speed;
         setSpeed(0);
@@ -622,59 +632,37 @@ function post(i) {
 //     };
 // };
 
-// if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-//     colorSwitch();
+window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && colorSwitch();
+
+q("lname").addEventListener("keydown", function(a) { "Enter" == a.key && checkStart() });
+
+document.addEventListener("keypress", function(a) { " " == a.key && 0 == speed ? setSpeed(preSpeed) : " " == a.key && 0 < speed ? setSpeed(0) : 0 < a.key && 5 > a.key && started && setSpeed(a.key - 1) });
+
+dev || (window.onbeforeunload = () => { if (!gameOver && started) return "" });
+
+// function newsSize() {
+//     if (q('col1').offsetHeight == q('col2').offsetHeight) {
+//         var pos1 = Math.round(q('stats').getBoundingClientRect().bottom);
+//         var pos = Math.round(q('news').getBoundingClientRect().top);
+//         var height = document.documentElement.clientHeight;
+//         q('news').setAttribute("style", "max-height: " + ((height - pos > 760 ? 750 : height - pos - 10)) + "px;");
+//         q('scroll').setAttribute("style", "max-height: " + (height - pos1 - 10) + "px;");
+//     } else {
+//         var maxheight = q('timechoice').offsetHeight + q('col1').offsetHeight + q('col2').offsetHeight;
+//         var sheight = q('stats').offsetHeight + 10;
+//         maxheight += q('col1').offsetHeight;
+//         maxheight += q('col2').offsetHeight;
+//         q('news').setAttribute("style", "max-height: " + maxheight + "px;");
+//         q('scroll').setAttribute("style", "max-height: " + (maxheight - sheight) + "px;");
+//     }
 // }
 
-q("lname").addEventListener('keydown', (function(event) {
-    if (event.key == "Enter") {
-        checkStart();
-    }
-}));
+let pos = { top: 0, y: 0 };
+const mouseDownHandler = function(a) { q("scroll").style.cursor = "grabbing", pos = { top: q("scroll").scrollTop, y: a.clientY }, document.addEventListener("mousemove", mouseMoveHandler), document.addEventListener("mouseup", mouseUpHandler) },
+    mouseMoveHandler = function(a) { q("scroll").scrollTop = pos.top - a.clientY + pos.y },
+    mouseUpHandler = function() { document.removeEventListener("mousemove", mouseMoveHandler), document.removeEventListener("mouseup", mouseUpHandler), q("scroll").style.cursor = "grab" };
 
-document.addEventListener('keypress', (function(event) {
-    if (event.key == ' ' && speed == 0) {
-        setSpeed(preSpeed);
-    } else if (event.key == ' ' && speed > 0) {
-        setSpeed(0);
-    } else if (event.key > 0 && event.key < 5 && started) {
-        setSpeed(event.key - 1);
-    }
-}));
-
-// Object.keys(outlets).forEach(element => {
-//     var img = new Image();
-//     img.src = "./img/" + element + ".jpg";
-// });
-
-if (!dev) {
-    window.onbeforeunload = () => {
-        if (!gameOver && started) {
-            return "";
-        }
-    }
-}
-
-function newsSize() {
-    if (q('col1').offsetHeight == q('col2').offsetHeight) {
-        var pos1 = Math.round(q('stats').getBoundingClientRect().bottom);
-        var pos = Math.round(q('news').getBoundingClientRect().top);
-        var height = document.documentElement.clientHeight;
-        q('news').setAttribute("style", "max-height: " + ((height - pos > 760 ? 750 : height - pos - 10)) + "px;");
-        q('scroll').setAttribute("style", "max-height: " + (height - pos1 - 10) + "px;");
-    } else {
-        var maxheight = q('timechoice').offsetHeight + q('col1').offsetHeight + q('col2').offsetHeight;
-        var sheight = q('stats').offsetHeight + 10;
-        maxheight += q('col1').offsetHeight;
-        maxheight += q('col2').offsetHeight;
-        q('news').setAttribute("style", "max-height: " + maxheight + "px;");
-        q('scroll').setAttribute("style", "max-height: " + (maxheight - sheight) + "px;");
-    }
-}
-
-window.addEventListener('resize', function(event) {
-    newsSize();
-}, true);
+// window.addEventListener('resize', function(event) { newsSize(); }, true);
 
 for (var i = day; i < 11; i++) {
     day++;

@@ -1,7 +1,8 @@
-var chos = {
-    // 45: ["Je bent live in een tv-programma over het oprukkende coronavirus, als een assistent je een briefje doorschuift. De eerste Nederlandse coronapatiënt blijkt zojuist in het ziekenhuis te zijn opgenomen. Als minister is het vanaf nu jouw taak om de uitbraak onder controle te krijgen.", {"Aanpassen": "delActions();", "Niet aanpassen": "delActions();"}],
-    // 14: ["Beep boop", {"Optie één": "delActions();", "Optie twee": "delActions();", "Optie drie": "delActions();", "Optie vier": "delActions();"}]
-}
+var cchos = {
+    noMeasureMotion: ["In het coronadebat was de Tweede Kamer glashelder: nu er dagelijks honderden mensen positief getest worden op corona, kunnen we niet door blijven gaan alsof er niets aan de hand is. Een motie die de minister oproept om maatregelen te nemen werd unaniem aangenomen. Voer je de motie uit?", {"Neem maatregelen": "", "Negeer motie": ""}],
+};
+
+var chos = {}
 
 var cho = "";
 var chobtns = {};
