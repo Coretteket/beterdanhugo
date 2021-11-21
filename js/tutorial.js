@@ -1,10 +1,10 @@
-var tutdays = [11, 12, 20, 28, 36, 44];
+var tutdays = [11, 11, 20, 28, 36, 44];
 
 var tut = [
     ["speed==0", "Klik <span class='desk'>linksboven</span> op de startknop <span class='mob'>hieronder</span> om het spel te beginnen."],
     ["!anyMeasures();", "Je kan op elk moment een maatregel invoeren of afschaffen door <span class='desk'>links</span><span class='mob'>hieronder</span> op één van de knoppen te klikken."],
-    ["!toggled", "<span class='desk'>Hierboven</span><span class='mob'>Bovenaan</span> staan actuele cijfers over de verspreiding van corona. Met de knoppen kan je de verschillende grafieken zien."],
     ["!sped", "Met de tijdsknoppen <span class='desk'>linksboven</span><span class='mob'>hieronder</span> kan je het spel versnellen of op pauze zetten."],
+    ["!toggled", "<span class='desk'>Hierboven</span><span class='mob'>Bovenaan</span> staan actuele cijfers over de verspreiding van corona. Met de knoppen kan je de verschillende grafieken zien."],
     ["anytuts", "Het is belangrijk om het nieuws <span class='desk'>hieronder</span><span class='mob'>hierboven</span> in de gaten te houden, zodat je weet wat er in de samenleving speelt."]
 ]
 
@@ -43,7 +43,7 @@ function showTut() {
             if (tuttxt != "") {
                 anytuts = true;
                 nowtut = true;
-                q("tut").innerHTML = "<p>" + tuttxt + "</p>" + "<i class='fas fa-times' onclick='remTut()'></i>";
+                q("tut").innerHTML = "<p>" + tuttxt + "</p>" + "<span id='x' onClick='remTut()'>×</span>";
                 q("tut").classList = "box tut";
 
                 // setTimeout(() => {

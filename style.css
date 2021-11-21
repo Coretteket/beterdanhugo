@@ -534,7 +534,7 @@ a {
 
 #disclaimer {
     color: var(--border);
-    margin: -2.5em auto 0;
+    margin: -3.5em auto 0;
     max-width: 928px;
     padding: 0 min(5vw, 25px);
     font-size: .8em;
@@ -617,6 +617,7 @@ textarea {
     color: var(--back) !important;
     transform: scale(1);
 }
+
 
 /* .txtsel::after {
     content: '✓';
@@ -845,6 +846,7 @@ hr {
 .tut {
     border-color: var(--tut-border);
     background: var(--tut-box);
+    /* box-shadow: 0 0 .5em 0 var(--tut-box); */
 }
 
 .tut p {
@@ -865,6 +867,15 @@ hr {
 .tut .fa-times:hover {
     cursor: pointer;
     opacity: .8;
+}
+
+.tut #x {
+    font-size: 1.4em;
+    font-weight: 900;
+    color: var(--tut-x);
+    position: absolute;
+    margin: -0.3em 0 0 0;
+    cursor: pointer;
 }
 
 .remtut {
@@ -916,6 +927,7 @@ hr {
     }
 }
 
+
 /* 
 #tutnudge {
     top: 0;
@@ -931,23 +943,16 @@ hr {
     opacity: 0;
 }
 
+*/
+/* 
 @keyframes tutnudge {
-    0% {
-        padding: 0;
-        margin: 0;
-        opacity: .8;
-    }
-    70% {
-        padding: 10px;
-        margin: -10px 0 0 -10px;
-        opacity: 0;
-    }
-    100% {
-        padding: 0;
-        margin: 0;
-        opacity: 0;
-    }
-} */
+   from {
+       color: var(--txt);
+   } 
+   to {
+       color: var(--tut-box);
+   }
+}  */
 
 .faqbtn {
     width: -webkit-fit-content;
@@ -1008,7 +1013,7 @@ strong {
     margin-top: .05em;
     z-index: -1;
     border-radius: 50%;
-    animation: nudge 1.5s ease-out 2s 3;
+    animation: nudge 1.5s ease-out 2s 5;
     opacity: 0;
     filter: blur(3px);
 }
@@ -1031,8 +1036,8 @@ strong {
         opacity: 1;
     }
     50% {
-        -webkit-transform: scale(3);
-        transform: scale(3);
+        -webkit-transform: scale(3.5);
+        transform: scale(3.5);
         opacity: 0;
     }
     100% {
@@ -1120,6 +1125,9 @@ strong {
     }
     #disclaimer {
         margin: 0 auto 2em;
+    }
+    #givename {
+        margin-bottom: 1em;
     }
 }
 

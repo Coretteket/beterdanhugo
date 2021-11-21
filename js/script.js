@@ -510,7 +510,7 @@ var sped = false;
 
 function setSpeed(i) {
     if (speed == i || paused || gameOver) return;
-    sped = true;
+    if (i > 1) sped = true;
     if (speed > 0) {
         preSpeed = speed;
     }
@@ -524,6 +524,7 @@ function setSpeed(i) {
     } else {
         speed = i;
     }
+    if (i > 0 && day == 11) showTut();
 }
 
 var lightmode = true;
