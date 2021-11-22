@@ -52,7 +52,7 @@ function getNews() {
 }
 
 function vars(a) {
-    a = a.replace("$lname", lname);
+    // a = a.replace("De Jonge", lname);
     a = a.replace("`", "‘");
     a = a.replace("'", "’")
     return a;
@@ -92,13 +92,13 @@ var nws = [
     [4, 4, 1, "We moeten mondkapjes dragen, maar `het is onwaarschijnlijk dat ze werken'", "MC30D75", 'Lu'],
     [4, 4, 1, "RIVM-baas Van Dissel: `Er is simpelweg geen bewijs voor mondkapjesplicht'", "MC30D75", 'Lu'],
     [4, 4, 2, "Zorg dreigt in de knel te komen door mondkapjestekort na verplichting", "MC30D75", 'Lu'],
-    [4, 4, 2, "WHO adviseert tegen mondkapjes: waarom voert $lname toch plicht in?", "MC30D75", 'Lu'],
+    [4, 4, 2, "WHO adviseert tegen mondkapjes: waarom voert De Jonge toch plicht in?", "MC30D75", 'Lu'],
     // waarschuwingen
     [1, 4, 2, "`Kabinet moet nu maatregelen nemen, of de zorg ligt binnen twee weken plat'", "d22D35I0", "RI"],
     [1, 4, 0, "Geen grip op virus: artsen waarschuwen voor `code zwart' in ziekenhuizen", "d22D35i0I2", "RI"],
     [1, 1, 0, "Kabinet zet geen grote stappen: is dit wel genoeg om het virus in toom te houden?", "d22D35i0I2", "RI"],
-    [2, 3, 1, "Felle kritiek op minister $lname in coronadebat: `Grijp in of stap op'", "d25D40I0", "Xf", "noMeasureMotion"],
-    [2, 3, 1, "Tweede Kamer woedend op $lname: `Luister naar de helden in de zorg'", "d25D40I0", "Xf", "noMeasureMotion"],
+    [2, 3, 1, "Felle kritiek op minister De Jonge in coronadebat: `Grijp in of stap op'", "d25D40I0", "Xf", "noMeasureMotion"],
+    [2, 3, 1, "Tweede Kamer woedend op De Jonge: `Luister naar de helden in de zorg'", "d25D40I0", "Xf", "noMeasureMotion"],
     //ziekenhuizen
     [1, 0, 0, "Ziekenhuizen zetten zich schrap: `Alle noodscenario's worden uit de kast getrokken'", "h100r2", 'kJ'],
     [1, 0, 0, "Elke dag dichterbij `code zwart': wat gebeurt er als er geen bedden meer zijn?", "h100r2", 'kJ'],

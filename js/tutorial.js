@@ -25,7 +25,7 @@ function anyMeasures() {
 var stoptut = false;
 
 function showTut() {
-    if (tutdays.includes(day) && !stoptut && aname == null) {
+    if (tutdays.includes(day) && !stoptut /*&& aname == null*/) {
         // hide("tutnudge");
         if (tut.length == 0) {
             remTut();

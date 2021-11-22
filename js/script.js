@@ -40,7 +40,7 @@ var y = 2020;
 var lname = "De Jonge";
 
 var beta = (url.searchParams.get("beta") != null);
-var aname = url.searchParams.get("name");
+// var aname = url.searchParams.get("name");
 var dev = (url.searchParams.get("dev") != null);
 
 var started = false;
@@ -49,29 +49,26 @@ var gameOver = false;
 if (dev) {
     speeds[3] = 100;
     start();
-} else if ((beta || cid != null) && aname == null) {
-    show("start", "head");
 } else if (beta || cid != null) {
-    lname = aname;
-    start();
+    show("start", "head");
 } else {
     show("wip");
 }
 
-function checkStart() {
-    lname = q("lname").value.replace(/[\[\]0-9\(\)\.,?!=+<>/\\\n%_@#$€^&*]/gi, '');
-    lname = lname.charAt(0).toUpperCase() + lname.slice(1);
-    var starttxt = q("starttxt");
-    if (lname.replace(/ /g, '') == "") {
-        starttxt.innerText = "Kies eerst een achternaam.";
-        setTimeout((() => { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
-    } else if (lname.length > 25) {
-        starttxt.innerText = "Kies een kortere achternaam.";
-        setTimeout((() => { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
-    } else {
-        start();
-    }
-}
+// function checkStart() {
+//     // lname = q("lname").value.replace(/[\[\]0-9\(\)\.,?!=+<>/\\\n%_@#$€^&*]/gi, '');
+//     // lname = lname.charAt(0).toUpperCase() + lname.slice(1);
+//     var starttxt = q("starttxt");
+//     if (lname.replace(/ /g, '') == "") {
+//         starttxt.innerText = "Kies eerst een achternaam.";
+//         setTimeout((() => { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
+//     } else if (lname.length > 25) {
+//         starttxt.innerText = "Kies een kortere achternaam.";
+//         setTimeout((() => { starttxt.innerHTML = "Voor we beginnen, hoe mogen we je noemen?"; }), 4e3);
+//     } else {
+//         start();
+//     }
+// }
 
 function start() {
     startTime = Math.floor(new Date() / 1000);
@@ -81,7 +78,7 @@ function start() {
     started = true;
     var delay = 5000 - new Date() + visitTimeL + 1000;
     setTimeout(() => { post(1); }, delay > 0 ? delay : 0);
-    setTimeout(() => { if (speed==0) showTut(); }, 10000)
+    setTimeout(() => { if (speed == 0) showTut(); }, 10000)
 }
 
 function end() {
@@ -151,16 +148,8 @@ function update() {
 }
 
 function restart() {
-    if (window.location.href.includes("&name")) {
-        window.location.href += "";
-    } else if (window.location.href.includes("?")) {
-        window.location.href += '&name=' + lname;
-    } else {
-        window.location.href += '?name=' + lname;
-    }
-
+    window.location.href += "";
 }
-
 
 function act(i, j) {
     a[i][0] = j;
@@ -188,7 +177,7 @@ function setNews() {
         //     [source, "-1", title]
         // ];
     } else if (title != "") {
-        if (q("scroll").children.length > 4)  { 
+        if (q("scroll").children.length > 4) {
             q("scroll").addEventListener("mousedown", mouseDownHandler);
             q("scroll").style.cursor = "grab";
         }
@@ -633,9 +622,9 @@ function post(i) {
 //     };
 // };
 
-window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && colorSwitch();
+// window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && colorSwitch();
 
-q("lname").addEventListener("keydown", function(a) { "Enter" == a.key && checkStart() });
+// q("lname").addEventListener("keydown", function(a) { "Enter" == a.key && checkStart() });
 
 document.addEventListener("keypress", function(a) { " " == a.key && 0 == speed ? setSpeed(preSpeed) : " " == a.key && 0 < speed ? setSpeed(0) : 0 < a.key && 5 > a.key && started && setSpeed(a.key - 1) });
 
