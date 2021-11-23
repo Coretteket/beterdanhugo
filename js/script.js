@@ -246,32 +246,6 @@ function unpause() {
     setSpeed(preSpeed);
 }
 
-function setChoices() {
-    getChoices();
-    if (cho != "") {
-        var sethtml = "";
-        sethtml += "<p>" + cho + "</p>";
-        for (const [key, value] of Object.entries(chobtns)) {
-            sethtml += "<a class='btn txt' onclick='" + value + "delActions()'>" + key + "</a>"
-        }
-        q("choice").innerHTML = sethtml;
-        q("main").classList = "withchoice";
-        q("choice").classList.remove("remchoice");
-        show("choice")
-        pause();
-    }
-}
-
-function delActions() {
-    q("choice").classList.add("remchoice");
-    setTimeout(() => {
-        hide("choice");
-        q("main").classList = "wochoice";
-        unpause();
-    }, 400);
-
-}
-
 // function updatePinned(i) {
 //     if (i >= snws.length || i < 0) {
 //         return;
@@ -660,7 +634,7 @@ for (var i = day; i < 11; i++) {
 }
 var aa = intToDate(day);
 q("date").innerHTML = aa[2] + " " + mos[aa[1]] + " " + aa[0];
-setChoices();
+// setChoices();
 setNews();
 
 console.log('%cBeter dan Hugo', 'background:#212529;color:#ebebeb;font-size:2.5em;font-family:sans-serif;font-weight:900;padding:20px;border-radius:10px;');

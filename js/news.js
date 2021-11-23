@@ -42,7 +42,7 @@ function getNews() {
     repeat[day + rdelay] = nws[max[1]][5];
     lastNews = day;
     lastCat = nws[max[1]][1];
-    if (nws[max[1]].length > 6) chos[day + 1] = cchos[nws[max[1]][6]];
+    // if (nws[max[1]].length > 6) chos[day + 1] = cchos[nws[max[1]][6]];
     var pair = pairs[nws[max[1]][2]];
     pair.push(pair.shift());
     4 == pair.length && .5 < Math.random() && (pair[2] = pair.splice(3, 1, pair[2])[0]);
@@ -97,8 +97,8 @@ var nws = [
     [1, 4, 2, "`Kabinet moet nu maatregelen nemen, of de zorg ligt binnen twee weken plat'", "d22D35I0", "RI"],
     [1, 4, 0, "Geen grip op virus: artsen waarschuwen voor `code zwart' in ziekenhuizen", "d22D35i0I2", "RI"],
     [1, 1, 0, "Kabinet zet geen grote stappen: is dit wel genoeg om het virus in toom te houden?", "d22D35i0I2", "RI"],
-    [2, 3, 1, "Felle kritiek op minister De Jonge in coronadebat: `Grijp in of stap op'", "d25D40I0", "Xf", "noMeasureMotion"],
-    [2, 3, 1, "Tweede Kamer woedend op De Jonge: `Luister naar de helden in de zorg'", "d25D40I0", "Xf", "noMeasureMotion"],
+    [2, 3, 1, "Felle kritiek op minister De Jonge in coronadebat: `Grijp in of stap op'", "d25D40I0", "Xf"],
+    [2, 3, 1, "Tweede Kamer woedend op De Jonge: `Luister naar de helden in de zorg'", "d25D40I0", "Xf"],
     //ziekenhuizen
     [1, 0, 0, "Ziekenhuizen zetten zich schrap: `Alle noodscenario's worden uit de kast getrokken'", "h100r2", 'kJ'],
     [1, 0, 0, "Elke dag dichterbij `code zwart': wat gebeurt er als er geen bedden meer zijn?", "h100r2", 'kJ'],
