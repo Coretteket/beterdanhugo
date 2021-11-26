@@ -22,7 +22,7 @@ const options = {
         tooltip: false,
     },
     animation: {
-        duration: 0
+        duration: 10
     },
     elements: {
         point: {

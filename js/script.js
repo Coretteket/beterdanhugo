@@ -53,6 +53,7 @@ if (dev) {
     show("start", "head");
 } else {
     show("wip");
+    hide("disclaimer")
 }
 
 // function checkStart() {
@@ -100,7 +101,7 @@ function end() {
     console.log(stringency);
 
     setTimeout(() => {
-        hide("timechoice", "col1", "col2", "news");
+        hide("timechoice", "col1", "col2", "news", "disclaimer");
         show("gameover");
         endTime = Math.floor(new Date() / 1000);
         post(2);
@@ -130,7 +131,7 @@ function update() {
     day++;
 
     if (day == dateToInt(2020, 7, 1) && !dev) { end(); return; };
-    if (day == 12) {
+    if (day == 12 && !a.socdis[0] > 0) {
         q("btn-socdis").classList.add("nudge");
     }
 
@@ -404,6 +405,7 @@ function toggleBtn(btn) {
             toggleBtn("clubs");
         }
     }
+    // anymeas = true;
 }
 
 function checkBtn() {
@@ -596,7 +598,7 @@ function post(i) {
 //     };
 // };
 
-// window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && colorSwitch();
+window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && colorSwitch();
 
 // q("lname").addEventListener("keydown", function(a) { "Enter" == a.key && checkStart() });
 
