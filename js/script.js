@@ -138,6 +138,7 @@ function update() {
     if (day == dateToInt(2020, 7, 1) && !dev) { end(); return; };
     if (day == 12 && !a.socdis[0] > 0) {
         q("btn-socdis").classList.add("nudge");
+        setChoices();
     }
 
     for (const [k, v] of Object.entries(a)) { if (checkm(k)) a[k][5]++; };
@@ -145,7 +146,7 @@ function update() {
     var intdate = intToDate(day);
     q("date").innerHTML = intdate[2] + " " + mos[intdate[1]] + " " + intdate[0];
 
-    // setChoices();
+
     checkBtn();
     getIndex();
     showTut();
