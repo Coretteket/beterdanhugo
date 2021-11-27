@@ -1,10 +1,10 @@
 var id = "id" + Math.random().toString(16).slice(2);
 
 var url = new URL(window.location.href);
-var cid = url.searchParams.get("id");
-if (cid != null) {
-    id = "cd" + cid + id.substr(2 + cid.length, 1e2);
-}
+// var cid = url.searchParams.get("id");
+// if (cid != null) {
+//     id = "cd" + cid + id.substr(2 + cid.length, 1e2);
+// }
 
 var screenwidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
@@ -39,18 +39,24 @@ var y = 2020;
 
 var lname = "De Jonge";
 
+
 var beta = (url.searchParams.get("beta") != null);
-// var aname = url.searchParams.get("name");
 var dev = (url.searchParams.get("dev") != null);
+var faq = (url.searchParams.get("faq") != null);
 
 var started = false;
 var gameOver = false;
+var FAQ = false;
 
 if (dev) {
     speeds[3] = 100;
     start();
-} else if (beta || cid != null) {
-    show("start", "head");
+} else if (beta) {
+    show("start");
+} else if (faq) {
+    beta = true;
+    show("start");
+    toggleFAQ();
 } else {
     show("wip");
     hide("disclaimer")
@@ -73,7 +79,7 @@ if (dev) {
 
 function start() {
     startTime = Math.floor(new Date() / 1000);
-    show("head", "timechoice", "col1", "col2", "news");
+    show("timechoice", "col1", "col2", "news");
     hide("start", "wip");
     // newsSize();
     started = true;
@@ -312,30 +318,28 @@ function toggleStat(s) {
 //     prevLevel = level;
 // }
 
-var FAQ = false;
+// var FAQ = false;
 var preSpeed = 0;
 
 function toggleFAQ() {
     if ((!beta && !dev) || (paused && !gameOver)) return;
-    if (FAQ && !gameOver && started) {
-        window.scrollTo(0, 0);
-        show("timechoice", "col1", "col2", "news");
-        hide("faq");
-        // q("knowmore").innerHTML = "Meer weten?";
-        FAQ = false;
-        setSpeed(preSpeed);
-    } else if (FAQ && !started) {
-        window.scrollTo(0, 0);
-        show( /*"disclaimermob",*/ "start");
-        hide("faq");
-        // q("knowmore").innerHTML = "Meer weten?";
-        FAQ = false;
-    } else if (FAQ && gameover) {
+    if (FAQ) {
+        if (!gameOver && started) {
+            show("timechoice", "col1", "col2", "news");
+            setSpeed(preSpeed);
+        } else if (!started) {
+            show("start");
+        } else if (FAQ && gameover) {
+            show("gameover");
+        }
+        q("bdh").onclick = null;
+        q("bdh").style = null;
         window.scrollTo(0, 0);
         hide("faq");
-        show("gameover");
         FAQ = false;
     } else {
+        q("bdh").onclick = toggleFAQ;
+        q("bdh").style = "cursor:pointer;"
         window.scrollTo(0, 0);
         hide( /*"disclaimermob",*/ "gameover", "timechoice", "col1", "col2", "news", "start");
         show("faq");
@@ -504,12 +508,16 @@ function colorSwitch() {
     document.documentElement.style.overflow = "";
     if (lightmode) {
         q("light").setAttribute("id", "dark");
-        q("colormode").getElementsByTagName("i")[0].innerHTML = "&#xf185;";
+        // q("colormode").getElementsByTagName("i")[0].innerHTML = "&#xf185;";
+        show("sun");
+        hide("moon");
 
         lightmode = false;
     } else {
         q("dark").setAttribute("id", "light");
-        q("colormode").getElementsByTagName("i")[0].innerHTML = "&#xf186;";
+        // q("colormode").getElementsByTagName("i")[0].innerHTML = "&#xf186;";
+        hide("sun");
+        show("moon");
         lightmode = true;
     }
     q(lightmode ? "light" : "dark").offsetHeight;
