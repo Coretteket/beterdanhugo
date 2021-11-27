@@ -1149,7 +1149,7 @@ strong {
     margin-top: .05em;
     z-index: -1;
     border-radius: 50%;
-    animation: nudge 1.5s ease-out 2s 5;
+    animation: nudge 1.5s ease-out 2s infinite;
     opacity: 0;
     filter: blur(3px);
 }
