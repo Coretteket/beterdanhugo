@@ -52,14 +52,13 @@ if (dev) {
     speeds[3] = 100;
     start();
 } else if (beta) {
-    show("start");
+    show("start", "disclaimer");
 } else if (faq) {
     beta = true;
-    show("start");
+    show("start", "disclaimer");
     toggleFAQ();
 } else {
     show("wip");
-    hide("disclaimer")
 }
 
 // function checkStart() {
@@ -79,7 +78,7 @@ if (dev) {
 
 function start() {
     startTime = Math.floor(new Date() / 1000);
-    show("timechoice", "col1", "col2", "news");
+    show("disclaimer", "timechoice", "col1", "col2", "news");
     hide("start", "wip");
     // newsSize();
     started = true;

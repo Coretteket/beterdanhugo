@@ -4,7 +4,7 @@
 
 /* @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;900&display=swap"); */
 
-@font-face {
+/* @font-face {
     font-family: 'SVG';
     src: url('svg.woff2') format('woff2');
     font-display: swap;
@@ -18,7 +18,7 @@ i {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     text-rendering: auto;
-}
+} */
 
 html,
 body {
@@ -371,6 +371,15 @@ a {
     grid-template-columns: repeat(3, 1fr);
 }
 
+#statbtns svg {
+    vertical-align: middle;
+    display: inline-block;
+    filter: var(--svg-gray);
+    margin-top: -2px;
+    transform: scaleY(-1);
+    width: 19px;
+    height: 19px;
+}
 
 /* .choice {
     -webkit-animation: swipe .4s;
@@ -872,6 +881,10 @@ hr {
     margin-bottom: .3em;
 }
 
+/* .chartcnt canvas {
+    width:100%;
+} */
+
 #faq a:not(.faqbtn),
 .more {
     color: var(--link) !important;
@@ -937,7 +950,7 @@ html {
 } */
 
 .statbtn:hover {
-    transform: scale(1.01);
+    /* transform: scale(1.01); */
     background: var(--stat-back);
 }
 
@@ -1354,6 +1367,7 @@ strong {
 #light {
     --bw: black;
     --back: white;
+    --svg-dark: invert(100%);
     --link: #1f5085;
     --link-hover: #133c68;
     --box: #dedede;
