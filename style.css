@@ -644,7 +644,7 @@ textarea {
     align-items: center;
     line-height: 1;
     /* height: 2.3em; */
-    padding: .5em max(1vw, 17.5px);
+    padding: .5em .8em;
     /* font-weight: 400; */
     font-size: .9em;
     /* margin-right: .2em; */
@@ -653,6 +653,12 @@ textarea {
     /* width: 100%; */
     background: var(--back);
     transition: transform .05s ease, opacity .5s ease, color .1s ease, background .1s ease;
+}
+
+.txt i {
+    margin-right: .8em;
+    width: 20px;
+    /* font-size: .95em; */
 }
 
 @media (min-width: 960px) {
@@ -722,6 +728,9 @@ textarea {
     transform: scale(1);
 }
 
+.txtsel i {
+    color: var(--back) !important;
+}
 
 /* #start a:hover {
     -webkit-transform: scale(1.01);
