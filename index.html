@@ -36,6 +36,8 @@
     <meta name="twitter:title" content="Beter dan Hugo: Krijg jij corona onder controle?">
     <meta name="twitter:description" content="De kritiek komt van alle kanten, maar kunnen we het echt beter dan Hugo de Jonge? In dit spel kan jij je eigen weg door de pandemie proberen te vinden.">
     <meta name="twitter:image" content="https://beterdanhugo.nl/img/meta.jpg">
+    <!-- <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" /> -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 </head>
 
 <body id="light">
@@ -45,39 +47,16 @@
             <h1 id="bdh">Beter dan Hugo</h1>
         </div>
         <div id="twitter">
-            <a onclick="colorSwitch();" id="colormode">
-                <!-- <i>&#xf186;</i> -->
-                <svg id="sun" class="hide" viewBox="0 0 510 400">
-                    <path d="M256 288q40 0 68 -28t28 -68t-28 -68t-68 -28t-68 28t-28 68t28 68t68 28zM502 208q10 -5 10 -16t-10 -16l-94 -47l33 -100q3 -10 -4.5 -18t-17.5 -4l-100 33l-48 -94q-4 -10 -15 -10t-16 10l-47 94l-100 -33q-10 -4 -18 3.5t-4 18.5l33 100l-94 47q-10 5 -10 16t10 16 l94 47l-33 100q-4 10 3.5 18t18.5 4l100 -33l47 94q5 10 16 10t16 -10l47 -94l100 33q10 4 18 -4t4 -18l-33 -100zM346.5 101.5q37.5 37.5 37.5 90.5t-37.5 90.5t-90.5 37.5t-90.5 -37.5t-37.5 -90.5t37.5 -90.5t90.5 -37.5t90.5 37.5z"></path>
-                </svg>
-                <svg id="moon" viewBox="-30 0 580 400">
-                    <path d="M283 -64q-106 0 -181 75t-75 181t75 181t181 75q24 0 47 -4q8 -2 9.5 -10t-5.5 -13q-47 -26 -74.5 -73t-27.5 -101q0 -94 73 -154.5t166 -42.5q8 2 12 -5.5t-1 -13.5q-36 -45 -88 -70t-111 -25z"></path>
-                </svg>
-
-            </a>
-            <a onclick="toggleFAQ();" id="faqbtn">
-                <!-- <i>&#xf059;</i> -->
-                <svg viewBox="0 0 510 400">
-                    <path d="M504 192q0 -103 -72.5 -175.5t-175.5 -72.5t-175.5 72.5t-72.5 175.5t72.5 175.5t175.5 72.5t175.5 -72.5t72.5 -175.5zM263 358q-74 0 -117 -64q-6 -9 3 -16l35 -26q9 -7 16 2q16 19 27.5 27.5t29.5 8.5q17 0 31.5 -9.5t14.5 -23.5q0 -11 -7.5 -17.5t-24.5 -16.5 q-18 -10 -26.5 -16t-18.5 -21t-10 -34v-4q0 -12 12 -12h56q12 0 12 12v1q0 9 13 18t28.5 17t28.5 27t13 45q0 42 -36 72t-80 30zM256 110q-19 0 -32.5 -13.5t-13.5 -32.5t13.5 -32.5t32.5 -13.5t32.5 13.5t13.5 32.5t-13.5 32.5t-32.5 13.5z"></path>
-                </svg>
-            </a>
-            <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank">
-                <!-- <i>&#xf099;</i> -->
-                <svg viewBox="0 0 512 416">
-                    <path d="M459 296q1 -4 1 -13q0 -53 -20 -105.5t-56.5 -96t-94.5 -70.5t-128 -27q-88 0 -161 47q11 -1 25 -1q73 0 131 45q-35 0 -61.5 20.5t-36.5 51.5q10 -1 19 -1q14 0 28 3q-36 8 -60 37t-24 66v2q22 -13 47 -14q-47 32 -47 88q0 28 15 53q39 -49 95.5 -78t120.5 -32 q-2 12 -2 24q0 43 30.5 74t73.5 31q46 0 77 -33q36 7 67 25q-12 -37 -46 -58q30 4 60 17q-22 -32 -53 -55z"></path>
-                </svg>
-                @coretteket
-            </a>
+            <a onclick="colorSwitch();"><i class="fas fa-sun" id="sun" class="hide"></i><i class="fas fa-moon" id="moon"></i></a>
+            <a onclick="toggleFAQ();" id="faqbtn"><i class="fas fa-question-circle"></i></a>
+            <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank"><i class="fab fa-twitter"></i> @coretteket</a>
         </div>
         <div id="head">
             <!-- <p>De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke maatregel die je invoert heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister. <a id="knowmore" class="more" onclick="toggleFAQ();">Lees meer.</a></p> -->
             <hr>
         </div>
         <div id="wip" class="hide">
-            <!-- <i class="hammer">&#xf6e3;</i> -->
-            <svg viewBox="0 -60 600 500" class="hammer">
-                <path d="M571 254q12 -11 0 -23l-90 -90q-11 -11 -23 0l-22 23q-12 11 0 22l11 12l-29 28q-36 -9 -62 17l-49 49q-19 19 -19 45v19l-90 45q47 47 113 47t113 -47l45 -45q26 -26 17 -62l29 -29l11 12q11 11 23 0zM285 269l49 -49q4 -4 11 -9l-238 -255q-18 -20 -44 -20t-44.5 18.5 t-18.5 44.5t20 44l255 238q5 -7 10 -12z"></path>
-            </svg>
+            <i class="fad fa-hammer"></i>
             <div class="wip">
                 <h2>Werk in uitvoering</h2>
                 <p>Beter dan Hugo is momenteel nog niet klaar voor het grote publiek. Wil je de bèta-versie uitproberen? <a href="https://twitter.com/messages/compose?recipient_id=793888775223046144" rel="noreferrer" target="_blank">Stuur me dan een DM.</a></p>
@@ -88,7 +67,7 @@
             <a class="btn txt" onClick="start()">Start het spel</a>
             <!-- <p id="starttxt">Voor we beginnen, hoe mogen we je noemen?</p>
             <div id="givename">
-                <input spellcheck="false" type="text" id="lname" name="lastName" placeholder="Je achternaam" autocomplete="family-name">
+                <input spellcheck="farse" type="text" id="lname" name="lastName" placeholder="Je achternaam" autocomplete="family-name">
                 <a onclick="checkStart();" id="name" class="btn"><i>&#xf04b;</i></a>
             </div> -->
             <!-- <div id="disclaimer">Disclaimer: dit is een spel, en dus geen realistische simulatie.</div> -->
@@ -96,66 +75,46 @@
         <div id="timechoice" class="hide">
             <p id="today">Het is vandaag <span id="date">27 februari 2020</span>. </p>
             <div id="btn-cont">
-                <a onclick="setSpeed(0);" id="s0" class="btn tsel">
-                    <!-- <i>&#xf04c;</i> -->
-                    <svg viewBox="-55 -75 550 550">
-                        <path d="M144 -31h-96q-20 0 -34 14t-14 34v352q0 20 14 34t34 14h96q20 0 34 -14t14 -34v-352q0 -20 -14 -34t-34 -14zM448 17q0 -20 -14 -34t-34 -14h-96q-20 0 -34 14t-14 34v352q0 20 14 34t34 14h96q20 0 34 -14t14 -34v-352z"></path>
-                    </svg>
-                </a>
-                <a onclick="setSpeed(1);" id="s1" class="btn nudge">
-                    <!-- <i>&#xf04b;</i> -->
-                    <svg viewBox="-55 -75 550 550">
-                        <path d="M424 233q24 -14 24 -41t-24 -41l-352 -208q-23 -14 -47.5 -0.5t-24.5 41.5v416q0 30 25.5 42.5t46.5 -1.5z"></path>
-                    </svg>
-                </a>
-                <a onclick="setSpeed(2);" id="s2" class="btn">
-                    <!-- <i>&#xf051;</i> -->
-                    <svg viewBox="-55 -75 550 550">
-                        <path d="M384 404v-424q0 -12 -12 -12h-48q-12 0 -12 12v176l-196 -181q-15 -13 -33.5 -4t-18.5 29v384q0 20 18.5 29t33.5 -4l196 -180v175q0 12 12 12h48q12 0 12 -12z"></path>
-                    </svg>
-                </a>
-                <a onclick="setSpeed(3);" id="s3" class="btn">
-                    <!-- <i>&#xf050;</i> -->
-                    <svg viewBox="-20 -75 550 550">
-                        <path d="M512 372v-360q0 -12 -12 -12h-40q-12 0 -12 12v152l-172 -157q-15 -13 -33.5 -4t-18.5 29v132l-172 -157q-15 -13 -33.5 -4t-18.5 29v320q0 20 18.5 29t33.5 -4l172 -156v131q0 20 18.5 29t33.5 -4l172 -156v151q0 12 12 12h40q12 0 12 -12z"></path>
-                    </svg>
-                </a>
+                <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i class="fas fa-pause"></i></a>
+                <a onclick="setSpeed(1);" id="s1" class="btn nudge"><i class="fas fa-play"></i></a>
+                <a onclick="setSpeed(2);" id="s2" class="btn"><i class="fas fa-step-forward"></i></a>
+                <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
             </div>
         </div>
         <div id="choice" class="hide"></div>
         <div id="col1" class="hide">
             <div id="btns-base">
                 <b>Basisregels</b>
-                <a class="btn txt" id="btn-socdis" onclick="toggleBtn('socdis');"><i class="fas fa-people-arrows"></i> Afstand houden</a>
-                <a class="btn txt" id="btn-workhome" onclick="toggleBtn('workhome');"><i class="fas fa-house-user"></i> Thuiswerken</a>
-                <a class="btn txt" id="btn-masks" onclick="toggleBtn('masks');"><i class="fas fa-head-side-mask"></i> Mondkapjesplicht</a>
+                <a class="btn txt" id="btn-socdis" onclick="toggleBtn('socdis');"><i class="far fa-people-arrows"></i> Afstand houden</a>
+                <a class="btn txt" id="btn-workhome" onclick="toggleBtn('workhome');"><i class="far fa-house-user"></i> Thuiswerken</a>
+                <a class="btn txt" id="btn-masks" onclick="toggleBtn('masks');"><i class="far fa-head-side-mask"></i> Mondkapjesplicht</a>
             </div>
             <div id="btns-rec">
                 <b>Recreatie</b>
-                <a class="btn txt" id="btn-events" onclick="toggleBtn('events');"><i class="fas fa-users"></i> Evenementen verbieden</a>
-                <a class="btn txt" id="btn-theater" onclick="toggleBtn('theater');"><i class="fas fa-theater-masks"></i> Cultuursector sluiten</a>
-                <a class="btn txt" id="btn-gather" onclick="toggleBtn('gather');"><i class="fas fa-birthday-cake"></i> Bijeenkomsten verbieden</a>
+                <a class="btn txt" id="btn-events" onclick="toggleBtn('events');"><i class="far fa-microphone-stand"></i> Evenementen verbieden</a>
+                <a class="btn txt" id="btn-theater" onclick="toggleBtn('theater');"><i class="far fa-theater-masks"></i> Cultuursector sluiten</a>
+                <a class="btn txt" id="btn-gather" onclick="toggleBtn('gather');"><i class="far fa-birthday-cake"></i> Bijeenkomsten verbieden</a>
 
             </div>
             <div id="btns-out">
                 <b>Horeca en winkels</b>
-                <a class="btn txt" id="btn-horeca" onclick="toggleBtn('horeca');"><i class="fas fa-utensils"></i> Horeca sluiten</a>
-                <a class="btn txt" id="btn-clubs" onclick="toggleBtn('clubs');"><i class="fas fa-glass-cheers"></i> Nachtclubs sluiten</a>
-                <a class="btn txt" id="btn-shops" onclick="toggleBtn('shops');"><i class="fas fa-shopping-cart"></i> Winkels sluiten</a>
+                <a class="btn txt" id="btn-horeca" onclick="toggleBtn('horeca');"><i class="far fa-utensils"></i> Horeca sluiten</a>
+                <a class="btn txt" id="btn-clubs" onclick="toggleBtn('clubs');"><i class="far fa-glass-cheers"></i> Nachtclubs sluiten</a>
+                <a class="btn txt" id="btn-shops" onclick="toggleBtn('shops');"><i class="far fa-shopping-cart"></i> Winkels sluiten</a>
             </div>
         </div>
         <div id="col2" class="hide">
             <div id="btns-edu">
                 <b>Onderwijs</b>
-                <a class="btn txt" id="btn-edlow" onclick="toggleBtn('edlow');"><i class="fas fa-child"></i> Basisscholen sluiten</a>
-                <a class="btn txt" id="btn-edmid" onclick="toggleBtn('edmid');"><i class="fas fa-chalkboard-teacher"></i> Middelbare scholen sluiten</a>
-                <a class="btn txt" id="btn-eduni" onclick="toggleBtn('eduni');"><i class="fas fa-user-graduate"></i> Hoger onderwijs sluiten</a>
+                <a class="btn txt" id="btn-edlow" onclick="toggleBtn('edlow');"><i class="far fa-child"></i> Basisscholen sluiten</a>
+                <a class="btn txt" id="btn-edmid" onclick="toggleBtn('edmid');"><i class="far fa-chalkboard-teacher"></i> Middelbare scholen sluiten</a>
+                <a class="btn txt" id="btn-eduni" onclick="toggleBtn('eduni');"><i class="far fa-user-graduate"></i> Hoger onderwijs sluiten</a>
             </div>
             <div id="btns-lock">
                 <b>Lockdowns</b>
-                <a class="btn txt" id="btn-lockdown" onclick="toggleBtn('lockdown');"><i class="fas fa-lock"></i> Volledige lockdown</a>
-                <a class="btn txt" id="btn-curfew" onclick="toggleBtn('curfew');"><i class="fas fa-clock"></i> Avondklok</a>
-                <a class="btn txt" id="btn-border" onclick="toggleBtn('border');"><i class="fas fa-plane"></i> Grenzen sluiten</a>
+                <a class="btn txt" id="btn-lockdown" onclick="toggleBtn('lockdown');"><i class="far fa-lock-alt"></i> Volledige lockdown</a>
+                <a class="btn txt" id="btn-curfew" onclick="toggleBtn('curfew');"><i class="far fa-alarm-clock"></i> Avondklok</a>
+                <a class="btn txt" id="btn-border" onclick="toggleBtn('border');"><i class="far fa-plane"></i> Grenzen sluiten</a>
             </div>
         </div>
         </div>
@@ -173,26 +132,15 @@
                     </div>
                     <div id="statbtns" class="statbtns">
                         <div onclick="toggleStat('test');" id="testBtn" class="statbtn statbtnactive">
-                            <!-- <i>&#xe074;</i> -->
-                            <svg viewBox="-20 -100 600 600">
-                                <path d="M484 220q12 0 20.5 -8t8.5 -20t-8.5 -20t-20.5 -8h-22q-38 0 -52.5 -35.5t12.5 -62.5l15 -15q8 -8 8 -19q0 -12 -8.5 -20.5t-20.5 -8.5q-11 0 -19 8l-15 15q-27 27 -62.5 12.5t-35.5 -52.5v-22q0 -11 -8 -19.5t-20 -8.5t-20 8.5t-8 19.5v22q0 38 -35.5 52.5t-62.5 -12.5 l-15 -15q-8 -8 -19 -8q-12 0 -20.5 8.5t-8.5 20.5q0 11 8 19l15 15q27 27 12.5 62.5t-52.5 35.5h-22q-12 0 -20.5 8t-8.5 20t8.5 20t20.5 8h22q38 0 52.5 35.5t-12.5 62.5l-15 15q-8 8 -8 19q0 12 8.5 20.5t20.5 8.5q11 0 19 -8l15 -15q27 -27 62.5 -12.5t35.5 52.5v22 q0 11 8 19.5t20 8.5t20 -8.5t8 -19.5v-22q0 -38 35.5 -52.5t62.5 12.5l15 15q8 8 19 8q12 0 20.5 -8.5t8.5 -20.5q0 -11 -8 -19l-15 -15q-27 -27 -12.5 -62.5t52.5 -35.5h22zM224 176q20 0 34 14t14 34t-14 34t-34 14t-34 -14t-14 -34t14 -34t34 -14zM304 120q10 0 17 7
-                                t7 17t-7 17t-17 7t-17 -7t-7 -17t7 -17t17 -7z"></path>
-                            </svg>
-
+                            <i class="fas fa-virus"></i>
                             <span id="testCount">0</span>
                         </div>
                         <div onclick="toggleStat('hosp');" id="hospBtn" class="statbtn">
-                            <!-- <i>&#xf0f9;</i> -->
-                            <svg viewBox="0 -100 650 550">
-                                <path d="M624 96q7 0 11.5 -4.5t4.5 -11.5v-32q0 -7 -4.5 -11.5t-11.5 -4.5h-48q0 -40 -28 -68t-68 -28t-68 28t-28 68h-128q0 -40 -28 -68t-68 -28t-68 28t-28 68h-16q-20 0 -34 14t-14 34v320q0 20 14 34t34 14h320q20 0 34 -14t14 -34v-48h44q20 0 34 -14l100 -100 q14 -14 14 -34v-108h16zM160 -16q20 0 34 14t14 34t-14 34t-34 14t-34 -14t-14 -34t14 -34t34 -14zM304 232v48q0 8 -8 8h-56v56q0 8 -8 8h-48q-8 0 -8 -8v-56h-56q-8 0 -8 -8v-48q0 -8 8 -8h56v-56q0 -8 8 -8h48q8 0 8 8v56h56q8 0 8 8zM480 -16q20 0 34 14t14 34t-14 34 t-34 14t-34 -14t-14 -34t14 -34t34 -14zM560 192v12l-100 100h-44v-112h144z"></path>
-                            </svg>
+                            <i class="fas fa-ambulance"></i>
                             <span id="hospCount">0</span>
                         </div>
                         <div onclick="toggleStat('dead');" class="statbtn" id="deadBtn">
-                            <!-- <i>&#xf54c;</i> -->
-                            <svg viewBox="-20 -150 650 650">
-                                <path d="M256 448q106 0 181 -65.5t75 -158.5q0 -52 -25 -97t-69 -77q-17 -11 -14 -30l9 -66q1 -7 -3.5 -12.5t-11.5 -5.5h-78v56q0 8 -8 8h-16q-8 0 -8 -8v-56h-64v56q0 8 -8 8h-16q-8 0 -8 -8v-56h-78q-7 0 -11.5 5.5t-3.5 12.5l9 66q3 19 -14 30q-44 32 -69 77t-25 97 q0 93 75 158.5t181 65.5zM160 128q26 0 45 19t19 45t-19 45t-45 19t-45 -19t-19 -45t19 -45t45 -19zM352 128q26 0 45 19t19 45t-19 45t-45 19t-45 -19t-19 -45t19 -45t45 -19z"></path>
-                            </svg>
+                            <i class="fas fa-skull"></i>
                             <span id="deadCount">0</span>
                         </div>
                     </div>
@@ -249,7 +197,7 @@
     </div> -->
     <!-- <div id="tutnudge" class="hide"></div> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js" crossorigin="anonymous"></script>
-    <script defer src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous"></script>
+    <!-- <script defer src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous"></script> -->
     <!-- <script type="text/javascript" src="./js/choice.js"></script> -->
     <script type="text/javascript" src="./js/covid.js"></script>
     <script type="text/javascript" src="./js/graph.js"></script>

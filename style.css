@@ -296,21 +296,18 @@ b {
     font-weight: 700;
 }
 
-#twitter svg {
-    width: 20px;
-    height: 20px;
-    transform: scaleY(-1);
-    filter: var(--svg-gray);
-    vertical-align: middle;
-    display: inline-block;
-    margin-bottom:.15em;
+#twitter i {
+    margin: 0 .35em;
 }
 
+#sun, #moon {
+    margin-left: 0!important;
+}
 
-#faqbtn,
+/* #faqbtn,
 #colormode {
     padding-right: .65em;
-}
+} */
 
 #twitter a {
     color: var(--light-txt);
@@ -371,7 +368,12 @@ a {
     grid-template-columns: repeat(3, 1fr);
 }
 
-#statbtns svg {
+#statbtns i {
+    font-size:.9em;
+    margin: 0 .2em;
+}
+
+/* #statbtns svg {
     vertical-align: middle;
     display: inline-block;
     filter: var(--svg-gray);
@@ -379,7 +381,7 @@ a {
     transform: scaleY(-1);
     width: 19px;
     height: 19px;
-}
+} */
 
 /* .choice {
     -webkit-animation: swipe .4s;
@@ -573,23 +575,21 @@ a {
     background: var(--back);
 }
 
-#timechoice svg {
-    width: 20px;
-    height: 20px;
-    filter: var(--svg-gray);
+#timechoice i {
+    color: var(--light-txt);
 }
 
 .tsel {
     background: var(--light-txt)!important;
 }
 
-.tsel svg {
-    filter: var(--svg-dark)!important;
+.tsel i {
+    color: var(--back)!important;
 }
 
 #disclaimer {
     color: var(--txt);
-    opacity: .85;
+    opacity: .75;
     margin: -3.5em auto 0;
     max-width: 928px;
     padding: 0 min(5vw, 25px);
@@ -1193,23 +1193,21 @@ strong {
     font-size: 1.2em;
 }
 
-.hammer {
+.fad.fa-hammer {
     position: absolute;
     margin-top: 80px;
-    top: calc(33% - 150px);
-    left: calc(50% - 150px);
-    transform: scaleY(-1);
-    /* font-size: 12em; */
-    width: 300px;
-    height: 300px;
-    filter: var(--svg-gray);
-    opacity: .07;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15em;
+    color: var(--txt);
+    opacity: .1;
 }
 
 .wip {
     position: absolute;
     margin-top: 80px;
-    top: 33%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: min(80vw, 20em);
@@ -1272,6 +1270,12 @@ strong {
 }
 
 @media (max-width: 600px) {
+    /* .fal {
+        font-weight: 400!important;
+    } */
+    .txt i {
+        margin: 1px .8em -1px 0;
+    }
     .tut {
         margin: 1em 0 .6em;
     }
@@ -1376,13 +1380,13 @@ strong {
 #light {
     --bw: black;
     --back: white;
-    --svg-dark: invert(100%);
+    /* --svg-dark: invert(100%); */
     --link: #1f5085;
     --link-hover: #133c68;
     --box: #dedede;
     --txt: #212529;
     --light-txt: #3d3d3d;
-    --svg-gray: invert(24%) hue-rotate(149deg) brightness(95%) contrast(97%);
+    /* --svg-gray: invert(24%) hue-rotate(149deg) brightness(95%) contrast(97%); */
     --btn-border: #444c55;
     --stat-back: #f6f6f6;
     --hr: #00000028;
@@ -1399,12 +1403,12 @@ strong {
 #dark {
     --bw: white;
     --back: #212529;
-    --svg-dark: invert(11%) sepia(9%) saturate(715%) hue-rotate(169deg) brightness(101%) contrast(93%);
+    /* --svg-dark: invert(11%) sepia(9%) saturate(715%) hue-rotate(169deg) brightness(101%) contrast(93%); */
     --link: #85c0ff;
     --link-hover: #b4d8ff;
     --box: #343a3f;
     --light-txt: #ececec;
-    --svg-gray: invert(100%) hue-rotate(50deg) brightness(112%) contrast(85%);
+    /* --svg-gray: invert(100%) hue-rotate(50deg) brightness(112%) contrast(85%); */
     --txt: white;
     --btn-border: #ececec;
     --hr: #ffffff1a;
