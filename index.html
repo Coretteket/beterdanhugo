@@ -81,7 +81,7 @@
                 <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
             </div>
         </div>
-        <div id="choice" class="hide"></div>
+        <!-- <div id="choice" class="hide"></div> -->
         <div id="col1" class="hide">
             <div id="btns-base">
                 <b>Basisregels</b>
@@ -190,15 +190,17 @@
         </div>
     </main>
     <div id="disclaimer" class="hide"><strong>Disclaimer:</strong> Dit is een spel, geen epidemiologisch model.</div>
-    <!-- <div id="curtain" class="hide"></div>
+    <div id="curtain" class="hide"></div>
     <div id="popup" class="hide">
+        <b><i class="fad fa-gavel"></i> Motie van afkeuring</b>
         <p>In het coronadebat was de Tweede Kamer glashelder: nu er dagelijks honderden mensen positief getest worden op corona, kunnen we niet door blijven gaan alsof er niets aan de hand is. Een motie die de minister oproept om maatregelen te nemen werd unaniem aangenomen. Voer je de motie uit?</p>
-        <div class="btn txt">Test</div>
-    </div> -->
+        <div class="btn txt" onclick="delChoices();">Neem geen maatregelen</div>
+        <div class="btn txt" onclick="delChoices();">Voer de motie uit</div>
+    </div>
     <!-- <div id="tutnudge" class="hide"></div> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js" crossorigin="anonymous"></script>
     <!-- <script defer src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous"></script> -->
-    <!-- <script type="text/javascript" src="./js/choice.js"></script> -->
+    <script type="text/javascript" src="./js/choice.js"></script>
     <script type="text/javascript" src="./js/covid.js"></script>
     <script type="text/javascript" src="./js/graph.js"></script>
     <script type="text/javascript" src="./js/news.js"></script>
