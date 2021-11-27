@@ -628,9 +628,10 @@ textarea {
         -webkit-transform: scale(1.01);
         transform: scale(1.01);
     }
-    #start p {
-        max-width: 65%;
-    }
+}
+
+#start p {
+    max-width: 600px;
 }
 
 
