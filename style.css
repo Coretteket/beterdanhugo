@@ -931,6 +931,7 @@ hr {
     cursor: pointer;
 }
 
+.wip a:hover,
 #faq a:hover:not(.faqbtn),
 .more:hover {
     color: var(--link-hover) !important;
@@ -1018,7 +1019,7 @@ hr {
     width: calc(100% - 15px);
 }
 
-.tut .fa-times {
+/* .tut .fa-times {
     float: right;
     font-size: .9em;
     margin-top: -10px;
@@ -1030,7 +1031,7 @@ hr {
 .tut .fa-times:hover {
     cursor: pointer;
     opacity: .8;
-}
+} */
 
 .tut #x {
     font-size: 1.4em;
@@ -1222,7 +1223,7 @@ strong {
     font-size: 1.2em;
 }
 
-.fad.fa-hammer {
+.fad.fa-tools {
     position: absolute;
     margin-top: 80px;
     top: 30%;
