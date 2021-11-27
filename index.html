@@ -12,7 +12,7 @@
     <!-- <script src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous" async></script> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" sizes="180x180" href="./ico/apple-touch-icon.png">
@@ -42,22 +42,45 @@
     <main id="main" class="wochoice">
         <noscript>Deze website werkt enkel met Javascript.</noscript>
         <div id="title">
-            <h1>Beter dan Hugo</h1>
+            <h1 id="bdh">Beter dan Hugo</h1>
         </div>
         <div id="twitter">
-            <a onclick="colorSwitch();" id="colormode"><i>&#xf186;</i></a>
-            <a onclick="toggleFAQ();" id="faqbtn"><i>&#xf059;</i></a>
-            <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank"><i>&#xf099;</i> @coretteket</a>
+            <a onclick="colorSwitch();" id="colormode">
+                <!-- <i>&#xf186;</i> -->
+                <svg id="sun" class="hide" viewBox="0 0 510 400">
+                    <path d="M256 288q40 0 68 -28t28 -68t-28 -68t-68 -28t-68 28t-28 68t28 68t68 28zM502 208q10 -5 10 -16t-10 -16l-94 -47l33 -100q3 -10 -4.5 -18t-17.5 -4l-100 33l-48 -94q-4 -10 -15 -10t-16 10l-47 94l-100 -33q-10 -4 -18 3.5t-4 18.5l33 100l-94 47q-10 5 -10 16t10 16 l94 47l-33 100q-4 10 3.5 18t18.5 4l100 -33l47 94q5 10 16 10t16 -10l47 -94l100 33q10 4 18 -4t4 -18l-33 -100zM346.5 101.5q37.5 37.5 37.5 90.5t-37.5 90.5t-90.5 37.5t-90.5 -37.5t-37.5 -90.5t37.5 -90.5t90.5 -37.5t90.5 37.5z"></path>
+                </svg>
+                <svg id="moon" viewBox="-30 0 580 400">
+                    <path d="M283 -64q-106 0 -181 75t-75 181t75 181t181 75q24 0 47 -4q8 -2 9.5 -10t-5.5 -13q-47 -26 -74.5 -73t-27.5 -101q0 -94 73 -154.5t166 -42.5q8 2 12 -5.5t-1 -13.5q-36 -45 -88 -70t-111 -25z"></path>
+                </svg>
+
+            </a>
+            <a onclick="toggleFAQ();" id="faqbtn">
+                <!-- <i>&#xf059;</i> -->
+                <svg viewBox="0 0 510 400">
+                    <path d="M504 192q0 -103 -72.5 -175.5t-175.5 -72.5t-175.5 72.5t-72.5 175.5t72.5 175.5t175.5 72.5t175.5 -72.5t72.5 -175.5zM263 358q-74 0 -117 -64q-6 -9 3 -16l35 -26q9 -7 16 2q16 19 27.5 27.5t29.5 8.5q17 0 31.5 -9.5t14.5 -23.5q0 -11 -7.5 -17.5t-24.5 -16.5 q-18 -10 -26.5 -16t-18.5 -21t-10 -34v-4q0 -12 12 -12h56q12 0 12 12v1q0 9 13 18t28.5 17t28.5 27t13 45q0 42 -36 72t-80 30zM256 110q-19 0 -32.5 -13.5t-13.5 -32.5t13.5 -32.5t32.5 -13.5t32.5 13.5t13.5 32.5t-13.5 32.5t-32.5 13.5z"></path>
+                </svg>
+            </a>
+            <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank">
+                <!-- <i>&#xf099;</i> -->
+                <svg viewBox="0 0 512 416">
+                    <path d="M459 296q1 -4 1 -13q0 -53 -20 -105.5t-56.5 -96t-94.5 -70.5t-128 -27q-88 0 -161 47q11 -1 25 -1q73 0 131 45q-35 0 -61.5 20.5t-36.5 51.5q10 -1 19 -1q14 0 28 3q-36 8 -60 37t-24 66v2q22 -13 47 -14q-47 32 -47 88q0 28 15 53q39 -49 95.5 -78t120.5 -32 q-2 12 -2 24q0 43 30.5 74t73.5 31q46 0 77 -33q36 7 67 25q-12 -37 -46 -58q30 4 60 17q-22 -32 -53 -55z"></path>
+                </svg>
+                @coretteket
+            </a>
         </div>
-        <div id="head" class="hide">
+        <div id="head">
             <!-- <p>De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke maatregel die je invoert heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister. <a id="knowmore" class="more" onclick="toggleFAQ();">Lees meer.</a></p> -->
             <hr>
         </div>
         <div id="wip" class="hide">
-            <i class="hammer">&#xf6e3;</i>
+            <!-- <i class="hammer">&#xf6e3;</i> -->
+            <svg viewBox="0 -60 600 500" class="hammer">
+                <path d="M571 254q12 -11 0 -23l-90 -90q-11 -11 -23 0l-22 23q-12 11 0 22l11 12l-29 28q-36 -9 -62 17l-49 49q-19 19 -19 45v19l-90 45q47 47 113 47t113 -47l45 -45q26 -26 17 -62l29 -29l11 12q11 11 23 0zM285 269l49 -49q4 -4 11 -9l-238 -255q-18 -20 -44 -20t-44.5 18.5 t-18.5 44.5t20 44l255 238q5 -7 10 -12z"></path>
+            </svg>
             <div class="wip">
                 <h2>Werk in uitvoering</h2>
-                <p>Beter dan Hugo is momenteel nog niet klaar voor het grote publiek. Wil je de bèta proberen? <a href="https://twitter.com/messages/compose?recipient_id=793888775223046144" rel="noreferrer" target="_blank">Stuur me dan een DM.</a></p>
+                <p>Beter dan Hugo is momenteel nog niet klaar voor het grote publiek. Wil je de bèta-versie uitproberen? <a href="https://twitter.com/messages/compose?recipient_id=793888775223046144" rel="noreferrer" target="_blank">Stuur me dan een DM.</a></p>
             </div>
         </div>
         <div id="start" class="hide">
@@ -73,10 +96,30 @@
         <div id="timechoice" class="hide">
             <p id="today">Het is vandaag <span id="date">27 februari 2020</span>. </p>
             <div id="btn-cont">
-                <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i>&#xf04c;</i></a>
-                <a onclick="setSpeed(1);" id="s1" class="btn nudge"><i>&#xf04b;</i></a>
-                <a onclick="setSpeed(2);" id="s2" class="btn"><i>&#xf051;</i></a>
-                <a onclick="setSpeed(3);" id="s3" class="btn"><i>&#xf050;</i></a>
+                <a onclick="setSpeed(0);" id="s0" class="btn tsel">
+                    <!-- <i>&#xf04c;</i> -->
+                    <svg viewBox="-55 -75 550 550">
+                        <path d="M144 -31h-96q-20 0 -34 14t-14 34v352q0 20 14 34t34 14h96q20 0 34 -14t14 -34v-352q0 -20 -14 -34t-34 -14zM448 17q0 -20 -14 -34t-34 -14h-96q-20 0 -34 14t-14 34v352q0 20 14 34t34 14h96q20 0 34 -14t14 -34v-352z"></path>
+                    </svg>
+                </a>
+                <a onclick="setSpeed(1);" id="s1" class="btn nudge">
+                    <!-- <i>&#xf04b;</i> -->
+                    <svg viewBox="-55 -75 550 550">
+                        <path d="M424 233q24 -14 24 -41t-24 -41l-352 -208q-23 -14 -47.5 -0.5t-24.5 41.5v416q0 30 25.5 42.5t46.5 -1.5z"></path>
+                    </svg>
+                </a>
+                <a onclick="setSpeed(2);" id="s2" class="btn">
+                    <!-- <i>&#xf051;</i> -->
+                    <svg viewBox="-55 -75 550 550">
+                        <path d="M384 404v-424q0 -12 -12 -12h-48q-12 0 -12 12v176l-196 -181q-15 -13 -33.5 -4t-18.5 29v384q0 20 18.5 29t33.5 -4l196 -180v175q0 12 12 12h48q12 0 12 -12z"></path>
+                    </svg>
+                </a>
+                <a onclick="setSpeed(3);" id="s3" class="btn">
+                    <!-- <i>&#xf050;</i> -->
+                    <svg viewBox="-20 -75 550 550">
+                        <path d="M512 372v-360q0 -12 -12 -12h-40q-12 0 -12 12v152l-172 -157q-15 -13 -33.5 -4t-18.5 29v132l-172 -157q-15 -13 -33.5 -4t-18.5 29v320q0 20 18.5 29t33.5 -4l172 -156v131q0 20 18.5 29t33.5 -4l172 -156v151q0 12 12 12h40q12 0 12 -12z"></path>
+                    </svg>
+                </a>
             </div>
         </div>
         <div id="choice" class="hide"></div>
@@ -160,7 +203,8 @@
             <div class="faqbox box">
                 <b>&#10140; </b><a href="#wat">Wat moet ik doen?</a><br>
                 <b>&#10140; </b><a href="#wie">Wie heeft het gemaakt?</a><br>
-                <b>&#10140; </b><a href="#hoe">Hoe werkt het spel?</a>
+                <b>&#10140; </b><a href="#hoe">Hoe werkt het spel?</a><br>
+                <b><span class="flip">&#10140;</span> </b><a onclick="toggleFAQ();">Terug naar spel</a>
             </div>
             <b style="margin-top:0;" id="wat">Wat moet ik doen?</b>
             <p>Lopen alle coronacijfers uit de hand en weet je niet wat je moet doen? Geen paniek! Het belangrijkste in het spel is dat je maatregelen neemt. Dat doe je door op de verschillende knoppen, zoals 'afstand houden' of 'winkels sluiten' te klikken. Hiermee voer je die coronamaatregel in.<br class="mob"> Zeker aan het begin van de pandemie is één maatregel alleen lang niet genoeg. Zoek dus een goede combinatie om ervoor te zorgen dat het virus zich niet ver kan verspreiden.</p>
