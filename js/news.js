@@ -8,7 +8,7 @@ function week(a) {
 
 function shuffle(a) { for (let b, c = a.length; 0 != c;) b = Math.floor(Math.random() * c), c--, [a[c], a[b]] = [a[b], a[c]]; return a }
 
-var outlets = { nos: "NOS", rtl: "RTL", nu: "NU.nl", vk: "Volkskrant", tgf: "Telegraaf", nrc: "NRC", trouw: "Trouw", ad: "AD", parool: "Parool", metro: "Metro", bnr: "BNR", "1v": "EenVandaag", hvnl: "Hart van Nederland", reuters: "Reuters", ap: "Associated Press", bbc: "BBC", nyt: "New York Times", wsj: "Wall Street Journal", cnn: "CNN" };
+var outlets = { nos: "NOS", rtl: "RTL", nu: "NU.nl", vk: "Volkskrant", tgf: "Telegraaf", nrc: "NRC", trouw: "Trouw", ad: "AD", parool: "Parool", metro: "Metro", bnr: "BNR", "1v": "EenVandaag", hvnl: "Hart van Nederland", reuters: "Reuters", ap: "Associated Press", bbc: "BBC", nyt: "New York Times", wapo: "Washington Post", cnn: "CNN" };
 
 pairs = [
     ["nos", "rtl", "nu", "ad"],
@@ -17,7 +17,7 @@ pairs = [
     ["metro", "bnr"],
     ["1v", "hvnl"],
     ["bbc", "cnn"],
-    ["nyt", "wsj"],
+    ["nyt", "wapo"],
     ["reuters", "ap"]
 ];
 

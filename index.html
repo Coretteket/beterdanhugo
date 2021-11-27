@@ -126,36 +126,36 @@
         <div id="col1" class="hide">
             <div id="btns-base">
                 <b>Basisregels</b>
-                <a class="btn txt" id="btn-socdis" onclick="toggleBtn('socdis');">Afstand houden</a>
-                <a class="btn txt" id="btn-workhome" onclick="toggleBtn('workhome');">Thuiswerken</a>
-                <a class="btn txt" id="btn-masks" onclick="toggleBtn('masks');">Mondkapjesplicht</a>
+                <a class="btn txt" id="btn-socdis" onclick="toggleBtn('socdis');"><i class="fas fa-people-arrows"></i> Afstand houden</a>
+                <a class="btn txt" id="btn-workhome" onclick="toggleBtn('workhome');"><i class="fas fa-house-user"></i> Thuiswerken</a>
+                <a class="btn txt" id="btn-masks" onclick="toggleBtn('masks');"><i class="fas fa-head-side-mask"></i> Mondkapjesplicht</a>
             </div>
             <div id="btns-rec">
                 <b>Recreatie</b>
-                <a class="btn txt" id="btn-events" onclick="toggleBtn('events');">Evenementen verbieden</a>
-                <a class="btn txt" id="btn-theater" onclick="toggleBtn('theater');">Theaters sluiten</a>
-                <a class="btn txt" id="btn-gather" onclick="toggleBtn('gather');">Bijeenkomsten verbieden</a>
+                <a class="btn txt" id="btn-events" onclick="toggleBtn('events');"><i class="fas fa-users"></i> Evenementen verbieden</a>
+                <a class="btn txt" id="btn-theater" onclick="toggleBtn('theater');"><i class="fas fa-theater-masks"></i> Cultuursector sluiten</a>
+                <a class="btn txt" id="btn-gather" onclick="toggleBtn('gather');"><i class="fas fa-birthday-cake"></i> Bijeenkomsten verbieden</a>
 
             </div>
             <div id="btns-out">
                 <b>Horeca en winkels</b>
-                <a class="btn txt" id="btn-horeca" onclick="toggleBtn('horeca');">Horeca sluiten</a>
-                <a class="btn txt" id="btn-clubs" onclick="toggleBtn('clubs');">Nachtclubs sluiten</a>
-                <a class="btn txt" id="btn-shops" onclick="toggleBtn('shops');">Winkels sluiten</a>
+                <a class="btn txt" id="btn-horeca" onclick="toggleBtn('horeca');"><i class="fas fa-utensils"></i> Horeca sluiten</a>
+                <a class="btn txt" id="btn-clubs" onclick="toggleBtn('clubs');"><i class="fas fa-glass-cheers"></i> Nachtclubs sluiten</a>
+                <a class="btn txt" id="btn-shops" onclick="toggleBtn('shops');"><i class="fas fa-shopping-cart"></i> Winkels sluiten</a>
             </div>
         </div>
         <div id="col2" class="hide">
             <div id="btns-edu">
                 <b>Onderwijs</b>
-                <a class="btn txt" id="btn-edlow" onclick="toggleBtn('edlow');">Basisscholen sluiten</a>
-                <a class="btn txt" id="btn-edmid" onclick="toggleBtn('edmid');">Middelbare scholen sluiten</a>
-                <a class="btn txt" id="btn-eduni" onclick="toggleBtn('eduni');">Hoger onderwijs sluiten</a>
+                <a class="btn txt" id="btn-edlow" onclick="toggleBtn('edlow');"><i class="fas fa-child"></i> Basisscholen sluiten</a>
+                <a class="btn txt" id="btn-edmid" onclick="toggleBtn('edmid');"><i class="fas fa-chalkboard-teacher"></i> Middelbare scholen sluiten</a>
+                <a class="btn txt" id="btn-eduni" onclick="toggleBtn('eduni');"><i class="fas fa-user-graduate"></i> Hoger onderwijs sluiten</a>
             </div>
             <div id="btns-lock">
                 <b>Lockdowns</b>
-                <a class="btn txt" id="btn-lockdown" onclick="toggleBtn('lockdown');">Volledige lockdown</a>
-                <a class="btn txt" id="btn-curfew" onclick="toggleBtn('curfew');">Avondklok</a>
-                <a class="btn txt" id="btn-border" onclick="toggleBtn('border');">Grenzen sluiten</a>
+                <a class="btn txt" id="btn-lockdown" onclick="toggleBtn('lockdown');"><i class="fas fa-lock"></i> Volledige lockdown</a>
+                <a class="btn txt" id="btn-curfew" onclick="toggleBtn('curfew');"><i class="fas fa-clock"></i> Avondklok</a>
+                <a class="btn txt" id="btn-border" onclick="toggleBtn('border');"><i class="fas fa-plane"></i> Grenzen sluiten</a>
             </div>
         </div>
         </div>
@@ -248,7 +248,8 @@
         <div class="btn txt">Test</div>
     </div> -->
     <!-- <div id="tutnudge" class="hide"></div> -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous"></script>
     <!-- <script type="text/javascript" src="./js/choice.js"></script> -->
     <script type="text/javascript" src="./js/covid.js"></script>
     <script type="text/javascript" src="./js/graph.js"></script>
