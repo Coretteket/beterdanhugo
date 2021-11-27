@@ -27,12 +27,9 @@ var stoptut = false;
 
 function showTut() {
     if (dev) return;
-    if (tutdays.includes(day) && !stoptut /*&& aname == null*/) {
+    if (tutdays.includes(day) && !stoptut /*&& aname == null*/ ) {
         // hide("tutnudge");
-        if (tut.length == 0 && !q("tut").classList == "box tut hide") {
-            remTut();
-            return;
-        }
+        var changed = false;
         for (var i = 0; i < tut.length; i++) {
             var tuttxt = "";
             for (var j = 0; j < tut[i].length; j += 2) {
@@ -44,7 +41,7 @@ function showTut() {
             i--;
             if (tuttxt != "") {
                 anytuts = true;
-                nowtut = true;
+                changed = true;
                 q("tut").innerHTML = "<p>" + tuttxt + "</p>" + "<span id='x' onClick='remTut()'>×</span>";
                 q("tut").classList = "box tut";
                 // console.log(tuttxt);
@@ -56,6 +53,7 @@ function showTut() {
                 break;
             }
         }
+        if (!changed) remTut();
 
     }
 }
