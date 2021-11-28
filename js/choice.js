@@ -45,6 +45,7 @@ function getChoices() {
 // }
 
 function setChoices() {
+    if (dev) return;
     pause();
     show("curtain", "popup");
     setTimeout(function() {
