@@ -10,9 +10,6 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
     <!-- <script src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous" async></script> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" sizes="180x180" href="./ico/apple-touch-icon.png">
@@ -37,7 +34,10 @@
     <meta name="twitter:description" content="De kritiek komt van alle kanten, maar kunnen we het echt beter dan Hugo de Jonge? In dit spel kan jij je eigen weg door de pandemie proberen te vinden.">
     <meta name="twitter:image" content="https://beterdanhugo.nl/img/meta.jpg">
     <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
-    <!-- <link rel="preload" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- <link rel="preload" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
 </head>
 
 <body id="light">
@@ -65,6 +65,7 @@
         <div id="start" class="hide">
             <p>De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. <br>Voer maatregelen in en schaf ze weer af om het virus onder controle te krijgen, en hou het nieuws in de gaten om te kijken hoe jouw beleid in de samenleving valt.</p>
             <a class="btn txt" onClick="start()">Start het spel</a>
+            <div id="disclaimer" class="hide"><strong>Disclaimer:</strong> Dit is een spel, geen realistisch model.</div>
             <!-- <p id="starttxt">Voor we beginnen, hoe mogen we je noemen?</p>
             <div id="givename">
                 <input spellcheck="farse" type="text" id="lname" name="lastName" placeholder="Je achternaam" autocomplete="family-name">
@@ -189,10 +190,9 @@
 
         </div>
     </main>
-    <div id="disclaimer" class="hide"><strong>Disclaimer:</strong> Dit is een spel, geen epidemiologisch model.</div>
     <div id="curtain" class="hide"></div>
     <div id="popup" class="hide">
-        <b><i class="fad fa-gavel"></i> Motie van afkeuring</b>
+        <i class="fad fa-info-circle"></i><b> Motie van afkeuring</b>
         <p>In het coronadebat was de Tweede Kamer glashelder: nu er dagelijks honderden mensen positief getest worden op corona, kunnen we niet door blijven gaan alsof er niets aan de hand is. Een motie die de minister oproept om maatregelen te nemen werd unaniem aangenomen. Voer je de motie uit?</p>
         <div class="btn txt" onclick="delChoices();">Neem geen maatregelen</div>
         <div class="btn txt" onclick="delChoices();">Voer de motie uit</div>
@@ -203,9 +203,10 @@
     <script type="text/javascript" src="./js/choice.js"></script>
     <script type="text/javascript" src="./js/covid.js"></script>
     <script type="text/javascript" src="./js/graph.js"></script>
+    <!-- <script type="text/javascript" src="./js/hyphen.js"></script> -->
     <script type="text/javascript" src="./js/news.js"></script>
     <script type="text/javascript" src="./js/tutorial.js"></script>
-    <script type="text/javascript" src="./js/os.js"></script>
+    <script type="text/javascript" src="./js/os.js"></script> 
     <script type="text/javascript" src="./js/script.js"></script>
 </body>
 

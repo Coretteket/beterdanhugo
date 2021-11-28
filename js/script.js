@@ -78,8 +78,8 @@ if (dev) {
 
 function start() {
     startTime = Math.floor(new Date() / 1000);
-    show("disclaimer", "timechoice", "col1", "col2", "news");
-    hide("start", "wip");
+    show("timechoice", "col1", "col2", "news");
+    hide("disclaimer", "start", "wip");
     // newsSize();
     started = true;
     var delay = 5000 - new Date() + visitTimeL + 1000;
@@ -106,7 +106,7 @@ function end() {
     console.log(stringency);
 
     setTimeout(() => {
-        hide("timechoice", "col1", "col2", "news", "disclaimer");
+        hide("timechoice", "col1", "col2", "news");
         show("gameover");
         endTime = Math.floor(new Date() / 1000);
         post(2);
@@ -174,6 +174,8 @@ function setNews() {
     source = "";
 
     getNews();
+
+    // if (screenwidth < 600) title = hyphenate(title);
 
     if (day == 11) {
         var div = q("firstnews");
