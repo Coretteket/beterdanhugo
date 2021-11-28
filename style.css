@@ -72,6 +72,7 @@ main {
     }
     #scroll {
         height: 27.5em!important;
+        overflow: scroll;
     }
     #shadow {
         bottom: -50px!important;
@@ -483,13 +484,14 @@ a {
         font-size: 16px;
     }
     #scroll {
-        margin-bottom:-50px;
+        margin-bottom: -50px;
         height: 700px;
         position: relative;
-        overflow: scroll;
+        padding-top:.1px;
+        overflow: hidden;
     }
     #shadow {
-        bottom:-30px;
+        bottom: -30px;
     }
 }
 
