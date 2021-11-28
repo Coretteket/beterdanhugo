@@ -589,6 +589,7 @@ a {
 }
 
 #timechoice i {
+    margin: 1px 0 -1px;
     color: var(--light-txt);
 }
 
@@ -701,8 +702,8 @@ textarea {
 #popup {
     box-sizing: border-box;
     position: fixed;
-    top: min(25em, 50%);
-    left: 50%;
+    top: min(24em, 50vh);
+    left: 50vw;
     transform: translate(-50%, -50%);
     width: min(500px, calc(100vw - min(10vw, 50px)));
     margin: 0 auto;
@@ -720,6 +721,8 @@ textarea {
 
 #popup .btn {
     background: var(--popup-btn);
+    /* border-width: 1px; */
+    border-color: var(--border-thick);
     margin: .75em .5em 0 0;
     box-sizing: border-box;
     width: 100%;
