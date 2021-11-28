@@ -176,6 +176,7 @@ p {
     grid-area: timechoice;
 }
 
+
 /* #choice {
     grid-area: choice;
 } */
@@ -249,11 +250,13 @@ b {
     filter: blur(.75px); */
 }
 
+
 /* #choice {
     animation: swipechoice .4s;
     margin: 1em 0 -.25em 0;
     overflow: none;
 } */
+
 
 /* #choice p {
     margin: 0 0 .5em 0; 
@@ -339,6 +342,8 @@ p {
         opacity: 100%;
     }
 }
+
+
 /* 
 @keyframes swipechoice {
     from {
@@ -389,6 +394,7 @@ a {
 .choice a {
     margin-right: .45em;
 } */
+
 
 /* #choice a {
     width: fit-content;
@@ -680,14 +686,7 @@ textarea {
     max-width: 600px;
 }
 
-
-/* 
-* {
-    color
-} */
-
 #curtain {
-    /* display: none; */
     position: fixed;
     top: 0;
     left: 0;
@@ -1019,6 +1018,7 @@ hr {
     width: calc(100% - 15px);
 }
 
+
 /* .tut .fa-times {
     float: right;
     font-size: .9em;
@@ -1136,6 +1136,8 @@ strong {
     cursor: default;
     transition: opacity .5s;
 }
+
+
 /* 
 .remchoice {
     animation: hidechoice .4s!important;
