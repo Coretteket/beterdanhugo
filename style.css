@@ -72,7 +72,7 @@ main {
     }
     #scroll {
         height: 27.5em!important;
-        overflow: scroll;
+        overflow: scroll!important;
     }
     #shadow {
         bottom: -50px!important;
