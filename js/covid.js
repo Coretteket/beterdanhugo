@@ -77,9 +77,9 @@ var r = { //changes in covid dynamic rates, like undercounting
     },
     underdeath: () => {
         f = !1;
-        lin(0, 0.2, 0, 35);
-        lin(0.2, 0.6, 35, 45);
-        lin(0.6, 0.6, 45, -1)
+        lin(0, 0.25, 0, 35);
+        lin(0.25, 0.65, 35, 45);
+        lin(0.65, 0.65, 45, -1)
         return ans;
     },
     deathday: () => {
@@ -161,7 +161,7 @@ var v = [ // age specific info for vax
 var s = { // spread info
     a: 0,
     b: 1 / 5,
-    c: 1 / 365,
+    c: 1 / 525,
 
     R0: 1,
     Rt: 1,
@@ -207,7 +207,7 @@ var b = { //preset constant beginning values
 }
 
 function calcIFR() {
-    var ifr = 0.0105;
+    var ifr = 0.009;
     return ifr * r.death();
 
 }
@@ -313,7 +313,7 @@ function getIndex() {
 function getStringency() {
     stringency = 0;
     for (const [k, v] of Object.entries(a)) {
-        stringency += v[4] * v[5] / maxIndex / (day - 13);
+        stringency += v[4] * v[5] / maxIndex / (day - 12);
     }
     stringency = Math.round(stringency * 1e4) / 1e4;
     return stringency;
