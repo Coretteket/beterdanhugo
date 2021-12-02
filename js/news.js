@@ -45,7 +45,7 @@ function getNews() {
         return;
     }
     repeat[day + rdelay] = nws[max[1]][5];
-    nextNews = day < 18 ? 18 : day + randInt(3, 5);
+    nextNews = day < 18 ? 18 : day + randInt(3, 4);
     lastCat = nws[max[1]][1];
     // if (nws[max[1]].length > 6) chos[day + 1] = cchos[nws[max[1]][6]];
     var pair = pairs[nws[max[1]][2]];
@@ -86,8 +86,8 @@ var nws = [
     [5, 1, 1, "Eerste coronadode een maand geleden, nu meer dan $dead mensen overleden", "w15t1T10", 'lk'],
     [5, 1, 1, "Een maand na eerste coronadode: inmiddels ongeveer $dead mensen overleden", "w15T1", 'lk'],
     [5, 1, 1, "Eerste coronadode een maand geleden, nu circa $dead mensen overleden", "w15T1", 'lk'],
-    [1, 1, 0, "Meer dan $deadrounded coronapatiënten overleden, `werkelijk aantal nog hoger'", "t10", 'lk'],
-    [1, 1, 0, "RIVM telt meer dan $deadrounded coronadoden, volgens experts zijn het er nog meer", "t10", 'lk'],
+    [1, 1, 0, "Meer dan $deadrounded coronapatiënten overleden, `werkelijk aantal nog veel hoger'", "t10", 'lk'],
+    [1, 1, 0, "RIVM telt meer dan $deadrounded coronadoden, volgens experts zijn het er veel meer", "t10", 'lk'],
     // 2. opinie / explainers
     [3, 2, 0, "Scholen gewoon open ondanks corona? `Mijn kinderen blijven thuis'", "D50i1nj0ma0", "sc"],
     [3, 2, 2, "`Als ik niet naar kantoor mag, kunnen mijn kinderen niet veilig naar school'", "D50i1ma0nj0ma0", "sc"],
