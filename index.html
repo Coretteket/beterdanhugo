@@ -33,7 +33,7 @@
     <meta name="twitter:title" content="Beter dan Hugo: Krijg jij corona onder controle?">
     <meta name="twitter:description" content="De kritiek komt van alle kanten, maar kunnen we het echt beter dan Hugo de Jonge? In dit spel kan jij je eigen weg door de pandemie proberen te vinden.">
     <meta name="twitter:image" content="https://beterdanhugo.nl/img/meta.jpg">
-    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.min.css" rel="stylesheet" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -56,14 +56,14 @@
             <hr>
         </div>
         <div id="wip" class="hide">
-            <i class="fad fad fa-tools fa-swap-opacity"></i>
+            <i class="fad fa-tools fa-swap-opacity"></i>
             <div class="wip">
                 <h2>Werk in uitvoering</h2>
                 <p>Beter dan Hugo is momenteel nog niet klaar voor het grote publiek. Wil je de bèta-versie uitproberen? <a href="https://twitter.com/messages/compose?recipient_id=793888775223046144" rel="noreferrer" target="_blank">Stuur me dan een DM.</a></p>
             </div>
         </div>
         <div id="start" class="hide">
-            <p>De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. <br>Voer maatregelen in en schaf ze weer af om het virus onder controle te krijgen, en hou het nieuws in de gaten om te kijken hoe jouw beleid in de samenleving valt.</p>
+            <p>Na anderhalf jaar persconferenties heeft iedereen eigen ideeën over het coronabeleid. Maar kunnen we het echt allemaal beter dan minister de Jonge? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. <br>Voer maatregelen in en schaf ze weer af om de coronacijfers te zien veranderen, en hou het nieuws in de gaten om te kijken hoe jouw beleid in de samenleving valt. Krijg jij corona onder controle?</p>
             <a class="btn txt" onClick="start()">Start het spel</a>
             <div id="disclaimer" class="hide"><strong>Disclaimer:</strong> Dit is een spel, geen realistisch model.</div>
             <!-- <p id="starttxt">Voor we beginnen, hoe mogen we je noemen?</p>
@@ -162,9 +162,31 @@
         </div>
         <div id="gameover" class="hide">
             <b>Gefeliciteerd, je hebt de eerste golf overleefd!</b>
-            <p>Bedankt dat je de bèta-versie van Beter dan Hugo hebt geprobeerd! De uiteindelijke versie zal de gehele pandemie bevatten, waaronder dus ook nieuwe corona&shy;varianten, vaccinaties, en, jawel, de CDA-lijst&shy;trekkers&shy;verkiezing. <br class="mob">Tot die tijd zou het me heel erg helpen als je jouw <strong>feedback deelt in een DM</strong>. Snapte je hoe bijvoorbeeld hoe alles werkt, ging het te snel, of was het te moeilijk?</p>
-            <a href="https://twitter.com/messages/compose?recipient_id=793888775223046144" rel="noreferrer" target="_blank" class="btn txt faqbtn">Stuur Twitter DM</a>
-            <p id="results"></p>
+            <p id="eval">Als coronaminister heb je moeilijke keuzes moeten maken om Nederland door de eerste golf te krijgen. Hieronder zie je hoe jouw keuzes verschillen met die van het kabinet, en wat voor gevolgen dat had. <br class="mob">Of je het beter dan Hugo deed, kan je zelf bepalen.</p>
+            <div id="result">
+                <div class="res">
+                    <i class="far fa-lock-alt"></i>
+                    <div>
+                        <span id="res-meas"></span><br>
+                        <span id="measline" class="byline">minder maatregelen</span>
+                    </div>
+                </div>
+                <div class="res">
+                    <i class="far fa-skull"></i>
+                    <div>
+                        <span id="res-dead"></span><br>
+                        <span id="deadline" class="byline">meer doden</span>
+                    </div>
+                </div>
+                <div class="res">
+                    <i class="far fa-shield-virus"></i>
+                    <div>
+                        <span id="res-pop"></span><br>
+                        <span class="byline">besmettingsgraad</span>
+                    </div>
+                </div>
+            </div>
+            <p></p>
             <p>Natuurlijk kan je het altijd opnieuw proberen, om te kijken hoe het virus en de samenleving reageert als je op een ander moment, andere maatregelen zou nemen.</p>
             <a onclick="restart()" class="btn txt faqbtn">Opnieuw spelen</a>
         </div>
@@ -206,7 +228,7 @@
     <!-- <script type="text/javascript" src="./js/hyphen.js"></script> -->
     <script type="text/javascript" src="./js/news.js"></script>
     <script type="text/javascript" src="./js/tutorial.js"></script>
-    <script type="text/javascript" src="./js/os.js"></script> 
+    <script type="text/javascript" src="./js/os.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
 </body>
 
