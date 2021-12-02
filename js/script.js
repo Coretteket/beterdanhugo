@@ -8,7 +8,10 @@ var url = new URL(window.location.href);
 
 var screenwidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-var pst = ["`id=${id}&os=${jscd.os}&osv=${jscd.osv}&browser=${jscd.browser}&browserv=${jscd.browserv}&width=${screenwidth}&visit=${visitTime}`", "`id=${id}&start=${startTime}`", "`id=${id}&end=${endTime}&deaths=${Math.round(s.F)}&stringency=${stringency}`"]
+var mstr = "";
+var lastMC = 11;
+
+var pst = ["`id=${id}&os=${jscd.os}&osv=${jscd.osv}&browser=${jscd.browser}&browserv=${jscd.browserv}&width=${screenwidth}&visit=${visitTime}`", "`id=${id}&start=${startTime}`", "`id=${id}&end=${endTime}&deaths=${Math.round(s.F)}&stringency=${stringency}&measures=${mstr}`"];
 
 var startTime = 0;
 
@@ -28,7 +31,7 @@ var mos = ["err", "januari", "februari", "maart", "april", "mei", "juni", "juli"
 
 var currentPinned = 0;
 
-var speeds = [0, 2500, 1500, 750];
+var speeds = [0, 2000, 1500, 750];
 var speed = 0;
 var counter = speeds[3] * 2 / 3;
 
@@ -43,13 +46,19 @@ var lname = "De Jonge";
 var beta = (url.searchParams.get("beta") != null);
 var dev = (url.searchParams.get("dev") != null);
 var faq = (url.searchParams.get("faq") != null);
+var m = (url.searchParams.get("m") != null);
 
 var started = false;
 var gameOver = false;
 var FAQ = false;
 
-if (dev) {
-    speeds[3] = 100;
+var marr = {};
+
+
+if (dev || m) {
+    if (m) readMeasures();
+    if (dev) speeds[3] = 100;
+    dev = true;
     start();
 } else if (beta) {
     show("start", "disclaimer");
@@ -59,6 +68,20 @@ if (dev) {
     toggleFAQ();
 } else {
     show("wip");
+}
+
+
+function readMeasures() {
+    var input = url.searchParams.get("m").match(/[a-zA-Z]+|[0-9]+/g);
+    var dayProcessed = 0;
+    var names = Object.keys(a);
+    for (var i = 0; i < input.length; i += 2) {
+        dayProcessed += parseInt(input[i]);
+        marr[dayProcessed] = [];
+        for (var j = 0; j < input[i + 1].length; j++) {
+            marr[dayProcessed].push(names[input[i + 1][j].charCodeAt(0) - 97]);
+        }
+    }
 }
 
 // function checkStart() {
@@ -87,27 +110,42 @@ function start() {
     setTimeout(() => { if (speed == 0) showTut(); }, 10000)
 }
 
+function format(i) {
+    return i.toLocaleString('nl-NL', { minimumFractionDigits: 1 });
+}
+
 function end() {
     pause();
-    gameOver = true;
-    var prop = Math.abs((s.R / s.N - 0.047) / 0.047);
-    var resImmune = (Math.round(s.R / s.N * 1000) / 10).toLocaleString('nl-NL', { minimumFractionDigits: 0 });;
-    var resDead = (Math.round(s.F / 100) * 100).toLocaleString('nl-NL', { minimumFractionDigits: 0 });
-    if (prop > .1) {
-        var resImmuneSev = prop > .5 ? "veel " : "iets ";
-        var resMore = s.R / s.N > 0.047 ? "meer" : "minder";
-        var resGood = s.R / s.N < 0.047 ? "gelukkig" : "helaas";
-        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>${resImmuneSev}${resMore} mensen</strong> dan de 4,7% die in het echt besmet raakten. <br class="mob">Hierdoor vielen er ${resGood} ook ${resMore} doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
-    } else {
-        q("results").innerHTML = `Dan: hoe heb je het eigenlijk gedaan? In jouw simulatie werd in vier maanden tijd <strong>${resImmune}% van de bevolking</strong> besmet. Dat zijn <strong>ongeveer evenveel mensen</strong> als de 4,7% die in het echt besmet raakten. <br class="mob">Hierdoor vielen er ook een vergelijkbaar aantal doden te betreuren in jouw simulatie, in totaal zo'n <strong>${resDead} mensen</strong>.`;
-    }
-
     getStringency();
-    console.log(stringency);
+    gameOver = true;
+
+    var immune = s.R / s.N * 100;
+    q("res-pop").innerHTML = immune < 10 ? `${format(Math.round(immune * 10) / 10)}%` : `${Math.round(immune)}%`;
+    if (immune > 6) q("res-pop").classList.add("worse");
+    if (immune < 4) q("res-pop").classList.add("better");
+
+    var deaths = s.F / 100 - 100;
+    var absdeath = Math.abs(deaths);
+    if (deaths > 200) q("res-dead").innerHTML = `${Math.round(absdeath/100)}x`;
+    else q("res-dead").innerHTML = absdeath < 10 ? `${format(Math.round(absdeath * 10) / 10)}%` : `${Math.round(absdeath)}%`;
+    if (deaths > 5) q("res-dead").classList.add("worse");
+    if (deaths < -5) q("res-dead").classList.add("better");
+    if (deaths > 0) q("deadline").innerHTML = `meer doden`;
+    else q("deadline").innerHTML = `minder doden`;
+
+    var meas = (stringency - .5) / .5 * 100;
+    var absmeas = Math.abs(meas);
+    q("res-meas").innerHTML = absmeas < 10 ? `${format(Math.round(absmeas * 10) / 10)}%` : `${Math.round(absmeas)}%`;
+    if (meas > 5) q("res-meas").classList.add("worse");
+    if (meas < -5) q("res-meas").classList.add("better");
+    if (meas > 0) q("measline").innerHTML = `meer maatregelen`;
+    else q("measline").innerHTML = `minder maatregelen`;
 
     setTimeout(() => {
         hide("timechoice", "col1", "col2", "news");
         show("gameover");
+        q("bdh").onclick = restart;
+        q("bdh").style = "cursor:pointer;"
         endTime = Math.floor(new Date() / 1000);
         post(2);
         // confettiStart = Date.now()
@@ -135,6 +173,15 @@ function timer() {
 function update() {
     day++;
 
+    if (day in marr) {
+        for (var i = 0; i < marr[day].length; i++) {
+            toggles.push(marr[day][i]);
+            if (!q("btn-" + marr[day][i]).classList.contains("txtsel")) q("btn-" + marr[day][i]).classList = "btn txt txtsel";
+            else { q("btn-" + marr[day][i]).classList = "btn txt"; }
+            // console.log(marr[day][i]);
+        }
+    }
+
     if (day == dateToInt(2020, 7, 1) && !dev) { end(); return; };
     if (day == 12 && !a.socdis[0] > 0) {
         q("btn-socdis").classList.add("nudge");
@@ -145,7 +192,6 @@ function update() {
 
     var intdate = intToDate(day);
     q("date").innerHTML = intdate[2] + " " + mos[intdate[1]] + " " + intdate[0];
-
 
     checkBtn();
     getIndex();
@@ -326,6 +372,7 @@ var preSpeed = 0;
 function toggleFAQ() {
     if ((!beta && !dev) || (paused && !gameOver)) return;
     if (FAQ) {
+        q(lightmode ? "light" : "dark").classList.add("notrans");
         if (!gameOver && started) {
             show("timechoice", "col1", "col2", "news");
             setSpeed(preSpeed);
@@ -334,14 +381,23 @@ function toggleFAQ() {
         } else if (FAQ && gameover) {
             show("gameover");
         }
-        q("bdh").onclick = null;
-        q("bdh").style = null;
+        if (!gameOver) {
+            q("bdh").onclick = null;
+            q("bdh").style = null;
+        }
+
         window.scrollTo(0, 0);
         hide("faq");
         FAQ = false;
+        setTimeout(() => {
+            q(lightmode ? "light" : "dark").offsetHeight;
+            q(lightmode ? "light" : "dark").classList.remove("notrans");
+        }, 100);
     } else {
-        q("bdh").onclick = toggleFAQ;
-        q("bdh").style = "cursor:pointer;"
+        if (!gameOver) {
+            q("bdh").onclick = toggleFAQ;
+            q("bdh").style = "cursor:pointer;"
+        }
         window.scrollTo(0, 0);
         hide( /*"disclaimermob",*/ "gameover", "timechoice", "col1", "col2", "news", "start");
         show("faq");
@@ -415,9 +471,13 @@ function toggleBtn(btn) {
 }
 
 function checkBtn() {
+    lastMC++;
     for (var i = 0; i < toggles.length; i++) {
         var btn = toggles[i];
         var abtn = eval("a." + btn);
+        mstr += lastMC > 0 ? lastMC : "";
+        mstr += String.fromCharCode(Object.keys(a).indexOf(btn) + 97);
+        lastMC = 0;
         var delay = abtn[3];
         if (abtn[0] <= 0) {
             act(btn, day);
