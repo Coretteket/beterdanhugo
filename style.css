@@ -1270,6 +1270,10 @@ strong {
     margin-bottom: .7em;
 }
 
+#mobile i {
+    margin-right: .25em!important;
+}
+
 #result {
     max-width: 700px;
     /* margin: 0 auto; */

@@ -141,6 +141,15 @@ function end() {
     if (meas > 0) q("measline").innerHTML = `meer maatregelen`;
     else q("measline").innerHTML = `minder maatregelen`;
 
+    try {
+        if (navigator.share && jscd.mobile) {
+            show("mobile");
+            hide("fallback");
+        }
+    } catch (e) {
+        console.log(e);
+    }
+
     setTimeout(() => {
         hide("timechoice", "col1", "col2", "news");
         show("gameover");
@@ -660,6 +669,18 @@ function post(i) {
     xml.open("POST", "https://nieuwindekamer.nl/bdh/data.php", true);
     xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xml.send(eval(pst[i]));
+}
+
+function share() {
+    try {
+        navigator.share({
+            title: 'Beter dan Hugo',
+            text: 'Krijg jij corona onder controle?',
+            url: 'https://beterdanhugo.nl'
+        });
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 // if (!Array.prototype.last) {
