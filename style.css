@@ -97,15 +97,19 @@ br {
 
 #eval br,
 .mob {
-    display: none;
+    display: none!important;
 }
 
 .desk {
-    display: inherit;
+    display: inherit!important;
+}
+
+.social .desk {
+    display: inline-block!important;
 }
 
 .big {
-    display: inherit;
+    display: inherit!important;
 }
 
 @media (max-width: 999px) {
@@ -138,10 +142,14 @@ br {
     }
     #eval br,
     .mob {
-        display: inherit;
+        display: inherit!important;
     }
+    .social .mob {
+        display: inline-block!important; 
+    }
+    .social .desk,
     .desk {
-        display: none;
+        display: none!important;
     }
     main {
         max-width: 450px;
@@ -502,7 +510,7 @@ a {
 }
 
 #faq p {
-    font-size: 15px;
+    font-size: 0.955em;
     line-height: 1.2;
     margin-bottom: .5em;
 }
@@ -1258,6 +1266,10 @@ strong {
     font-size: 1.3em;
 }
 
+#gameover p {
+    margin-bottom: .7em;
+}
+
 #result {
     max-width: 700px;
     /* margin: 0 auto; */
@@ -1267,7 +1279,6 @@ strong {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     margin: 1.5em auto;
-    
 }
 
 .res {
@@ -1275,7 +1286,8 @@ strong {
     margin: 0 auto;
     /* text-align: center; */
     line-height: .5;
-    display:flex;align-items:center;
+    display: flex;
+    align-items: center;
 }
 
 .res i {
@@ -1307,6 +1319,20 @@ strong {
 .byline {
     font-size: .8em;
     font-weight: 700;
+}
+
+.social .btn {
+    display: inline-block;
+    margin-right: .5em;
+    margin-bottom: 1em!important;
+    width: fit-content;
+    min-width: 0;
+    padding: .5em .55em;
+}
+
+.social .btn i {
+    margin: 1px 0 -1px 0!important;
+    font-size: 1.1em;
 }
 
 .fad.fa-tools {
