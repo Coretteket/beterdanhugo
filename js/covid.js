@@ -197,6 +197,9 @@ var s = { // spread info
     Ps: [0],
     Hs: [0],
     Ds: [0],
+
+    X: 0, //change in index
+    Xs: [0],
 }
 
 var b = { //preset constant beginning values
@@ -307,6 +310,16 @@ function getIndex() {
         index += v[0] > 0 ? v[4] / maxIndex : 0;
     }
     index = Math.round(index * 1e4) / 1e4;
+    s.Xs = [...s.Xs, index];
+    if (day > 10) {
+        var oldX = 0;
+        var newX = 0;
+        for (var i = 0; i < 7; i++) {
+            oldX += s.Xs[s.Xs.length - i - 8] / 7;
+            newX += s.Xs[s.Xs.length - i - 1] / 7;
+        }
+        s.X = newX - oldX;
+    }
     return index;
 }
 
