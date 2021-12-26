@@ -41,10 +41,6 @@ body {
     user-select: none;
 }
 
-.notrans * {
-    transition: none!important;
-}
-
 body {
     overflow-y: hidden;
 }
@@ -369,7 +365,7 @@ p {
         opacity: 0;
     }
     to {
-        max-height: 8em;
+        max-height: 6em;
         opacity: 100%;
     }
 }
@@ -434,7 +430,7 @@ a {
 } */
 
 #pinned {
-    /* padding-right: .25em; */
+    padding: .6em .5em;
     -webkit-animation: none;
     animation: none;
     margin: 1em 0 .6em;
@@ -461,6 +457,10 @@ a {
     animation-duration: .25s;
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
+}
+
+#pinned img {
+    margin-left: .1em;
 }
 
 #content img,
@@ -647,7 +647,7 @@ a {
     border-radius: 6px;
     background: var(--back);
     opacity: 1;
-    transition: transform .05s ease, opacity .5s ease, color .1s ease, background .1s ease;
+    transition: transform .05s ease, opacity .5s ease, color .1s ease, background .1s ease, border .1s ease;
 }
 
 *,
@@ -689,7 +689,7 @@ textarea {
     /* transform: scale(1); */
     /* width: 100%; */
     background: var(--back);
-    transition: transform .05s ease, opacity .5s ease, color .1s ease, background .1s ease;
+    transition: transform .05s ease, opacity .5s ease, color .1s ease, background .1s ease!important;
 }
 
 .txt i {
@@ -702,10 +702,18 @@ textarea {
     #timechoice .btn {
         margin-bottom: 0;
     }
-    .txt:hover:not(.freeze div a):not(.paused) {
-        color: var(--txt);
-        -webkit-transform: scale(1.01);
-        transform: scale(1.01);
+    #btn-cont .btn:hover,
+    .txt:hover:not(.txtsel):not(.freeze div a):not(.paused) {
+        /* -webkit-transform: scale(1.004);
+        transform: scale(1.004); */
+        background: var(--hover);
+    }
+    #btn-cont .tsel:hover,
+    .txtsel:hover:not(.freeze div a):not(.paused) {
+        /* -webkit-transform: scale(1.004);
+        transform: scale(1.004); */
+        background: var(--inv-hover)!important;
+        border-color: #00000000;
     }
 }
 
@@ -788,7 +796,6 @@ textarea {
     border-color: var(--light-txt);
     background: var(--light-txt);
     color: var(--back) !important;
-    transform: scale(1);
 }
 
 .txtsel i {
@@ -1207,7 +1214,7 @@ strong {
     }
 }
 
-.wochoice .nudge::before {
+.nudge::before {
     content: '';
     background: var(--nudge);
     position: absolute;
@@ -1217,7 +1224,7 @@ strong {
     margin-top: .05em;
     z-index: -1;
     border-radius: 50%;
-    animation: nudge 1.5s ease-out 5s 10;
+    animation: nudge 1.5s ease-out 2s 15;
     opacity: 0;
     filter: blur(3px);
 }
@@ -1229,24 +1236,25 @@ strong {
     width: 2em;
 }
 
+#btn-cont .btn:hover::before,
 .txt.nudge:hover::before {
     animation: none;
 }
 
 @keyframes nudge {
-    0% {
+    50% {
         -webkit-transform: scale(1);
         transform: scale(1);
         opacity: 1;
     }
-    50% {
-        -webkit-transform: scale(3.5);
-        transform: scale(3.5);
-        opacity: 0;
-    }
     100% {
+        -webkit-transform: scale(3.3);
+        transform: scale(3.3);
         opacity: 0;
     }
+    /* 100% {
+        opacity: 0;
+    } */
 }
 
 #gameover {
@@ -1419,6 +1427,9 @@ strong {
     /* .fal {
         font-weight: 400!important;
     } */
+    .newstitle {
+        font-size: .95em;
+    }
     #result {
         display: grid;
         grid-template-columns: 1fr;
@@ -1530,6 +1541,8 @@ strong {
 
 #light {
     --bw: black;
+    --hover: rgba(33, 37, 41, 0.05);
+    --inv-hover: rgba(61, 61, 61, .95);
     --back: white;
     --popup-btn: #f2f2f2;
     /* --svg-dark: invert(100%); */
@@ -1545,7 +1558,7 @@ strong {
     --border: #8d8d8d;
     --border-thick: #797979;
     --arrows: none;
-    --nudge: #c5c5c5;
+    --nudge: #00000059;
     --input: white;
     --tut-box: #f0dcc1;
     --tut-border: #aa9c8b;
@@ -1556,6 +1569,8 @@ strong {
 
 #dark {
     --bw: white;
+    --hover: rgba(236, 236, 236, .07);
+    --inv-hover: rgba(236, 236, 236, .9);
     --back: #212529;
     --popup-btn: #2d3339;
     /* --svg-dark: invert(11%) sepia(9%) saturate(715%) hue-rotate(169deg) brightness(101%) contrast(93%); */
@@ -1571,7 +1586,7 @@ strong {
     --border: hsl(210, 5%, 45%);
     --border-thick: #a2a6ab;
     --arrows: invert(1);
-    --nudge: #afb5bb;
+    --nudge: #ffffff59;
     --input: #343a3f;
     --tut-box: #403b30;
     --tut-border: #796853;
@@ -1586,4 +1601,8 @@ strong {
 
 [data-color-scheme="light"] {
     color-scheme: light;
+}
+
+.notrans * {
+    transition: none!important;
 }
