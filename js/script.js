@@ -1,3 +1,6 @@
+console.log('%cBeter dan Hugo', 'background:#212529;color:#ebebeb;font-size:2.5em;font-family:sans-serif;font-weight:900;padding:20px;border-radius:10px;');
+console.log("https://github.com/coretteket/beterdanhugo");
+
 var id = "id" + Math.random().toString(16).slice(2);
 
 var url = new URL(window.location.href);
@@ -107,7 +110,7 @@ function start() {
     started = true;
     var delay = 5000 - new Date() + visitTimeL + 1000;
     setTimeout(() => { post(1); }, delay > 0 ? delay : 0);
-    setTimeout(() => { if (speed == 0) showTut(); }, 10000)
+    // setTimeout(() => { if (speed == 0) showTut(); }, 10000)
 }
 
 function format(i) {
@@ -126,7 +129,7 @@ function end() {
 
     var deaths = s.F / 100 - 100;
     var absdeath = Math.abs(deaths);
-    if (deaths > 200) q("res-dead").innerHTML = `${Math.round(absdeath/100)}x`;
+    if (deaths >= 100) q("res-dead").innerHTML = `${Math.round(absdeath/100)+1}x`;
     else q("res-dead").innerHTML = absdeath < 10 ? `${format(Math.round(absdeath * 10) / 10)}%` : `${Math.round(absdeath)}%`;
     if (deaths > 5) q("res-dead").classList.add("worse");
     if (deaths < -5) q("res-dead").classList.add("better");
@@ -157,8 +160,8 @@ function end() {
         q("bdh").style = "cursor:pointer;"
         endTime = Math.floor(new Date() / 1000);
         post(2);
-        // confettiStart = Date.now()
-        // confettiFrame();
+        confettiStart = Date.now()
+        if (meas < 0 && deaths < 0) confettiFrame();
     }, !dev ? 1500 : 0);
 }
 
@@ -197,14 +200,14 @@ function update() {
         setChoices();
     }
 
-    for (const [k, v] of Object.entries(a)) { if (checkm(k)) a[k][5]++; };
+    for (const [k, v] of Object.entries(a)) { if (cm(k)) a[k][5]++; };
 
     var intdate = intToDate(day);
     q("date").innerHTML = intdate[2] + " " + mos[intdate[1]] + " " + intdate[0];
 
     checkBtn();
     getIndex();
-    showTut();
+    // showTut();
     updateStats();
     setNews();
 }
@@ -564,7 +567,7 @@ function setSpeed(i) {
     } else {
         speed = i;
     }
-    if (i > 0 && day == 11) showTut();
+    // if (i > 0 && day == 11) showTut();
 }
 
 var lightmode = true;
@@ -604,39 +607,38 @@ function removeItem(arr, value) {
 }
 
 
-// var colors = ["#F94144", "#F8961E", "#F9C74F", "#43AA8B", "#277DA1"];
+var colors = ["#F94144", "#F8961E", "#F9C74F", "#43AA8B", "#277DA1"];
 
-// function confettiFrame() {
-//     var mob = $(document).height() > $(document).width();
-//     if (!mob) {
-//         confetti({
-//             particleCount: 5,
-//             angle: 60,
-//             spread: 120,
-//             origin: { x: -.05, y: .4 },
-//             colors: colors,
-//         });
-//         confetti({
-//             particleCount: 5,
-//             angle: 120,
-//             spread: 120,
-//             origin: { x: 1.05, y: .4 },
-//             colors: colors,
-//         });
-//     } else {
-//         confetti({
-//             particleCount: 5,
-//             angle: 270,
-//             spread: 55,
-//             origin: { y: -.5 },
-//             colors: colors,
-//         });
-//     }
+function confettiFrame() {
+    if (!jscd.mobile) {
+        confetti({
+            particleCount: 5,
+            angle: 60,
+            spread: 120,
+            origin: { x: -.05, y: .4 },
+            colors: colors,
+        });
+        confetti({
+            particleCount: 5,
+            angle: 120,
+            spread: 120,
+            origin: { x: 1.05, y: .4 },
+            colors: colors,
+        });
+    } else {
+        confetti({
+            particleCount: 5,
+            angle: 270,
+            spread: 55,
+            origin: { y: -.5 },
+            colors: colors,
+        });
+    }
 
-//     if (Date.now() < confettiStart + 1000) {
-//         requestAnimationFrame(confettiFrame);
-//     }
-// }
+    if (Date.now() < confettiStart + 1000) {
+        requestAnimationFrame(confettiFrame);
+    }
+}
 
 function randBetween(min, max) {
     return Math.random() * (max - min) + min; //Math.floor(
@@ -729,6 +731,3 @@ var aa = intToDate(day);
 q("date").innerHTML = aa[2] + " " + mos[aa[1]] + " " + aa[0];
 // setChoices();
 setNews();
-
-console.log('%cBeter dan Hugo', 'background:#212529;color:#ebebeb;font-size:2.5em;font-family:sans-serif;font-weight:900;padding:20px;border-radius:10px;');
-console.log("https://github.com/coretteket/beterdanhugo");
