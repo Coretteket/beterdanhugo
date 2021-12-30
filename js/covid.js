@@ -245,6 +245,10 @@ function calcR() {
     // return Rts[day] / s.S * s.N;
 }
 
+function calcPoll() {
+    return Math.round((randBetween(.4, .5) + index ** 2 / 2 - (s.H / 1600) / 4) * 100)
+}
+
 function calcCOV() {
     s.a = calcR() * s.b;
 
