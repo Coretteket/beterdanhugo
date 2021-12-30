@@ -1,3 +1,5 @@
+let tikkie = "https://tikkie.me/pay/aqc6q6kt1svn592g6q68";
+
 console.log('%cBeter dan Hugo', 'background:#212529;color:#ebebeb;font-size:2.5em;font-family:sans-serif;font-weight:900;padding:20px;border-radius:10px;');
 console.log("https://github.com/coretteket/beterdanhugo");
 
@@ -14,7 +16,11 @@ var screenwidth = window.innerWidth || document.documentElement.clientWidth || d
 var mstr = "";
 var lastMC = 11;
 
-var pst = ["`id=${id}&os=${jscd.os}&osv=${jscd.osv}&browser=${jscd.browser}&browserv=${jscd.browserv}&width=${screenwidth}&visit=${visitTime}`", "`id=${id}&start=${startTime}`", "`id=${id}&end=${endTime}&deaths=${Math.round(s.F)}&stringency=${stringency}&measures=${mstr}`"];
+var pst = [
+    "`id=${id}&os=${jscd.os}&osv=${jscd.osv}&browser=${jscd.browser}&browserv=${jscd.browserv}&theme=${(!lightmode)*1}&width=${screenwidth}&visit=${visitTime}`",
+    "`id=${id}&start=${startTime}`",
+    "`id=${id}&theme=${(!lightmode)*1}&end=${endTime}&deaths=${Math.round(s.F)}&stringency=${stringency}&measures=${mstr}`"
+];
 
 var startTime = 0;
 
@@ -34,7 +40,7 @@ var mos = ["err", "januari", "februari", "maart", "april", "mei", "juni", "juli"
 
 var currentPinned = 0;
 
-var speeds = [0, 2000, 1500, 750];
+var speeds = [0, 2500, 1500, 750];
 var speed = 0;
 var counter = speeds[3] * 2 / 3;
 
@@ -117,10 +123,18 @@ function format(i) {
     return i.toLocaleString('nl-NL', { minimumFractionDigits: 1 });
 }
 
+
+" [iets] [meer/minder] mensen, terwijl je [iets] [meer/minder]"
+
 function end() {
     pause();
     getStringency();
     gameOver = true;
+
+    q("tikkie").href = tikkie;
+    // q("tikkie-pseudo").href = tikkie;
+
+    let str = "";
 
     var immune = s.R / s.N * 100;
     q("res-pop").innerHTML = immune < 10 ? `${format(Math.round(immune * 10) / 10)}%` : `${Math.round(immune)}%`;
@@ -136,6 +150,12 @@ function end() {
     if (deaths > 0) q("deadline").innerHTML = `meer doden`;
     else q("deadline").innerHTML = `minder doden`;
 
+    if (Math.abs(deaths) < 5) str += "iets "
+    if (deaths > 0) str += "meer "
+    else str += "minder "
+
+    str += "mensen, terwijl je "
+
     var meas = (stringency - .5) / .5 * 100;
     var absmeas = Math.abs(meas);
     q("res-meas").innerHTML = absmeas < 10 ? `${format(Math.round(absmeas * 10) / 10)}%` : `${Math.round(absmeas)}%`;
@@ -143,6 +163,12 @@ function end() {
     if (meas < -5) q("res-meas").classList.add("better");
     if (meas > 0) q("measline").innerHTML = `meer maatregelen`;
     else q("measline").innerHTML = `minder maatregelen`;
+
+    if (Math.abs(meas) < 5) str += "iets "
+    if (meas > 0) str += "meer "
+    else str += "minder "
+
+    q("eval").innerText = str;
 
     try {
         if (navigator.share && jscd.mobile) {
@@ -194,11 +220,12 @@ function update() {
         }
     }
 
-    if (day == dateToInt(2020, 7, 1) && !dev) { end(); return; };
-    if (day == 12 && !a.socdis[0] > 0) {
-        q("btn-socdis").classList.add("nudge");
-        setChoices();
-    }
+    // if (day >= dateToInt(2020, 6, 1) && s.Ps[day-5] < 100) { end(); return; };
+    if (day == dateToInt(2020, 6, 1) /*&& !dev*/ ) { end(); return; };
+    // if (day == 12 && !a.socdis[0] > 0) {
+    //     q("btn-socdis").classList.add("nudge");
+    //     setChoices();
+    // }
 
     for (const [k, v] of Object.entries(a)) { if (cm(k)) a[k][5]++; };
 
@@ -258,7 +285,7 @@ function setNews() {
         news.parentNode.insertBefore(div, news.nextSibling);
 
         var pin = q('content');
-        pin.children[0].setAttribute('src', 'img/' + source + '.jpg');
+        pin.children[0].src = 'img/' + source + '.jpg';
         pin.children[1].innerHTML = outlets[source] + ' · <span class="big">' + wdays[a[3]] + ' </span>' + a[2] + ' ' + mos[a[1]];
         pin.children[2].innerHTML = title;
 
@@ -568,6 +595,9 @@ function setSpeed(i) {
         speed = i;
     }
     // if (i > 0 && day == 11) showTut();
+    if (day == 11 && i > 0 && !q("btn-socdis").classList.contains("txtsel")) {
+        q("btn-socdis").classList.add("nudge");
+    }
 }
 
 var lightmode = true;
@@ -722,6 +752,11 @@ const mouseDownHandler = function(a) { q("scroll").style.cursor = "grabbing", po
     mouseUpHandler = function() { document.removeEventListener("mousemove", mouseMoveHandler), document.removeEventListener("mouseup", mouseUpHandler), q("scroll").style.cursor = "grab" };
 
 // window.addEventListener('resize', function(event) { newsSize(); }, true);
+
+// for (var key in outlets) {
+//     var img=new Image();
+//     img.src="img/"+key+".jpg";
+// }
 
 for (var i = day; i < 11; i++) {
     day++;

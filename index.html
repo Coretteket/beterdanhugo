@@ -46,8 +46,8 @@
             <h1 id="bdh">Beter dan Hugo</h1>
         </div>
         <div id="twitter">
-            <a onclick="colorSwitch();"><i class="fas fa-sun" id="sun" class="hide"></i><i class="fas fa-moon" id="moon"></i></a>
-            <a onclick="toggleFAQ();" id="faqbtn"><i class="fas fa-question-circle"></i></a>
+            <a onclick="colorSwitch();"><i class="fas fa-sun hide" id="sun" title="Licht thema"></i><i class="fas fa-moon" id="moon" title="Donker thema"></i></a>
+            <a onclick="toggleFAQ();" id="faqbtn"><i class="fas fa-question-circle" title="Veelgestelde vragen"></i></a>
             <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank"><i class="fab fa-twitter"></i> @coretteket</a>
         </div>
         <div id="head">
@@ -159,44 +159,49 @@
             </div>
         </div>
         <div id="gameover" class="hide">
-            <b>Gefeliciteerd, je hebt de eerste golf overleefd!</b>
-            <p id="eval">Als coronaminister heb je moeilijke keuzes moeten maken om Nederland door de eerste golf te krijgen. Hieronder zie je hoe jouw keuzes verschillen met die van het kabinet, en wat voor gevolgen dat had.</p>
-            <div id="result">
-                <div class="res">
-                    <i class="far fa-lock-alt"></i>
-                    <div>
-                        <span id="res-meas"></span><br>
-                        <span id="measline" class="byline">minder maatregelen</span>
+            <a id="tikkie" target="_blank" href="">
+                <span class="box">Genoten van Beter dan Hugo? Dan zou ik een kleine donatie heel erg waarderen! Het kan snel en veilig <span class="a">via Tikkie</span>. <i class="far fa-arrow-right"></i></span>
+            </a>
+            <div class="cont">
+                <b>Gefeliciteerd, je hebt de eerste golf overleefd!</b>
+                <p>Als coronaminister heb je moeilijke keuzes moeten maken om Nederland door de eerste honderd dagen van de pandemie te krijgen. Zoals je hieronder kan zien, overleden in jouw simulatie <span id="eval"></span> maatregelen nam.</p>
+                <div id="result">
+                    <div class="res">
+                        <i class="far fa-lock-alt"></i>
+                        <div>
+                            <span id="res-meas"></span><br>
+                            <span id="measline" class="byline">minder maatregelen</span>
+                        </div>
+                    </div>
+                    <div class="res">
+                        <i class="far fa-skull"></i>
+                        <div>
+                            <span id="res-dead"></span><br>
+                            <span id="deadline" class="byline">meer doden</span>
+                        </div>
+                    </div>
+                    <div class="res">
+                        <i class="far fa-shield-virus"></i>
+                        <div>
+                            <span id="res-pop"></span><br>
+                            <span class="byline">besmettingsgraad</span>
+                        </div>
                     </div>
                 </div>
-                <div class="res">
-                    <i class="far fa-skull"></i>
-                    <div>
-                        <span id="res-dead"></span><br>
-                        <span id="deadline" class="byline">meer doden</span>
-                    </div>
+                <p>Zou jij de rest van de pandemie &ndash; inclusief varianten, vaccins en verkiezingen &ndash; ook willen temmen? Omdat Beter dan Hugo door één iemand wordt ontwikkeld, kan het jouw hulp goed gebruiken. Daag vrienden en familie uit, en deel het spel op sociale media!</p>
+                <div id="mobile" class="social hide">
+                    <a class="btn txt" onclick="share();"><i class="far fa-share-square"></i> Deel het spel</a>
                 </div>
-                <div class="res">
-                    <i class="far fa-shield-virus"></i>
-                    <div>
-                        <span id="res-pop"></span><br>
-                        <span class="byline">besmettingsgraad</span>
-                    </div>
+                <div id="fallback" class="social">
+                    <a class="btn txt" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a class="btn txt" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                    <a class="btn txt" href="mailto:?body=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fas fa-envelope"></i></a>
+                    <a class="btn txt mob" href="whatsapp://send?text=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a class="btn txt desk" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fbeterdanhugo.nl%20&title=Beter%20dan%20Hugo" rel="noreferrer" target="_blank"><i class="fab fa-linkedin"></i></a>
                 </div>
+                <p>Natuurlijk kan je het altijd opnieuw proberen, om te kijken hoe het virus en de samenleving zou reageren bij een veel hardere lockdown, juist helemaal geen maatregelen, of elke combinatie daartussen. Kan jij het beter dan Hugo?</p>
+                <a onclick="restart()" class="btn txt faqbtn">Opnieuw spelen</a>
             </div>
-            <p>Zou jij de rest van de pandemie &ndash; inclusief varianten, vaccins en verkiezingen &ndash; ook willen temmen? Dit spel wordt door één iemand ontwikkeld. Daarom kan Beter dan Hugo jouw hulp goed gebruiken: daag anderen uit, en deel het spel op social media!</p>
-            <div id="mobile" class="social hide">
-                <a class="btn txt" onclick="share();"><i class="far fa-share-square"></i> Deel het spel</a>
-            </div>
-            <div id="fallback" class="social">
-                <a class="btn txt" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a class="btn txt" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fab fa-facebook-square"></i></a>
-                <a class="btn txt" href="mailto:?body=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fas fa-envelope"></i></a>
-                <a class="btn txt mob" href="whatsapp://send?text=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a class="btn txt desk" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fbeterdanhugo.nl%20&title=Beter%20dan%20Hugo" rel="noreferrer" target="_blank"><i class="fab fa-linkedin"></i></a>
-            </div>
-            <p>Natuurlijk kan je het altijd opnieuw proberen, om te kijken hoe het virus en de samenleving zou reageren bij een veel hardere lockdown, juist helemaal geen maatregelen, of elke combinatie daartussen.</p>
-            <a onclick="restart()" class="btn txt faqbtn">Opnieuw spelen</a>
         </div>
         <div id="faq" class="hide faqtext">
             <div class="faqbox box">
@@ -237,7 +242,7 @@
     <script type="text/javascript" src="./js/news.js"></script>
     <script type="text/javascript" src="./js/tutorial.js"></script>
     <script type="text/javascript" src="./js/os.js"></script>
-    <script type="text/javascript" src="./js/script.js"></script> 
+    <script type="text/javascript" src="./js/script.js"></script>
     <!-- <script type="text/javascript" src="./js/js.js"></script> -->
 </body>
 
