@@ -62,7 +62,7 @@
             </div>
         </div>
         <div id="start" class="hide">
-            <p>Na anderhalf jaar persconferenties heeft iedereen eigen ideeën over het coronabeleid. Maar kunnen we het echt allemaal beter dan minister de Jonge? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. <br>Voer maatregelen in en schaf ze weer af om de coronacijfers te zien veranderen, en hou het nieuws in de gaten om te kijken hoe jouw beleid in de samenleving valt. Krijg jij corona onder controle?</p>
+            <p>Na twee jaar persconferenties heeft iedereen eigen ideeën over het coronabeleid. Maar kunnen we het echt allemaal beter dan Hugo de Jonge? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. <br>Voer maatregelen in en schaf ze weer af om de coronacijfers te zien veranderen, en hou het nieuws in de gaten om te kijken hoe jouw beleid in de samenleving valt. Krijg jij corona onder controle?</p>
             <a class="btn txt" onClick="start()">Start het spel</a>
             <div id="disclaimer" class="hide"><strong>Disclaimer:</strong> Dit is een spel, geen realistisch model.</div>
             <!-- <p id="starttxt">Voor we beginnen, hoe mogen we je noemen?</p>
@@ -159,11 +159,12 @@
             </div>
         </div>
         <div id="gameover" class="hide">
-            <a id="tikkie" target="_blank" href="">
-                <span class="box">Genoten van Beter dan Hugo? Dan zou ik een kleine donatie heel erg waarderen! Het kan snel en veilig <span class="a">via Tikkie</span>. <i class="far fa-arrow-right"></i></span>
+            <a id="tikkie" target="_blank" rel="noreferrer" href="">
+                <span class="box">Genoten van Beter dan Hugo? Dan zou ik een kleine donatie waarderen! Het kan snel en veilig <span class="a">via Tikkie</span>. <i class="far fa-arrow-right"></i></span>
             </a>
             <div class="cont">
-                <b>Gefeliciteerd, je hebt de eerste golf overleefd!</b>
+                <b class="desk">Je hebt de eerste golf overleefd</b>
+                <b class="mob">Eerste golf overleefd</b>
                 <p>Als coronaminister heb je moeilijke keuzes moeten maken om Nederland door de eerste honderd dagen van de pandemie te krijgen. Zoals je hieronder kan zien, overleden in jouw simulatie <span id="eval"></span> maatregelen nam.</p>
                 <div id="result">
                     <div class="res">
@@ -236,13 +237,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js" crossorigin="anonymous" defer></script>
     <!-- <script defer src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous"></script> -->
-    <script type="text/javascript" src="./js/choice.js"></script>
-    <script type="text/javascript" src="./js/covid.js"></script>
-    <script type="text/javascript" src="./js/chart.js"></script>
-    <script type="text/javascript" src="./js/news.js"></script>
-    <script type="text/javascript" src="./js/tutorial.js"></script>
-    <script type="text/javascript" src="./js/os.js"></script>
-    <script type="text/javascript" src="./js/script.js"></script>
+    <script type="text/javascript" src="js/rand.js"></script>
+    <script type="text/javascript" src="js/covid.js"></script>
+    <script type="text/javascript" src="js/choice.js"></script>
+    <script type="text/javascript" src="js/chart.js"></script>
+    <script type="text/javascript" src="js/news.js"></script>
+    <script type="text/javascript" src="js/tutorial.js"></script>
+    <script type="text/javascript" src="js/os.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
     <!-- <script type="text/javascript" src="./js/js.js"></script> -->
 </body>
 
