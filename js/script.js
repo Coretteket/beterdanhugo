@@ -1,11 +1,11 @@
-let tikkie = "https://tikkie.me/pay/aqc6q6kt1svn592g6q68";
+var tikkie = "https://tikkie.me/pay/aqc6q6kt1svn592g6q68";
+q("tikkie").href = tikkie;
 
 console.log('%cBeter dan Hugo', 'background:#212529;color:#ebebeb;font-size:2.5em;font-family:sans-serif;font-weight:900;padding:20px;border-radius:10px;');
 console.log("https://github.com/coretteket/beterdanhugo");
 
 var id = "id" + Math.random().toString(16).slice(2);
 
-var url = new URL(window.location.href);
 // var cid = url.searchParams.get("id");
 // if (cid != null) {
 //     id = "cd" + cid + id.substr(2 + cid.length, 1e2);
@@ -22,11 +22,9 @@ var pst = [
     "`id=${id}&theme=${(!lightmode)*1}&end=${endTime}&deaths=${Math.round(s.F)}&stringency=${stringency}&measures=${mstr}`"
 ];
 
-var startTime = 0;
-
-var visitTimeL = +new Date();
-var visitTime = Math.floor(new Date() / 1000);
 setTimeout(() => { post(0); }, 5e3);
+
+var startTime = 0;
 
 const epoch = 1581894e3;
 var cont = true;
@@ -44,9 +42,6 @@ var speeds = [0, 2500, 1500, 750];
 var speed = 0;
 var counter = speeds[3] * 2 / 3;
 
-var w = 4;
-var d = 27;
-var m = 2;
 var y = 2020;
 
 var lname = "De Jonge";
@@ -56,6 +51,7 @@ var beta = (url.searchParams.get("beta") != null);
 var dev = (url.searchParams.get("dev") != null);
 var faq = (url.searchParams.get("faq") != null);
 var m = (url.searchParams.get("m") != null);
+var seeded = (url.searchParams.get("s") != null);
 
 var started = false;
 var gameOver = false;
@@ -64,9 +60,9 @@ var FAQ = false;
 var marr = {};
 
 
-if (dev || m) {
+if (dev || m || seeded) {
     if (m) readMeasures();
-    if (dev) speeds[3] = 100;
+    speeds[3] = 100;
     dev = true;
     start();
 } else if (beta) {
@@ -127,11 +123,13 @@ function format(i) {
 " [iets] [meer/minder] mensen, terwijl je [iets] [meer/minder]"
 
 function end() {
+    if (dev) console.log(mstr);
+
     pause();
     getStringency();
     gameOver = true;
 
-    q("tikkie").href = tikkie;
+
     // q("tikkie-pseudo").href = tikkie;
 
     let str = "";
@@ -188,7 +186,7 @@ function end() {
         post(2);
         confettiStart = Date.now()
         if (meas < 0 && deaths < 0) confettiFrame();
-    }, !dev ? 1500 : 0);
+    }, !dev ? 2000 : 0);
 }
 
 function startTimer() {
@@ -197,16 +195,12 @@ function startTimer() {
 }
 
 function timer() {
-    if (speed == 0) return;
-    let playback = (Date.now() - startedAt) / speeds[speed];
-    if (playback >= 1) update();
-
-    if (playback > 0 && playback < 1) {
-        requestAnimationFrame(timer)
-    } else {
-        startTimer();
+    if (0 != speed) {
+        var a = (Date.now() - startedAt) / speeds[speed];
+        1 <= a && update();
+        0 < a && 1 > a ? requestAnimationFrame(timer) : startTimer()
     }
-}
+};
 
 function update() {
     day++;
@@ -234,6 +228,7 @@ function update() {
 
     checkBtn();
     getIndex();
+    getStringency();
     // showTut();
     updateStats();
     setNews();

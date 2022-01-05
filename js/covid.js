@@ -246,7 +246,7 @@ function calcR() {
 }
 
 function calcPoll() {
-    return Math.round((randBetween(.4, .5) + index ** 2 / 2 - (s.H / 1600) / 4) * 100)
+    return Math.round((1 + index ** 2 - (s.H / 1600) ** 2) * 40 + 10)
 }
 
 function calcCOV() {
