@@ -6,9 +6,17 @@ function week(a) {
     return Math.ceil(((b - c) / 864e5 + 1) / 7)
 }
 
-function shuffle(a) { for (let b, c = a.length; 0 != c;) b = Math.floor(Math.random() * c), c--, [a[c], a[b]] = [a[b], a[c]]; return a }
+function shuffle(a) { for (var b, c, d = a.length; d;) c = Math.floor(Math.random() * d--), b = a[d], a[d] = a[c], a[c] = b; return a }
 
-var outlets = { nos: "NOS", rtl: "RTL", nu: "NU.nl", vk: "Volkskrant", tgf: "Telegraaf", nrc: "NRC", trouw: "Trouw", algd: "AD", parool: "Parool", metro: "Metro", bnr: "BNR", "1v": "EenVandaag", hvnl: "Hart van Nederland", reuters: "Reuters", ap: "Associated Press", bbc: "BBC", nyt: "New York Times", wapo: "Washington Post", cnn: "CNN" };
+var fname = shuffle(["Anna", "Esther", "Karin", "Sandra", "Fatima", "Khadija", "Saskia", "Astrid", "Petra", "Ingrid"]);
+var mname = shuffle(["Jan", "Maurice", "Johan", "Peter", "Mohammed", "Ahmed", "Robert", "Marcel", "Kees", "Patrick"]);
+
+function getName(mf) {
+    mf ? fname.push(fname.shift()) : mname.push(mname.shift());
+    return mf ? fname[0] : mname[0];
+}
+
+var outlets = { nos: "NOS", rtl: "RTL", nu: "NU.nl", vk: "Volkskrant", tgf: "Telegraaf", nrc: "NRC", trouw: "Trouw", algd: "AD", parool: "Parool", metro: "Metro", bnr: "BNR", "1v": "EenVandaag", hvnl: "Hart van Nederland", /*reuters: "Reuters", ap: "Associated Press",*/ bbc: "BBC", nyt: "New York Times", wapo: "Washington Post", cnn: "CNN" };
 
 pairs = [
     ["nos", "rtl", "nu", "algd"], //0
@@ -18,7 +26,7 @@ pairs = [
     ["1v", "hvnl"], //4
     ["bbc", "cnn"], //5
     ["nyt", "wapo"], //6
-    ["reuters", "ap"] //7
+    // ["reuters", "ap"] //7
 ];
 
 for (const b in pairs) pairs[b] = pairs[b].map(b => ({ value: b, sort: Math.random() })).sort((b, c) => b.sort - c.sort).map(({ value: b }) => b);
@@ -49,7 +57,7 @@ function getNews() {
         }
     }
     if (max[0] == 1e3) {
-        console.log(day)
+        // console.log(day)
         return;
     }
     if (nws[max[1]][4] != undefined) {
@@ -64,7 +72,7 @@ function getNews() {
     title = vars(nws[max[1]][2]);
     nws.splice(max[1], 1);
     if (dev) {
-        console.clear();
+        // console.clear();
         console.table(temparr.sort(function(c, a) { return c[0] - a[0] }));
     }
 }
@@ -77,6 +85,9 @@ function vars(a) {
     a = a.replaceAll("$deadrounded", (Math.round(s.tD / 1000) * 1000).toLocaleString("nl-NL"));
     a = a.replaceAll("$dead", s.tD.toLocaleString("nl-NL"));
     a = a.replaceAll("$poll", calcPoll());
+    a = a.replaceAll("$mname", getName(0));
+    a = a.replaceAll("$fname", getName(1));
+    a = a.replaceAll("$age", randInt(50, 70));
     return a;
 }
 
@@ -94,10 +105,10 @@ var nws = [
     [3, 1, "Reguliere zorg wordt in de wacht gezet terwijl corona-afdelingen volstromen", "h200H400c5D100", 'xB'],
     [1, 0, "Minister De Jonge: alle niet-kritieke operaties worden voorlopig afgebeld", "h400H1000c5C30", "Gv"],
     [1, 0, "De Jonge: planbare zorg wordt afgeschaald, zelfs chemokuren uitgesteld", "h400H1000c5C30", "Gv"],
-    [0, 0, "De Jonge bekrachtigt `code zwart': geen plek meer in overvolle ziekenhuizen", "h1200c5", "P0"],
-    [0, 1, "Code zwart uitgeroepen: overvolle ziekenhuizen moeten patiënten weigeren", "h1200c5", "P0"],
-    [1, 2, "Esther (56) moest thuis afscheid nemen van echtgenoot, `een IC-bed had hem gered'", "h1300C0", "ZV"],
-    [1, 2, "Doodzieke Maurice (47) heeft dringend een IC-bed nodig, maar werd afgewezen", "h1300C0", "ZV"],
+    [0, 0, "De Jonge bekrachtigt `code zwart': geen plek meer in overvolle ziekenhuizen", "h1300c5", "P0"],
+    [0, 1, "Code zwart uitgeroepen: overvolle ziekenhuizen moeten patiënten weigeren", "h1300c5", "P0"],
+    [1, 2, "$fname ($age) moest thuis afscheid nemen van echtgenoot, `een IC-bed had hem gered'", "h1300C10", "ZV"],
+    [1, 2, "Doodzieke $mname ($age) heeft dringend een IC-bed nodig, maar nergens is plek", "h1300C10", "ZV"],
 
     // 1. doden
     [5, 1, "Een maand na eerste coronadode: inmiddels meer dan $dead mensen overleden", "w15t1T10", 'lk'],
@@ -108,15 +119,19 @@ var nws = [
     [1, 0, "RIVM telt meer dan $deadrounded coronadoden, volgens experts zijn het er veel meer", "t10", 'lk'],
 
     // 2. opinie / explainers
-    [4, 0, "Scholen gewoon open ondanks corona? `Mijn kinderen blijven thuis'", "d24D50i1nj0ma0", "sc"],
-    [4, 2, "`Als ik niet naar kantoor kan, stuur ik mijn kinderen niet naar school'", "d24D50i1ma0nj0ma0", "sc"],
-    [4, 0, "Leraren roepen op tot sluiting scholen, steeds meer scholen vrijwillig dicht", "d24D50i1nj0ma0", "sc"],
+    [4, 0, "Scholen gewoon open ondanks corona? `Mijn kinderen blijven thuis'", "d24D50nj0ma0p100", "sc"],
+    [4, 2, "`Als ik niet naar kantoor kan, stuur ik mijn kinderen niet naar school'", "d24D50ma0nj0ma0p100", "sc"],
+    [4, 0, "Leraren roepen op tot sluiting scholen, steeds meer scholen vrijwillig dicht", "d24D50nj0ma0p100", "sc"],
     [1, 2, "Kabinet zet geen grote stappen: is dit wel genoeg om het virus in toom te houden?", "d23D35i0I2", "RI"],
     [1, 1, "Heel Europa grijpt in: waarom neemt Nederland zo weinig maatregelen?", "d23D35i0I2", "RI"],
     [1, 1, "Heel Europa grijpt in: waarom doet alleen Nederland niets tegen corona?", "d23D35I0", "RI"],
     [1, 2, "`Kabinet moet nu maatregelen nemen, of de zorg ligt binnen twee weken plat'", "d23D35I0", "RI"],
-    [5, 2, "Aantal positieve testen stabiliseert door `veel te kleine testcapaciteit'", "p4000C0D100", "Bh"],
-    [5, 2, "GGD: zicht op virus kwijt, stabilisatie aantal positieve testen nietszeggend", "p4000C0D100", "Bh"],
+    [5, 2, "Aantal positieve testen stabiliseert door `veel te kleine testcapaciteit'", "p3000C0D100", "Bh"],
+    [5, 2, "GGD: zicht op virus kwijt, stabilisatie aantal positieve testen nietszeggend", "p3000C0D100", "Bh"],
+    [7, 6, "The Pandemic Ravaged the Netherlands. A Trumpian Health Minister Is to Blame.", "S3f30d60", '0e'],
+    [7, 6, "With Their `Smart Lockdown', the Dutch Continued Normal Life. It Paid Off.", "S5F10C0d60", '0e'],
+    [8, 6, "How the Dutch, Beacon of Stable Governing, Failed Their Pandemic Response", "f10d60", '0e'],
+    [7, 6, "A Pandemic Success Story: Locked Down Netherlands Keeps Virus Contained", "s5F10C0d60", '0e'],
 
     // 3. maatregelen
     [4, 2, "`Flatten the curve': waarom epidemiologen voor strenge coronamaatregelen pleiten", "d18D35I5", 'AU'],
@@ -125,13 +140,13 @@ var nws = [
     [1, 0, "Complete lockdown aangekondigd: vrijwel alles gesloten, iedereen blijft thuis", "MM14", 'wv'],
     [1, 0, "Kabinet kiest voor harde lockdown: alleen je huis nog uit als het echt nodig is", "MM14", 'wv'],
     [1, 0, "Nederland in lockdown: thuisblijven wordt de norm, alle gelegenheden dicht", "MM14", 'wv'],
-    // [5, 1, "Studenten volgen massaal online onderwijs: `Achter een schermpje ben je snel eenzaam'"]
+    [6, 0, "Studenten volgen massaal online onderwijs, `eenzaamheid wordt steeds groter'", "ml14", 'Ki'],
+    [6, 2, "Zoomend het jaar door: studenten voelen zich eenzaam door coronasluiting", "ml14", 'Ki'],
     [3, 2, "Miljoenen kinderen thuis door sluiting scholen: `Juiste keuze in onzekere tijden'", "mj0D75", 'dp'],
     [3, 1, "Scholen sluiten deuren: leraren vroegen erom, maar virologen twijfelden", "mj0D75H300", 'dp'],
-    [7, 0, "Minister De Jonge doet oproep: `Houd afstand en werk zo veel mogelijk thuis'", "MA14MB14", 'bX'],
-    [6, 3, "Veel evenementen geschrapt door corona, organisaties vragen om compensatie", "MD30", "DW"],
-    [6, 3, "Lege theaterzalen bedreigen cultuursector, organisaties hopen op steunregeling", "ME30", "DW"],
-    // [6, 3, "Evenementen en theater in coronatijd: geschrapt, verplaatst, en online alternatief", "md14me14", "DW"],
+    [7, 0, "Minister De Jonge doet oproep: `Houd afstand en werk zo veel mogelijk thuis'", "d30MA14MB14", 'bX'],
+    [8, 1, "Veel evenementen geschrapt door corona, organisaties vragen om compensatie", "MD30", "DW"],
+    [7, 1, "Lege theaterzalen bedreigen cultuursector, organisaties hopen op steunregeling", "ME30", "DW"],
     [6, 2, "Door coronamaatregelen een begrafenis missen: hoe rouw je in tijden van corona?", "mf0d40", 'I6'],
     [6, 2, "Niet knuffelen met stervende, niet naar begrafenis: hoe rouw je in tijden van corona?", "mf0d40", 'I6'],
     [9, 0, "Nachtleven komt stil te liggen: lobby heeft begrip, maar teleurstelling overheerst", "MH14d40", 'I6'],
@@ -141,15 +156,15 @@ var nws = [
     [4, 0, "Verslagenheid bij ondernemers: meeste winkels en restaurants dicht door coronavirus", "MG14MI14", '4H'],
 
     // 4. tweede kamer / minister
-    [4, 1, "Felle kritiek op minister De Jonge vanuit oppositie: `Grijp in of stap op'", "d25D50h500I0", "Xf"],
-    [4, 1, "Oppositie woedend op De Jonge: `Luister naar de helden in de zorg'", "d25D50h500I0", "Xf"],
+    [4, 1, "Felle kritiek op minister De Jonge vanuit oppositie: `Grijp in of stap op'", "d30D50h500I0", "Xf"],
+    [4, 1, "Oppositie woedend op De Jonge: `Luister naar de helden in de zorg'", "d30D50h500I0", "Xf"],
     [2, 0, "Tweede Kamer steunt motie van afkeuring, `zorginfarct was niet onvermijdbaar'", "h1400c5", "QC"],
     [2, 0, "In coronadebat bijna unanieme afkeuring: `Tragische gevolgen van wanbeleid'", "h1400c5", "QC"],
 
     // 5. experts
-    [6, 1, "We moeten mondkapjes dragen, maar `het is onwaarschijnlijk dat ze werken'", "MC30D75H200", 'Lu'],
-    [6, 1, "RIVM-baas Van Dissel: `Er is simpelweg geen bewijs voor mondkapjesplicht'", "MC30D75H200", 'Lu'],
-    [6, 2, "WHO adviseert tegen mondkapjes: waarom voert De Jonge toch plicht in?", "MC30D75H200", 'Lu'],
+    [6, 1, "We moeten mondkapjes dragen, maar `het is onwaarschijnlijk dat ze werken'", "MC30D75H400", 'Lu'],
+    [6, 1, "RIVM-baas Van Dissel: `Er is simpelweg geen bewijs voor mondkapjesplicht'", "MC30D75H400", 'Lu'],
+    [6, 2, "WHO adviseert tegen mondkapjes: waarom voert De Jonge toch plicht in?", "MC30D75H400d30", 'Lu'],
     [3, 2, "IC-arts Gommers: `Kabinet kiest voor een coronaramp door niet in te grijpen'", "h1000I0c5", "CM"],
     [3, 3, "IC-voorzitter Gommers: `Schuld voor coronaramp ligt ongetwijfeld bij kabinet'", "h1000I2c5", "CM"],
     [3, 2, "`Het kan heel snel misgaan': epidemiologen pleiten voor strengere maatregelen", "d27D35i1I4"],
@@ -172,16 +187,16 @@ var nws = [
     [0, 0, "Eerste overleden coronapatiënt (86) uit Oud-Beijerland `was ontzettend lieve man'", "q18", 'WO'],
     [0, 0, "Eerste Nederlander (86) aan coronavirus overleden in Rotterdams ziekenhuis", "q18", 'WO'],
     [0, 1, "Eerste coronadode in Nederland, man (86) had al gezondheidsproblemen", "q18", 'WO'],
-    [9, 2, "`Hoopvolle en alarmerende toespraak van koning schudt Nederlanders wakker'", "d29D43I2", "MD"],
-    [9, 2, "Koning in zeldzame toespraak: `Coronavirus niet te stoppen, eenzaamheidsvirus wel'", "d29D43i2", "MD"],
-    [9, 2, "Toespraak van de koning is kijkcijferkanon: `We moeten hier samen doorheen'", "d29D43", "MD"],
+    [6, 2, "`Hoopvolle en alarmerende toespraak van koning schudt Nederlanders wakker'", "d29D43I2", "MD"],
+    [6, 2, "Koning in zeldzame toespraak: `Coronavirus niet te stoppen, eenzaamheidsvirus wel'", "d29D43i2", "MD"],
+    [6, 2, "Toespraak van de koning is kijkcijferkanon: `We moeten hier samen doorheen'", "d29D43", "MD"],
 ]
 
-var conds = { w: "week()==", q: "day==", d: "day", i: "index*10", s: "stringency", h: "s.H", r: "s.dP", c: "s.dH*100", f: "s.F", t: "s.tD/1000", p: "s.P", x: "s.X!=0&&s.X*10" , o: "calcPoll()/10"}
+var conds = { w: "week()==", q: "day==", d: "day", i: "index*10", s: "stringency*10", h: "s.H", r: "s.dP", c: "s.dH*100", f: "s.F/1000", t: "s.tD/1000", p: "s.P", x: "s.X!=0&&s.X*10", o: "calcPoll()/10" }
 
-function cm(b) { if (0 < a[b][0]) return day - a[b][0] }
+function cm(c) { x = a[c][0]; if (0 < x) return day - x }
 
-function cn(b) { if (0 >= a[b][0]) return day + a[b][0] }
+function cn(c) { x = a[c][0]; if (0 >= x) return day + x }
 
 for (j in nws) {
     var cond = nws[j][3].match(/[^\d\.\|]+|\d+|\.+|\|+/g),
