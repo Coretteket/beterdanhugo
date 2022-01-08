@@ -78,6 +78,8 @@ function getNews() {
     }
 }
 
+var subject = Math.random() > .5 ? "André van Duin" : "prinses Beatrix";
+
 function vars(a) {
     // a = a.replace("De Jonge", lname);
     a = a.replaceAll("`", "‘");
@@ -86,17 +88,19 @@ function vars(a) {
     a = a.replaceAll("$deadrounded", (Math.round(s.tD / 1000) * 1000).toLocaleString("nl-NL"));
     a = a.replaceAll("$dead", s.tD.toLocaleString("nl-NL"));
     a = a.replaceAll("$poll", calcPoll());
+    a = a.replaceAll("$seat", calcSeats());
     a = a.replaceAll("$mname", getName(0));
     a = a.replaceAll("$fname", getName(1));
     a = a.replaceAll("$age", randInt(50, 70));
+    a = a.replaceAll("$subject", subject);
+    a = a.replaceAll("$Subject", subject.charAt(0).toUpperCase() + subject.slice(1))
     return a;
 }
 
-var conds = { w: "week()==", q: "day==", d: "day", i: "index*10", s: "stringency*10", h: "s.H", r: "s.dP", c: "s.dH*100", f: "s.F/1000", t: "s.tD/1000", p: "s.P", x: "s.X!=0&&s.X*10", o: "calcPoll()/10" }
+var conds = { w: "week()==", q: "day==", d: "day", i: "index*10", s: "stringency*10", h: "s.nH", r: "s.Rt", c: "s.dH*100", f: "s.F/1000", t: "s.tD/1000", p: "s.P", x: "s.X!=0&&s.X*10", o: "calcPoll()/10", a: "andré==", e: "calcSeats()" }
 
 function cm(c) { x = a[c][0]; if (0 < x) return day - x }
-
-function cn(c) { x = a[c][0]; if (0 > x) return day + x; if (x == 0) return 0; }
+function cn(c) { x = a[c][0]; if (0 > x) return day + x + .1; if (x == 0) return 0; }
 
 for (j in nws) {
     var cond = nws[j][3].match(/[^\d\.\|]+|\d+|\.+|\|+/g),

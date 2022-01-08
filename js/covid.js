@@ -191,6 +191,7 @@ var s = { // spread info
     oH: 0, //old hospitalisations
     nH: 0, //new hospitalisations
     dH: 0, //difference in hospitalisations
+    aH: 0, //average hospitalisations
 
     tD: 0, //cumulative deaths
 
@@ -241,12 +242,25 @@ function calcR() {
         oldRt += s.Rts[s.Rts.length - i - 3] / 3;
     }
     s.dRt = newRt - oldRt;
-    return s.R0 * randBetween(0.9, 1.1);
-    // return Rts[day] / s.S * s.N;
+    return s.R0 //3* randBetween(0.9, 1.1);
+        // return Rts[day] / s.S * s.N;
 }
 
 function calcPoll() {
-    return Math.round((1 + index ** 2 - (s.H / 1600) ** 2) * 40 + 10)
+    var poll = Math.round((1 + index ** 2 - (s.aH / 800) ** 2) * 45 + 5);
+    poll -= cm('lockdown') > 0 ? a.lockdown[4] * 2 / 3 : 0;
+    poll -= cm('curfew') > 0 ? a.curfew[4] / 2 : 0;
+    poll -= cm('masks') > 0 ? a.masks[4] * 4 : 0;
+    return poll;
+}
+
+function calcSeats() {
+    var A = -1 * Math.log(s.F / 1000 - 9) / Math.log(1.2); 
+    var B = 10 - s.F / 1000;
+    var C = s.F > 10000 ? A : B;
+    var D = -5 * Math.abs(2 * stringency - 1)
+    var E = stringency > 0.5 ? 4 * D : D;
+    return Math.round(75 + C + E + randBetween(-5, 5));
 }
 
 function calcCOV() {
@@ -273,7 +287,7 @@ function calcCOV() {
     s.Fs.push(s.F);
 
     if (day - 10 < b.Ps.length && day >= 10) { s.P = b.Ps[day - 10] } else {
-        s.P = Math.round(s.I / s.N * r.testratio() * r.testcapacity() / (s.I / s.N * (r.testratio() - 1) + 1) * r.testday() * randBetween(.9, 1.1));
+        s.P = Math.round(s.I / s.N * r.testratio() * r.testcapacity() / (s.I / s.N * (r.testratio() - 1) + 1) * r.testday() * randBetween(.85, 1.15));
     };
     if (day - 10 < b.Hs.length && day >= 10) { s.H = b.Hs[day - 10] } else {
         // s.H = Math.round(s.dIs[day - 7] * calcIHR() * randBetween(0.8, 1.2));
@@ -285,13 +299,15 @@ function calcCOV() {
         s.H = Math.round(s.dIs[day - 7] * calcIHR() * randBetween(0.95, 1.05));
         s.H = s.H > 300 ? Math.round(1600 - 1600 / (1 + s.H / 1e3)) : s.H;
         s.H = Math.round(s.H * r.hospday());
+
+        s.aH = (s.Hs.reduce((a, b) => a + b, 0) / s.Hs.length) || 0;;
     };
     if (day - 10 < b.Ds.length && day >= 10) { s.D = b.Ds[day - 10] } else {
         s.D = s.dFs[day - 7] * r.underdeath() * randBetween(0.8, 1.2);
         s.D = s.D > 300 ? 1200 - 1200 / (1 + s.D / 1e3) : s.D;
         s.D = Math.round(s.D * r.deathday());
     };
-    
+
     s.Ps.push(isNaN(s.P) ? 0 : s.P);
     s.Hs.push(isNaN(s.H) ? 0 : s.H);
     s.Ds.push(isNaN(s.D) ? 0 : s.D);

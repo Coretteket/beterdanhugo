@@ -4,12 +4,9 @@ q("tikkie").href = tikkie;
 console.log('%cBeter dan Hugo', 'background:#212529;color:#ebebeb;font-size:2.5em;font-family:sans-serif;font-weight:900;padding:20px;border-radius:10px;');
 console.log("https://github.com/coretteket/beterdanhugo");
 
-var id = "id" + Math.random().toString(16).slice(2);
-
-// var cid = url.searchParams.get("id");
-// if (cid != null) {
-//     id = "cd" + cid + id.substr(2 + cid.length, 1e2);
-// }
+var id = "id";
+var rand32 = window.crypto.getRandomValues(new Uint32Array(4));
+rand32.forEach(e => id += e.toString(36));
 
 var screenwidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
@@ -17,9 +14,9 @@ var mstr = "";
 var lastMC = 11;
 
 var pst = [
-    "`id=${id}&os=${jscd.os}&osv=${jscd.osv}&browser=${jscd.browser}&browserv=${jscd.browserv}&theme=${(!lightmode)*1}&width=${screenwidth}&visit=${visitTime}`",
-    "`id=${id}&start=${startTime}`",
-    "`id=${id}&theme=${(!lightmode)*1}&end=${endTime}&deaths=${Math.round(s.F)}&stringency=${stringency}&measures=${mstr}`"
+    "`id=${id}&os=${jscd.os}&osv=${jscd.osv}&browser=${jscd.browser}&browserv=${jscd.browserv}&theme=${(!lightmode)*1}&width=${screenwidth}&visit=${visitTime}&useragent=${navigator.userAgent}`",
+    "`id=${id}&start=${startTime}&useragent=${navigator.userAgent}`",
+    "`id=${id}&theme=${(!lightmode)*1}&end=${endTime}&deaths=${Math.round(s.F)}&stringency=${stringency}&measures=${mstr}&useragent=${navigator.userAgent}`"
 ];
 
 setTimeout(() => { post(0); }, 5e3);
@@ -75,6 +72,7 @@ if (dev || m || seeded) {
     show("wip");
 }
 
+dev && console.log(`Aantal artikelen: %c${nws.length}`, 'color:violet');
 
 function readMeasures() {
     var input = url.searchParams.get("m").match(/[a-zA-Z]+|[0-9]+/g);
@@ -123,7 +121,8 @@ function format(i) {
 " [iets] [meer/minder] mensen, terwijl je [iets] [meer/minder]"
 
 function end() {
-    if (dev) console.log(mstr);
+    if (dev) console.log("Seed: %c" + visitTime, 'color:violet');
+    if (dev) console.log("Meas: %c" + mstr, 'color:violet');
 
     pause();
     getStringency();
@@ -182,6 +181,7 @@ function end() {
         show("gameover");
         q("bdh").onclick = restart;
         q("bdh").style = "cursor:pointer;"
+        setTimeout(() => {q("mobile").getElementsByTagName("a")[0].classList.add("nudge");}, 5000);
         endTime = Math.floor(new Date() / 1000);
         post(2);
         confettiStart = Date.now()

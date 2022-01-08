@@ -74,6 +74,7 @@ main {
         bottom: -50px!important;
     }
     #tikkie .box {
+        line-height: 1.1!important;
         float: right;
         width: calc(100% - 700px);
     }
@@ -626,6 +627,7 @@ a {
     margin-top: .2em;
     margin-right: .5em;
     background: var(--back);
+    --scalar: 1.05!important;
 }
 
 #timechoice i {
@@ -647,7 +649,7 @@ a {
     text-align: center;
     display: inline-block;
     font-weight: 600;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     font-size: 1em !important;
     border: 2px solid var(--light-txt);
     padding: 0;
@@ -1299,7 +1301,7 @@ strong {
 }
 
 #tikkie .box {
-    line-height: .95;
+    line-height: 1;
     font-weight: 500;
     color: var(--light-txt);
     display: block;
@@ -1335,6 +1337,10 @@ strong {
 
 #mobile i {
     margin-right: .25em!important;
+}
+
+#mobile .btn {
+    --scalar: 1.01;
 }
 
 #result {
@@ -1608,23 +1614,23 @@ strong {
 #light {
     --bw: black;
     --hover: rgba(33, 37, 41, 0.05);
-    --inv-hover: rgba(61, 61, 61, .95);
+    --inv-hover: rgba(51, 51, 51, 0.95);
     --back: white;
     --popup-btn: #f2f2f2;
     /* --svg-dark: invert(100%); */
     --link: #1f5085;
     --link-hover: #133c68;
-    --box: #dedede;
+    --box: #dadada;
     --txt: #212529;
-    --light-txt: #3d3d3d;
+    --light-txt: #2e2e2e;
     /* --svg-gray: invert(24%) hue-rotate(149deg) brightness(95%) contrast(97%); */
     --btn-border: #444c55;
     --stat-back: #f6f6f6;
     --hr: #00000028;
     --border: #8d8d8d;
     --border-thick: #797979;
-    --arrows: none;
-    --nudge: rgba(255, 99, 132, 0.6);
+    /* --arrows: none; */
+    /* --nudge: rgba(255, 99, 132, 0.6); */
     --input: white;
     --tut-box: #f0dcc1;
     --tut-border: #aa9c8b;
@@ -1651,8 +1657,8 @@ strong {
     --stat-back: #212529;
     --border: hsl(210, 5%, 45%);
     --border-thick: #a2a6ab;
-    --arrows: invert(1);
-    --nudge: rgba(255, 99, 132, 0.6);
+    /* --arrows: invert(1); */
+    /* --nudge: rgba(255, 99, 132, 0.6); */
     --input: #343a3f;
     --tut-box: #403b30;
     --tut-border: #796853;
