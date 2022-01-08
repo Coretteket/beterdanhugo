@@ -112,6 +112,7 @@ function start() {
     setTimeout(() => { post(1); }, delay > 0 ? delay : 0);
     // setTimeout(() => { if (speed == 0) setChoices(); }, 10000)
     setSpeed(1);
+    q("btn-socdis").classList.add("nudge");
 }
 
 function format(i) {
@@ -592,9 +593,6 @@ function setSpeed(i) {
         speed = i;
     }
     // if (i > 0 && day == 11) showTut();
-    // if (day == 11 && i > 0 && !q("btn-socdis").classList.contains("txtsel")) {
-    q("btn-socdis").classList.add("nudge");
-    // }
 }
 
 var lightmode = true;
