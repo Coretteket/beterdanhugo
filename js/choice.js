@@ -1,52 +1,25 @@
-var chos = {
-    // 20: ["In het coronadebat was de Tweede Kamer glashelder: nu er dagelijks honderden mensen positief getest worden op corona, kunnen we niet door blijven gaan alsof er niets aan de hand is. Een motie die de minister oproept om maatregelen te nemen werd unaniem aangenomen. Voer je de motie uit?", { "Neem maatregelen": "", "Negeer motie": "" }],
-}
-
-var cho = "";
-var chobtns = {};
-
-function getChoices() {
-    if (day in chos) {
-        cho = chos[day][0];
-        chobtns = chos[day][1];
-    } else {
-        cho = "";
-        chobtns = {};
-    }
-}
-
-// function setChoices() {
-//     getChoices();
-//     if (cho != "") {
-//         var sethtml = "";
-//         sethtml += "<p>" + cho + "</p>";
-//         for (const [key, value] of Object.entries(chobtns)) {
-//             sethtml += "<a class='btn txt' onclick='" + value + "remChoices()'>" + key + "</a>"
-//         }
-//         q("choice").innerHTML = sethtml;
-//         q("main").classList = "withchoice";
-//         q("choice").classList.remove("remchoice");
-//         show("choice");
-//         hide("disclaimer");
-//         pause();
-//     }
-// }
-
-
-// function remChoices() {
-//     q("choice").classList.add("remchoice");
-//     setTimeout(() => {
-//         hide("choice");
-//         show('disclaimer');
-//         q("main").classList = "wochoice";
-//         unpause();
-//     }, 400);
-
-// }
+var prompts = [
+    // ["Spel beginnen", "Begin het spel door <span class='desk'>links</span>boven<span class='mob'>aan</span> op de startknop (<i class='fas fa-play'></i>) te klikken. Je kan daarna wanneer je wil het spel versnellen of pauzeren met de andere tijdsknoppen.", "day==11&&speed==0"],
+    ["Maatregelen nemen", "Je kan op elk moment een maatregel invoeren door op de bijbehorende knop te klikken. Probeer een combinatie van maatregelen te vinden die het virus onder controle kan houden.", "day==18&&index<.05"],
+    ["Maatregelen nemen", "Je kan op elk moment nieuwe maatregelen invoeren als je denkt dat dat nodig is. Probeer een combinatie van maatregelen te vinden die het virus onder controle kan houden.", "day==18&&index>=.05"],
+    ["Gevolgen van beleid", "Het duurt soms even voordat je de impact van jouw beleid in de coronacijfers terugziet, daarom is het ook belangrijk om het binnen&shy;komende nieuws goed in de gaten te houden.", "day==28"],
+    ["Maatregelen afschaffen", "Coronamaatregelen zijn ingrijpend, gebruik ze dus zo kort mogelijk. Als jij denkt dat de cijfers het toelaten, kan je ze afschaffen door opnieuw op een maatregelknop te klikken.", "day>=38&&s.dH<-.05&&index>.2"],
+]
 
 function setChoices() {
-    if (dev) return;
+    // if (dev) return;
+    for (var i = 0; i < prompts.length; i++) {
+        if (eval(prompts[i][2])) {
+            var popuptitle = prompts[i][0];
+            var popuptext = prompts[i][1];
+            prompts.splice(i, 1);
+            break;
+        }
+    }
+    if (popuptitle == null)  return;
     pause();
+    q("poptitle").innerHTML = popuptitle;
+    q("poptext").innerHTML = popuptext;
     show("curtain", "popup");
     setTimeout(function() {
         q("curtain").style.opacity = .95;

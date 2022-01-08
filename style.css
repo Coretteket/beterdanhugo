@@ -105,6 +105,10 @@ br {
     display: inherit!important;
 }
 
+#popup .desk {
+    display: unset!important;
+}
+
 .social .desk {
     display: inline-block!important;
 }
@@ -145,9 +149,13 @@ br {
     .mob {
         display: inherit!important;
     }
+    #popup .mob {
+        display: unset!important;
+    }
     .social .mob {
         display: inline-block!important;
     }
+    #popup .desk,
     .social .desk,
     .desk {
         display: none!important;
@@ -773,14 +781,21 @@ textarea {
     background: var(--popup-btn);
     /* border-width: 1px; */
     border-color: var(--border-thick);
-    margin: .75em .5em 0 0;
+    margin: .5em .5em 0 0;
     box-sizing: border-box;
     width: 100%;
-    display: inline-block;
+    padding: .45em .7em;
+    /* display: inline;
+    float: right; */
 }
 
 #popup p {
     margin: .4em 0 0 0;
+}
+
+#poptext i {
+    font-size:.8em;
+    margin: 0 .1em 0 .25em;
 }
 
 #popup i,
@@ -1262,7 +1277,7 @@ strong {
 }
 
 .txt.nudge {
-    --scalar: 1.02;
+    --scalar: 1.015;
 }
 
 @keyframes nudge {

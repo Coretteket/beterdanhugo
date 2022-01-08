@@ -110,7 +110,8 @@ function start() {
     started = true;
     var delay = 5000 - new Date() + visitTimeL + 1000;
     setTimeout(() => { post(1); }, delay > 0 ? delay : 0);
-    // setTimeout(() => { if (speed == 0) showTut(); }, 10000)
+    // setTimeout(() => { if (speed == 0) setChoices(); }, 10000)
+    setSpeed(1);
 }
 
 function format(i) {
@@ -181,7 +182,7 @@ function end() {
         show("gameover");
         q("bdh").onclick = restart;
         q("bdh").style = "cursor:pointer;"
-        setTimeout(() => {q("mobile").getElementsByTagName("a")[0].classList.add("nudge");}, 5000);
+        setTimeout(() => { q("mobile").getElementsByTagName("a")[0].classList.add("nudge"); }, 5000);
         endTime = Math.floor(new Date() / 1000);
         post(2);
         confettiStart = Date.now()
@@ -218,7 +219,7 @@ function update() {
     if (day == dateToInt(2020, 6, 1) /*&& !dev*/ ) { end(); return; };
     // if (day == 12 && !a.socdis[0] > 0) {
     //     q("btn-socdis").classList.add("nudge");
-    //     setChoices();
+    // setChoices();
     // }
 
     for (const [k, v] of Object.entries(a)) { if (cm(k)) a[k][5]++; };
@@ -230,6 +231,7 @@ function update() {
     getIndex();
     getStringency();
     // showTut();
+    setChoices();
     updateStats();
     setNews();
 }
@@ -590,9 +592,9 @@ function setSpeed(i) {
         speed = i;
     }
     // if (i > 0 && day == 11) showTut();
-    if (day == 11 && i > 0 && !q("btn-socdis").classList.contains("txtsel")) {
-        q("btn-socdis").classList.add("nudge");
-    }
+    // if (day == 11 && i > 0 && !q("btn-socdis").classList.contains("txtsel")) {
+    q("btn-socdis").classList.add("nudge");
+    // }
 }
 
 var lightmode = true;

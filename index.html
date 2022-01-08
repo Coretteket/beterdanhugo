@@ -71,7 +71,7 @@
             <p id="today">Het is vandaag <span id="date">27 februari 2020</span>. </p>
             <div id="btn-cont">
                 <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i class="fas fa-pause"></i></a>
-                <a onclick="setSpeed(1);" id="s1" class="btn nudge"><i class="fas fa-play"></i></a>
+                <a onclick="setSpeed(1);" id="s1" class="btn"><i class="fas fa-play"></i></a>
                 <a onclick="setSpeed(2);" id="s2" class="btn"><i class="fas fa-step-forward"></i></a>
                 <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
             </div>
@@ -225,10 +225,9 @@
     </main>
     <div id="curtain" class="hide"></div>
     <div id="popup" class="hide">
-        <i class="fad fa-exclamation-circle"></i><b> Motie van afkeuring</b>
-        <p>In het coronadebat was de Tweede Kamer glashelder: nu er dagelijks honderden mensen positief getest worden op corona, kunnen we niet door blijven gaan alsof er niets aan de hand is. Een motie die de minister oproept om maatregelen te nemen werd unaniem aangenomen. Voer je de motie uit?</p>
-        <div class="btn txt" onclick="delChoices();">Neem geen maatregelen</div>
-        <div class="btn txt" onclick="delChoices();">Voer de motie uit</div>
+        <i class="fad fa-exclamation-circle"></i> <b id="poptitle">Motie van afkeuring</b>
+        <p id="poptext">In het coronadebat was de Tweede Kamer glashelder: nu er dagelijks honderden mensen positief getest worden op corona, kunnen we niet door blijven gaan alsof er niets aan de hand is. Een motie die de minister oproept om maatregelen te nemen werd unaniem aangenomen. Voer je de motie uit?</p>
+        <div class="btn txt" onclick="delChoices();">Begrepen</div>
     </div>
     <!-- <div id="tutnudge" class="hide"></div> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js" crossorigin="anonymous"></script>
@@ -240,7 +239,7 @@
     <script type="text/javascript" src="js/chart.js"></script>
     <script type="text/javascript" src="js/headlines.js"></script>
     <script type="text/javascript" src="js/news.js"></script>
-    <script type="text/javascript" src="js/tutorial.js"></script>
+    <!-- <script type="text/javascript" src="js/tutorial.js"></script> -->
     <script type="text/javascript" src="js/os.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <!-- <script type="text/javascript" src="./js/js.js"></script> -->
