@@ -130,7 +130,7 @@ let nws = [
     [4, 2, "Politiek heeft twijfels over voortduren maatregelen: `Het ergste is nu achter ons'", "P75C5i5d65", 'IQ'],
     [4, 2, "Politici staan sceptisch tegenover blijvende maatregelen: `Het ergste is voorbij'", "P75C5i5d65", 'IQ'],
     [3, 2, "De Jonge: `Geen fouten in coronabeleid, het was sturen op de achteruitkijkspiegel'", "d70i0I3f12F40", 'ib'],
-    [3, 2, "Volgens De Jonge was coronabeleid zuiver, maar was het `sturen op de achteruitkijkspiegel'", "d70i0f12F40", 'ib'],
+    [3, 2, "Volgens De Jonge was beleid zuiver, maar was het `sturen op de achteruitkijkspiegel'", "d70i0f12F40", 'ib'],
 
     // experts
     [6, 1, "We moeten mondkapjes dragen, maar `het is onwaarschijnlijk dat ze werken'", "MC30D75H400", 'Lu'],
