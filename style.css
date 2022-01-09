@@ -233,6 +233,13 @@ p {
 #faq {
     grid-area: faq;
     margin-top: .2em;
+    margin-bottom: 2em;
+}
+
+#faq i {
+    opacity: .6;
+    font-size:.9em;
+    font-style:normal;
 }
 
 h1 {
@@ -406,13 +413,13 @@ a {
 
 .statbtns {
     display: grid;
-    gap: 0 10px;
+    gap: 0 6px;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(3, 1fr);
 }
 
 #statbtns i {
-    font-size: .9em;
+    font-size: .95em;
     margin: 0 .2em;
 }
 
@@ -705,18 +712,50 @@ textarea {
     /* margin-right: .2em; */
     min-width: 4em;
     /* transform: scale(1); */
+    position:relative;
     /* width: 100%; */
     background: var(--back);
     transition: transform .05s ease, opacity .5s ease, color .1s ease, background .1s ease!important;
 }
 
 .txt i {
-    margin-right: .8em;
+    margin-right: .6em;
     width: 20px;
     /* font-size: .95em; */
 }
 
+.btn.txt::after {
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+    position: absolute;
+    right: .5em;
+    opacity: 1;
+    transition: opacity .1s ease;
+}
+
+.btn.txt:not(.paused):not(.txtsel)::after {
+    content: '';
+    opacity: 0;
+}
+
+.txtsel:not(.paused)::after {
+    content: "\f00c";
+}
+
+/* .txtsel:not(.paused):hover::after {
+    content: "\f00d";
+} */
+
+.btn.txt.paused::after,
+.txtsel.paused::after {
+    /* content: "\f017"; */
+    content: "\f2f2";
+}
+
 @media (min-width: 1000px) {
+    .btn.txt::after {
+        font-weight: 300;
+    }
     #timechoice .btn {
         margin-bottom: 0;
     }
@@ -1006,10 +1045,12 @@ hr {
 }
 
 .statbtn {
-    border-top: 3px solid var(--border);
+    background: var(--popup-btn);
+    border: 2px solid var(--border);
     font-size: 1.06em;
     font-weight: 600;
     padding: 4px 5px;
+    padding-top: 5px;
     border-radius: 5px;
     cursor: pointer;
     transition: .1s;
@@ -1554,9 +1595,9 @@ strong {
     #toggles {
         margin-top: 0;
     }
-    .statbtns {
+    /* .statbtns {
         gap: 0 5px;
-    }
+    } */
     #twitter {
         margin: 0;
         justify-content: left;
@@ -1631,7 +1672,7 @@ strong {
     --hover: rgba(33, 37, 41, 0.05);
     --inv-hover: rgba(51, 51, 51, 0.95);
     --back: white;
-    --popup-btn: #f2f2f2;
+    --popup-btn: #ececec;
     /* --svg-dark: invert(100%); */
     --link: #1f5085;
     --link-hover: #133c68;
@@ -1640,7 +1681,7 @@ strong {
     --light-txt: #2e2e2e;
     /* --svg-gray: invert(24%) hue-rotate(149deg) brightness(95%) contrast(97%); */
     --btn-border: #444c55;
-    --stat-back: #f6f6f6;
+    --stat-back: white;
     --hr: #00000028;
     --border: #8d8d8d;
     --border-thick: #797979;

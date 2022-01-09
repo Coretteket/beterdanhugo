@@ -145,18 +145,18 @@ var r = { //changes in covid dynamic rates, like undercounting
     }
 }
 
-var v = [ // age specific info for vax
-    { perc: 0.10185, aifr: 0.00048, vax: 0 }, // 0 - 9
-    { perc: 0.11503, aifr: 0.00161, vax: 0 }, // 10 - 19
-    { perc: 0.12831, aifr: 0.00538, vax: 0 }, // 20 - 29
-    { perc: 0.12339, aifr: 0.01788, vax: 0 }, // 30 - 39
-    { perc: 0.12685, aifr: 0.06265, vax: 0 }, // 40 - 49
-    { perc: 0.14548, aifr: 0.22048, vax: 0 }, // 50 - 59
-    { perc: 0.12143, aifr: 0.87891, vax: 0 }, // 60 - 69
-    { perc: 0.09044, aifr: 2.81399, vax: 0 }, // 70 - 79
-    { perc: 0.03977, aifr: 10.0284, vax: 0 }, // 80 - 89
-    { perc: 0.00746, aifr: 26.3875, vax: 0 }, // 90+
-]
+// var v = [ // age specific info for vax
+//     { perc: 0.10185, aifr: 0.00048, vax: 0 }, // 0 - 9
+//     { perc: 0.11503, aifr: 0.00161, vax: 0 }, // 10 - 19
+//     { perc: 0.12831, aifr: 0.00538, vax: 0 }, // 20 - 29
+//     { perc: 0.12339, aifr: 0.01788, vax: 0 }, // 30 - 39
+//     { perc: 0.12685, aifr: 0.06265, vax: 0 }, // 40 - 49
+//     { perc: 0.14548, aifr: 0.22048, vax: 0 }, // 50 - 59
+//     { perc: 0.12143, aifr: 0.87891, vax: 0 }, // 60 - 69
+//     { perc: 0.09044, aifr: 2.81399, vax: 0 }, // 70 - 79
+//     { perc: 0.03977, aifr: 10.0284, vax: 0 }, // 80 - 89
+//     { perc: 0.00746, aifr: 26.3875, vax: 0 }, // 90+
+// ]
 
 var s = { // spread info
     a: 0,

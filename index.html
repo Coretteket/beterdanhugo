@@ -4,12 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Beter dan Hugo</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
-    <!-- <script src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous" async></script> -->
-    <link type="text/css" rel="stylesheet" href="style.css" />
+    <link type="text/css" rel="stylesheet" href="style.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" sizes="180x180" href="./ico/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./ico/favicon-32x32.png">
@@ -36,7 +31,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- <link rel="preload" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
 </head>
 
 <body id="light">
@@ -51,7 +45,6 @@
             <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank"><i class="fab fa-twitter"></i> @coretteket</a>
         </div>
         <div id="head">
-            <!-- <p>De afgelopen maanden kende ons land zeventien miljoen virologen. Maar kunnen we het echt allemaal beter dan Hugo? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. Elke maatregel die je invoert heeft invloed op het verloop van de pandemie, de economische schade, en jouw populariteit als minister. <a id="knowmore" class="more" onclick="toggleFAQ();">Lees meer.</a></p> -->
             <hr>
         </div>
         <div id="wip" class="hide">
@@ -62,18 +55,18 @@
             </div>
         </div>
         <div id="start" class="hide">
-            <p>Na twee jaar persconferenties heeft iedereen eigen ideeën over het coronabeleid. Maar kunnen we het echt allemaal beter dan Hugo de Jonge? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. <br>Voer maatregelen in en schaf ze weer af om de coronacijfers te zien veranderen, en hou het nieuws in de gaten om te kijken hoe jouw beleid in de samenleving valt. Krijg jij corona onder controle?</p>
+            <p>Na twee jaar persconferenties heeft iedereen eigen ideeën over het coronabeleid. Maar kunnen we het echt beter dan Hugo de Jonge? In dit spel kom jij voor dezelfde keuzes te staan, maar mag je je eigen weg door de pandemie kiezen. <br>Voer maatregelen in en hef ze weer op om de coronacijfers te zien veranderen, en hou het nieuws in de gaten om te kijken hoe jouw beleid in de samenleving valt. Krijg jij corona onder controle?</p>
             <a class="btn txt" onClick="start()">Start het spel</a>
-            <div id="disclaimer" class="hide"><strong>Let op:</strong> Je speelt een bèta-versie van het spel.</div>
-            <!-- <div id="disclaimer" class="hide"><strong>Disclaimer:</strong> Dit is een spel, geen realistisch model.</div> -->
+            <!-- <div id="disclaimer" class="hide"><strong>Let op:</strong> Je speelt een bèta-versie van het spel.</div> -->
+            <div id="disclaimer" class="hide"><strong>Disclaimer:</strong> Dit is een spel, geen realistisch model.</div>
         </div>
         <div id="timechoice" class="hide">
             <p id="today">Het is vandaag <span id="date">27 februari 2020</span>. </p>
             <div id="btn-cont">
-                <a onclick="setSpeed(0);" id="s0" class="btn tsel"><i class="fas fa-pause"></i></a>
-                <a onclick="setSpeed(1);" id="s1" class="btn"><i class="fas fa-play"></i></a>
-                <a onclick="setSpeed(2);" id="s2" class="btn"><i class="fas fa-step-forward"></i></a>
-                <a onclick="setSpeed(3);" id="s3" class="btn"><i class="fas fa-fast-forward"></i></a>
+                <a onclick="setSpeed(0);" id="s0" class="btn tsel" title="Pauzeren"><i class="fas fa-pause"></i></a>
+                <a onclick="setSpeed(1);" id="s1" class="btn" title="Normale snelheid"><i class="fas fa-play"></i></a>
+                <a onclick="setSpeed(2);" id="s2" class="btn" title="Hogere snelheid"><i class="fas fa-step-forward"></i></a>
+                <a onclick="setSpeed(3);" id="s3" class="btn" title="Hoogste snelheid"><i class="fas fa-fast-forward"></i></a>
             </div>
         </div>
         <!-- <div id="choice" class="hide"></div> -->
@@ -106,7 +99,7 @@
             </div>
             <div id="btns-lock">
                 <b>Lockdowns</b>
-                <a class="btn txt" id="btn-lockdown" onclick="toggleBtn('lockdown');"><i class="far fa-lock-alt"></i> Volledige lockdown</a>
+                <a class="btn txt" id="btn-lockdown" onclick="toggleBtn('lockdown');"><i class="far fa-lock-alt"></i> Totale lockdown</a>
                 <a class="btn txt" id="btn-curfew" onclick="toggleBtn('curfew');"><i class="far fa-alarm-clock"></i> Avondklok</a>
                 <a class="btn txt" id="btn-border" onclick="toggleBtn('border');"><i class="far fa-plane"></i> Grenzen sluiten</a>
             </div>
@@ -125,15 +118,15 @@
                         <canvas id="deadChart"></canvas>
                     </div>
                     <div id="statbtns" class="statbtns">
-                        <div onclick="toggleStat('test');" id="testBtn" class="statbtn statbtnactive">
+                        <div onclick="toggleStat('test');" id="testBtn" class="statbtn statbtnactive" title="Positieve tests per dag">
                             <i class="fas fa-virus"></i>
                             <span id="testCount">0</span>
                         </div>
-                        <div onclick="toggleStat('hosp');" id="hospBtn" class="statbtn">
+                        <div onclick="toggleStat('hosp');" id="hospBtn" class="statbtn" title="Ziekenhuisopnames per dag">
                             <i class="fas fa-ambulance"></i>
                             <span id="hospCount">0</span>
                         </div>
-                        <div onclick="toggleStat('dead');" class="statbtn" id="deadBtn">
+                        <div onclick="toggleStat('dead');" class="statbtn" id="deadBtn" title="Overlijdens per dag">
                             <i class="fas fa-skull"></i>
                             <span id="deadCount">0</span>
                         </div>
@@ -144,10 +137,6 @@
             <div id="scroll">
                 <div class="box mob" id="pinned">
                     <div id="content"></div>
-                    <!-- <div id="arrows">
-                        <a onclick="updatePinned(currentPinned+1);"><img src="img/up.png" class="inactive" width="28" height="28" id="up" alt="Lees nieuwer nieuws"></a>
-                        <a onclick="updatePinned(currentPinned-1);"><img src="img/up.png" class="inactive" width="28" height="28" id="down" alt="Lees ouder nieuws"></a>
-                    </div> -->
                 </div>
                 <div id="tut" class="box tut hide"></div>
                 <div id="firstnews" class="box desk"></div>
@@ -184,16 +173,15 @@
                         </div>
                     </div>
                 </div>
-                <p style="display:none">Zou jij de rest van de pandemie &ndash; inclusief varianten, vaccins en verkiezingen &ndash; ook willen temmen? Omdat Beter dan Hugo door één iemand wordt ontwikkeld, kan het jouw hulp goed gebruiken. Daag vrienden en familie uit, en deel het spel op sociale media!</p>
-                <div id="mobile" class="social hide" style="display:none">
+                <p>Zou jij de rest van de pandemie &ndash; inclusief varianten, vaccins en verkiezingen &ndash; ook willen temmen? Omdat Beter dan Hugo door één iemand wordt ontwikkeld, kan het jouw hulp goed gebruiken. Daag vrienden en familie uit, en deel het spel op sociale media!</p>
+                <div id="mobile" class="social hide">
                     <a class="btn txt" onclick="share();"><i class="far fa-share-square"></i> Deel het spel</a>
                 </div>
-                <div id="fallback" class="social" style="display:none">
-                    <a class="btn txt" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fab fa-twitter"></i></a>
+                <div id="fallback" class="social">
+                    <a class="btn txt" id="twitter-share" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fab fa-twitter"></i></a>
                     <a class="btn txt" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fab fa-facebook-square"></i></a>
-                    <a class="btn txt" href="mailto:?body=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fas fa-envelope"></i></a>
-                    <a class="btn txt mob" href="whatsapp://send?text=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    <a class="btn txt desk" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fbeterdanhugo.nl%20&title=Beter%20dan%20Hugo" rel="noreferrer" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a class="btn txt" id="mail-share" href="mailto:?body=https%3A%2F%2Fbeterdanhugo.nl" rel="noreferrer" target="_blank"><i class="fas fa-envelope"></i></a>
+                    <a class="btn txt" id="linkedin-share" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbeterdanhugo.nl%20" rel="noreferrer" target="_blank"><i class="fab fa-linkedin"></i></a>
                 </div>
                 <p>Natuurlijk kan je het altijd opnieuw proberen, om te kijken hoe het virus en de samenleving zou reageren bij een veel hardere lockdown, juist helemaal geen maatregelen, of elke combinatie daartussen. Kan jij het beter dan Hugo?</p>
                 <a onclick="restart()" class="btn txt faqbtn">Opnieuw spelen</a>
@@ -209,16 +197,15 @@
             <b style="margin-top:0;" id="wat">Wat moet ik doen?</b>
             <p>Lopen alle coronacijfers uit de hand en weet je niet wat je moet doen? Geen paniek! Het belangrijkste in het spel is dat je maatregelen neemt. Dat doe je door op de verschillende knoppen, zoals 'afstand houden' of 'winkels sluiten' te klikken. Hiermee voer je die coronamaatregel in.<br class="mob"> Zeker aan het begin van de pandemie is één maatregel alleen lang niet genoeg. Zoek dus een goede combinatie om ervoor te zorgen dat het virus zich niet ver kan verspreiden.</p>
             <p>Tijdens het spel zie je in de grafieken de coronacijfers omhoog en omlaag gaan. Je kan zien hoeveel mensen er positief getest worden, hoeveel er in het ziekenhuis belanden, en hoeveel komen te overlijden. Zie je dat er nog steeds veel mensen besmet raken? Dan is een strikter beleid misschien nodig.<br class="mob"> Je wordt ook geholpen door het nieuws. Daar wordt je gewaarschuwd door experts, en hoor je wat mensen van jou als coronaminister vinden. Je kan elk moment op de pauzeknop klikken, als je meer tijd nodig hebt om het nieuws te lezen, of om naar de cijfers te kijken.</p>
-            <!-- <p>Het is belangrijk om het nieuws te volgen: als de Tweede Kamer jouw beleid onvoldoende of juist te ingrijpend vindt, kunnen ze je wegsturen, en is het spel voorbij.<br class="mob"> Je kan elk moment op de pauzeknop klikken, als je meer tijd nodig hebt om het nieuws te lezen, of om naar de cijfers te kijken. </p> -->
             <p>De belangrijkste tip: leef je uit. Grijp in op dag één om zo veel mogelijk doden te voorkomen, of probeer juist zo veel mogelijk vrijheid te behouden.<br class="mob"> Iedereen irriteerde zich in de afgelopen maanden wel eens aan het coronabeleid. Dit is jouw kans om te bewijzen dat je het beter kan dan Hugo de Jonge.</p>
             <a onclick="toggleFAQ();" class="btn txt faqbtn">Terug naar spel</a>
             <b id="wie">Wie heeft het gemaakt?</b>
             <p>Leuk dat je het vraagt! Ik ben Quinten Coret: student, hobby-programmeur, fervent twitteraar, en vooral géén viroloog. Dat laatste wil ik graag benadrukken: ik heb de afgelopen maanden m'n stinkende best gedaan om het spel zo realistisch mogelijk te maken, maar uiteindelijk ben ik geen expert.<br class="mob"> Toch heb ik ondertussen, net als heel Nederland, genoeg meningen over wat er zoal mis is met het coronabeleid.</p>
             <p>Zo ontstond in de zomer van 2021 het idee voor een spel: wat als jij het coronabeleid mocht bepalen? En hoewel het me veel te ambitieus leek, had ik tot mijn verbazing al vrij snel een heel simpel model aan de praat.<br class="mob"> Het één leidde tot het ander, en zo ben ik, zes maanden en vier versies later, tevreden met het eindproduct.</p>
-            <p>Voor meer uit de hand gelopen projecten &ndash; zoals een robot die nieuwe woorden in de Tweede Kamer vindt, of een kaart van Nederland als het zou stemmen als Amerika &ndash; <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank">ben ik te vinden op Twitter</a>.</p>
-            <!-- <p>Maar net zoals zeventien miljoen anderen voelt dat na anderhalf jaar pandemie toch wel een beetje zo. <br class="mob">Wie was er de afgelopen maanden níét geirriteerd als er weer een of andere maatregel, versoepeling, of uitzondering verzonnen werd? Daarom heb ik ‘Beter dan Hugo’ gemaakt: het is een kans om je eigen coronabeleid te voeren.</p> -->
+            <p>Voor meer uit de hand gelopen projecten &ndash; zoals een robot die nieuwe woorden in de Tweede Kamer vindt, of een kaart van Nederland als het zou stemmen als Amerika &ndash; <a href="https://twitter.com/intent/user?screen_name=coretteket" rel="noreferrer" target="_blank">ben ik te vinden op Twitter</a>. Als je mijn werk wil ondersteunen, zou ik een kleine donatie zeer op prijs stellen. Het kan snel en veilig <a id="tikkie2" rel="noreferrer" target="_blank">via Tikkie</a>.</p>
             <b id="hoe">Hoe werkt het spel?</b>
-            <p>Deze tekst is work-in-progress.</p>
+            <p>Om de uitbraak van het coronavirus te modelleren wordt gebruik gemaakt van een SIR-model, waarin de bevolking wordt opgedeeld in een 'susceptible', 'infectious', en 'recovered' groep.<sup><a href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model" rel="noreferrer" target="_blank">[1]</a></sup> Dagelijks wordt op basis van het reproductiegetal berekend hoeveel nieuwe mensen besmettelijk worden. <br class="mob">Jouw gekozen maatregelen beïnvloeden het aantal contactmomenten, en dus het reproductiegetal. Elke maatregel heeft een andere invloed op de reproductie; deze invloed is bepaald door geraadpleegde modelstudies, aangepast voor speelbaarheid.<sup><a href="https://doi.org/10.1126/science.abd9338" rel="noreferrer" target="_blank">[2]</a><a href="https://doi.org/10.1038/s41562-020-01009-0" rel="noreferrer" target="_blank">[3]</a><a href="https://doi.org/10.1016/S1473-3099(20)30785-4" rel="noreferrer" target="_blank">[4]</a></sup></p>
+            <p>Vervolgens worden dagelijks op basis van het SIR-model bepaald hoeveel mensen positief testen, opgenomen worden, en komen te overlijden. Door de in de eerste golf zeer beperkte test- en zorgcapaciteit zijn de coronacijfers die je tijdens het spel krijgt, dus niet compleet. <br class="mob">Nieuwskoppen worden geselecteerd op basis van een reeks variabele die de huidige staat van de simulatie omschrijven. Zo wordt om de drie tot vijf dagen willekeurig het meest passende artikel uit een lijst van ongeveer tweehonderd getoond. </p>
             <p><i>Gepseudonimiseerde spelgegevens worden voor diagnostische doeleinden opgeslagen.</i></p>
 
         </div>
@@ -229,10 +216,8 @@
         <p id="poptext">In het coronadebat was de Tweede Kamer glashelder: nu er dagelijks honderden mensen positief getest worden op corona, kunnen we niet door blijven gaan alsof er niets aan de hand is. Een motie die de minister oproept om maatregelen te nemen werd unaniem aangenomen. Voer je de motie uit?</p>
         <div class="btn txt" onclick="delChoices();">Begrepen</div>
     </div>
-    <!-- <div id="tutnudge" class="hide"></div> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js" crossorigin="anonymous" defer></script>
-    <!-- <script defer src="https://kit.fontawesome.com/1e14cbea42.js" crossorigin="anonymous"></script> -->
     <script type="text/javascript" src="js/rand.js"></script>
     <script type="text/javascript" src="js/covid.js"></script>
     <script type="text/javascript" src="js/choice.js"></script>
@@ -242,7 +227,6 @@
     <!-- <script type="text/javascript" src="js/tutorial.js"></script> -->
     <script type="text/javascript" src="js/os.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
-    <!-- <script type="text/javascript" src="./js/js.js"></script> -->
 </body>
 
 </html>

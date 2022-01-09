@@ -1,9 +1,9 @@
 var prompts = [
     // ["Spel beginnen", "Begin het spel door <span class='desk'>links</span>boven<span class='mob'>aan</span> op de startknop (<i class='fas fa-play'></i>) te klikken. Je kan daarna wanneer je wil het spel versnellen of pauzeren met de andere tijdsknoppen.", "day==11&&speed==0"],
-    ["Maatregelen nemen", "Je kan op elk moment een maatregel invoeren door op de bijbehorende knop te klikken. Probeer een combinatie van maatregelen te vinden die het virus onder controle kan houden.", "day==18&&index<.05"],
-    ["Maatregelen nemen", "Je kan op elk moment nieuwe maatregelen invoeren als je denkt dat dat nodig is. Probeer een combinatie van maatregelen te vinden die het virus onder controle kan houden.", "day==18&&index>=.05"],
-    ["Gevolgen van beleid", "Het duurt soms even voordat je de impact van jouw beleid in de coronacijfers terugziet, daarom is het ook belangrijk om het binnen&shy;komende nieuws goed in de gaten te houden.", "day==28"],
-    ["Maatregelen afschaffen", "Coronamaatregelen zijn ingrijpend, gebruik ze dus zo kort mogelijk. Als jij denkt dat de cijfers het toelaten, kan je ze afschaffen door opnieuw op een maatregelknop te klikken.", "day>=38&&s.dH<-.05&&index>.2", "cookie"],
+    ["Maatregelen nemen", "Je kan op elk moment een maatregel invoeren door op de bijbehorende knop te klikken. Het duurt dan zeven dagen voordat een maatregel actief is. Probeer een combinatie te vinden die het virus onder controle kan houden.", "day==18&&index<=.05"],
+    ["Maatregelen nemen", "Je kan op elk moment nieuwe maatregelen invoeren als je denkt dat dat nodig is. Het duurt dan zeven dagen voordat een maatregel actief is. Probeer een combinatie te vinden die het virus onder controle kan houden.", "day==18&&index>.05"],
+    ["Gevolgen van beleid", "Het duurt soms even voordat je de impact van jouw beleid in de coronacijfers terugziet. Daarom is het ook belangrijk om het binnen&shy;komende nieuws goed in de gaten te houden.", "day==28", "cookie"],
+    ["Maatregelen afschaffen", "Coronamaatregelen zijn ingrijpend: gebruik ze dus zo kort mogelijk. Als jij denkt dat de cijfers het toelaten, kan je ze afschaffen door opnieuw op een maatregelknop te klikken.", "day>=38&&s.dH<-.05&&index>.2"],
 ]
 
 var skip = false;
