@@ -1,5 +1,6 @@
-var tikkie = "https://tikkie.me/pay/aqc6q6kt1svn592g6q68";
+var tikkie = "https://tikkie.me/pay/892u2j93dp45cdpcudf1";
 q("tikkie").href = tikkie;
+q("tikkie2").href = tikkie;
 
 console.log('%cBeter dan Hugo', 'background:#212529;color:#ebebeb;font-size:2.5em;font-family:sans-serif;font-weight:900;padding:20px;border-radius:10px;');
 console.log("https://github.com/coretteket/beterdanhugo");
@@ -69,7 +70,9 @@ if (dev || m || seeded) {
     show("start", "disclaimer");
     toggleFAQ();
 } else {
-    show("wip");
+    // show("wip");
+    beta = true;
+    show("start", "disclaimer");
 }
 
 dev && console.log(`Aantal artikelen: %c${nws.length}`, 'color:violet');
@@ -116,11 +119,24 @@ function start() {
 }
 
 function format(i) {
-    return i.toLocaleString('nl-NL', { minimumFractionDigits: 1 });
+    var j = i < 10 ? Math.round(i * 10) / 10 : i;
+    return j.toLocaleString('nl-NL', { maximumFractionDigits: 1 }) + "%";
 }
 
+function shares(i, j1, j2, k) {
+    var txt = ""
+    if (i < j1) txt += "🟩 ";
+    else if (i < j2) txt += "🟨 ";
+    else txt += "🟥 "
+    if (i >= 100) txt += Math.round(i) + '%';
+    else txt += format(Math.abs(i));
+    if (k == "bevolking besmet") txt += " " + k;
+    else if (i < 0) txt += " minder " + k;
+    else txt += " meer " + k;
+    return txt + "\n";
+}
 
-" [iets] [meer/minder] mensen, terwijl je [iets] [meer/minder]"
+var sharetxt = "";
 
 function end() {
     if (dev) console.log("Seed: %c" + visitTime, 'color:violet');
@@ -129,21 +145,19 @@ function end() {
     pause();
     getStringency();
     gameOver = true;
-
-
     // q("tikkie-pseudo").href = tikkie;
 
     let str = "";
 
     var immune = s.R / s.N * 100;
-    q("res-pop").innerHTML = immune < 10 ? `${format(Math.round(immune * 10) / 10)}%` : `${Math.round(immune)}%`;
+    q("res-pop").innerHTML = format(immune);
     if (immune > 6) q("res-pop").classList.add("worse");
     if (immune < 4) q("res-pop").classList.add("better");
 
     var deaths = s.F / 100 - 100;
     var absdeath = Math.abs(deaths);
     if (deaths >= 100) q("res-dead").innerHTML = `${Math.round(absdeath/100)+1}x`;
-    else q("res-dead").innerHTML = absdeath < 10 ? `${format(Math.round(absdeath * 10) / 10)}%` : `${Math.round(absdeath)}%`;
+    else q("res-dead").innerHTML = format(absdeath);
     if (deaths > 5) q("res-dead").classList.add("worse");
     if (deaths < -5) q("res-dead").classList.add("better");
     if (deaths > 0) q("deadline").innerHTML = `meer doden`;
@@ -157,7 +171,8 @@ function end() {
 
     var meas = (stringency - .5) / .5 * 100;
     var absmeas = Math.abs(meas);
-    q("res-meas").innerHTML = absmeas < 10 ? `${format(Math.round(absmeas * 10) / 10)}%` : `${Math.round(absmeas)}%`;
+    var displaymeas = format(absmeas);
+    q("res-meas").innerHTML = displaymeas;
     if (meas > 5) q("res-meas").classList.add("worse");
     if (meas < -5) q("res-meas").classList.add("better");
     if (meas > 0) q("measline").innerHTML = `meer maatregelen`;
@@ -166,6 +181,15 @@ function end() {
     if (Math.abs(meas) < 5) str += "iets "
     if (meas > 0) str += "meer "
     else str += "minder "
+
+    sharetxt = "Zo deed ik het als coronaminister:\n"
+    sharetxt += shares(meas, -5, 5, "maatregelen");
+    sharetxt += shares(deaths, -5, 5, "doden");
+    sharetxt += shares(immune, 4, 6, "bevolking besmet");
+    sharetxt += "\nKan jij het beterdanhugo.nl?"
+
+    q("twitter-share").href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(sharetxt);
+    q("mail-share").href = "mailto:?body=" + encodeURIComponent(sharetxt);
 
     q("eval").innerText = str;
 
@@ -702,9 +726,10 @@ function share() {
     try {
         navigator.share({
             title: 'Beter dan Hugo',
-            text: 'Krijg jij corona onder controle?',
+            text: sharetxt.replace("beterdanhugo.nl", "Beter dan Hugo"),
             url: 'https://beterdanhugo.nl'
         });
+        
     } catch (e) {
         console.log(e);
     }
