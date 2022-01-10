@@ -1,4 +1,4 @@
-var tikkie = "https://tikkie.me/pay/892u2j93dp45cdpcudf1";
+var tikkie = "https://tikkie.me/pay/62k3mn2ocd3sop2i851v";
 q("tikkie").href = tikkie;
 q("tikkie2").href = tikkie;
 
@@ -729,7 +729,7 @@ function share() {
             text: sharetxt.replace("beterdanhugo.nl", "Beter dan Hugo"),
             url: 'https://beterdanhugo.nl'
         });
-        
+
     } catch (e) {
         console.log(e);
     }
