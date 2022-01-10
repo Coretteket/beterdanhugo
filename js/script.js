@@ -1,4 +1,4 @@
-var tikkie = "https://tikkie.me/pay/sqv9kaqt2iiotilk4u22";
+var tikkie = "https://tikkie.me/pay/lenskq48f1ch4eu6ahln";
 q("tikkie").href = tikkie;
 q("tikkie2").href = tikkie;
 
