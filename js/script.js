@@ -1,4 +1,4 @@
-var tikkie = "https://tikkie.me/pay/i506jspbpmcl385t6uv0";
+var tikkie = "https://www.ing.nl/particulier/betaalverzoek/index.html?trxid=meYSBMg7eZ7hFMa6K2nAfKjbs8iMJzRm";
 q("tikkie").href = tikkie;
 q("tikkie2").href = tikkie;
 
