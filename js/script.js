@@ -1,6 +1,10 @@
-var tikkie = "https://tikkie.me/pay/lenskq48f1ch4eu6ahln";
-q("tikkie").href = tikkie;
-q("tikkie2").href = tikkie;
+function getJSON(b, c) { 
+    var a = new XMLHttpRequest;
+    a.overrideMimeType("application/json");
+    a.open("GET", b, !0);
+    a.onreadystatechange = function() { 4 === a.readyState && "200" == a.status && c(JSON.parse(a.responseText)) };
+    a.send(null) 
+};
 
 console.log('%cBeter dan Hugo', 'background:#212529;color:#ebebeb;font-size:2.5em;font-family:sans-serif;font-weight:900;padding:20px;border-radius:10px;');
 console.log("https://github.com/coretteket/beterdanhugo");
@@ -139,6 +143,11 @@ function shares(i, j1, j2, k) {
 var sharetxt = "";
 
 function end() {
+    getJSON("https://raw.githubusercontent.com/Coretteket/beterdanhugo/main/tikkie.json", (data) => {
+        q("tikkie").href = data["tikkie"];
+        q("tikkie2").href = data["tikkie"]; 
+    });
+
     if (dev) console.log("Seed: %c" + visitTime, 'color:violet');
     if (dev) console.log("Meas: %c" + mstr, 'color:violet');
 
